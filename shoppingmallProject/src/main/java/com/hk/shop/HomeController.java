@@ -35,5 +35,5 @@ public class HomeController {
 		
 		return "home";
 	}
-	
+	//야호
 }
