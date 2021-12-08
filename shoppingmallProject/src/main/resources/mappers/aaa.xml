@@ -1,1 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.shop">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="boardResult" type="MemberVO">
+
+	</resultMap>
+	<!-- 쿼리집어넣는 장소! -->
+	<select id="selectAllArticleList" resultMap="boardResult">
+   <![CDATA[
+       SELECT LEVEL,articleNO,parentNO,title,content,id,writeDate,isDelete from t_board
+              START WITH  parentNO=0 CONNECT BY PRIOR articleNO=parentNO
+            ORDER SIBLINGS BY articleNO DESC
+   ]]>
+	</select>
+
+</mapper>
