@@ -10,6 +10,8 @@ public class TestController {
 	@RequestMapping("/test")
 	@ResponseBody
 	public String test() { 
+		// 222
 		return "aaa";
+		
 	}
 }
