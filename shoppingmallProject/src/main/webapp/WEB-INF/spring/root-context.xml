@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+   xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+   
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   
+   <!--  Namespace : 패키지 개념. -->   
+   <!--  DB 접속관련 정보 기록 -->
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+        <property name="username" value="STUDY" />
+        <property name="password" value="STUDY" />
+    </bean>       
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+
+      <property name="configLocation" value="WEB-INF/spring/mybatis-config.xml"/>   
+
+      <!-- DB에서 실행할 sql 문장을 태그로 정의해 놓는다. -->
+      <property name="mapperLocations" value="classpath:mappers/*.xml"/>
+      <!-- mappers/board.xml -->
+      <!-- mappers/member.xml -->
+      <!-- mapper를 테이블명과 1:1로-->
+   </bean>
+
+   
+   <!-- 3. Mybatis DB 프로그램의 자동화 객체 -> template -->
+   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+   </bean> 
+   
 </beans>
