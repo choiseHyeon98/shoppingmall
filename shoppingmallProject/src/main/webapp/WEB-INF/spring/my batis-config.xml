@@ -5,16 +5,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
     <typeAliases>
       <typeAlias type="com.hk.shop.vo.MemberVO" alias="MemberVO" />
-      <typeAlias type="com.hk.shop.vo.deliveryVO" alias="DeliveryVO" />
-      <typeAlias type="com.hk.shop.vo.orderListVO" alias="OrderListVO" />
-      <typeAlias type="com.hk.shop.vo.productVO" alias="ProductVO" />
-      <typeAlias type="com.hk.shop.vo.reviewVO" alias="ReviewVO" />
-      <typeAlias type="com.hk.shop.vo.reviewManagerVO" alias="ReviewManagerVO" />
-      <typeAlias type="com.hk.shop.vo.askVO" alias="AskVO" />
+      <typeAlias type="com.hk.shop.vo.DeliveryVO" alias="DeliveryVO" />
+      <typeAlias type="com.hk.shop.vo.OrderListVO" alias="OrderListVO" />
+      <typeAlias type="com.hk.shop.vo.ProductVO" alias="ProductVO" />
+      <typeAlias type="com.hk.shop.vo.ReviewVO" alias="ReviewVO" />
+      <typeAlias type="com.hk.shop.vo.ReviewManagerVO" alias="ReviewManagerVO" />
+      <typeAlias type="com.hk.shop.vo.AskVO" alias="AskVO" />
       <typeAlias type="com.hk.shop.vo.FAQ VO" alias="FAQ VO" />
-      <typeAlias type="com.hk.shop.vo.cartVO" alias="CartVO" />
-      <typeAlias type="com.hk.shop.vo.eventVO" alias="EventVO" />
+      <typeAlias type="com.hk.shop.vo.CartVO" alias="CartVO" />
+      <typeAlias type="com.hk.shop.vo.EventVO" alias="EventVO" />
       <typeAlias type="com.hk.shop.vo.FooterVO" alias="FooterVO" />
-      <typeAlias type="com.hk.shop.vo.optionVO" alias="OptionVO" />
+      <typeAlias type="com.hk.shop.vo.OptionVO" alias="OptionVO" />
     </typeAliases>
 </configuration>
