@@ -39,7 +39,12 @@ public class HomeController {
 	//안녕김한비
 	//나는서도히라고
 	//모두가 성공!!!! 세현쓰!
+<<<<<<< HEAD
 	//슬쩍 집에서 연결해봤쉼다 - 세현12/07
 	
 	// ignore추가후 나도 커밋해볼궤 -도희-
+=======
+	//슬쩍 집에서 연결해봤쉼다 - 세현12/07'
+	//12.08 최세현
+//>>>>>>> branch 'master' of https://github.com/choiseHyeon98/shoppingmall.git
 }
