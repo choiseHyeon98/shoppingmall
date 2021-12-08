@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <typeAlias type="com.hk.shop.vo.ReviewVO" alias="ReviewVO" />
       <typeAlias type="com.hk.shop.vo.ReviewManagerVO" alias="ReviewManagerVO" />
       <typeAlias type="com.hk.shop.vo.AskVO" alias="AskVO" />
-      <typeAlias type="com.hk.shop.vo.FAQVO" alias="FAQ VO" />
+      <typeAlias type="com.hk.shop.vo.FAQVO" alias="FAQVO" />
       <typeAlias type="com.hk.shop.vo.CartVO" alias="CartVO" />
       <typeAlias type="com.hk.shop.vo.EventVO" alias="EventVO" />
       <typeAlias type="com.hk.shop.vo.FooterVO" alias="FooterVO" />
