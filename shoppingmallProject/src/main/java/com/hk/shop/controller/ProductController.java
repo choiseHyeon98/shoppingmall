@@ -37,7 +37,7 @@ public class ProductController {
 		return "ProductList";
 	}
 	// 3. 오피스 상품/product/listOffice
-	@RequestMapping (value="/product/listCasual", method= {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping (value="/product/listOffice", method= {RequestMethod.GET,RequestMethod.POST})
 	String officeCategory(Model model) {
 		List<ProductVO> Product = productService.selectOffice();
 		model.addAttribute("Product", Product);
@@ -45,7 +45,7 @@ public class ProductController {
 	}
 	
 	// 4. 페미닌 상품/product/listFeminine
-	@RequestMapping (value="/product/listCasual", method= {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping (value="/product/listFeminine", method= {RequestMethod.GET,RequestMethod.POST})
 	String feminineCategory(Model model) {
 		List<ProductVO> Product = productService.selectFeminine();
 		model.addAttribute("Product", Product);
@@ -60,7 +60,7 @@ public class ProductController {
 		return "ProductList";
 	}
 	// 6. 빈티지 상품/product/listVintage
-	@RequestMapping (value="/product/listCasual", method= {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping (value="/product/listVintage", method= {RequestMethod.GET,RequestMethod.POST})
 	String vintageCategory(Model model) {
 		List<ProductVO> Product = productService.selectVintage();
 		model.addAttribute("Product", Product);

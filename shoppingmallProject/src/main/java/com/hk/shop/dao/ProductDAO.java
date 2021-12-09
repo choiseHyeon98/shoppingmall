@@ -19,9 +19,9 @@ public class ProductDAO {
 		// TODO Auto-generated method stub
 		//여기서 베스트 상품을 선택하는 쿼리를 mapper를 통해 작성받고 리턴하기
 		List<ProductVO> productVO;
-		//productVO = session.selectList("mapper.product.selectBest");
+		productVO = session.selectList("mapper.product.selectBest");
 		//잘나가는 상품 주문리스트에서 상품번호로 카운트, 카운트가 많은 순서대로 정렬, 3번째에서 자르기
-		return null;
+		return productVO;
 	}
 
 	public List<ProductVO> selectNew() {

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.board">
+<mapper namespace="mapper.product">
 
 	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
 	<resultMap id="productResult" type="ProductVO">
@@ -24,8 +24,16 @@
 	<!-- 쿼리집어넣는 장소! -->
 	<select id="selectBest" resultMap="productResult">
    <![CDATA[
-      
+    SELECT *
+	FROM PRODUCT
+	WHERE "proNum" IN
+		(SELECT "proNum"
+		FROM 
+		(SELECT "proNum" ,count(*)
+		FROM ORDERLIST
+		GROUP BY "proNum"
+		ORDER BY count(*) DESC)
+		WHERE ROWNUM <= 3)
    ]]>
 	</select>
-	<!-- SelectKey를 이용해서 두문장을 한번에 실행 -->
 </mapper>

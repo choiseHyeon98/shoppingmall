@@ -33,6 +33,7 @@ public class HomepageController {
 		//여기서 베스트 상품
 		List<ProductVO> bestList = productService.selectBest();
 		model.addAttribute("bestList", bestList);
+		System.out.println(bestList.toString());
 		//여기서 신상품
 		List<ProductVO> newList = productService.selectNew();
 		model.addAttribute("newList", newList);
