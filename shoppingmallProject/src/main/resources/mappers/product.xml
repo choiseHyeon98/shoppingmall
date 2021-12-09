@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="productResult" type="ProductVO">
+		<result property="proNum" column="proNum" />
+		<result property="proName" column="proName" />
+		<result property="proContent" column="proContent" />
+		<result property="proDetails" column="proDetails" />
+		<result property="proSpecification" column="proSpecification" />
+		<result property="refundPolicy" column="refundPolicy" />
+		<result property="topImage" column="topImage" />
+		<result property="price" column="price" />
+		<result property="delprice" column="delprice" />
+		<result property="dailyDel" column="dailyDel" />
+		<result property="proCon" column="proCon" />
+		<result property="proCate" column="proCate" />
+
+	</resultMap>
+	<!-- 쿼리집어넣는 장소! -->
+	<select id="selectBest" resultMap="productResult">
+   <![CDATA[
+      
+   ]]>
+	</select>
+	<!-- SelectKey를 이용해서 두문장을 한번에 실행 -->
+</mapper>
