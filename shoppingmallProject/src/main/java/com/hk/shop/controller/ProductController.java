@@ -26,6 +26,7 @@ public class ProductController {
 	String allCategory(Model model) {
 		List<ProductVO> Product = productService.selectAll();
 		model.addAttribute("Product", Product);
+		System.out.println("AllList"+Product.toString());		
 		return "ProductList";
 	}
 	
@@ -34,6 +35,7 @@ public class ProductController {
 	String casualCategory(Model model) {
 		List<ProductVO> Product = productService.selectCasual();
 		model.addAttribute("Product", Product);
+		System.out.println("listCasual"+Product.toString());
 		return "ProductList";
 	}
 	// 3. 오피스 상품/product/listOffice
@@ -41,6 +43,7 @@ public class ProductController {
 	String officeCategory(Model model) {
 		List<ProductVO> Product = productService.selectOffice();
 		model.addAttribute("Product", Product);
+		System.out.println("listOffice"+Product.toString());
 		return "ProductList";
 	}
 	
@@ -49,6 +52,7 @@ public class ProductController {
 	String feminineCategory(Model model) {
 		List<ProductVO> Product = productService.selectFeminine();
 		model.addAttribute("Product", Product);
+		System.out.println("listFeminine"+Product.toString());
 		return "ProductList";
 	}
 		
@@ -57,6 +61,7 @@ public class ProductController {
 	String hipCategory(Model model) {
 		List<ProductVO> Product = productService.selectHip();
 		model.addAttribute("Product", Product);
+		System.out.println("listHip"+Product.toString());
 		return "ProductList";
 	}
 	// 6. 빈티지 상품/product/listVintage
@@ -64,6 +69,7 @@ public class ProductController {
 	String vintageCategory(Model model) {
 		List<ProductVO> Product = productService.selectVintage();
 		model.addAttribute("Product", Product);
+		System.out.println("listVintage"+Product.toString());
 		return "ProductList";
 	}
 	

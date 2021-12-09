@@ -54,44 +54,52 @@ public class ProductDAO {
 	public List<ProductVO> selectAll() {
 		// TODO Auto-generated method stub
 		//상품 전체선택
-		//SELECT * FROM PRODUCT
-		return null;
+		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.product.selectAll");
+		return productVO;
 	}
 
 	public List<ProductVO> selectCasual() {
 		// TODO Auto-generated method stub
 		//캐주얼 상품 선택
-		//SELECT * FROM PRODUCT WHERE "proCon" = 'Casual'
-		return null;
+		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.product.selectCasual");
+		return productVO;
 	}
 
 	public List<ProductVO> selectOffice() {
 		// TODO Auto-generated method stub
 		//오피스 상품 선택
-		return null;
-		//SELECT * FROM PRODUCT WHERE "proCon" = 'Office'
+		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.product.selectOffice");
+		return productVO;
 	}
 
 	public List<ProductVO> selectFeminine() {
 		// TODO Auto-generated method stub
 		//페미닌 룩
-		//SELECT * FROM PRODUCT WHERE "proCon" = 'Feminine'
-		return null;
+		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.product.selectFeminine");
+		return productVO;
 	}
 
 	public List<ProductVO> selectHip() {
 		// TODO Auto-generated method stub
 		//힙 룩
-		//SELECT * FROM PRODUCT WHERE "proCon" = 'Hip'
-		return null;
+		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.product.selectHip");
+		return productVO;
 	}
 
 	public List<ProductVO> selectVintage() {
 		// TODO Auto-generated method stub
 		//빈티지 선택
-		//SELECT * FROM PRODUCT WHERE "proCon" = 'Vintage'
-		return null;
+		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.product.selectVintage");
+		return productVO;
 	}
+	
+	//상품 상세보기
 
 	public List<ProductVO> selectOne(int proNum) {
 		// TODO Auto-generated method stub

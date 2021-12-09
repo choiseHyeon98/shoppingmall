@@ -61,4 +61,40 @@
 	WHERE ROWNUM <=3
    ]]>
 	</select>
+	
+	<select id="selectAll" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT 
+   ]]>
+	</select>
+	<!-- 캐주얼 -->
+	<select id="selectCasual" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT where "proCon" = 'Casual'
+   ]]>
+	</select>
+	<!-- 오피스 -->
+	<select id="selectOffice" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT where "proCon" = 'Office'
+   ]]>
+	</select>
+	<!-- 페미닌 -->
+	<select id="selectFeminine" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT where "proCon" = 'Feminine'
+   ]]>
+	</select>
+	<!-- 힙 -->
+	<select id="selectHip" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT where "proCon" = 'Hip'
+   ]]>
+	</select>
+	<!-- 빈티지 -->
+	<select id="selectVintage" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT where "proCon" = 'Vintage'
+   ]]>
+	</select>
 </mapper>
