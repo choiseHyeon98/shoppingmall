@@ -15,11 +15,25 @@
 	
 	<!-- 쿼리집어넣는 장소! -->
 	
-	<select id="selectAllArticleList" resultMap="eventResult">
+	<select id="eventAllList" resultMap="eventResult">
    <![CDATA[
     SELECT "eventNum","eventImg" from EVENT e ORDER by "eventNum" desc
    ]]>
 	</select>
 	
+	<select id="eventOne" resultType="EventVO">
+   <![CDATA[
+    SELECT * from EVENT where eventNum=#{eventNum}
+   ]]>
+	</select>
+	
+	<select id="insertEvent" resultType="EventVO">
+   <![CDATA[
+   INSERT INTO EVENT 
+   ("eventNum","eventTitle","eventImg","eventContent") VALUES (#{eventNum},#{eventTitle}, #{eventImg}, #{eventContent})
+   
+   ]]>
+	</select>
+	<!-- num증가 쿼리 수정 -->
 	
 </mapper>

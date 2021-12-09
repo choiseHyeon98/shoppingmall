@@ -18,18 +18,18 @@ public class EventDAO {
 		// TODO Auto-generated method stub
 		
 		List<EventVO> EventVO;
-		EventVO = session.selectList("mapper.event.selectAllArticleList");
+		EventVO = session.selectList("mapper.event.eventAllList");
 		//이벤트 리스트 전부 담아서 가져옴
 		return EventVO;
 	}
 
-	public List<EventVO> selectOneEvents(int eventNum) {
+	public EventVO selectOneEvents(int eventNum) {
 		// TODO Auto-generated method stub
-		List<EventVO> EventVO;
-		EventVO = session.selectOne("mapper.event.selectOne",eventNum);
+		
+		EventVO eventVO = session.selectOne("mapper.event.eventOne",eventNum);
 		//이벤트 리스트 번호 조회해서 가져옴
 		
-		return null;
+		return eventVO;
 	}
 
 }

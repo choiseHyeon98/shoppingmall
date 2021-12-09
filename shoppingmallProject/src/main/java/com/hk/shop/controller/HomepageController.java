@@ -54,7 +54,7 @@ public class HomepageController {
 	//이벤트 페이지
 	@RequestMapping (value="/event/eventList", method= {RequestMethod.GET,RequestMethod.POST})
 	String eventpage(Model model, @RequestParam("eventNum") int eventNum){
-		List<EventVO> eventList = eventService.selectOneEvents(eventNum);
+		EventVO eventList = eventService.selectOneEvents(eventNum);
 		model.addAttribute("eventList", eventList);
 		//이벤트 번호, 이미지 받아서 이벤트 페이지번호에 맞는 화면 구성하기(누른 배너에 따라 번호 받고, 번호에 따른 리스트 가져옴.
 		return "event";

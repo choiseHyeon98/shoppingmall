@@ -27,15 +27,19 @@
 </head>
 <body>
 <h1 style="text-align:center">새글 쓰기</h1>
-  <form name="eventForm" method="post"   action="/event/Add" >
+  <form name="eventForm" method="post" action="add" >
     <table border="0" align="center">
     <tr>
+      <td align="right" valign="top"><br>이벤트제목: </td>
+      <td colspan=2><textarea name="eventTitle" rows="10" cols="65" maxlength="20" required></textarea> </td>
+     </tr>
+    <tr>
       <td align="right" valign="top"><br>글내용: </td>
-      <td colspan=2><textarea name="content" rows="10" cols="65" maxlength="4000" required></textarea> </td>
+      <td colspan=2><textarea name="eventContent" rows="10" cols="65" maxlength="3000" required></textarea> </td>
      </tr>
      <tr>
         <td align="right">이미지파일 첨부:  </td>
-        <td> <input type="file" name="imageFileName"  onchange="readURL(this);" /></td>
+        <td> <input type="file" name="eventImg"  onchange="readURL(this);" /></td>
          <td><img  id="preview" src="#"   width=200 height=200/></td>
     </tr>
     <tr>

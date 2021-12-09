@@ -91,7 +91,7 @@ public class ManagerController {
 	
 	
 	//event배너 추가 폼
-	@RequestMapping(value="/event/Add",method=RequestMethod.GET)
+	@RequestMapping(value="/manager/event/add",method=RequestMethod.GET)
 	public String eventAdd() {
 		
 		return "eventAdd";
@@ -99,10 +99,11 @@ public class ManagerController {
 	}
 	
 	//event배너 추가 완료 
-	@RequestMapping(value="/event/Add",method=RequestMethod.POST)
+	@RequestMapping(value="/manager/event/add",method=RequestMethod.POST)
 	public String eventAddDone(Model model, @ModelAttribute EventVO eventVO) {
 		
 		int ret = managerService.eventAddDoneService(eventVO);
+		System.out.println("eventVO="+eventVO.toString());
 		model.addAttribute("ret", ret);
 		
 		return "eventAddDone";
