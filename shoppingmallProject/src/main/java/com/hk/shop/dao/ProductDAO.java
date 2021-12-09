@@ -105,8 +105,9 @@ public class ProductDAO {
 		// TODO Auto-generated method stub
 		//상품 상세보기
 		//상품 하나만 선택해서 view
-		//SELECT * FROM PRODUCT WHERE "proNum" = '#{}'
-		return null;
+		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.product.selevtOneView",proNum);
+		return productVO;
 	}
 
 	public List<OptionVO> selectOption(int proNum) {

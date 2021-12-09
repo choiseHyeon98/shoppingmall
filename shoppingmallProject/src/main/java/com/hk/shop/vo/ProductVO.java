@@ -15,6 +15,22 @@ public class ProductVO {
 	String dailyDel;
 	String proCon;
 	String proCate;
+	String sizeOption;
+	String colorOption;
+	
+	
+	public String getSizeOption() {
+		return sizeOption;
+	}
+	public void setSizeOption(String sizeOption) {
+		this.sizeOption = sizeOption;
+	}
+	public String getColorOption() {
+		return colorOption;
+	}
+	public void setColorOption(String colorOption) {
+		this.colorOption = colorOption;
+	}
 	public int getProNum() {
 		return proNum;
 	}
@@ -94,12 +110,16 @@ public class ProductVO {
 		this.soldOut = soldOut;
 	}
 	String soldOut;
-	
+
+
 	@Override
 	public String toString() {
 		return "ProductVO [proNum=" + proNum + ", proName=" + proName + ", proContent=" + proContent + ", proDetails="
 				+ proDetails + ", proSpecification=" + proSpecification + ", refundPolicy=" + refundPolicy
 				+ ", topImage=" + topImage + ", price=" + price + ", delprice=" + delprice + ", dailyDel=" + dailyDel
-				+ ", proCon=" + proCon + ", proCate=" + proCate + ", soldOut=" + soldOut + "]";
+				+ ", proCon=" + proCon + ", proCate=" + proCate + ", sizeOption=" + sizeOption + ", colorOption="
+				+ colorOption + ", soldOut=" + soldOut + "]";
 	}
+	
+
 }

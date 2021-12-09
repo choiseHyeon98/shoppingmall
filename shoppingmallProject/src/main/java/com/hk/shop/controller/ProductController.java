@@ -86,9 +86,8 @@ public class ProductController {
 	@RequestMapping (value="/product/detail", method= {RequestMethod.GET,RequestMethod.POST})
 	String detailView(Model model, @RequestParam("proNum") int proNum) {
 		List<ProductVO> Product = productService.selectOne(proNum);
-		List<OptionVO> option = productService.selectOption(proNum);
 		model.addAttribute("Product", Product);
-		model.addAttribute("option", option);
+		System.out.println("상품상세보기"+Product.toString());
 		return "ProductView";
 	}
 	

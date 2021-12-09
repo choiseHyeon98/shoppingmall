@@ -19,7 +19,8 @@
 		<result property="dailyDel" column="dailyDel" />
 		<result property="proCon" column="proCon" />
 		<result property="proCate" column="proCate" />
-
+		<result property="sizeOption" column="sizeOption" />
+		<result property="colorOption" column="colorOption" />
 	</resultMap>
 	<!-- 쿼리집어넣는 장소! -->
 	<select id="selectBest" resultMap="productResult">
@@ -97,4 +98,12 @@
 	SELECT * FROM PRODUCT where "proCon" = 'Vintage'
    ]]>
 	</select>
+	<select id="selevtOneView" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT p ,"OPTION" o WHERE p."proNum" = o."proNum" AND p."proNum" = #{proNum} 
+   ]]>
+	</select>
+	
+	
+	
 </mapper>
