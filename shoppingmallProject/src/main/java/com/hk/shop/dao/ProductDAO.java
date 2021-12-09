@@ -27,25 +27,27 @@ public class ProductDAO {
 	public List<ProductVO> selectNew() {
 		// TODO Auto-generated method stub
 		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.product.selectNew");
 		//productVO = session.selectList("mapper.board.selectAllArticleList");
 		//등록된 상품 순서대로 조회, 새로운 상품 순서로 자르기
-		return null;
+		return productVO;
 	}
 
 	public List<ProductVO> selectDaily() {
 		// TODO Auto-generated method stub
 		List<ProductVO> productVO;
-		//productVO = session.selectList("mapper.board.selectAllArticleList");
+		productVO = session.selectList("mapper.product.selectDaily");
 		//오늘 배송 상품 조회		
-		return null;
+		return productVO;
 	}
 
 	public List<ProductVO> selectRandom() {
 		// TODO Auto-generated method stub
 		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.product.selectRandom");
 		//productVO = session.selectList("mapper.board.selectAllArticleList");
 		//상품 랜덤하게 섞어서 담기
-		return null;
+		return productVO;
 	}
 
 	//상품 카테고리

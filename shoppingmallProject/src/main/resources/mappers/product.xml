@@ -29,11 +29,36 @@
 	WHERE "proNum" IN
 		(SELECT "proNum"
 		FROM 
-		(SELECT "proNum" ,count(*)
-		FROM ORDERLIST
-		GROUP BY "proNum"
-		ORDER BY count(*) DESC)
+			(SELECT "proNum" ,count(*)
+			FROM ORDERLIST
+			GROUP BY "proNum"
+			ORDER BY count(*) DESC)
 		WHERE ROWNUM <= 3)
+   ]]>
+	</select>
+	<select id="selectNew" resultMap="productResult">
+   <![CDATA[
+    SELECT *
+	FROM 
+		(SELECT *
+		FROM PRODUCT 
+		ORDER BY "proNum" DESC)
+	WHERE ROWNUM <= 3
+   ]]>
+	</select>
+	
+	<select id="selectDaily" resultMap="productResult">
+   <![CDATA[
+    SELECT *
+	FROM PRODUCT
+	WHERE "dailyDel" = 'Y'
+   ]]>
+	</select>
+	<select id="selectRandom" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM 
+		(SELECT * FROM PRODUCT ORDER BY dbms_random.value)
+	WHERE ROWNUM <=3
    ]]>
 	</select>
 </mapper>

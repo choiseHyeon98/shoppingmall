@@ -33,16 +33,20 @@ public class HomepageController {
 		//여기서 베스트 상품
 		List<ProductVO> bestList = productService.selectBest();
 		model.addAttribute("bestList", bestList);
-		System.out.println(bestList.toString());
+		System.out.println("best"+bestList.toString());
 		//여기서 신상품
 		List<ProductVO> newList = productService.selectNew();
 		model.addAttribute("newList", newList);
+		System.out.println("new"+newList.toString());
 		//여기서 오늘배송상품
-		List<ProductVO> bestDaily = productService.selectDaily();
-		model.addAttribute("bestDaily", bestDaily);
+		List<ProductVO> dailyList = productService.selectDaily();
+		model.addAttribute("bestDaily", dailyList);
+		System.out.println("daily"+dailyList.toString());
+		
 		//여기서 랜덤상품
-		List<ProductVO> bestRandom = productService.selectRandom();
-		model.addAttribute("bestRandom", bestRandom);
+		List<ProductVO> RandomList = productService.selectRandom();
+		model.addAttribute("bestRandom", RandomList);
+		System.out.println("Random"+RandomList.toString());
 		//전부 받아서 Model에 넣고 리턴하기
 		return"home";
 	}
