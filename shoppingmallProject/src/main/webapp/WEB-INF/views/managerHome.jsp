@@ -16,12 +16,21 @@
 <hr>
 <h1>홈페이지</h1>
 이벤트 배너 <br>
-<a href="bestPro">베스트상품</a><br>
+베스트상품<br>
+<hr>
+<c:forEach var="best" items="${bestList }" varStatus="3">
+	<tr align="center">
+	  <td width="5%">${best.proName }</td>
+	</tr>					
+</c:forEach>
+<hr>
+<br>
 베스트 상품 3개
 신상품 카테고리별로 3개씩
 오늘배송상품 3개
 상품 랜덤 조회 <br>
-
+	
+	
 <hr>
 푸터위치
 </body>

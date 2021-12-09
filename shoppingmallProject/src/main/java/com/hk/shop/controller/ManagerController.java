@@ -41,16 +41,18 @@ public class ManagerController {
 	@Autowired
 	ManagerService managerService;
 	
-	@RequestMapping(value="/manager/mangerHome", method= {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/manager/managerHome", method= {RequestMethod.GET,RequestMethod.POST})
 	public String managerHome(Model model ) {
 		//이벤트배너 받아오기
 		List<EventVO> eventList = new ArrayList<EventVO>();
 		eventList = managerService.eventService();
+		System.out.println("eventlist="+eventList.toString());
 		
 		
 		//베스트상품 받아오기
 		List<ProductVO> bestList = new ArrayList<ProductVO>();
 		bestList = managerService.bestService();
+		System.out.println("bestLis="+bestList.toString());
 		
 		
 		//신상품받아오기
@@ -86,6 +88,7 @@ public class ManagerController {
 		return "managerHome";
 		
 	}
+	
 	
 	//event배너 추가 폼
 	@RequestMapping(value="/event/Add",method=RequestMethod.GET)
