@@ -21,19 +21,28 @@
    ]]>
 	</select>
 	
-	<select id="eventOne" resultType="EventVO">
+	<select id="eventOne"  resultType="EventVO">
    <![CDATA[
-    SELECT * from EVENT where eventNum=#{eventNum}
+    SELECT * from EVENT where "eventNum"=#{eventNum}
    ]]>
 	</select>
 	
-	<select id="insertEvent" resultType="EventVO">
+	<select id="insertEvent"  parameterType="EventVO">
    <![CDATA[
    INSERT INTO EVENT 
-   ("eventNum","eventTitle","eventImg","eventContent") VALUES (#{eventNum},#{eventTitle}, #{eventImg}, #{eventContent})
+   ("eventNum","eventTitle","eventImg","eventContent") VALUES ((SELECT max(eventNum)+1 FROM event),#{eventTitle}, #{eventImg}, #{eventContent})
    
    ]]>
 	</select>
 	<!-- num증가 쿼리 수정 -->
+	<select id="updateEvent" parameterType="EventVO">
+	 <![CDATA[ 
+      UPDATE EVENT SET "eventTitle"=#{eventTitle}, "eventContent"=#{eventContent},"eventImg"=#{eventImg} WHERE "eventNum"=#{eventNum}
+
+   ]]>
+	
+	</select>
+	
+	
 	
 </mapper>

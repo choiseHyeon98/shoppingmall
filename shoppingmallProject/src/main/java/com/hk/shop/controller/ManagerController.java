@@ -112,10 +112,10 @@ public class ManagerController {
 	}
 	
 	//event배너 수정 폼
-	@RequestMapping(value="/manager/eventMod" , method=RequestMethod.GET)
-	public String eventMod(Model model, @RequestParam("eventNum") EventVO eventNum ) {
+	@RequestMapping(value="/manager/event/mod" , method=RequestMethod.GET)
+	public String eventMod(Model model, @RequestParam("eventNum") int eventNum ) {
 		
-		EventVO eventVO=managerService.eventModService(eventNum);
+		EventVO eventVO = managerService.eventModService(eventNum);
 		model.addAttribute("eventVO",eventVO);
 		
 		return "eventMod";
@@ -124,10 +124,12 @@ public class ManagerController {
 	}
 	
 	//event배너 수정 완료
-	@RequestMapping(value="/manager/eventMod" , method=RequestMethod.POST)
+	@RequestMapping(value="/manager/event/mod" , method=RequestMethod.POST)
 	public String eventModDone(Model model , @ModelAttribute EventVO eventVO) {
 		
 		int ret = managerService.eventModDoneService(eventVO);
+		System.out.println("eventVO 수정"+eventVO.toString());
+		
 		model.addAttribute("ret", ret);
 		
 		

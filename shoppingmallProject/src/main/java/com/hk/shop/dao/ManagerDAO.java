@@ -32,15 +32,12 @@ public class ManagerDAO {
 	}
 
 
-	public EventVO eventModDao(EventVO eventNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 	public int eventModDoneDao(EventVO eventVO) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		int ret = session.update("mapper.event.updateEvent",eventVO);
+		
+		return ret;
 	}
 
 

@@ -61,10 +61,9 @@ public class ManagerService {
 		return managerDAO.insertEventAdd(eventVO);
 	}
 
-	public EventVO eventModService(EventVO eventNum) {
+	public EventVO eventModService(int eventNum) {
 		// TODO Auto-generated method stub
-		return managerDAO.eventModDao(eventNum);
-		
+		return eventDAO.selectOneEvents(eventNum);
 		
 	}
 
