@@ -85,6 +85,7 @@ public class MypageController {
 		return "addReview"; // 리뷰 작성창 + 주문기록에서만 들어간다
 	}
 	
+	/*
 	@RequestMapping (value="/mypage/addReview", method=RequestMethod.GET)
 	// URL 연결한 후에 POST로 고친다
 	public String addReviewDone (Model model, @ModelAttribute ReviewVO reviewVO) {
@@ -92,6 +93,7 @@ public class MypageController {
 		model.addAttribute("ret", ret);
 		return "addReviewDone"; // 리뷰 작성창 + 주문기록에서만 들어간다
 	}
+	*/
 	
 	
 }
