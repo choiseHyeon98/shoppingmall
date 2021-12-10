@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="FAQResult" type="FAQVO">
+			<result property="FAQNum" column="FAQNum" />
+			<result property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="FAQTitle" column="FAQTitle" />
+			<result property="FAQContent" column="FAQContent" />
+			<result property="FAQType" column="FAQType" />
+	</resultMap>
+	<!-- 쿼리집어넣는 장소! -->
+	<select id="selectFAQAllList" resultMap="FAQResult">
+   <![CDATA[
+  		SELECT * FROM FAQ
+   ]]>
+	</select>
+	
+		<select id="selectFAQOneList" resultMap="FAQResult">
+   <![CDATA[
+  		SELECT * FROM FAQ WHERE "FAQNum" = #{FAQNum}
+   ]]>
+	</select>
+	
+	</mapper>
