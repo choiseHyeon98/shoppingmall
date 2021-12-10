@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hk.shop.dao.ProductDAO;
 import com.hk.shop.vo.OptionVO;
+import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
 
 @Service
@@ -60,18 +61,23 @@ public class ProductService {
 	}
 	public List<ProductVO> selectOne(int proNum) {
 		// TODO Auto-generated method stub
-		//상품 하나만 보기
+		//상품 하나만 보기//상품 옵션도 join으로 같이 들어옴
 		return productDAO.selectOne(proNum);
 	}
-	public List<OptionVO> selectOption(int proNum) {
-		// TODO Auto-generated method stub
-		//상품 옵션 가져오기
-		return productDAO.selectOption(proNum);
-	}
-	public List<ProductVO> selectProd(OptionVO optionVO) {
+
+	public List<ProductVO> selectProd(ProductVO optionVO) {
 		// TODO Auto-generated method stub
 		//상품 주문정보 가져와야함!
+		//상세에서 가져오기.
 		return productDAO.selectProd(optionVO);
+	}
+	public List<ProductVO> selectProd(int cartNum) {
+		// TODO Auto-generated method stub
+		return productDAO.selectProd(cartNum);
+	}
+	public int OrderDone(OrderListVO orderListVO) {
+		// TODO Auto-generated method stub
+		return productDAO.OrderDone(orderListVO);
 	}
 
 	

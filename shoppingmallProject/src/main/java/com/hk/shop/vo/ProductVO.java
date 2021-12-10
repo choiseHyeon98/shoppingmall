@@ -15,10 +15,18 @@ public class ProductVO {
 	String dailyDel;
 	String proCon;
 	String proCate;
+	
+	//상세보기 및 상품주문을 위한 VO정보들
 	String sizeOption;
 	String colorOption;
+	int countProNum;
 	
-	
+	public int getCountProNum() {
+		return countProNum;
+	}
+	public void setCountProNum(int countProNum) {
+		this.countProNum = countProNum;
+	}
 	public String getSizeOption() {
 		return sizeOption;
 	}
@@ -111,15 +119,12 @@ public class ProductVO {
 	}
 	String soldOut;
 
-
 	@Override
 	public String toString() {
 		return "ProductVO [proNum=" + proNum + ", proName=" + proName + ", proContent=" + proContent + ", proDetails="
 				+ proDetails + ", proSpecification=" + proSpecification + ", refundPolicy=" + refundPolicy
 				+ ", topImage=" + topImage + ", price=" + price + ", delprice=" + delprice + ", dailyDel=" + dailyDel
 				+ ", proCon=" + proCon + ", proCate=" + proCate + ", sizeOption=" + sizeOption + ", colorOption="
-				+ colorOption + ", soldOut=" + soldOut + "]";
+				+ colorOption + ", countProNum=" + countProNum + ", soldOut=" + soldOut + "]";
 	}
-	
-
 }

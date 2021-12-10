@@ -23,6 +23,8 @@
 		<result property="colorOption" column="colorOption" />
 	</resultMap>
 	<!-- 쿼리집어넣는 장소! -->
+	
+	<!-- 베스트 -->
 	<select id="selectBest" resultMap="productResult">
    <![CDATA[
     SELECT *
@@ -37,6 +39,7 @@
 		WHERE ROWNUM <= 3)
    ]]>
 	</select>
+	<!-- 신상품 -->
 	<select id="selectNew" resultMap="productResult">
    <![CDATA[
     SELECT *
@@ -48,6 +51,7 @@
    ]]>
 	</select>
 	
+	<!-- 오늘의상품 -->
 	<select id="selectDaily" resultMap="productResult">
    <![CDATA[
     SELECT *
@@ -55,6 +59,7 @@
 	WHERE "dailyDel" = 'Y'
    ]]>
 	</select>
+	<!-- 랜덤상품 -->
 	<select id="selectRandom" resultMap="productResult">
    <![CDATA[
 	SELECT * FROM 
@@ -63,6 +68,7 @@
    ]]>
 	</select>
 	
+	<!-- 전체상품 -->
 	<select id="selectAll" resultMap="productResult">
    <![CDATA[
 	SELECT * FROM PRODUCT 
@@ -98,11 +104,44 @@
 	SELECT * FROM PRODUCT where "proCon" = 'Vintage'
    ]]>
 	</select>
-	<select id="selevtOneView" resultMap="productResult">
+	
+	<!-- 상품상세보기 -->
+	<select id="selectOneView" resultMap="productResult">
    <![CDATA[
-	SELECT * FROM PRODUCT p ,"OPTION" o WHERE p."proNum" = o."proNum" AND p."proNum" = #{proNum} 
+	SELECT * 
+	FROM PRODUCT p ,"OPTION" o 
+	WHERE p."proNum" = o."proNum" AND p."proNum" = #{proNum} 
    ]]>
 	</select>
+
+	
+	<!-- 상품상세 주문상세 -->	
+	<select id="selectProductViewOption" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT WHERE "proNum" =#{proNum}
+   ]]>
+	</select> 
+		
+	<!-- 찜목록용 주문상세 -->	
+	<select id="selectProductViewOptionForCart" resultMap="productResult">
+   <![CDATA[
+	SELECT * 
+	FROM PRODUCT p ,CART c 
+	WHERE "cartNum"=#{cartNum} 
+	AND p."proNum" =
+			(SELECT "proNum" 
+			FROM CART 
+			WHERE "cartNum"=#{cartNum})
+   ]]>
+	</select>
+	<!-- 주문완료 -->
+	<insert id="insertOrderList" parameterType="OrderListVO">
+   <![CDATA[
+      INSERT INTO ORDERLIST
+	("orderNum", "proNum", "id", "sizeOption", "colorOption", "tprice", "payment", "delStatus", "orderDate")
+	VALUES((SELECT max("orderNum") FROM ORDERLIST)+1, #{proNum}, #{id}, #{sizeOption}, #{colorOption}, #{tprice}, #{payment}, '주문완료', sysdate)
+   ]]>
+	</insert>
 	
 	
 	

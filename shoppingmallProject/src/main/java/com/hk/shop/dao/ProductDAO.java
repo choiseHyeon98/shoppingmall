@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hk.shop.vo.OptionVO;
+import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
 
 @Repository
@@ -104,23 +105,43 @@ public class ProductDAO {
 	public List<ProductVO> selectOne(int proNum) {
 		// TODO Auto-generated method stub
 		//상품 상세보기
-		//상품 하나만 선택해서 view
+		//상품 하나만 선택해서 view//옵션도 join해서 같이 가져옴(productVO 에 옵션컬럼도 추가해둠...
+		
 		List<ProductVO> productVO;
-		productVO = session.selectList("mapper.product.selevtOneView",proNum);
+		productVO = session.selectList("mapper.product.selectOneView",proNum);
 		return productVO;
 	}
 
-	public List<OptionVO> selectOption(int proNum) {
+
+	//주문상세
+	public List<ProductVO> selectProd(ProductVO optionVO) {
 		// TODO Auto-generated method stub
-		//상품 하나만 선택해서 상품 옵션 가져오기...
-		return null;
+		//상품상세에서 주문상세
+		//옵션에서 proNum만 받아서 상품 선택...
+		List<ProductVO> productVO;
+		int proNum = optionVO.getProNum();
+		productVO = session.selectList("mapper.product.selectProductViewOption",proNum);
+		//SELECT * FROM PRODUCT WHERE "proNum" = #{proNum}
+		return productVO;
 	}
 
-	public List<ProductVO> selectProd(OptionVO optionVO) {
+	public List<ProductVO> selectProd(int cartNum) {
 		// TODO Auto-generated method stub
-		//옵션에서 proNum만 받아서 상품 선택...
-		//SELECT * FROM PRODUCT WHERE "proNum" = #{proNum}
-		return null;
+		//찜목록에서 주문상세
+		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.product.selectProductViewOptionForCart",cartNum);
+		/*
+		 * SELECT * FROM PRODUCT p ,CART c WHERE "cartNum"=#{cartNum} AND p."proNum" =(SELECT
+		 * "proNum" FROM CART WHERE "cartNum"=#{cartNum})
+		 */
+		return productVO;
 	}
+
+	public int OrderDone(OrderListVO orderListVO) {
+		// TODO Auto-generated method stub
+		int ret = session.insert("mapper.product.insertOrderList",orderListVO);
+		return ret;
+	}
+
 
 }
