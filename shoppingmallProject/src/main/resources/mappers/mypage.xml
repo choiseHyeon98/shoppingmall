@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace = "mapper.mypage">
+
+	<!-- 테이블 컬럼, VO 1:1로 매핑했을때 이름이 다른 경우 -->
+	<resultMap id="mypageResult" type="MemberVO">
+		<result property = "id" column="id" />
+		<result property = "pw" column="pw" />
+		<result property = "name" column="name" />
+		<result property = "phone" column="phone" />
+		<result property = "address" column="address" />
+		<result property = "email" column="email" />
+		<result property = "joinDate" column="joinDate" />
+
+	</resultMap>
+	
+	<select id ="showMyInfo" resultMap="mypageResult" >
+	<![CDATA[
+		SELECT "id", "pw", "name", "phone", "address", "email", "rank", "joinDate"
+FROM "MEMBER"
+	]]>
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.product">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="productResult" type="ProductVO">
+		<result property="proNum" column="proNum" />
+		<result property="proName" column="proName" />
+		<result property="proContent" column="proContent" />
+		<result property="proDetails" column="proDetails" />
+		<result property="proSpecification" column="proSpecification" />
+		<result property="refundPolicy" column="refundPolicy" />
+		<result property="topImage" column="topImage" />
+		<result property="price" column="price" />
+		<result property="delprice" column="delprice" />
+		<result property="dailyDel" column="dailyDel" />
+		<result property="proCon" column="proCon" />
+		<result property="proCate" column="proCate" />
+		<result property="sizeOption" column="sizeOption" />
+		<result property="colorOption" column="colorOption" />
+	</resultMap>
+	<!-- 쿼리집어넣는 장소! -->
+	<select id="selectBest" resultMap="productResult">
+   <![CDATA[
+    SELECT *
+	FROM PRODUCT
+	WHERE "proNum" IN
+		(SELECT "proNum"
+		FROM 
+			(SELECT "proNum" ,count(*)
+			FROM ORDERLIST
+			GROUP BY "proNum"
+			ORDER BY count(*) DESC)
+		WHERE ROWNUM <= 3)
+   ]]>
+	</select>
+	<select id="selectNew" resultMap="productResult">
+   <![CDATA[
+    SELECT *
+	FROM 
+		(SELECT *
+		FROM PRODUCT 
+		ORDER BY "proNum" DESC)
+	WHERE ROWNUM <= 3
+   ]]>
+	</select>
+	
+	<select id="selectDaily" resultMap="productResult">
+   <![CDATA[
+    SELECT *
+	FROM PRODUCT
+	WHERE "dailyDel" = 'Y'
+   ]]>
+	</select>
+	<select id="selectRandom" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM 
+		(SELECT * FROM PRODUCT ORDER BY dbms_random.value)
+	WHERE ROWNUM <=3
+   ]]>
+	</select>
+	
+	<select id="selectAll" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT 
+   ]]>
+	</select>
+	<!-- 캐주얼 -->
+	<select id="selectCasual" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT where "proCon" = 'Casual'
+   ]]>
+	</select>
+	<!-- 오피스 -->
+	<select id="selectOffice" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT where "proCon" = 'Office'
+   ]]>
+	</select>
+	<!-- 페미닌 -->
+	<select id="selectFeminine" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT where "proCon" = 'Feminine'
+   ]]>
+	</select>
+	<!-- 힙 -->
+	<select id="selectHip" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT where "proCon" = 'Hip'
+   ]]>
+	</select>
+	<!-- 빈티지 -->
+	<select id="selectVintage" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT where "proCon" = 'Vintage'
+   ]]>
+	</select>
+	<select id="selevtOneView" resultMap="productResult">
+   <![CDATA[
+	SELECT * FROM PRODUCT p ,"OPTION" o WHERE p."proNum" = o."proNum" AND p."proNum" = #{proNum} 
+   ]]>
+	</select>
+	
+	
+	
+</mapper>

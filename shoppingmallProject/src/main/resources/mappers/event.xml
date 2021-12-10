@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.event">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="eventResult" type="EventVO">
+		<result property="eventNum" column="eventNum" />
+		<result property="eventTitle" column="eventTitle" />
+		<result property="eventImg" column="eventImg" />
+		<result property="eventContent" column="eventContent" />
+	</resultMap>
+	
+	<!-- 쿼리집어넣는 장소! -->
+	
+	<select id="eventAllList" resultMap="eventResult">
+   <![CDATA[
+    SELECT "eventNum","eventImg" from EVENT e ORDER by "eventNum" desc
+   ]]>
+	</select>
+	
+	<select id="eventOne" resultType="EventVO">
+   <![CDATA[
+    SELECT * from EVENT where eventNum=#{eventNum}
+   ]]>
+	</select>
+	
+	<select id="insertEvent" resultType="EventVO">
+   <![CDATA[
+   INSERT INTO EVENT 
+   ("eventNum","eventTitle","eventImg","eventContent") VALUES (#{eventNum},#{eventTitle}, #{eventImg}, #{eventContent})
+   
+   ]]>
+	</select>
+	<!-- num증가 쿼리 수정 -->
+	
+</mapper>

@@ -17,9 +17,10 @@ public class EventService {
 		// TODO Auto-generated method stub
 		return eventDAO.selectEvents();
 	}
-	public List<EventVO> selectOneEvents() {
+	public EventVO selectOneEvents(int eventNum) {
 		// TODO Auto-generated method stub
-		return eventDAO.selectOneEvents();
+		return eventDAO.selectOneEvents(eventNum);
 	}
+
 
 }
