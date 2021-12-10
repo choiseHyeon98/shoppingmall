@@ -20,7 +20,21 @@
 	<select id ="showMyInfo" resultMap="mypageResult" >
 	<![CDATA[
 		SELECT "id", "pw", "name", "phone", "address", "email", "rank", "joinDate"
-FROM "MEMBER"
+FROM MEMBER
+	]]>
+	</select>
+	
+	<select id ="showMyCart" resultMap="mypageResult" >
+	<![CDATA[
+		SELECT "cartNum", "id", "proNum", "sizeOption", "colorOption", "price", "countProNum"
+FROM CART
+	]]>
+	</select>
+	
+	<select id ="showMyOrderList" resultMap="mypageResult" >
+	<![CDATA[
+		SELECT "orderNum", "proNum", "id", "sizeOption", "colorOption", "tprice", "delNum", "payment", "cancleOrder", "delStatus", "orderDate"
+FROM ORDERLIST
 	]]>
 	</select>
 	

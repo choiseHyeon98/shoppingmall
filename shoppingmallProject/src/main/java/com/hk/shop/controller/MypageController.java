@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hk.shop.service.MypageService;
+import com.hk.shop.vo.CartVO;
 import com.hk.shop.vo.MemberVO;
+import com.hk.shop.vo.OrderListVO;
 
 // 요기에 세션을 넣어야 들어갈때마다 세션체크가 가능하지 않을까
 
@@ -37,6 +39,7 @@ public class MypageController {
 	
 	
 	@RequestMapping (value="/mypage", method=RequestMethod.GET)
+	// 로그인 하고 POST로 바꿀 예정
 	public String LoginDone (Model model) {
 		
 		List<MemberVO> mypageInfo = mypageService.myInfoPage();
@@ -46,17 +49,37 @@ public class MypageController {
 		
 	}
 	
-	@RequestMapping (value="/mypage/cart", method=RequestMethod.POST)
-	public String Cart () {
-		return "cart"; // 장바구니+찜목록 창
+	@RequestMapping (value="/mypage/cart", method=RequestMethod.GET)
+	// 로그인 하고 POST로 바꿀 예정
+	public String Cart (Model model) {
+		
+		List<CartVO> cartList = mypageService.myCartList();
+		model.addAttribute("cartList", cartList);
+		
+		return "cartList"; // 장바구니+찜목록 창
 	}
 	
-	@RequestMapping (value="/mypage/orderLists", method=RequestMethod.POST)
-	public String MPorderLists () {
-		return "MPorderLists"; // 내 주문기록창
+	// 찜 목록에서 이동한 주문창
+	@RequestMapping (value="/mypage/orderList", method=RequestMethod.POST)
+	// 찜목록 완성하고 POST로 바꿀 예정
+	public String CartOrders () {
+		
+		return "cartOrders";
+	}
+	
+	
+	@RequestMapping (value="/mypage/myorders", method=RequestMethod.GET)
+	// 로그인 하고 POST로 바꿀 예정
+	public String MyOrders (Model model) {
+		
+		List<OrderListVO> myOrders = mypageService.myOrderList();
+		model.addAttribute("myOrders", myOrders);
+		
+		return "myorders"; // 내 주문기록창
 	}
 	
 	@RequestMapping (value="/mypage/addReview", method=RequestMethod.POST)
+
 	public String addReview () {
 		return "addReview"; // 리뷰 작성창 + 주문기록에서만 들어간다
 	}

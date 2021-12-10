@@ -6,7 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
+import com.hk.shop.vo.CartVO;
 import com.hk.shop.vo.MemberVO;
+import com.hk.shop.vo.OrderListVO;
 
 @Repository
 public class MypageDAO {
@@ -18,6 +21,18 @@ public class MypageDAO {
 		// TODO Auto-generated method stub
 		List <MemberVO> mypageinfo = sqlSession.selectList("mapper.mypage.showMyInfo");
 		return mypageinfo;
+	}
+
+	public List<CartVO> showMyCart() {
+		// TODO Auto-generated method stub
+		List <CartVO> cartList = sqlSession.selectList("mapper.mypage.showMyCart");
+		return cartList;
+	}
+
+	public List<OrderListVO> showMyOrderList() {
+		// TODO Auto-generated method stub
+		List <OrderListVO> myOrders = sqlSession.selectList("mapper.mypage.showMyOrderList");
+		return myOrders;
 	}
 
 }

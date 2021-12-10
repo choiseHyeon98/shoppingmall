@@ -14,14 +14,41 @@
 </head>
 <body>
 내 정보임
+<form name="frmArticle" method="post"  action="update"  >
+<table style="width:100%">
+  <tr>
+    <th>id</th>
+    <td>${id}</td>
+  </tr>
+  <tr>
+  	<th>pw</th>
+    <td>${pw}</td>
+  </tr>
+  <!-- id/pw는 수정할때 readonly -->
+  <tr>
+    <th>name</th>
+    <td>${name}</td>
+  </tr>
+  <tr>
+    <th>phone</th>
+    <td>${phone}</td>
+  </tr>
+  <tr>
+  	<th>address</th>
+    <td>${address}</td>
+  </tr>
+  <tr>
+    <th>email</th>
+    <td>${email}</td>
+  </tr>
+  <tr>
+    <th>joinDate</th>
+    <td>${joinDate}</td>
+  </tr>
+</table>
 
-	<h3>id : ${id }</h3> <br>
-	<h3>pw : ${pw }</h3> <br>
-	<h3>name : ${name }</h3> <br>
-	<h3>phone : ${phone }</h3> <br>
-	<h3>address : ${address }</h3> <br>
-	<h3>email : ${email }</h3> <br>
-	<h3>joinDate : ${joinDate }</h3> <br>
-
+   <input type=button value="수정하기" onClick="fn_enable(this.form)"> <br>
+   <input type=button value="적용하기" onClick="fn_modify_article(frmArticle)"  ><br> 
+</form>
 </body>
 </html>
