@@ -34,7 +34,7 @@
    
    ]]>
 	</select>
-	<!-- num증가 쿼리 수정 -->
+
 	<select id="updateEvent" parameterType="EventVO">
 	 <![CDATA[ 
       UPDATE EVENT SET "eventTitle"=#{eventTitle}, "eventContent"=#{eventContent},"eventImg"=#{eventImg} WHERE "eventNum"=#{eventNum}
@@ -43,6 +43,13 @@
 	
 	</select>
 	
+	<select id="delEvent" parameterType="int" resultMap="eventResult">
+	 <![CDATA[ 
+      DELETE FROM EVENT WHERE "eventNum"=#{eventNum}
+
+   ]]>
+	
+	</select>
 	
 	
 </mapper>

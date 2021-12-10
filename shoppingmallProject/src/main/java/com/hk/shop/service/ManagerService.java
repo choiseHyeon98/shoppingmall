@@ -1,6 +1,8 @@
 package com.hk.shop.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,9 +10,12 @@ import org.springframework.stereotype.Service;
 import com.hk.shop.dao.EventDAO;
 import com.hk.shop.dao.ManagerDAO;
 import com.hk.shop.dao.ProductDAO;
+import com.hk.shop.dao.ReviewDAO;
 import com.hk.shop.vo.EventVO;
+import com.hk.shop.vo.FAQVO;
 import com.hk.shop.vo.FooterVO;
 import com.hk.shop.vo.MemberVO;
+import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
 
 import com.hk.shop.vo.ReviewVO;
@@ -24,7 +29,8 @@ public class ManagerService {
 	EventDAO eventDAO;
 	@Autowired
 	ProductDAO productDAO;
-	
+	@Autowired
+	ReviewDAO reviewDAO;
 	public List<EventVO> eventService() {
 		// TODO Auto-generated method stub
 		return eventDAO.selectEvents();
@@ -72,6 +78,11 @@ public class ManagerService {
 		// TODO Auto-generated method stub
 		return managerDAO.eventModDoneDao(eventVO);
 	}
+	
+	public int eventDelService(int eventNum) {
+		// TODO Auto-generated method stub
+		return managerDAO.eventDelDao(eventNum);
+	}
 
 	public int productAddDoneService(ProductVO productVO) {
 		
@@ -91,10 +102,15 @@ public class ManagerService {
 
 	public List<ReviewVO> reviewListService() {
 		// TODO Auto-generated method stub
-		return null;
+		return reviewDAO.reivewListDao();
 	}
 
 	public int reviewCommentSerivce(ReviewVO reviewVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	public int reviewDelService(int reviewNum) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -112,9 +128,86 @@ public class ManagerService {
 		return 0;
 	}
 
-	public int reviewDelService(int reviewNum) {
+	
+	public int memberUpdateService(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public List<OrderListVO> memberOrderListService() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int memberOrderCancleService(OrderListVO orderVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int memberOrderUpdateService(OrderListVO orderVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public List<FAQVO> FAQListService() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int reviewCommentSerivce(FAQVO faqVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int delCommentSerivce(FAQVO faqVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int companyInfoUpdateSerivce(FooterVO footerVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int termsUpdateSerivce(FooterVO footerVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int privacyUpdateSerivce(FooterVO footerVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public Map<String, Integer> mulSerivcle(List<Integer> productNums) {
+		// TODO Auto-generated method stub
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		int succ=0, fail=0;
+		
+		for(int i=0; i<productNums.size(); i++) {
+			//지울번호 한개 꺼내서
+			int proNum = productNums.get(i);
+			int ret = managerDAO.deleteProduct(proNum);
+			//ret=0이면 실패,ret !=0이면 성공
+			
+			if(ret!=0) {
+				//성공이면
+				++succ;
+			} else {
+				//실패이면
+				++fail;
+			}
+		}
+		//성공갯수,실패갯수
+		map.put("succ", succ);
+		map.put("fail", fail);
+		return map;
+		//2번째 성공한 번호, 실패한번호
+		//map["success"] = ArrayList<>;
+		//map["fail"] = ArrayLsit<>;
+		
+	}
+
+	
 
 }

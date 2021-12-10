@@ -38,7 +38,7 @@
     	 
    	      var r = confirm("삭제하시겠습니까?");
     	  if (r == true) {
-    	    obj.action="delete";
+    	    obj.action="del";
     	    obj.submit();
     	  } else {
     	    

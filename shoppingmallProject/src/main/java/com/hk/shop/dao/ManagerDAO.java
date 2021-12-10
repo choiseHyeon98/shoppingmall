@@ -39,11 +39,29 @@ public class ManagerDAO {
 		
 		return ret;
 	}
-
+	
+	public int eventDelDao(int eventNum) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.delete("mapper.event.delEvent", eventNum);
+		
+		return ret;
+	}
 
 	public int productAddDoneDao(ProductVO productVO) {
 		// TODO Auto-generated method stub
 		return 0;
+		//int  ret = session.insert("mapper.product.insertPro",productVO)
 	}
+
+
+	public int deleteProduct(int proNum) {
+		// TODO Auto-generated method stub
+		return 0;
+		//int ret = session.delete("mapper.product.delProduct",proNum)
+	}
+
+
+	
 
 }
