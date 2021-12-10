@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,6 +13,7 @@ import com.hk.shop.service.MypageService;
 import com.hk.shop.vo.CartVO;
 import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OrderListVO;
+import com.hk.shop.vo.ReviewVO;
 
 // 요기에 세션을 넣어야 들어갈때마다 세션체크가 가능하지 않을까
 
@@ -78,10 +80,17 @@ public class MypageController {
 		return "myorders"; // 내 주문기록창
 	}
 	
-	@RequestMapping (value="/mypage/addReview", method=RequestMethod.POST)
-
+	@RequestMapping (value="/mypage/addReview", method=RequestMethod.GET)
 	public String addReview () {
 		return "addReview"; // 리뷰 작성창 + 주문기록에서만 들어간다
+	}
+	
+	@RequestMapping (value="/mypage/addReview", method=RequestMethod.GET)
+	// URL 연결한 후에 POST로 고친다
+	public String addReviewDone (Model model, @ModelAttribute ReviewVO reviewVO) {
+		int ret = mypageService.insertReview(reviewVO);
+		model.addAttribute("ret", ret);
+		return "addReviewDone"; // 리뷰 작성창 + 주문기록에서만 들어간다
 	}
 	
 	

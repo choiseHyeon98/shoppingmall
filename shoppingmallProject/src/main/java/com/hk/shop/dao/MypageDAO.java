@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.hk.shop.vo.CartVO;
 import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OrderListVO;
+import com.hk.shop.vo.ReviewVO;
 
 @Repository
 public class MypageDAO {
@@ -33,6 +34,12 @@ public class MypageDAO {
 		// TODO Auto-generated method stub
 		List <OrderListVO> myOrders = sqlSession.selectList("mapper.mypage.showMyOrderList");
 		return myOrders;
+	}
+
+	public int insertMyReview(ReviewVO reviewVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.insert("mapper.mypage.insertMyReview");
+		return ret;
 	}
 
 }

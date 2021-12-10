@@ -11,6 +11,7 @@ import com.hk.shop.dao.MypageDAO;
 import com.hk.shop.vo.CartVO;
 import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OrderListVO;
+import com.hk.shop.vo.ReviewVO;
 
 @Service
 public class MypageService {
@@ -34,6 +35,11 @@ public class MypageService {
 	public List<OrderListVO> myOrderList() {
 		// TODO Auto-generated method stub
 		return mypageDAO.showMyOrderList();
+	}
+
+	public int insertReview(ReviewVO reviewVO) {
+		// TODO Auto-generated method stub
+		return mypageDAO.insertMyReview(reviewVO);
 	}
 	
 	
