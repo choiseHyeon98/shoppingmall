@@ -361,31 +361,37 @@ public class ManagerController {
 		
 		List<OrderListVO> orderList = new ArrayList<OrderListVO>(); 
 		orderList = managerService.memberOrderListService();
+		System.out.println("orderList=" + orderList.toString());
 		
 		model.addAttribute("orderList", orderList);
 		
-		return "memberOrederList";
+		return "memberOrderList";
 	}
+	
+	
+	//관리자 주문 한개 주문 선택 /manager/order/cancel
 	
 	//관ㄹ자 주문 취소 /manager/order/cancel
 	
-	@RequestMapping(value="/manager/order/cancel",method=RequestMethod.POST)
-	public String orderCancel(Model model, @ModelAttribute OrderListVO orderVO ) {
+	@RequestMapping(value="/manager/order/cancel",method= {RequestMethod.GET,RequestMethod.POST})
+	public String orderCancel(Model model, @RequestParam("orderNum")int orderNum) {
 		
-		int ret = managerService.memberOrderCancleService(orderVO);
+		int ret = managerService.memberOrderCancleService(orderNum);
+		System.out.println("orderNum="+orderNum);
 		model.addAttribute("ret", ret);
 		
-		//update로 주문상태 환불로 변경
+		//update로 주문상태 환불로 변경 하시겠습니까?
 		return "orderCnacel";
 	}
 	
 	//관리자 주문관리 변경 저장 /manager/order/update
 	
-	@RequestMapping(value="/manager/order/update",method=RequestMethod.POST)
+	@RequestMapping(value="/manager/order/update",method= {RequestMethod.GET,RequestMethod.POST})
 	public String orderUpdate (Model model , @ModelAttribute OrderListVO orderVO) {
 		
-		int ret = managerService.memberOrderUpdateService(orderVO);
-		model.addAttribute("ret", ret);
+		//int ret = managerService.memberOrderUpdateService(orderVO);
+		System.out.println("orderVO="+orderVO.toString());
+		//model.addAttribute("ret", ret);
 		
 		return "orederUpdate";
 	}

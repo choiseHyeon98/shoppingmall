@@ -1,5 +1,7 @@
 package com.hk.shop.vo;
 
+import java.util.Date;
+
 public class OrderListVO {
 	// 이건 VO
 	
@@ -11,6 +13,11 @@ public class OrderListVO {
 	private int tprice;
 	private int delNum;
 	private String payment;
+	private String cancleOrder;
+	private String delStatus;
+	private Date orderDate;
+	private int orderCount;
+	
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -61,11 +68,36 @@ public class OrderListVO {
 	}
 	
 	
+	public String getCancleOrder() {
+		return cancleOrder;
+	}
+	public void setCancleOrder(String cancleOrder) {
+		this.cancleOrder = cancleOrder;
+	}
+	public String getDelStatus() {
+		return delStatus;
+	}
+	public void setDelStatus(String delStatus) {
+		this.delStatus = delStatus;
+	}
+	public Date getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+	public int getOrderCount() {
+		return orderCount;
+	}
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
+	}
 	@Override
 	public String toString() {
 		return "OrderListVO [orderNum=" + orderNum + ", proNum=" + proNum + ", id=" + id + ", sizeOption=" + sizeOption
 				+ ", colorOption=" + colorOption + ", tprice=" + tprice + ", delNum=" + delNum + ", payment=" + payment
-				+ "]";
+				+ ", cancleOrder=" + cancleOrder + ", delStatus=" + delStatus + ", orderDate=" + orderDate
+				+ ", orderCount=" + orderCount + "]";
 	}
 	
 	

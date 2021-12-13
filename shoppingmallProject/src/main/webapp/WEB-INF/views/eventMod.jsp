@@ -116,7 +116,7 @@
   </tr>
  </c:if>
  
-  <tr   id="tr_btn_modify"  >
+  <tr id="tr_btn_modify"  >
       <td colspan="2"   align="center" >
           <input type=button value="수정반영하기" onClick="fn_modify_article(frmArticle)"  >
            <input type=button value="취소"  onClick="backToList(frmArticle)">

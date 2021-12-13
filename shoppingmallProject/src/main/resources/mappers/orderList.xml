@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.orderList">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="orderListResult" type="OrderListVO">
+		<result property="orderNum" column="orderNum" />
+		<result property="proNum" column="proNum" />
+		<result property="id" column="id" />
+		<result property="sizeOption" column="sizeOption" />
+		<result property="colorOption" column="colorOption" />
+		<result property="tprice" column="tprice" />
+		<result property="delNum" column="delNum" />
+		<result property="payment" column="payment" />
+		<result property="cancleOrder" column="cancleOrder" />
+		<result property="delStatus" column="delStatus" />
+		<result property="orderDate" column="orderDate" />
+		<result property="orderCount" column="orderCount" />
+	</resultMap>
+	
+	<select id="selectAllorder" resultMap="orderListResult">
+   <![CDATA[
+    SELECT * from ORDERLIST e ORDER by "orderNum" desc
+   ]]>
+	</select>
+	
+	<select id="cancleOrder" parameterType="OrderListVO">
+	 <![CDATA[ 
+      UPDATE ORDERLIST SET "cancleOrder"='c' WHERE "orderNum"=#{orderNum}
+
+   ]]>
+	
+	</select>
+	
+	<select id="updateOrder" parameterType="OrderListVO">
+	 <![CDATA[ 
+      UPDATE ORDERLIST SET "delStatus"=#{delStatus} WHERE "orderNum"=#{orderNum}
+
+   ]]>
+	
+	</select>
+</mapper>

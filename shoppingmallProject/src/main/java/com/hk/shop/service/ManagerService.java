@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.hk.shop.dao.EventDAO;
 import com.hk.shop.dao.ManagerDAO;
+import com.hk.shop.dao.MemberDAO;
+import com.hk.shop.dao.OrderListDAO;
 import com.hk.shop.dao.ProductDAO;
 import com.hk.shop.dao.ReviewDAO;
 import com.hk.shop.vo.EventVO;
@@ -31,6 +33,11 @@ public class ManagerService {
 	ProductDAO productDAO;
 	@Autowired
 	ReviewDAO reviewDAO;
+	@Autowired
+	MemberDAO memberDAO;
+	@Autowired
+	OrderListDAO orderListDAO;
+	
 	public List<EventVO> eventService() {
 		// TODO Auto-generated method stub
 		return eventDAO.selectEvents();
@@ -140,17 +147,18 @@ public class ManagerService {
 
 	public List<OrderListVO> memberOrderListService() {
 		// TODO Auto-generated method stub
-		return null;
+		return orderListDAO.selectAllList();
 	}
 
-	public int memberOrderCancleService(OrderListVO orderVO) {
+	public int memberOrderCancleService(int orderNum) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		return managerDAO.orderCancleDAO(orderNum);
 	}
 
 	public int memberOrderUpdateService(OrderListVO orderVO) {
 		// TODO Auto-generated method stub
-		return 0;
+		return managerDAO.orderUpdateDAO(orderVO);
 	}
 
 	public List<FAQVO> FAQListService() {
