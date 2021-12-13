@@ -7,6 +7,10 @@
 %>
 <html>
 <title>Home</title>
+
+<link rel=" shortcut icon" href="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small">
+<link rel="icon" href="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
@@ -21,9 +25,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	헤더위치//헤더에 로그인 세션 정보 받아서 로그인인지 아닌지에 따라 헤더 정보 바뀜.
+<%@include file ="headerfooter/header.jsp" %>
 
-	<h1>홈페이지</h1>
 	<hr>
 <!-- 이벤트 배너 -->
 <c:choose>
