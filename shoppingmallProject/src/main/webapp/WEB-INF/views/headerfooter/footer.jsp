@@ -1,19 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div>
-<footer>
+<footer style="background-color: darkgray;">
 <hr>
-    <p style="text-align:center;"><a href="#">회사정보</a> | <a href="#">고객센터</a> | <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a></p>
-    <p style="text-align:right;"><small>@copyright by 짱세조</small></p>
+<br>
+   <p style="text-align:center; color:white; font-size:20px;">
+   	<a href="#" style="color:white;">회사정보</a> | <a href="#" style="color:white;">고객센터</a> |
+   	<a href="#" style="color:white;">이용약관</a> | <a href="#" style="color:white;">개인정보처리방침</a></p>
+   <p style="text-align:center;"><small>@copyright by 짱세조</small></p><br>
 </footer>
 </div>
-<style>
-
-div {
-  background-color: darkgray;
-}
-
-
-</style>
 
 
