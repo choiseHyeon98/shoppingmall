@@ -39,16 +39,24 @@ public class MypageController {
 	}
 	*/
 	
-	
+	// 내 정보 조회
 	@RequestMapping (value="/mypage", method=RequestMethod.GET)
 	// 로그인 하고 POST로 바꿀 예정
-	public String LoginDone (Model model) {
+	public String Mypageinfo (Model model) {
 		
 		List<MemberVO> mypageInfo = mypageService.myInfoPage();
 		
 		model.addAttribute("mypageInfo", mypageInfo);
 		return "mypageInfo";
 		
+	}
+	
+	// 내정보 수정
+	@RequestMapping (value="/mypage/update", method=RequestMethod.POST)
+	public String MypageUpdate(Model model, @ModelAttribute MemberVO memberVO) {
+		int ret = mypageService.updateMypage(memberVO);
+		model.addAttribute("ret", ret);
+		return "mypageInfo";
 	}
 	
 	@RequestMapping (value="/mypage/cart", method=RequestMethod.GET)

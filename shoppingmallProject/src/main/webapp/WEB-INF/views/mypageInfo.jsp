@@ -11,6 +11,32 @@
 <head>
 <meta charset="UTF-8">
 <title>내 정보</title>
+
+ <script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
+   <script type="text/javascript" >
+     function backToList(obj){
+       obj.action="/shop/";
+       obj.submit();
+     }
+ 
+    function fn_enable(obj){
+       document.getElementById("i_name").disabled=false;
+       document.getElementById("i_phone").disabled=false;
+       document.getElementById("i_address").disabled=false;
+       document.getElementById("i_email").disabled=false;
+       document.getElementById("tr_btn_modify").style.display="block";
+       document.getElementById("tr_btn").style.display="none";
+    }
+    
+    function fn_modify_article(obj){
+       obj.action="mypage/update";
+       obj.submit();
+    }
+    
+
+ </script>
+
+
 </head>
 <body>
 내 정보임
@@ -18,37 +44,49 @@
 <table style="width:100%">
   <tr>
     <th>id</th>
-    <td>${id}</td>
+    <td>${member.id }</td>
   </tr>
   <tr>
   	<th>pw</th>
-    <td>${pw}</td>
+    <td>${member.pw }</td>
   </tr>
   <!-- id/pw는 수정할때 readonly -->
   <tr>
     <th>name</th>
-    <td>${name}</td>
+    <td><input type=text value="${member.name }" name="name" id="i_name" disabled /></td>
   </tr>
   <tr>
     <th>phone</th>
-    <td>${phone}</td>
+    <td><input type=text value="${member.phone }" name="phone" id="i_phone" disabled /></td>
   </tr>
   <tr>
   	<th>address</th>
-    <td>${address}</td>
+    <td><input type=text value="${member.address }" name="address" id="i_address" disabled /></td>
   </tr>
   <tr>
     <th>email</th>
-    <td>${email}</td>
+    <td><input type=text value="${member.email }" name="email" id="i_email" disabled /></td>
   </tr>
   <tr>
-    <th>joinDate</th>
-    <td>${joinDate}</td>
+    <th>rank</th>
+    <td>${member.rank}</td>
   </tr>
 </table>
-
-   <input type=button value="수정하기" onClick="fn_enable(this.form)"> <br>
-   <input type=button value="적용하기" onClick="fn_modify_article(frmArticle)"  ><br> 
+ 
+ <tr   id="tr_btn_modify"  >
+      <td colspan="2"   align="center" >
+          <input type=button value="수정반영하기"   onClick="fn_modify_article(frmArticle)"  >
+           <input type=button value="취소"  onClick="backToList(frmArticle)">
+      </td>   
+  </tr>
+    
+  <tr  id="tr_btn"    >
+   <td colspan="2" align="center">
+       <input type=button value="수정하기" onClick="fn_enable(this.form)">
+       <input type=button value="홈페이지로"  onClick="backToList(this.form)">
+   </td>
+  </tr>
+ 
 </form>
 </body>
 </html>

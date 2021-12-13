@@ -24,6 +24,13 @@
 	]]>
 	</select>
 	
+	<update id ="updateMyInfo" parameterType="MemberVO" >
+	<![CDATA[
+		UPDATE MEMBER SET "name"='', "phone"='', "address"='', "email"='', "rank"=''WHERE "id"=${id}
+		
+	]]>
+	</update>
+	
 	<select id ="showMyCart" resultMap="mypageResult" >
 	<![CDATA[
 		SELECT "cartNum", "id", "proNum", "sizeOption", "colorOption", "price", "countProNum"

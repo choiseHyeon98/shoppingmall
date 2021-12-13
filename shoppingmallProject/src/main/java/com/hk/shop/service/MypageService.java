@@ -26,6 +26,11 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		return mypageDAO.showMyInfo();
 	}
+	
+	public int updateMypage(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		return mypageDAO.updateMyInfo(memberVO);
+	}
 
 	public List<CartVO> myCartList() {
 		// TODO Auto-generated method stub
@@ -41,6 +46,8 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		return mypageDAO.insertMyReview(reviewVO);
 	}
+
+	
 	
 	
 	

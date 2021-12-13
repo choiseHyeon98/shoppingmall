@@ -23,6 +23,14 @@ public class MypageDAO {
 		List <MemberVO> mypageinfo = sqlSession.selectList("mapper.mypage.showMyInfo");
 		return mypageinfo;
 	}
+	
+
+	public int updateMyInfo(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.member.updateMyInfo", memberVO);
+		return ret;
+	}
+
 
 	public List<CartVO> showMyCart() {
 		// TODO Auto-generated method stub
