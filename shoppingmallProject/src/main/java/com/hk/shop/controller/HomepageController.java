@@ -40,13 +40,13 @@ public class HomepageController {
 		System.out.println("new"+newList.toString());
 		//여기서 오늘배송상품
 		List<ProductVO> dailyList = productService.selectDaily();
-		model.addAttribute("bestDaily", dailyList);
+		model.addAttribute("dailyList", dailyList);
 		System.out.println("daily"+dailyList.toString());
 		
 		//여기서 랜덤상품
-		List<ProductVO> RandomList = productService.selectRandom();
-		model.addAttribute("bestRandom", RandomList);
-		System.out.println("Random"+RandomList.toString());
+		List<ProductVO> randomList = productService.selectRandom();
+		model.addAttribute("randomList", randomList);
+		System.out.println("Random"+randomList.toString());
 		//전부 받아서 Model에 넣고 리턴하기
 		return"home";
 	}

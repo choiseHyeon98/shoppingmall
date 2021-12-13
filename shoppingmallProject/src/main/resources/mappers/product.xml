@@ -51,12 +51,13 @@
    ]]>
 	</select>
 	
-	<!-- 오늘의상품 -->
+	<!-- 오늘배송상품 -->
 	<select id="selectDaily" resultMap="productResult">
    <![CDATA[
-    SELECT *
-	FROM PRODUCT
+    SELECT * 
+	FROM (SELECT * FROM PRODUCT ORDER BY dbms_random.value)
 	WHERE "dailyDel" = 'Y'
+	AND ROWNUM <=3
    ]]>
 	</select>
 	<!-- 랜덤상품 -->
