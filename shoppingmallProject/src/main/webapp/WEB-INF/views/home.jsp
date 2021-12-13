@@ -166,7 +166,6 @@
 	</div>
 	<%@include file ="headerfooter/footer.jsp" %>
 </body>
-
 <script>
 //slide 관련 script//
 var slideIndex = 1;
