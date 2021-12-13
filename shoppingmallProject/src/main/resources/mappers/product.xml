@@ -37,6 +37,7 @@
 			GROUP BY "proNum"
 			ORDER BY count(*) DESC)
 		WHERE ROWNUM <= 3)
+		ORDER by "proNum" ASC
    ]]>
 	</select>
 	<!-- 신상품 -->

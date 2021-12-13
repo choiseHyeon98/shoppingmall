@@ -30,6 +30,7 @@ public class HomepageController {
 		//이벤트 번호, 이미지 받아서 배너에 이미지, url 넣기
 		List<EventVO> eventList = eventService.selectEvents();
 		model.addAttribute("eventList", eventList);
+		System.out.println("eventList"+eventList.toString());
 		//여기서 베스트 상품
 		List<ProductVO> bestList = productService.selectBest();
 		model.addAttribute("bestList", bestList);
