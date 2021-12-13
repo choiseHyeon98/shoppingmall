@@ -22,5 +22,28 @@
       SELECT * FROM REVIEW
    ]]>
 	</select>
+
+	
+	<update id ="delReview" parameterType="ReviewVO" >
+   <![CDATA[
+      UPDATE REVIEW SET
+      "reviewContent"='d', "rereviewCont"='d'
+      WHERE "reviewNum"=#{reviewNum}
+   ]]>
+   </update>
+   
+   <select id="reviewOne"  resultType="ReviewVO">
+   <![CDATA[
+    SELECT * from REVIEW where "reviewNum"=#{reviewNum}
+   ]]>
+	</select>
+	
+	<select id="updateReview" parameterType="ReviewVO">
+	 <![CDATA[ 
+      UPDATE REVIEW SET "rereviewCont"=#{rereviewCont} WHERE "reviewNum"=#{reviewNum}
+
+   ]]>
+	
+	</select>
 </mapper>
 

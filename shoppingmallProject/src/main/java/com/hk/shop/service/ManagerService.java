@@ -105,14 +105,18 @@ public class ManagerService {
 		return reviewDAO.reivewListDao();
 	}
 
-	public int reviewCommentSerivce(ReviewVO reviewVO) {
+	public ReviewVO reviewCommentSerivce(int reviewNum) {
 		// TODO Auto-generated method stub
-		return 0;
+		return reviewDAO.selectReview(reviewNum);
 	}
 	
+	public int reviewCommentDoneSerivce(ReviewVO reviewVO) {
+		// TODO Auto-generated method stub
+		return managerDAO.reviewCommentDoneDao(reviewVO);
+	}
 	public int reviewDelService(int reviewNum) {
 		// TODO Auto-generated method stub
-		return 0;
+		return managerDAO.reviewDelDao(reviewNum);
 	}
 
 	public List<MemberVO> memberListService(MemberVO memberVO) {
@@ -159,10 +163,6 @@ public class ManagerService {
 		return 0;
 	}
 
-	public int delCommentSerivce(FAQVO faqVO) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	public int companyInfoUpdateSerivce(FooterVO footerVO) {
 		// TODO Auto-generated method stub
@@ -207,6 +207,8 @@ public class ManagerService {
 		//map["fail"] = ArrayLsit<>;
 		
 	}
+
+	
 
 	
 

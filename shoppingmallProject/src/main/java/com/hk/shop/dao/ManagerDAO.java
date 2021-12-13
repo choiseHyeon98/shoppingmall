@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.hk.shop.vo.EventVO;
 import com.hk.shop.vo.FooterVO;
 import com.hk.shop.vo.ProductVO;
+import com.hk.shop.vo.ReviewVO;
 
 
 @Repository
@@ -59,6 +60,24 @@ public class ManagerDAO {
 		// TODO Auto-generated method stub
 		return 0;
 		//int ret = session.delete("mapper.product.delProduct",proNum)
+	}
+
+
+	public int reviewDelDao(int reviewNum) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.update("mapper.review.delReview", reviewNum);
+		
+		return ret;
+	}
+
+
+	public int reviewCommentDoneDao(ReviewVO reviewVO) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.update("mapper.review.updateReview",reviewVO);
+		
+		return ret;
 	}
 
 

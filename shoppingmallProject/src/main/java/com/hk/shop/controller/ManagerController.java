@@ -282,30 +282,44 @@ public class ManagerController {
 		return "reviewList";
 	}
 
-	// 관리자 리뷰 삭제 -> update?
-	@RequestMapping(value = "/manager/review/del", method = RequestMethod.POST)
+	//관리자 리뷰 댓글 작성 폼이동 /manager/reviewComment
+	@RequestMapping(value = "/manager/review/comment", method = RequestMethod.GET)
+	public String reviewComment(Model model, @RequestParam("reviewNum") int reviewNum) {
+
+		ReviewVO reviewVO = managerService.reviewCommentSerivce(reviewNum);
+		System.out.println("comment="+reviewVO.toString());
+		model.addAttribute("reviewVO", reviewVO);
+
+		return "reviewComment";
+
+	}
+
+	// 관리자 리뷰 댓글 작성 URL/manager/reviewComment ->update
+	@RequestMapping(value = "/manager/review/comment", method = RequestMethod.POST)
+	public String reviewCommentDone(Model model, @ModelAttribute ReviewVO reviewVO) {
+
+		int ret = managerService.reviewCommentDoneSerivce(reviewVO);
+		
+		model.addAttribute("ret", ret);
+		// update 후 결과받기
+
+		return "reviewCommentDone";
+		// 답글작성이 완료되었습니다 alert -> reviewList
+
+	}
+	
+	// 관리자 리뷰 삭제 -> update? 나중에 get 지우기 
+	@RequestMapping(value = "/manager/review/del", method = {RequestMethod.GET,RequestMethod.POST})
 	public String reviewDel(Model model, @RequestParam("reviewNum") int reviewNum) {
 
 		int ret = managerService.reviewDelService(reviewNum);
+		
 		model.addAttribute("ret", ret);
 
 		return "reviewDel";
 		// 리뷰가 삭제되었습니다 alert
 	}
-
-	// 관리자 리뷰 댓글 폼 이동 URL/manager/reviewComment ->update
-	@RequestMapping(value = "/manager/review/comment", method = {RequestMethod.GET,RequestMethod.POST})
-	public String reviewComment(Model model, @ModelAttribute ReviewVO reviewVO) {
-
-		int ret = managerService.reviewCommentSerivce(reviewVO);
-		model.addAttribute("ret", ret);
-		// update 후 결과받기
-
-		return "reviewComment";
-		// 답글작성이 완료되었습니다 alert -> reviewList
-
-	}
-
+	
 	// 관리자 회원 관리 /manager/memberList
 	@RequestMapping(value = "/manager/member/list", method = RequestMethod.GET)
 	public String memberList(Model model, @ModelAttribute MemberVO memberVO) {
@@ -401,18 +415,7 @@ public class ManagerController {
 
 	}
 	
-	//관리자 문의 댓글 삭제 /manager/FAQ/del->update
-	@RequestMapping(value = "/manager/FAQ/del", method = {RequestMethod.GET,RequestMethod.POST})
-	public String FAQCommentdel(Model model, @ModelAttribute FAQVO faqVO) {
-
-		int ret = managerService.delCommentSerivce(faqVO);
-		model.addAttribute("ret", ret);
-		// update 후 결과받기
-
-		return "FAQCommentdel";
-		// 답글작성이 완료되었습니다 alert -> reviewList
-
-	}
+	
 	
 	//관리자 -푸터 회사정보 수정 /manager/footer/companyInfo 
 	@RequestMapping(value = "/manager/footer/companyInfo", method = {RequestMethod.GET,RequestMethod.POST})
