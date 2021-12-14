@@ -95,6 +95,7 @@ public class ManagerDAO {
 		// TODO Auto-generated method stub
 		
 		int ret = session.update("mapper.orderList.updateOrder",orderVO);
+		
 		return ret;
 	}
 

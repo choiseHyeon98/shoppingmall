@@ -27,7 +27,7 @@
    ]]>
 	</select>
 	
-	<select id="cancleOrder" parameterType="OrderListVO">
+	<select id="cancleOrder" >
 	 <![CDATA[ 
       UPDATE ORDERLIST SET "cancleOrder"='c' WHERE "orderNum"=#{orderNum}
 
