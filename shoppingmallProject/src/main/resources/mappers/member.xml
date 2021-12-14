@@ -13,6 +13,7 @@
 		<result property = "phone" column="phone" />
 		<result property = "address" column="address" />
 		<result property = "email" column="email" />
+		<result property = "rank" column="rank" />
 		<result property = "joinDate" column="joinDate" />
 
 	</resultMap>
@@ -43,6 +44,27 @@
 		SELECT "id" from MEMBER
 		WHERE "name"=#{name}
 	]]>
+	</select>
+	
+	<select id="selectAllMember" resultMap="memberResult">
+   <![CDATA[
+  		SELECT * FROM MEMBER
+   ]]>
+	</select>
+	
+	<select id="delMemebr" parameterType="String" resultMap="memberResult">
+	 <![CDATA[ 
+      DELETE FROM MEMBER WHERE "id"=#{id}
+
+   ]]>
+   	</select>
+   	
+   	<select id="updateMember" parameterType="MemberVO">
+	 <![CDATA[ 
+      UPDATE MEMBER SET "rank"=#{rank} WHERE "id" =#{id}
+
+   ]]>
+	
 	</select>
 
 </mapper>

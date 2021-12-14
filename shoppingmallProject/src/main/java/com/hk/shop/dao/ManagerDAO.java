@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hk.shop.vo.EventVO;
 import com.hk.shop.vo.FooterVO;
+import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
 import com.hk.shop.vo.ReviewVO;
@@ -95,6 +96,35 @@ public class ManagerDAO {
 		// TODO Auto-generated method stub
 		
 		int ret = session.update("mapper.orderList.updateOrder",orderVO);
+		
+		
+		
+		return ret;
+	}
+
+
+	public List<MemberVO> memberListDAO() {
+		// TODO Auto-generated method stub
+		
+		List<MemberVO> memberVO = session.selectList("mapper.member.selectAllMember");
+		
+		return memberVO;
+	}
+
+
+	public int memberDelDAO(String id) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.delete("mapper.member.delMemebr",id);
+		
+		return ret;
+	}
+
+
+	public int memberUpdateDAO(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.update("mapper.member.updateMember", memberVO);
 		
 		return ret;
 	}

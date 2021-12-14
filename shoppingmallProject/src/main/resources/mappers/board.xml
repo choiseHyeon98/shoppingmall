@@ -28,7 +28,7 @@
    ]]>
 	</select>
 	
-	<select id="selectMyQList" resultMap="AskResult">
+	<select id="selectMyQList" resultMap="FAQResult">
    <![CDATA[
   		SELECT * FROM ASK
    ]]>

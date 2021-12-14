@@ -322,35 +322,39 @@ public class ManagerController {
 	
 	// 관리자 회원 관리 /manager/memberList
 	@RequestMapping(value = "/manager/member/list", method = RequestMethod.GET)
-	public String memberList(Model model, @ModelAttribute MemberVO memberVO) {
+	public String memberList(Model model) {
 
 		List<MemberVO> memberList = new ArrayList<MemberVO>();
-		memberList = managerService.memberListService(memberVO);
+		memberList = managerService.memberListService();
 		model.addAttribute("memberList", memberList);
+		
+		System.out.println("memberList="+memberList.toString());
 
 		return "memberList";
 		// 회원목록
 	}
 
 	// 관리자 회원 삭제 /manager/memberDel
-	@RequestMapping(value = "/manager/member/del", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/member/del", method = {RequestMethod.GET,RequestMethod.POST})
 	public String memberDel(Model model, @RequestParam("id") String id) {
 
 		int ret = managerService.memberDelService(id);
 		model.addAttribute("ret", ret);
-
+		
+		System.out.println("memberDel="+ret);
 		return "memberDel";
 		// 회원정보가 삭제되었습니다 alert .jsp
 	}
 
 	// 관리자 회원 관리 적용 /manager/memberUpdate
-	@RequestMapping(value="/manager/member/update",method=RequestMethod.POST)
+	@RequestMapping(value="/manager/member/update",method= {RequestMethod.GET,RequestMethod.POST})
 	public String memberUpdate(Model model,@ModelAttribute MemberVO memberVO) {
 		//등급설정, 블랙리스트 체크박스 정보 업데이트
 		
 		int ret =managerService.memberUpdateService(memberVO);
 		model.addAttribute("ret", ret);
 		
+		System.out.println("memberUpdate="+ret);
 		
 		return "memberUpdate";
 	}
@@ -383,12 +387,14 @@ public class ManagerController {
 		System.out.println("orderNum="+orderNum);
 		model.addAttribute("ret", ret);
 		
+		
 		//update로 주문상태 환불로 변경 하시겠습니까?
 		return "orderCnacel";
 	}
 	
 	//관리자 주문관리 변경 저장 /manager/order/update
 	//수정해야됨
+	//orderNum하고 delStatus하고 한방에 가져와야됨
 	@RequestMapping(value="/manager/order/update",method= {RequestMethod.GET,RequestMethod.POST})
 	public String orderUpdate (Model model , @ModelAttribute OrderListVO orderVO) {
 		
@@ -396,6 +402,7 @@ public class ManagerController {
 		
 		System.out.println("orderupdate="+orderVO.toString());
 		model.addAttribute("ret", ret);
+		System.out.println("memberOrderList="+ret);
 		
 		return "orederUpdate";
 	}
@@ -408,6 +415,7 @@ public class ManagerController {
 		FAQList = managerService.FAQListService();
 		
 		model.addAttribute("FAQList", FAQList);
+		System.out.println("FAQList="+FAQList.toString());
 		
 		return "FAQList";
 	}
@@ -422,7 +430,7 @@ public class ManagerController {
 
 		return "reviewComment";
 		// 답글작성이 완료되었습니다 alert -> reviewList
-
+//
 	}
 	
 	

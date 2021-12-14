@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hk.shop.dao.BoardDAO;
 import com.hk.shop.dao.EventDAO;
 import com.hk.shop.dao.ManagerDAO;
 import com.hk.shop.dao.MemberDAO;
@@ -37,6 +38,8 @@ public class ManagerService {
 	MemberDAO memberDAO;
 	@Autowired
 	OrderListDAO orderListDAO;
+	@Autowired
+	BoardDAO boardDAO;
 	
 	public List<EventVO> eventService() {
 		// TODO Auto-generated method stub
@@ -126,23 +129,23 @@ public class ManagerService {
 		return managerDAO.reviewDelDao(reviewNum);
 	}
 
-	public List<MemberVO> memberListService(MemberVO memberVO) {
+	public List<MemberVO> memberListService() {
 		// TODO Auto-generated method stub
 		//member 등급도 받아야함
 		//블랙리스트 체크 박스도 받아야함
 		
-		return null;
+		return managerDAO.memberListDAO();
 	}
 
 	public int memberDelService(String id) {
 		// TODO Auto-generated method stub
-		return 0;
+		return managerDAO.memberDelDAO(id);
 	}
 
 	
 	public int memberUpdateService(MemberVO memberVO) {
 		// TODO Auto-generated method stub
-		return 0;
+		return managerDAO.memberUpdateDAO(memberVO);
 	}
 
 	public List<OrderListVO> memberOrderListService() {
@@ -163,7 +166,7 @@ public class ManagerService {
 
 	public List<FAQVO> FAQListService() {
 		// TODO Auto-generated method stub
-		return null;
+		return boardDAO.allList();
 	}
 
 	public int reviewCommentSerivce(FAQVO faqVO) {
