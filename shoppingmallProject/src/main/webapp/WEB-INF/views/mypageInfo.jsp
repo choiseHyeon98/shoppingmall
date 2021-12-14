@@ -44,47 +44,48 @@
 <table style="width:100%">
   <tr>
     <th>id</th>
-    <td>${member.id }</td>
+    <td>${login.id }</td>
   </tr>
   <tr>
   	<th>pw</th>
-    <td>${member.pw }</td>
+    <td>${login.pw }</td>
   </tr>
   <!-- id/pw는 수정할때 readonly -->
   <tr>
     <th>name</th>
-    <td><input type=text value="${member.name }" name="name" id="i_name" disabled /></td>
+    <td><input type=text value="${login.name }" name="name" id="i_name" disabled /></td>
   </tr>
   <tr>
     <th>phone</th>
-    <td><input type=text value="${member.phone }" name="phone" id="i_phone" disabled /></td>
+    <td><input type=text value="${login.phone }" name="phone" id="i_phone" disabled /></td>
   </tr>
   <tr>
   	<th>address</th>
-    <td><input type=text value="${member.address }" name="address" id="i_address" disabled /></td>
+    <td><input type=text value="${login.address }" name="address" id="i_address" disabled /></td>
   </tr>
   <tr>
     <th>email</th>
-    <td><input type=text value="${member.email }" name="email" id="i_email" disabled /></td>
+    <td><input type=text value="${login.email }" name="email" id="i_email" disabled /></td>
   </tr>
   <tr>
     <th>rank</th>
-    <td>${member.rank}</td>
+    <td>${login.rank }</td>
   </tr>
 </table>
  
- <tr   id="tr_btn_modify"  >
-      <td colspan="2"   align="center" >
-          <input type=button value="수정반영하기"   onClick="fn_modify_article(frmArticle)"  >
-           <input type=button value="취소"  onClick="backToList(frmArticle)">
-      </td>   
-  </tr>
     
   <tr  id="tr_btn"    >
    <td colspan="2" align="center">
        <input type=button value="수정하기" onClick="fn_enable(this.form)">
        <input type=button value="홈페이지로"  onClick="backToList(this.form)">
    </td>
+  </tr>
+ 
+  <tr   id="tr_btn_modify"  >
+      <td colspan="2"   align="center" >
+          <input type=button value="수정반영하기"   onClick="fn_modify_article(frmArticle)"  >
+           <input type=button value="취소"  onClick="backToList(frmArticle)">
+      </td>   
   </tr>
  
 </form>

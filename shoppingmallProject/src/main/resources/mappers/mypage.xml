@@ -26,7 +26,7 @@
 	
 	<update id ="updateMyInfo" parameterType="MemberVO" >
 	<![CDATA[
-		UPDATE MEMBER SET "name"='', "phone"='', "address"='', "email"='', "rank"=''WHERE "id"=${id}
+		UPDATE MEMBER SET "name"=#{name}, "phone"=#{name}, "address"=#{name}, "email"=#{name}, "rank"=${rank} WHERE "id"=${id}
 		
 	]]>
 	</update>
