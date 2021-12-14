@@ -69,14 +69,6 @@ public class MypageController {
 		return "cartList"; // 장바구니+찜목록 창
 	}
 	
-	// 찜 목록에서 이동한 주문창
-	@RequestMapping (value="/mypage/orderList", method=RequestMethod.POST)
-	// 찜목록 완성하고 POST로 바꿀 예정
-	public String CartOrders () {
-		
-		return "cartOrders";
-	}
-	
 	
 	@RequestMapping (value="/mypage/myorders", method=RequestMethod.GET)
 	// 로그인 하고 POST로 바꿀 예정
