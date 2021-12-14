@@ -7,27 +7,11 @@
 %>
 <html>
 <title>Home</title>
-
-<link rel=" shortcut icon" href="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small">
-<link rel="icon" href="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<style>
-.mySlides {display:none}
-.w3-left, .w3-right, .w3-badge {cursor:pointer}
-.w3-badge {height:13px;width:13px;padding:0}
-</style>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
+<!-- favicon -->
+<%@include file ="headerfooter/favicon.jsp" %>
 <body>
+<!-- header -->
 <%@include file ="headerfooter/header.jsp" %>
-
-	<hr>
 <!-- 이벤트 배너 -->
 <c:choose>
 	<c:when test="${!empty eventList}">
@@ -164,6 +148,7 @@
 		</c:when>
 	</c:choose>
 	</div>
+	<!-- footer -->
 	<%@include file ="headerfooter/footer.jsp" %>
 </body>
 <script>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.hk.shop.vo.OptionVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
+import com.hk.shop.vo.SerchVO;
 
 @Repository
 public class ProductDAO {
@@ -141,6 +142,15 @@ public class ProductDAO {
 		// TODO Auto-generated method stub
 		int ret = session.insert("mapper.product.insertOrderList",orderListVO);
 		return ret;
+	}
+
+	public List<ProductVO> serchPro(SerchVO serchVO) {
+		// TODO Auto-generated method stub
+		List<ProductVO> productVO;
+		System.out.println("DAO serchVO: "+serchVO.toString());
+		productVO = session.selectList("mapper.product.selectSerchPro",serchVO);
+		System.out.println("DAO productVO: "+productVO.toString());
+		return productVO;
 	}
 
 

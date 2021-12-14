@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import com.hk.shop.service.EventService;
 import com.hk.shop.service.ProductService;
 import com.hk.shop.vo.EventVO;
 import com.hk.shop.vo.ProductVO;
+import com.hk.shop.vo.SerchVO;
 
 @Controller
 public class HomepageController {
@@ -60,7 +62,30 @@ public class HomepageController {
 		//이벤트 번호, 이미지 받아서 이벤트 페이지번호에 맞는 화면 구성하기(누른 배너에 따라 번호 받고, 번호에 따른 리스트 가져옴.
 		return "event";
 	}
+
 	
-	//검색페이지-다같이 만들기로 함
+	//검색페이지
+	@RequestMapping (value="/product/serch", method= {RequestMethod.GET,RequestMethod.POST})
+	String serch(Model model, @ModelAttribute SerchVO serchVO){
+
+		String serch = serchVO.getSerch();
+		
+		serchVO.setSerch("%"+serchVO.getSerch()+"%");
+		System.out.println(serchVO.getSerch());
+		
+		List<ProductVO> product;
+		product = productService.serchPro(serchVO);
+		System.out.println(product.toString());
+		model.addAttribute("Product",product);
+		model.addAttribute("serch",serch);
+		String link;
+		if(product.toString()=="[]"){
+			link = "serchFail";
+		} else {
+			link = "serchDone";
+		}
+		
+		return link;
+	}
 
 }

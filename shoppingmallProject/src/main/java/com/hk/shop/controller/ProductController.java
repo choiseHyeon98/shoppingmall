@@ -26,6 +26,8 @@ public class ProductController {
 	@RequestMapping(value = "/product/listAll", method = { RequestMethod.GET, RequestMethod.POST })
 	String allCategory(Model model) {
 		List<ProductVO> Product = productService.selectAll();
+		String name = "전체";
+		model.addAttribute("Name", name);
 		model.addAttribute("Product", Product);
 		System.out.println("AllList" + Product.toString());
 		return "ProductList";
@@ -36,6 +38,8 @@ public class ProductController {
 	String casualCategory(Model model) {
 		List<ProductVO> Product = productService.selectCasual();
 		model.addAttribute("Product", Product);
+		String name = "캐주얼";
+		model.addAttribute("Name", name);
 		System.out.println("listCasual" + Product.toString());
 		return "ProductList";
 	}
@@ -45,6 +49,8 @@ public class ProductController {
 	String officeCategory(Model model) {
 		List<ProductVO> Product = productService.selectOffice();
 		model.addAttribute("Product", Product);
+		String name = "오피스";
+		model.addAttribute("Name", name);
 		System.out.println("listOffice" + Product.toString());
 		return "ProductList";
 	}
@@ -54,6 +60,8 @@ public class ProductController {
 	String feminineCategory(Model model) {
 		List<ProductVO> Product = productService.selectFeminine();
 		model.addAttribute("Product", Product);
+		String name = "페미닌";
+		model.addAttribute("Name", name);
 		System.out.println("listFeminine" + Product.toString());
 		return "ProductList";
 	}
@@ -63,6 +71,8 @@ public class ProductController {
 	String hipCategory(Model model) {
 		List<ProductVO> Product = productService.selectHip();
 		model.addAttribute("Product", Product);
+		String name = "힙";
+		model.addAttribute("Name", name);
 		System.out.println("listHip" + Product.toString());
 		return "ProductList";
 	}
@@ -72,6 +82,8 @@ public class ProductController {
 	String vintageCategory(Model model) {
 		List<ProductVO> Product = productService.selectVintage();
 		model.addAttribute("Product", Product);
+		String name = "빈티지";
+		model.addAttribute("Name", name);
 		System.out.println("listVintage" + Product.toString());
 		return "ProductList";
 	}
@@ -81,6 +93,8 @@ public class ProductController {
 	String dailyCategory(Model model) {
 		List<ProductVO> Product = productService.selectDaily();
 		model.addAttribute("Product", Product);
+		String name = "오늘배송";
+		model.addAttribute("Name", name);
 		System.out.println("listDaily"+Product);
 		return "ProductList";
 	}
@@ -116,7 +130,7 @@ public class ProductController {
 		System.out.println("상품Option 상세보기" + productOption.toString());
 		model.addAttribute("Product", Product);
 		model.addAttribute("productOption", productOption);
-		return "ProductView";
+		return "ProductOrder";
 	}
 
 	// 찜목록에서 주문하기!
@@ -127,7 +141,7 @@ public class ProductController {
 		List<ProductVO> Product = productService.selectProd(cartNum);
 		model.addAttribute("Product", Product);
 		System.out.println("찜Product 상세보기" + Product.toString());
-		return "ProductView";
+		return "ProductOrderC";
 	}
 
 	// 주문취소(취소가 눌리면 alret으로 취소되었습니다.홈페이지로 보내기or이전페이지로 보내기)(onClick function으로 jsp에서

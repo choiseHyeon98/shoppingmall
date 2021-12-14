@@ -9,6 +9,7 @@ import com.hk.shop.dao.ProductDAO;
 import com.hk.shop.vo.OptionVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
+import com.hk.shop.vo.SerchVO;
 
 @Service
 public class ProductService {
@@ -78,6 +79,10 @@ public class ProductService {
 	public int OrderDone(OrderListVO orderListVO) {
 		// TODO Auto-generated method stub
 		return productDAO.OrderDone(orderListVO);
+	}
+	public List<ProductVO> serchPro(SerchVO serchVO) {
+		// TODO Auto-generated method stub
+		return productDAO.serchPro(serchVO);
 	}
 
 	

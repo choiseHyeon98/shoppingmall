@@ -10,12 +10,6 @@
 <head>
 <meta charset="UTF-8">
 <title>검색결과</title>
-<!-- script -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </head>
 <!-- favicon -->
 <%@include file ="headerfooter/favicon.jsp" %>
@@ -26,11 +20,7 @@
 <div>
 	<p>"${serch }"에 대한 검색 결과입니다.
 </div>
-<c:choose>
-<c:when test="${empty Product}">
-<h3>검색결과가 존재하지 않습니다.</h3>
-</c:when>
-</c:choose>
+
 <div class="album py-3 bg-light">
 	<c:choose>
 			<c:when test="${!empty Product}">
@@ -56,6 +46,7 @@
 			</c:when>
 	</c:choose>
 	</div>
-
+<!-- footer -->
+<%@include file ="headerfooter/footer.jsp" %>
 </body>
 </html>

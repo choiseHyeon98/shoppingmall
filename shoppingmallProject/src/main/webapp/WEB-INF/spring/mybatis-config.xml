@@ -15,5 +15,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <typeAlias type="com.hk.shop.vo.EventVO" alias="EventVO" />
       <typeAlias type="com.hk.shop.vo.FooterVO" alias="FooterVO" />
       <typeAlias type="com.hk.shop.vo.OptionVO" alias="OptionVO" />
+      <typeAlias type="com.hk.shop.vo.SerchVO" alias="SerchVO" />
     </typeAliases>
 </configuration>
