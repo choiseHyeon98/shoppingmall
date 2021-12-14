@@ -28,4 +28,10 @@
    ]]>
 	</select>
 	
+	<select id="selectMyQList" resultMap="AskResult">
+   <![CDATA[
+  		SELECT * FROM ASK
+   ]]>
+	</select>
+	
 	</mapper>
