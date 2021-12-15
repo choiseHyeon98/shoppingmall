@@ -80,20 +80,22 @@ public class MypageController {
 		return "myorders"; // 내 주문기록창
 	}
 	
+	/*
 	@RequestMapping (value="/mypage/addReview", method=RequestMethod.GET)
 	public String addReview () {
 		return "addReview"; // 리뷰 작성창 + 주문기록에서만 들어간다
 	}
+	*/
 	
-	/*
-	@RequestMapping (value="/mypage/addReview", method=RequestMethod.GET)
+	
+	@RequestMapping (value="/mypage/addReview", method= RequestMethod.GET)
 	// URL 연결한 후에 POST로 고친다
 	public String addReviewDone (Model model, @ModelAttribute ReviewVO reviewVO) {
 		int ret = mypageService.insertReview(reviewVO);
 		model.addAttribute("ret", ret);
 		return "addReviewDone"; // 리뷰 작성창 + 주문기록에서만 들어간다
 	}
-	*/
 	
+	//method= {RequestMethod.GET,RequestMethod.POST}
 	
 }

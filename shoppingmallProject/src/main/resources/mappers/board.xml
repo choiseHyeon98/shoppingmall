@@ -15,6 +15,19 @@
 			<result property="FAQContent" column="FAQContent" />
 			<result property="FAQType" column="FAQType" />
 	</resultMap>
+	
+	<resultMap id="AskResult" type="AskVO">
+			<result property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="orderNum" column="orderNum" />
+			<result property="email" column="email" />
+			<result property="askPhoto" column="askPhoto" />
+			<result property="askTitle" column="askTitle" />
+			<result property="askContent" column="askContent" />
+			<result property="askWhether" column="askWhether" />
+			<result property="askNum" column="askNum" />
+	</resultMap>
+	
 	<!-- 쿼리집어넣는 장소! -->
 	<select id="selectFAQAllList" resultMap="FAQResult">
    <![CDATA[
@@ -28,10 +41,25 @@
    ]]>
 	</select>
 	
-	<select id="selectMyQList" resultMap="FAQResult">
+	<select id="selectMyQList" resultMap="AskResult">
    <![CDATA[
-  		SELECT * FROM ASK
+  		SELECT "askNum", "askTitle", "askWhether" FROM ASK
    ]]>
 	</select>
+	
+	<select id="selectMyAsk" parameterType="AskVO">
+   <![CDATA[
+  		SELECT "askTitle","askPhoto","askContent","askWhether","id" from ASK
+		WHERE "askNum"=#{askNum}
+   ]]>
+	</select>
+	
+	<update id ="updateAsk" parameterType="AskVO" >
+	<![CDATA[
+		UPDATE ASK SET
+		"askTitle"=#{askTitle}, "askContent"=#{askContent}
+		WHERE ARTICLENO=#{ARTICLENO}
+	]]>
+	</update>
 	
 	</mapper>

@@ -35,7 +35,14 @@ public class BoardDAO {
 
 	public AskVO selectMyAsk(int askNum) {
 		// TODO Auto-generated method stub
-		return null;
+		AskVO askVO = session.selectOne("mapper.board.selectMyAsk", askNum);
+		return askVO;
+	}
+
+	public int updateMyAsk(AskVO askVO) {
+		// TODO Auto-generated method stub
+		int ret = session.update("mapper.board.updateAsk", askVO);
+		return ret;
 	}
 
 }

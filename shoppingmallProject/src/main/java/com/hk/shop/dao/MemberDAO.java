@@ -36,6 +36,14 @@ public class MemberDAO {
 	}
 
 
+	/*
+	// board 내 문의 찾기
+	public MemberVO selectName(String id) {
+		// TODO Auto-generated method stub
+		MemberVO memberVO = sqlSession.selectOne("mapper.member.selectName", id);
+		return memberVO;
+	}
+*/
 
 
 

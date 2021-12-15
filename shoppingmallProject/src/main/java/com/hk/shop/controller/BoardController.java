@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,11 +50,19 @@ public class BoardController {
 	}
 	
 	// 내 문의 상세보기
-	@RequestMapping (value="/board/askOne", method= {RequestMethod.GET, RequestMethod.POST})
-	String MyAskOne(Model model, @RequestParam("askNum") int askNum) {
+	@RequestMapping (value="/board/askOne", method= RequestMethod.GET)
+	public String MyAskOne(Model model, @RequestParam("askNum") int askNum) {
 		Map<String, Object> map = boardService.viewMyAsk(askNum);
 		model.addAttribute("askOne", map.get("askVO"));
 		model.addAttribute("member", map.get("memberVO"));
+		return "myAskOne";
+	}
+	
+	// 내문의 상세 수정
+	@RequestMapping (value="/board/askOne", method= RequestMethod.POST)
+	public String AskUpdate(Model model, @ModelAttribute AskVO askVO) {
+		int ret = boardService.modifyAsk(askVO);
+		model.addAttribute("ret", ret);
 		return "myAskOne";
 	}
 }

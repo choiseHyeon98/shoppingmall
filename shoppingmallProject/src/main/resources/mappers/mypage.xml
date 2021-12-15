@@ -14,7 +14,15 @@
 		<result property = "address" column="address" />
 		<result property = "email" column="email" />
 		<result property = "joinDate" column="joinDate" />
-
+	</resultMap>
+	
+	<resultMap id="myReviewResult" type="ReviewVO">
+		<result property = "reviewNum" column="id" />
+		<result property = "id" column="pw" />
+		<result property = "proNum" column="name" />
+		<result property = "reviewPhoto" column="phone" />
+		<result property = "reviewContent" column="address" />
+		<result property = "reviewDate" column="email" />
 	</resultMap>
 	
 	<select id ="showMyInfo" resultMap="mypageResult" >
