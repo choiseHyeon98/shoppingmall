@@ -26,6 +26,8 @@
 			<result property="askContent" column="askContent" />
 			<result property="askWhether" column="askWhether" />
 			<result property="askNum" column="askNum" />
+			<result property="askManagerContent" column="askManagerContent" />
+			<result property="askManagerDate" column="askManagerDate" />
 	</resultMap>
 	
 	<!-- 쿼리집어넣는 장소! -->
@@ -75,6 +77,16 @@
   		SELECT * FROM ASK
    ]]>
 	</select>
+	
+	<update id ="updateComment" parameterType="AskVO" >
+	<![CDATA[
+		UPDATE ASK SET
+		"askManagerContent"=#{askManagerContent}
+		WHERE "askNum"=#{askNum}
+	]]>
+	</update>
+	
+	
 	
 	
 

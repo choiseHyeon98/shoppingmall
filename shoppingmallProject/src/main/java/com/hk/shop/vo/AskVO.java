@@ -1,17 +1,21 @@
 package com.hk.shop.vo;
 
+import java.util.Date;
+
 public class AskVO {
 	// 이건 VO
 
-	String id;
-	String name;
-	int orderNum;
-	String email;
-	String askPhoto;
-	String askTitle;
-	String askContent;
-	String askWhether;
-	int askNum;
+	private String id;
+	private String name;
+	private int orderNum;
+	private String email;
+	private String askPhoto;
+	private String askTitle;
+	private String askContent;
+	private String askWhether;
+	private int askNum;
+	private String askManagerContent;
+	private Date askManagerDate;
 	
 	
 	public String getId() {
@@ -68,12 +72,27 @@ public class AskVO {
 	public void setAskNum(int askNum) {
 		this.askNum = askNum;
 	}
+	
+	public String getAskManagerContent() {
+		return askManagerContent;
+	}
+	public void setAskManagerContent(String askManagerContent) {
+		this.askManagerContent = askManagerContent;
+	}
+	public Date getAskManagerDate() {
+		return askManagerDate;
+	}
+	public void setAskManagerDate(Date askManagerDate) {
+		this.askManagerDate = askManagerDate;
+	}
 	@Override
 	public String toString() {
 		return "AskVO [id=" + id + ", name=" + name + ", orderNum=" + orderNum + ", email=" + email + ", askPhoto="
 				+ askPhoto + ", askTitle=" + askTitle + ", askContent=" + askContent + ", askWhether=" + askWhether
-				+ ", askNum=" + askNum + "]";
+				+ ", askNum=" + askNum + ", askManagerContent=" + askManagerContent + ", askManagerDate="
+				+ askManagerDate + "]";
 	}
+	
 	
 	
 	
