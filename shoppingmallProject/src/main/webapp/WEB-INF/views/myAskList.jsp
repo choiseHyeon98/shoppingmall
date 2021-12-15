@@ -72,7 +72,7 @@ function muldelete() {
      </c:when>
     </c:choose>
 </table>
-<a  class="cls1"  href="/board/askAdd"><p class="cls2">글쓰기</p></a>
+<a  class="cls1"  href="/shop/board/askAdd"><p class="cls2">글쓰기</p></a>
 
 </form>
 </body>

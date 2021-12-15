@@ -17,7 +17,6 @@ import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ReviewVO;
 
-// 요기에 세션을 넣어야 들어갈때마다 세션체크가 가능하지 않을까
 
 @Controller
 public class MypageController {
@@ -43,7 +42,7 @@ public class MypageController {
 	
 	// 내 정보 조회
 	// 세션 넣기
-	@RequestMapping (value="/myinfo", method=RequestMethod.GET)
+	@RequestMapping (value="/s/myinfo", method=RequestMethod.GET)
 	// 로그인 하고 POST로 바꿀 예정
 	public String Mypageinfo (Model model) {
 		
@@ -73,7 +72,7 @@ public class MypageController {
 		}	
 */
 	
-	@RequestMapping (value="/mypage/cart", method=RequestMethod.GET)
+	@RequestMapping (value="/s/mypage/cart", method=RequestMethod.GET)
 	// 로그인 하고 POST로 바꿀 예정
 	public String Cart (Model model) {
 		
@@ -84,7 +83,7 @@ public class MypageController {
 	}
 	
 	
-	@RequestMapping (value="/mypage/myorders", method=RequestMethod.GET)
+	@RequestMapping (value="/s/mypage/myorders", method=RequestMethod.GET)
 	// 로그인 하고 POST로 바꿀 예정
 	public String MyOrders (Model model) {
 		
@@ -102,7 +101,7 @@ public class MypageController {
 	*/
 	
 	
-	@RequestMapping (value="/mypage/addReview", method= RequestMethod.GET)
+	@RequestMapping (value="/s/mypage/addReview", method= RequestMethod.GET)
 	// URL 연결한 후에 POST로 고친다
 	public String addReviewDone (Model model, @ModelAttribute ReviewVO reviewVO) {
 		int ret = mypageService.insertReview(reviewVO);

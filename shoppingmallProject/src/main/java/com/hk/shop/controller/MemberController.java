@@ -30,14 +30,14 @@ public class MemberController {
 	*/
 	
 	
-	@RequestMapping (value="/member/login", method=RequestMethod.GET)
+	@RequestMapping (value="/shop/login", method=RequestMethod.GET)
 	public String Login () {
 		// Session 설정
 		return "login"; // 로그인하는 창
 	}
 	
 	// 로그인
-	@RequestMapping (value="/member/login", method=RequestMethod.POST)
+	@RequestMapping (value="/shop/login", method=RequestMethod.POST)
 	public String LoginDone (@ModelAttribute MemberVO memberVO, HttpSession session) {
 		// 사용자가 입력한 값을 불러와서
 		// 실패했을때는 실패했다고 알려주고 다시 로그인창
@@ -62,7 +62,7 @@ public class MemberController {
 	
 	
 	// 로그아웃
-	@RequestMapping (value="/member/logout", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping (value="/shop/logout", method= {RequestMethod.GET, RequestMethod.POST})
 	public String logout (HttpSession session, Model model) {
 		// 기존의 세션이 있으면 로그아웃
 		String name=""; // jsp에서 불러야하니까 model
