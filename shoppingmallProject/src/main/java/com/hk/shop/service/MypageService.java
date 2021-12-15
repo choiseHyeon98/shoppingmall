@@ -1,6 +1,8 @@
 package com.hk.shop.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,11 +28,22 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		return mypageDAO.showMyInfo();
 	}
-	
+
+/*	
+	public Map<String, Object> selectMyinfo(String id) {
+		// TODO Auto-generated method stub
+		MemberVO memberVO = memberDAO.selectMyinfo(id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		return map;
+	}
+*/
+/*	
 	public int updateMypage(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		return mypageDAO.updateMyInfo(memberVO);
 	}
+*/
 
 	public List<CartVO> myCartList() {
 		// TODO Auto-generated method stub
@@ -46,6 +59,8 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		return mypageDAO.insertMyReview(reviewVO);
 	}
+
+	
 
 	
 	

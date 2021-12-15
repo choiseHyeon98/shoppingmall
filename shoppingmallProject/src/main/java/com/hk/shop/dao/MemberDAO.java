@@ -28,22 +28,26 @@ public class MemberDAO {
 		return ret;
 	}
 
-
+/*
+	public MemberVO selectMyinfo(String id) {
+		// TODO Auto-generated method stub
+		MemberVO memberVO = sqlSession.selectOne("mapper.member.selectOneInfo", id);
+		return memberVO;
+	}
+*/
 	public MemberVO viewId(String name) {
 		// TODO Auto-generated method stub
 		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewId", name);
 		return memberVO;
 	}
-
-
-	/*
+	
 	// board 내 문의 찾기
 	public MemberVO selectName(String id) {
 		// TODO Auto-generated method stub
 		MemberVO memberVO = sqlSession.selectOne("mapper.member.selectName", id);
 		return memberVO;
 	}
-*/
+
 
 
 

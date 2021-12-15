@@ -1,6 +1,7 @@
 package com.hk.shop.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.shop.service.MypageService;
 import com.hk.shop.vo.CartVO;
@@ -40,7 +42,8 @@ public class MypageController {
 	*/
 	
 	// 내 정보 조회
-	@RequestMapping (value="/mypage", method=RequestMethod.GET)
+	// 세션 넣기
+	@RequestMapping (value="/myinfo", method=RequestMethod.GET)
 	// 로그인 하고 POST로 바꿀 예정
 	public String Mypageinfo (Model model) {
 		
@@ -50,14 +53,25 @@ public class MypageController {
 		return "mypageInfo";
 		
 	}
+
+/*
+	// 내정보 수정
+	@RequestMapping (value="/mypage/update", method=RequestMethod.GET)
+	public String MypageUpdate(Model model, @RequestParam("id") String id) {
+		Map<String, Object> map = mypageService.selectMyinfo(id);
+		
+		model.addAttribute("member", map.get("memberVO"));
+		return "mypageUpdate";
+	}
 	
 	// 내정보 수정
-	@RequestMapping (value="/mypage/update", method=RequestMethod.POST)
-	public String MypageUpdate(Model model, @ModelAttribute MemberVO memberVO) {
-		int ret = mypageService.updateMypage(memberVO);
-		model.addAttribute("ret", ret);
-		return "mypageInfo";
-	}
+		@RequestMapping (value="/mypage/update", method=RequestMethod.POST)
+		public String MypageUpdateDone(Model model, @ModelAttribute MemberVO memberVO) {
+			int ret = mypageService.updateMypage(memberVO);
+			model.addAttribute("ret", ret);
+			return "mypageUpdateDone";
+		}	
+*/
 	
 	@RequestMapping (value="/mypage/cart", method=RequestMethod.GET)
 	// 로그인 하고 POST로 바꿀 예정

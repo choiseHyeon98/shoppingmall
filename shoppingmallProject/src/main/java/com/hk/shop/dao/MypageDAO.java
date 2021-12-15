@@ -24,13 +24,13 @@ public class MypageDAO {
 		return mypageinfo;
 	}
 	
-
+/*
 	public int updateMyInfo(MemberVO memberVO) {
 		// TODO Auto-generated method stub
-		int ret = sqlSession.update("mapper.member.updateMyInfo", memberVO);
+		int ret = sqlSession.update("mapper.mypage.updateMyInfo", memberVO);
 		return ret;
 	}
-
+*/
 
 	public List<CartVO> showMyCart() {
 		// TODO Auto-generated method stub

@@ -64,9 +64,10 @@ public class BoardController {
 	
 	// 내 문의 상세보기
 	@RequestMapping (value="/board/askOne", method= RequestMethod.GET)
-	public String MyAskOne(Model model, @RequestParam("askNum") int askNum) {
+	public String MyAskOne(Model model, @ModelAttribute AskVO askVO, @RequestParam("askNum") int askNum) {
+		System.out.println("askVO="+askVO.toString());
 		Map<String, Object> map = boardService.viewMyAsk(askNum);
-		model.addAttribute("askOne", map.get("askVO"));
+		model.addAttribute("ask", map.get("askVO"));
 		model.addAttribute("member", map.get("memberVO"));
 		return "myAskOne";
 	}

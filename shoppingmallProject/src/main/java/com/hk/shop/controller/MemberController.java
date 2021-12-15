@@ -93,6 +93,22 @@ public class MemberController {
 		return "registerDone"; // 가입 완료 된 창
 	}
 	
+/*	
+	// 내 정보 수정 GET 조회먼저
+	// 나중에 세션도 넣어야함
+	@RequestMapping (value="/mypage/myinfoUpdate", method=RequestMethod.GET)
+	public String MyinfoView (Model model, @RequestParam("id") String id) {
+		Map<String, Object> map = memberService.viewMyinfo(id);
+		model.addAttribute("member", map.get("memberVO"));
+		
+		return "mypageInfo";
+	}
+*/	
+	// 내 정보 수정 완 POST
+	
+	
+	
+	
 	@RequestMapping (value="/member/findIdPw", method=RequestMethod.GET)
 	public String FindIdPw () {
 		return "findIdPw"; // 아이디/비번찾기 입력창

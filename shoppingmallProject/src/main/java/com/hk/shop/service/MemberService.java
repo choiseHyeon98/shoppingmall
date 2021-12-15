@@ -26,7 +26,16 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.addMember(memberVO);
 	}
-
+/*	
+	public Map<String, Object> viewMyinfo(String id) {
+		// TODO Auto-generated method stub
+		MemberVO memberVO = memberDAO.selectMyinfo(id);
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberVO", memberVO);
+		
+		return map;
+	}
+*/
 	public Map<String, Object> findId(String name) {
 		// TODO Auto-generated method stub
 		MemberVO memberVO = memberDAO.viewId(name);
@@ -36,6 +45,8 @@ public class MemberService {
 		
 		return map;
 	}
+
+	
 	
 	
 }

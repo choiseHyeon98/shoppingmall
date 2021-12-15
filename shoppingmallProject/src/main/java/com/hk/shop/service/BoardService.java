@@ -18,6 +18,10 @@ public class BoardService {
 
 	@Autowired
 	BoardDAO boardDAO;
+	
+	@Autowired
+	MemberDAO memberDAO;
+	
 	public List<FAQVO> allList() {
 		// TODO Auto-generated method stub
 		return boardDAO.allList();
@@ -40,6 +44,7 @@ public class BoardService {
 	public Map<String, Object> viewMyAsk(int askNum) {
 		// TODO Auto-generated method stub
 		AskVO askVO = boardDAO.selectMyAsk(askNum);
+		MemberVO memberVO = memberDAO.selectName(askVO.getId());
 		//MemberVO memberVO = MemberDAO.selectName(memberVO.getId());
 		
 		Map<String, Object> map = new HashMap<String, Object>();

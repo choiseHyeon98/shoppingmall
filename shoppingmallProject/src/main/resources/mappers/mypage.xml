@@ -31,14 +31,14 @@
 		FROM MEMBER
 	]]>
 	</select>
-	
+<!-- 
 	<update id ="updateMyInfo" parameterType="MemberVO" >
 	<![CDATA[
-		UPDATE MEMBER SET "name"=#{name}, "phone"=#{name}, "address"=#{name}, "email"=#{name}, "rank"=${rank} WHERE "id"=${id}
-		
+		SET "name"='', "phone"='', "address"='', "email"=''
+		WHERE "id"=''
 	]]>
 	</update>
-	
+ -->		
 	<select id ="showMyCart" resultMap="mypageResult" >
 	<![CDATA[
 		SELECT "cartNum", "id", "proNum", "sizeOption", "colorOption", "price", "countProNum"
