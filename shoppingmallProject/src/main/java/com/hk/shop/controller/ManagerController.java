@@ -440,7 +440,7 @@ public class ManagerController {
 		
 	
 	//관리자 문의 댓글 /manager/FAQ/comment->update
-	@RequestMapping(value = "/manager/ask/comment", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/manager/ask/comment", method = RequestMethod.POST)
 	public String askComment(Model model, @ModelAttribute AskVO askVO) {
 
 		int ret = managerService.askCommentSerivce(askVO);

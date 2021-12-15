@@ -55,7 +55,7 @@
 	]]>
 	</insert>
 	
-	<select id="selectMyAsk" parameterType="AskVO">
+	<select id="selectMyAsk" resultType="AskVO">
    <![CDATA[
   		SELECT * from ASK
 		WHERE "askNum"=#{askNum}
@@ -75,6 +75,7 @@
   		SELECT * FROM ASK
    ]]>
 	</select>
+	
 	
 
 	
