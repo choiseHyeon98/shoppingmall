@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.shop.vo.AskVO;
 import com.hk.shop.vo.EventVO;
 import com.hk.shop.vo.FooterVO;
 import com.hk.shop.vo.MemberVO;
@@ -53,8 +54,10 @@ public class ManagerDAO {
 
 	public int productAddDoneDao(ProductVO productVO) {
 		// TODO Auto-generated method stub
-		return 0;
-		//int  ret = session.insert("mapper.product.insertPro",productVO)
+		
+		int  ret = session.insert("mapper.product.insertPro",productVO);
+		return ret;
+		
 	}
 
 
@@ -156,6 +159,35 @@ public class ManagerDAO {
 		return ret;
 	}
 
+
+	public List<AskVO> askListDAO() {
+		// TODO Auto-generated method stub
+		
+		List<AskVO> askList = session.selectList("mapper.board.selectAllAsk");
+		
+		return askList;
+	}
+
+
+	public AskVO askSelectDAO(int askNum) {
+		// TODO Auto-generated method stub
+		
+		AskVO askVo = session.selectOne("mapper.board.selectMyAsk", askNum);
+		
+		return askVo;
+	}
+
+
+	public int askCommentDAO(AskVO askVO) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.update("mapper.board.updateComment",askVO);
+		
+		return ret;
+	}
+
+
+	
 
 	
 

@@ -57,7 +57,7 @@
 	
 	<select id="selectMyAsk" parameterType="AskVO">
    <![CDATA[
-  		SELECT "askTitle","askPhoto","askContent","askWhether","id" from ASK
+  		SELECT * from ASK
 		WHERE "askNum"=#{askNum}
    ]]>
 	</select>
@@ -69,5 +69,14 @@
 		WHERE "askNum"=#{askNum}
 	]]>
 	</update>
+	
+	<select id="selectAllAsk" resultMap="AskResult">
+   <![CDATA[
+  		SELECT * FROM ASK
+   ]]>
+	</select>
+	
+
+	
 	
 	</mapper>

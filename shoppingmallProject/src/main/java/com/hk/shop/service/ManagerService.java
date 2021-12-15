@@ -14,8 +14,9 @@ import com.hk.shop.dao.MemberDAO;
 import com.hk.shop.dao.OrderListDAO;
 import com.hk.shop.dao.ProductDAO;
 import com.hk.shop.dao.ReviewDAO;
+import com.hk.shop.vo.AskVO;
 import com.hk.shop.vo.EventVO;
-import com.hk.shop.vo.FAQVO;
+
 import com.hk.shop.vo.FooterVO;
 import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OrderListVO;
@@ -102,12 +103,12 @@ public class ManagerService {
 
 	public List<ProductVO> listDailyService() {
 		// TODO Auto-generated method stub
-		return null;
+		return productDAO.selectDaily();
 	}
 
 	public List<ProductVO> listAllService() {
 		// TODO Auto-generated method stub
-		return null;
+		return productDAO.selectAll();
 	}
 
 	public List<ReviewVO> reviewListService() {
@@ -164,14 +165,17 @@ public class ManagerService {
 		return managerDAO.orderUpdateDAO(orderVO);
 	}
 
-	public List<FAQVO> FAQListService() {
+	public List<AskVO> askListService() {
 		// TODO Auto-generated method stub
-		return boardDAO.allList();
+		return managerDAO.askListDAO();
 	}
-
-	public int reviewCommentSerivce(FAQVO faqVO) {
+	public AskVO askSelectOneSerivce(int askNum) {
 		// TODO Auto-generated method stub
-		return 0;
+		return managerDAO.askSelectDAO(askNum);
+	}
+	public int askCommentSerivce(AskVO askVO) {
+		// TODO Auto-generated method stub
+		return managerDAO.askCommentDAO(askVO);
 	}
 
 
@@ -218,6 +222,8 @@ public class ManagerService {
 		//map["fail"] = ArrayLsit<>;
 		
 	}
+
+	
 
 	
 

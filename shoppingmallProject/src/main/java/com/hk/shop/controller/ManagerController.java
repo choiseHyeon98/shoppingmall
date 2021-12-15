@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.shop.service.ManagerService;
 import com.hk.shop.service.ProductService;
+import com.hk.shop.vo.AskVO;
 import com.hk.shop.vo.EventVO;
-import com.hk.shop.vo.FAQVO;
+
 import com.hk.shop.vo.FooterVO;
 import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OrderListVO;
@@ -249,9 +250,9 @@ public class ManagerController {
 	}
 	
 
-	// 관리자 상품 등록 폼
+	// 관리자 상품 등록 폼으로 가는 URL
 	@RequestMapping(value = "/manager/product/add", method = RequestMethod.GET)
-	public String productAdd() {
+	public String productAdd(Model model) {
 
 		return "productAdd";
 
@@ -407,30 +408,48 @@ public class ManagerController {
 		return "orederUpdate";
 	}
 	
-	//관리자 문의 관리 /manager/FAQ/list
-	@RequestMapping(value="/manager/FAQ/list",method= {RequestMethod.GET,RequestMethod.POST})
-	public String FAQList(Model model) {
+	//관리자 문의 관리 목록 /manager/ask/list
+	@RequestMapping(value="/manager/ask/list",method= {RequestMethod.GET,RequestMethod.POST})
+	public String askList(Model model) {
 		
-		List<FAQVO> FAQList = new ArrayList<FAQVO>(); 
-		FAQList = managerService.FAQListService();
+		List<AskVO> askList = new ArrayList<AskVO>(); 
+		askList = managerService.askListService();
 		
-		model.addAttribute("FAQList", FAQList);
-		System.out.println("FAQList="+FAQList.toString());
+
 		
-		return "FAQList";
+		model.addAttribute("askList", askList);
+		System.out.println("askList="+askList.toString());
+		
+		return "askList";
 	}
 	
-	//관리자 문의 댓글 /manager/FAQ/comment->update
-	@RequestMapping(value = "/manager/FAQ/comment", method = {RequestMethod.GET,RequestMethod.POST})
-	public String FAQComment(Model model, @ModelAttribute FAQVO faqVO) {
+	
+	//관리자 문의 댓글 폼이동 /manager/ask/comment->update 셀렉트
+		@RequestMapping(value ="/manager/ask/comment", method = RequestMethod.GET)
+		public String askSelectOne(Model model, @RequestParam("askNum")int askNum) {
 
-		int ret = managerService.reviewCommentSerivce(faqVO);
+			AskVO askVO = managerService.askSelectOneSerivce(askNum);
+			model.addAttribute("askVO", askVO);
+			System.out.println("askVO="+askVO.toString());
+			// update 후 결과받기
+
+			return "askSelectOne";
+			// 답글작성이 완료되었습니다 alert -> reviewList
+
+		}
+		
+	
+	//관리자 문의 댓글 /manager/FAQ/comment->update
+	@RequestMapping(value = "/manager/ask/comment", method = {RequestMethod.GET,RequestMethod.POST})
+	public String askComment(Model model, @ModelAttribute AskVO askVO) {
+
+		int ret = managerService.askCommentSerivce(askVO);
 		model.addAttribute("ret", ret);
 		// update 후 결과받기
 
-		return "reviewComment";
+		return "askComment";
 		// 답글작성이 완료되었습니다 alert -> reviewList
-//
+
 	}
 	
 	
