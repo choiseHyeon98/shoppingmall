@@ -153,5 +153,12 @@
 	WHERE "proName" like #{serch}
    ]]>
 	</select>
+	
+	<select id="insertPro">
+		<![CDATA[
+		INSERT INTO PRODUCT ("proNum","proName","proContent","proDetails","topImage","price","delprice","proCon","proCate","proSpecification")
+		VALUES(#{proNum},#{proName}, #{proContent}, #{proDetails},#{topImage},#{price},#{delprice},#{proCon},#{proCate},#{proSpecification})
+		]]>
+	</select>
 
 </mapper>

@@ -1,9 +1,13 @@
 package com.hk.shop.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.shop.service.ManagerService;
 import com.hk.shop.service.ProductService;
@@ -260,14 +265,30 @@ public class ManagerController {
 
 	// 관리자 상품 등록 완료
 	@RequestMapping(value = "/manager/product/add", method = RequestMethod.POST)
-	public String productAddDone(Model model, @ModelAttribute ProductVO productVO) {
-
+	public String productAddDone(Model model, @ModelAttribute ProductVO productVO) throws IOException {
+		
+		String fileName=null;
+		MultipartFile uploadFile = productVO.getUploadFile();
+		if (!uploadFile.isEmpty()) {
+			String originalFileName = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(originalFileName);
+			
+			UUID uuid = UUID.randomUUID();
+			fileName=uuid+"."+ext;
+			uploadFile.transferTo(new File("c:\\board\\"+fileName));
+			
+		}
+		productVO.setProSpecification(fileName);
+	
 		int ret = managerService.productAddDoneService(productVO);
 		model.addAttribute("ret", ret);
-
+		
+		System.out.println("prductVo="+productVO.toString());
 		return "productAddDone";
 	} // 추가가 완료되었습니다 alert
-
+	
+	//상품 등록 수정 페이지
+	//상품 삭제
 	
 	// 관리자 리뷰 리스트
 	@RequestMapping(value = "/manager/review/list", method = { RequestMethod.GET, RequestMethod.POST })
@@ -446,7 +467,8 @@ public class ManagerController {
 		int ret = managerService.askCommentSerivce(askVO);
 		model.addAttribute("ret", ret);
 		// update 후 결과받기
-
+		
+		System.out.println("askVO="+askVO.toString());
 		return "askComment";
 		// 답글작성이 완료되었습니다 alert -> reviewList
 

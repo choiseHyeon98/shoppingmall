@@ -1,25 +1,30 @@
 package com.hk.shop.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductVO {
 	// 이건 VO
 	
-	int proNum;
-	String proName;
-	String proContent;
-	String proDetails;
-	String proSpecification;
-	String refundPolicy;
-	String topImage;
-	int price;
-	int delprice;
-	String dailyDel;
-	String proCon;
-	String proCate;
+	private int proNum;
+	private String proName;
+	private String proContent;
+	private String proDetails;
+	private String proSpecification;
+	//파일 업로드를 위해 multipartfile 추가
+	private MultipartFile uploadFile;
+	private String refundPolicy;
+	private String topImage;
+	private int price;
+	private int delprice;
+	private String dailyDel;
+	private String proCon;
+	private String proCate;
 	
 	//상세보기 및 상품주문을 위한 VO정보들
-	String sizeOption;
-	String colorOption;
-	int countProNum;
+	private String sizeOption;
+	private String colorOption;
+	private int countProNum;
+	private String soldOut;
 	
 	public int getCountProNum() {
 		return countProNum;
@@ -117,14 +122,21 @@ public class ProductVO {
 	public void setSoldOut(String soldOut) {
 		this.soldOut = soldOut;
 	}
-	String soldOut;
 
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 	@Override
 	public String toString() {
 		return "ProductVO [proNum=" + proNum + ", proName=" + proName + ", proContent=" + proContent + ", proDetails="
-				+ proDetails + ", proSpecification=" + proSpecification + ", refundPolicy=" + refundPolicy
-				+ ", topImage=" + topImage + ", price=" + price + ", delprice=" + delprice + ", dailyDel=" + dailyDel
-				+ ", proCon=" + proCon + ", proCate=" + proCate + ", sizeOption=" + sizeOption + ", colorOption="
-				+ colorOption + ", countProNum=" + countProNum + ", soldOut=" + soldOut + "]";
+				+ proDetails + ", proSpecification=" + proSpecification + ", uploadFile=" + uploadFile
+				+ ", refundPolicy=" + refundPolicy + ", topImage=" + topImage + ", price=" + price + ", delprice="
+				+ delprice + ", dailyDel=" + dailyDel + ", proCon=" + proCon + ", proCate=" + proCate + ", sizeOption="
+				+ sizeOption + ", colorOption=" + colorOption + ", countProNum=" + countProNum + ", soldOut=" + soldOut
+				+ "]";
 	}
+	
 }

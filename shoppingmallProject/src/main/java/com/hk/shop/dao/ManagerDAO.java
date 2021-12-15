@@ -56,6 +56,7 @@ public class ManagerDAO {
 		// TODO Auto-generated method stub
 		
 		int  ret = session.insert("mapper.product.insertPro",productVO);
+		
 		return ret;
 		
 	}
@@ -182,6 +183,7 @@ public class ManagerDAO {
 		// TODO Auto-generated method stub
 		
 		int ret = session.update("mapper.board.updateComment",askVO);
+		System.out.println("ask");
 		
 		return ret;
 	}
