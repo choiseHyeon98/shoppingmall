@@ -12,38 +12,39 @@
 <meta charset="UTF-8">
 <title>내 문의 내역</title>
 
-리스트
-<table>
-<tr>
-    <th>글번호</th><th>문의제목</th><th>답변상태</th>
-  </tr>
-  <tr>
-  	<td><id="${ask.askNum }"></td>
-  	<td><id="${product.proNum }" name="${ask.askTitle }" value="문의 1"></td>
-    <td><label for="askWhether">${ask.askWhether }</label></td>
-  </tr>
-  <tr>
-  	<td><id="${ask.askNum }"></td>
-  	<td><id="${product.proNum }" name="${ask.askTitle }" value="문의 2"></td>
-    <td><label for="askWhether">${ask.askWhether }</label></td>
-  </tr>
-  <tr>
-  	<td><id="${ask.askNum }"></td>
-  	<td><id="${product.proNum }" name="${ask.askTitle }" value="문의 3"></td>
-    <td><label for="askWhether">${ask.askWhether }</label></td>
-  </tr>
-  <tr>
-  	<td><id="${ask.askNum }"></td>
-  	<td><id="${product.proNum }" name="${ask.askTitle }" value="문의 4"></td>
-    <td><label for="askWhether">${ask.askWhether }</label></td>
-  </tr>
-  
-</table>
-
-<input type="button" value="새로 문의하기" onClick="location.href='/board/askAdd'">
+ <script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
+ <script type="text/javascript" >
+ function writeForm() {
+	 location.href="/shop/board/askAdd"
+ }
+ 
+ 
+ </script>
+ 
 
 </head>
 <body>
 
+리스트
+<table>
+<tr>
+    <th>글번호</th>
+    <th>문의제목</th>
+    <th>답변상태</th>
+  </tr>
+  
+  
+  <c:forEach items="${myAsklist}" var="askVO">
+  <tr>
+    <td>${ask.askNum }</td>
+    <td>${ask.askTitle }</td>
+    <td>${ask.askWhether }</td>
+
+  </tr>
+  </c:forEach>
+  
+  <input type="button" value="새로 문의하기" onClick="writeForm()">
+  
+</table>
 </body>
 </html>

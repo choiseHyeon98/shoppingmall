@@ -12,6 +12,8 @@ public class AskVO {
 	String askContent;
 	String askWhether;
 	int askNum;
+	
+	
 	public String getId() {
 		return id;
 	}

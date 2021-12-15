@@ -27,9 +27,14 @@ public class BoardService {
 		return boardDAO.ViewOne(fAQNum);
 	}
 	
-	public List<AskVO> myQuestions() {
+	public List<AskVO> myQuestions(AskVO askVO) {
 		// TODO Auto-generated method stub
-		return boardDAO.myQuestions();
+		return boardDAO.myQuestions(askVO);
+	}
+	
+	public int insertMyAsk(AskVO askVO) {
+		// TODO Auto-generated method stub
+		return boardDAO.insertMyAsk(askVO);
 	}
 	
 	public Map<String, Object> viewMyAsk(int askNum) {
@@ -47,5 +52,6 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		return boardDAO.updateMyAsk(askVO);
 	}
+	
 
 }

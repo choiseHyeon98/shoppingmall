@@ -41,11 +41,19 @@
    ]]>
 	</select>
 	
-	<select id="selectMyQList" resultMap="AskResult">
+	<select id="selectMyQList" resultType="AskVO">
    <![CDATA[
   		SELECT "askNum", "askTitle", "askWhether" FROM ASK
    ]]>
 	</select>
+	
+	<insert id ="insertMyAsk" parameterType="AskVO" >
+	<![CDATA[
+		INSERT INTO ASK
+		("id", "askPhoto", "askTitle", "askContent", "askNum")	
+			VALUES(#{id}, #{askPhoto}, #{askTitle}, #{askContent}, (SELECT max(askNum)+1)
+	]]>
+	</insert>
 	
 	<select id="selectMyAsk" parameterType="AskVO">
    <![CDATA[
@@ -58,7 +66,7 @@
 	<![CDATA[
 		UPDATE ASK SET
 		"askTitle"=#{askTitle}, "askContent"=#{askContent}
-		WHERE ARTICLENO=#{ARTICLENO}
+		WHERE "askNum"=#{askNum}
 	]]>
 	</update>
 	
