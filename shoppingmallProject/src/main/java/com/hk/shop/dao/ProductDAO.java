@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.shop.vo.CartVO;
 import com.hk.shop.vo.OptionVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
@@ -151,6 +152,12 @@ public class ProductDAO {
 		productVO = session.selectList("mapper.product.selectSerchPro",serchVO);
 		System.out.println("DAO productVO: "+productVO.toString());
 		return productVO;
+	}
+
+	public int addCart(CartVO cartVO) {
+		// TODO Auto-generated method stub
+		int ret  = session.insert("mapper.cart.addCart",cartVO);
+		return ret;
 	}
 
 

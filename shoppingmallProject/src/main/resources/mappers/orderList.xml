@@ -40,6 +40,5 @@
       UPDATE ORDERLIST SET "delStatus"=#{delStatus} WHERE "orderNum"=#{orderNum}
 
    ]]>
-	
 	</select>
 </mapper>

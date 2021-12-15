@@ -11,7 +11,7 @@
 <a href="/shop" style="text-align:center;"><img src="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small" alt="logo" style="width: 50px; height=50px;"></a>
 <form action="/shop/product/serch" method="get">
 	<select name="serchType">
-		<option value="proName">상품명</option>
+		<option value="proName" name="proName">상품명</option>
 	</select>
 <input type="text" name="serch"><input type="submit" value="검색">
 </form>

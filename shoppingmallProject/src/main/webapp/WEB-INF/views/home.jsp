@@ -3,153 +3,167 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-  request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 %>
+
 <html>
+<head>
 <title>Home</title>
 <!-- favicon -->
-<%@include file ="headerfooter/favicon.jsp" %>
+<%@include file="headerfooter/favicon.jsp"%>
+</head>
 <body>
-<!-- header -->
-<%@include file ="headerfooter/header.jsp" %>
-<!-- 이벤트 배너 -->
-<c:choose>
-	<c:when test="${!empty eventList}">
-		<div class="w3-content w3-display-container" style="max-width: 400px">
-			<!-- 슬라이드 이미지 -->
-			<c:forEach var="eventList" items="${eventList }" varStatus="eventNum">
-					<a href="http://localhost:8888/shop/event/eventList?eventNum=${eventList.eventNum }">
-						<img class="mySlides" src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg" 
-							alt="${eventList.eventTitle }" style="width: 100%; height:180px;">
-					</a>
-			</c:forEach>
-			<!-- 버튼 위치 -->
-			<div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width: 50%">
-				<!-- 슬라이드 좌우 버튼 -->
-				<div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-				<div class="w3-right w3-hover-text-khaki" onclick="plusDivs(+1)">&#10095;</div>
-				<!-- 슬라이드 가운데 버튼 -->
-				<c:forEach var="eventList" items="${eventList}" varStatus="eventNum">
-					<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(${eventNum.count})"></span>
-				</c:forEach>
-			</div>
-		</div>
-	</c:when>
-</c:choose>
-	<!-- 베스트 -->
-	<hr>
-	<div class="album py-3 bg-light">
-	<h3>베스트 상품</h3>
+	<!-- header -->
+	<%@include file="headerfooter/header.jsp"%>
+	<!-- 이벤트 배너 -->
 	<c:choose>
-		<c:when test="${!empty bestList}">
-			<div >
-				<div class="container">
-					<div class="row">
-						<c:forEach var="bestList" items="${bestList }" varStatus="status ">
-							<div class="col-md-4">
-								<div class="card mb-4 shadow-sm">
-									<a href="product/detail?proNum=${bestList.proNum }"> <img
-										src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-										alt=" ${bestList.proName }" width="100%" height="240px"></a>
-									<div class="card-body">
-										<p class="card-text">${bestList.proName }</p>
-										<hr>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</div>
+		<c:when test="${!empty eventList}">
+			<div class="w3-content w3-display-container" style="max-width: 400px">
+				<!-- 슬라이드 이미지 -->
+				<c:forEach var="eventList" items="${eventList }"
+					varStatus="eventNum">
+					<a
+						href="http://localhost:8888/shop/event/eventList?eventNum=${eventList.eventNum }">
+						<img class="mySlides"
+						src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+						alt="${eventList.eventTitle }" style="width: 100%; height: 180px;">
+					</a>
+				</c:forEach>
+				<!-- 버튼 위치 -->
+				<div
+					class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle"
+					style="width: 50%">
+					<!-- 슬라이드 좌우 버튼 -->
+					<div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+					<div class="w3-right w3-hover-text-khaki" onclick="plusDivs(+1)">&#10095;</div>
+					<!-- 슬라이드 가운데 버튼 -->
+					<c:forEach var="eventList" items="${eventList}"
+						varStatus="eventNum">
+						<span
+							class="w3-badge demo w3-border w3-transparent w3-hover-white"
+							onclick="currentDiv(${eventNum.count})"></span>
+					</c:forEach>
 				</div>
 			</div>
 		</c:when>
 	</c:choose>
+	<!-- 베스트 -->
+	<hr>
+	<div class="album py-3 bg-light">
+		<h3>베스트 상품</h3>
+		<c:choose>
+			<c:when test="${!empty bestList}">
+				<div>
+					<div class="container">
+						<div class="row">
+							<c:forEach var="bestList" items="${bestList }"
+								varStatus="status ">
+								<div class="col-md-4">
+									<div class="card mb-4 shadow-sm">
+										<a href="product/detail?proNum=${bestList.proNum }"> <img
+											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+											alt=" ${bestList.proName }" width="100%" height="240px"></a>
+										<div class="card-body">
+											<p class="card-text">${bestList.proName }</p>
+											<hr>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+			</c:when>
+		</c:choose>
 	</div>
 	<!-- 신상품 -->
 	<hr>
 	<div class="album py-3 bg-light">
-	<h3>신상품</h3>
-	<c:choose>
-		<c:when test="${!empty newList}">
-			<div class="album py-3 bg-light">
-				<div class="container">
-					<div class="row">
-						<c:forEach var="newList" items="${newList }" varStatus="status ">
-							<div class="col-md-4">
-								<div class="card mb-4 shadow-sm">
-									<a href="product/detail?proNum=${newList.proNum }"> <img
-										src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-										alt=" ${newList.proName }" width="100%" height="240px"></a>
-									<div class="card-body">
-										<p class="card-text">${newList.proName }</p>
-										<hr>
+		<h3>신상품</h3>
+		<c:choose>
+			<c:when test="${!empty newList}">
+				<div class="album py-3 bg-light">
+					<div class="container">
+						<div class="row">
+							<c:forEach var="newList" items="${newList }" varStatus="status ">
+								<div class="col-md-4">
+									<div class="card mb-4 shadow-sm">
+										<a href="product/detail?proNum=${newList.proNum }"> <img
+											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+											alt=" ${newList.proName }" width="100%" height="240px"></a>
+										<div class="card-body">
+											<p class="card-text">${newList.proName }</p>
+											<hr>
+										</div>
 									</div>
 								</div>
-							</div>
-						</c:forEach>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:when>
-	</c:choose>
+			</c:when>
+		</c:choose>
 	</div>
 	<!-- 오늘배송 -->
 	<hr>
 	<div class="album py-3 bg-light">
-	<h3>오늘배송</h3>
-	<c:choose>
-		<c:when test="${!empty dailyList}">
-			<div class="album py-3 bg-light">
-				<div class="container">
-					<div class="row">
-						<c:forEach var="dailyList" items="${dailyList}" varStatus="status ">
-							<div class="col-md-4">
-								<div class="card mb-4 shadow-sm">
-									<a href="product/detail?proNum=${dailyList.proNum }"> <img
-										src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-										alt=" ${dailyList.proName }" width="100%" height="240px"></a>
-									<div class="card-body">
-										<p class="card-text">${dailyList.proName }</p>
-										<hr>
+		<h3>오늘배송</h3>
+		<c:choose>
+			<c:when test="${!empty dailyList}">
+				<div class="album py-3 bg-light">
+					<div class="container">
+						<div class="row">
+							<c:forEach var="dailyList" items="${dailyList}"
+								varStatus="status ">
+								<div class="col-md-4">
+									<div class="card mb-4 shadow-sm">
+										<a href="product/detail?proNum=${dailyList.proNum }"> <img
+											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+											alt=" ${dailyList.proName }" width="100%" height="240px"></a>
+										<div class="card-body">
+											<p class="card-text">${dailyList.proName }</p>
+											<hr>
+										</div>
 									</div>
 								</div>
-							</div>
-						</c:forEach>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:when>
-	</c:choose>
+			</c:when>
+		</c:choose>
 	</div>
 	<!-- 랜덤상품 -->
-		<hr>
+	<hr>
 	<div class="album py-3 bg-light">
-	<h3>상품 리스트</h3>
-	<c:choose>
-		<c:when test="${!empty randomList}">
-			<div class="album py-3 bg-light">
-				<div class="container">
-					<div class="row">
-						<c:forEach var="randomList" items="${randomList}" varStatus="status ">
-							<div class="col-md-4">
-								<div class="card mb-4 shadow-sm">
-									<a href="product/detail?proNum=${randomList.proNum }"> <img
-										src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-										alt=" ${randomList.proName }" width="100%" height="240px"></a>
-									<div class="card-body">
-										<p class="card-text">${randomList.proName }</p>
-										<hr>
+		<h3>상품 리스트</h3>
+		<c:choose>
+			<c:when test="${!empty randomList}">
+				<div class="album py-3 bg-light">
+					<div class="container">
+						<div class="row">
+							<c:forEach var="randomList" items="${randomList}"
+								varStatus="status ">
+								<div class="col-md-4">
+									<div class="card mb-4 shadow-sm">
+										<a href="product/detail?proNum=${randomList.proNum }"> <img
+											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+											alt=" ${randomList.proName }" width="100%" height="240px"></a>
+										<div class="card-body">
+											<p class="card-text">${randomList.proName }</p>
+											<hr>
+										</div>
 									</div>
 								</div>
-							</div>
-						</c:forEach>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:when>
-	</c:choose>
+			</c:when>
+		</c:choose>
 	</div>
 	<!-- footer -->
-	<%@include file ="headerfooter/footer.jsp" %>
+	<%@include file="headerfooter/footer.jsp"%>
 </body>
 <script>
 //slide 관련 script//

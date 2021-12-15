@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.shop.service.ProductService;
+import com.hk.shop.vo.CartVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
+import com.hk.shop.vo.ReviewVO;
 
 @Controller
 public class ProductController {
@@ -103,8 +105,18 @@ public class ProductController {
 	@RequestMapping(value = "/product/detail", method = { RequestMethod.GET, RequestMethod.POST })
 	String detailView(Model model, @RequestParam("proNum") int proNum) {
 		List<ProductVO> Product = productService.selectOne(proNum);
+		List<ReviewVO> review = productService.selectReview(proNum);
 		model.addAttribute("Product", Product);
+		model.addAttribute("review", review);
 		System.out.println("상품상세보기" + Product.toString());
+		System.out.println("review" + review.toString());
+		
+		String link;
+		if(Product.toString()!="[]") {
+			link="ProductView";
+		} else {
+			//요청하신 상품을 찾을 수 없습니다 로 보냄.
+		}
 		return "ProductView";
 	}
 
@@ -121,6 +133,8 @@ public class ProductController {
 	// colorOption
 	@RequestMapping(value = "/s/product/orderList", method = { RequestMethod.GET, RequestMethod.POST })
 	// test를 위해 일단 get도 열어둠/ test이후 post만 남길것.
+	
+	
 	String orderProduct(Model model, @ModelAttribute ProductVO productOption) {
 		System.out.println(productOption.toString());
 		List<ProductVO> Product = productService.selectProd(productOption);
@@ -131,6 +145,21 @@ public class ProductController {
 		model.addAttribute("productOption", productOption);
 		return "ProductOrder";
 	}
+	
+	//찜목록에 추가하기
+	@RequestMapping(value = "/s/mypage/addCartList", method = { RequestMethod.GET, RequestMethod.POST })
+	// test를 위해 일단 get도 열어둠/ test이후 post만 남길것.
+	String orderCartProduct(Model model, @ModelAttribute CartVO cartVO) {
+		System.out.println("cartVO: "+cartVO);
+		cartVO.setPrice(cartVO.getPrice()*cartVO.getCountProNum());
+		System.out.println("cartVO: "+cartVO);
+		int ret = productService.addCart(cartVO);
+		System.out.println("ret: "+ret);
+		model.addAttribute("ret",ret);
+		return "cartAddDone";
+	}
+	
+	
 
 	// 찜목록에서 주문하기!
 	@RequestMapping(value = "/s/mypage/orderList", method = { RequestMethod.GET, RequestMethod.POST })

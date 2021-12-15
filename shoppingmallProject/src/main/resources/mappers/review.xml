@@ -38,12 +38,17 @@
    ]]>
 	</select>
 	
+   <select id="selectReviewForPro"  resultType="ReviewVO">
+   <![CDATA[
+    SELECT * from REVIEW where "proNum"=#{proNum}
+   ]]>
+	</select>
+	
 	<select id="updateReview" parameterType="ReviewVO">
 	 <![CDATA[ 
       UPDATE REVIEW SET "rereviewCont"=#{rereviewCont} WHERE "reviewNum"=#{reviewNum}
 
    ]]>
-	
 	</select>
 </mapper>
 

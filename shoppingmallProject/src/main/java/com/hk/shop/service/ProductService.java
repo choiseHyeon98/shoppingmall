@@ -6,18 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hk.shop.dao.ProductDAO;
+import com.hk.shop.dao.ReviewDAO;
+import com.hk.shop.vo.CartVO;
 import com.hk.shop.vo.OptionVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
+import com.hk.shop.vo.ReviewVO;
 import com.hk.shop.vo.SerchVO;
 
 @Service
 public class ProductService {
 
 	@Autowired
-	
-	//홈페이지 상품구성
 	ProductDAO productDAO;
+	
+	@Autowired
+	ReviewDAO reviewDAO;
+	//홈페이지 상품구성
 	public List<ProductVO> selectBest() {
 		// TODO Auto-generated method stub
 		return productDAO.selectBest();
@@ -83,6 +88,14 @@ public class ProductService {
 	public List<ProductVO> serchPro(SerchVO serchVO) {
 		// TODO Auto-generated method stub
 		return productDAO.serchPro(serchVO);
+	}
+	public List<ReviewVO> selectReview(int proNum) {
+		// TODO Auto-generated method stub
+		return reviewDAO.selectReviewForPro(proNum);
+	}
+	public int addCart(CartVO cartVO) {
+		// TODO Auto-generated method stub
+		return productDAO.addCart(cartVO);
 	}
 
 	
