@@ -441,6 +441,9 @@ public class ManagerController {
 
 		int ret = managerService.companyInfoUpdateSerivce(footerVO);
 		model.addAttribute("ret", ret);
+		
+		System.out.println("companyInfo="+footerVO.getCompInfo());
+		
 		// update 후 결과받기
 
 		return "companyInfoUpdate";
@@ -448,14 +451,14 @@ public class ManagerController {
 	}
 	
 	//관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms 
-	@RequestMapping(value = "/manager/footer/terms", method = {RequestMethod.GET,RequestMethod.POST})
-	public String termsUpdate(Model model, @ModelAttribute FooterVO footerVO) {
+	@RequestMapping(value = "/manager/footer/tems", method = {RequestMethod.GET,RequestMethod.POST})
+	public String temsUpdate(Model model, @ModelAttribute FooterVO footerVO) {
 
-		int ret = managerService.termsUpdateSerivce(footerVO);
+		int ret = managerService.temsUpdateSerivce(footerVO);
 		model.addAttribute("ret", ret);
 		// update 후 결과받기
 
-		return "termsUpdate";
+		return "temsUpdate";
 		
 
 	}

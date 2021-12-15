@@ -130,6 +130,33 @@ public class ManagerDAO {
 	}
 
 
+	public int footerInfoDAO(FooterVO footerVO) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.update("mapper.footer.updateInfo",footerVO);
+		System.out.println("ret");
+		return ret;
+	}
+
+
+	public int footerTemsDAO(FooterVO footerVO) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.update("mapper.footer.updateTems",footerVO);
+		
+		return ret;
+	}
+
+
+	public int footerprivacyDAO(FooterVO footerVO) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.update("mapper.footer.updatePrivacy",footerVO);
+		
+		return ret;
+	}
+
+
 	
 
 }

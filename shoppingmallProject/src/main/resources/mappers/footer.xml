@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.footer">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="footerResult" type="FooterVO">
+		<result property="compInfo" column="compInfo" />
+		<result property="tems" column="tems" />
+		<result property="privacy" column="privacy" />
+	</resultMap>
+	
+	<!-- 쿼리집어넣는 장소! -->
+	
+
+	<select id="selectCompInfo"  resultType="FooterVO">
+   <![CDATA[
+    SELECT "compInfo" from FOOTER
+   ]]>
+	</select>
+	
+
+	<select id="updateInfo" parameterType="FooterVO">
+	 <![CDATA[ 
+      UPDATE FOOTER SET "compInfo"=#{compInfo}
+
+   ]]>
+	
+	</select>
+	
+	<select id="updateTems" parameterType="FooterVO">
+	 <![CDATA[ 
+      UPDATE FOOTER SET "tems"=#{tems}
+
+   ]]>
+	
+	</select>
+	
+	<select id="updatePrivacy" parameterType="FooterVO">
+	 <![CDATA[ 
+      UPDATE FOOTER SET "privacy"=#{privacy}
+
+   ]]>
+	
+	</select>
+	
+
+	
+</mapper>

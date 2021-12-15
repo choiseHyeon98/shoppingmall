@@ -177,17 +177,17 @@ public class ManagerService {
 
 	public int companyInfoUpdateSerivce(FooterVO footerVO) {
 		// TODO Auto-generated method stub
-		return 0;
+		return managerDAO.footerInfoDAO(footerVO);
 	}
 
-	public int termsUpdateSerivce(FooterVO footerVO) {
+	public int temsUpdateSerivce(FooterVO footerVO) {
 		// TODO Auto-generated method stub
-		return 0;
+		return managerDAO.footerTemsDAO(footerVO);
 	}
 
 	public int privacyUpdateSerivce(FooterVO footerVO) {
 		// TODO Auto-generated method stub
-		return 0;
+		return managerDAO.footerprivacyDAO(footerVO);
 	}
 
 	public Map<String, Integer> mulSerivcle(List<Integer> productNums) {
