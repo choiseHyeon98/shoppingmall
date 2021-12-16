@@ -223,6 +223,33 @@ public class ManagerService {
 		
 	}
 
+	public Map<String, Integer> soldoutSerivcle(List<Integer> productNums) {
+		// TODO Auto-generated method stub
+		
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		int succ=0, fail=0;
+		
+		for(int i=0; i<productNums.size(); i++) {
+			//지울번호 한개 꺼내서
+			int proNum = productNums.get(i);
+			int ret = managerDAO.soldoutPro(proNum);
+			//ret=0이면 실패,ret !=0이면 성공
+			
+			if(ret!=0) {
+				//성공이면
+				++succ;
+			} else {
+				//실패이면
+				++fail;
+			}
+		}
+		//성공갯수,실패갯수
+		map.put("succ", succ);
+		map.put("fail", fail);
+		
+		return map;
+	}
+
 	
 
 	

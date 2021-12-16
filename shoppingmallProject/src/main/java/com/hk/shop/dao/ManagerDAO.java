@@ -64,7 +64,10 @@ public class ManagerDAO {
 
 	public int deleteProduct(int proNum) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		int ret = session.delete("mapper.product.deletePro",proNum);
+		
+		return ret;
 		//int ret = session.delete("mapper.product.delProduct",proNum)
 	}
 
@@ -184,6 +187,15 @@ public class ManagerDAO {
 		
 		int ret = session.update("mapper.board.updateComment",askVO);
 		System.out.println("ask");
+		
+		return ret;
+	}
+
+
+	public int soldoutPro(int proNum) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.update("mapper.product.soldout",proNum);
 		
 		return ret;
 	}

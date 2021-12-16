@@ -21,6 +21,7 @@
 		<result property="proCate" column="proCate" />
 		<result property="sizeOption" column="sizeOption" />
 		<result property="colorOption" column="colorOption" />
+		<result property="soldOut" column="soldOut" />
 	</resultMap>
 	<!-- 쿼리집어넣는 장소! -->
 	
@@ -154,11 +155,28 @@
    ]]>
 	</select>
 	
+	<!-- 상품등록 -->
 	<select id="insertPro">
 		<![CDATA[
 		INSERT INTO PRODUCT ("proNum","proName","proContent","proDetails","topImage","price","delprice","proCon","proCate","proSpecification")
 		VALUES(#{proNum},#{proName}, #{proContent}, #{proDetails},#{topImage},#{price},#{delprice},#{proCon},#{proCate},#{proSpecification})
 		]]>
 	</select>
+	
+	<!-- 등록 삭제 -->
 
+	<select id="deleteArticles" parameterType="int" resultMap="boardResult">
+	   <![CDATA[ 
+      DELETE FROM PRODUCT WHERE "proNum"=#{proNum}
+
+     ]]>
+   </select>
+   
+   <select id="soldout" >
+	 <![CDATA[ 
+      UPDATE PRODUCT SET "soldOut"='so' WHERE "proNum"=#{proNum}
+   ]]>
+   </select>
+   
+   
 </mapper>
