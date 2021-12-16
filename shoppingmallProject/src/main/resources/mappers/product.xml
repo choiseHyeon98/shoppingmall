@@ -165,7 +165,7 @@
 	
 	<!-- 등록 삭제 -->
 
-	<select id="deleteArticles" parameterType="int" resultMap="boardResult">
+	<select id="deletePro" parameterType="int" resultMap="productResult">
 	   <![CDATA[ 
       DELETE FROM PRODUCT WHERE "proNum"=#{proNum}
 
