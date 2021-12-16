@@ -84,8 +84,10 @@ public class MypageController {
 	
 	@RequestMapping (value="/s/mypage/cart", method=RequestMethod.GET)
 	// 로그인 하고 POST로 바꿀 예정
-	public String Cart (Model model) {
-		
+	public String Cart (Model model, HttpSession session) {
+		String id = "";
+		CartVO cartVO = (CartVO) session.getAttribute("cart");
+		id = cartVO.getId();
 		List<CartVO> cartList = mypageService.myCartList();
 		model.addAttribute("cartList", cartList);
 		
@@ -95,20 +97,22 @@ public class MypageController {
 	
 	@RequestMapping (value="/s/mypage/myorders", method=RequestMethod.GET)
 	// 로그인 하고 POST로 바꿀 예정
-	public String MyOrders (Model model) {
-		
+	public String MyOrders (Model model, HttpSession session) {
+		String id = "";
+		OrderListVO orderListVO = (OrderListVO) session.getAttribute("orderList");
+		id = orderListVO.getId();
 		List<OrderListVO> myOrders = mypageService.myOrderList();
 		model.addAttribute("myOrders", myOrders);
 		
 		return "myorders"; // 내 주문기록창
 	}
 	
-	/*
+	
 	@RequestMapping (value="/mypage/addReview", method=RequestMethod.GET)
 	public String addReview () {
 		return "addReview"; // 리뷰 작성창 + 주문기록에서만 들어간다
 	}
-	*/
+	
 	
 	
 	@RequestMapping (value="/s/mypage/addReview", method= RequestMethod.GET)

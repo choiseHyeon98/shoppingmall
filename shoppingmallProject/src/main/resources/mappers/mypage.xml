@@ -40,15 +40,13 @@
  -->		
 	<select id ="showMyCart" resultMap="mypageResult" >
 	<![CDATA[
-		SELECT "cartNum", "id", "proNum", "sizeOption", "colorOption", "price", "countProNum"
-		FROM CART
+		SELECT * FROM CART
 	]]>
 	</select>
 	
 	<select id ="showMyOrderList" resultMap="mypageResult" >
 	<![CDATA[
-		SELECT "orderNum", "proNum", "id", "sizeOption", "colorOption", "tprice", "delNum", "payment", "cancleOrder", "delStatus", "orderDate"
-		FROM ORDERLIST
+		SELECT * FROM ORDERLIST
 	]]>
 	</select>
 	

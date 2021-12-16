@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.shop.service.MemberService;
+import com.hk.shop.vo.CartVO;
 import com.hk.shop.vo.MemberVO;
+import com.hk.shop.vo.OrderListVO;
 
 @Controller
 public class MemberController {
@@ -38,7 +40,7 @@ public class MemberController {
 	
 	// 로그인
 	@RequestMapping (value="/login", method=RequestMethod.POST)
-	public String LoginDone (@ModelAttribute MemberVO memberVO, HttpSession session) {
+	public String LoginDone (@ModelAttribute MemberVO memberVO, @ModelAttribute CartVO cartVO, @ModelAttribute OrderListVO orderListVO, HttpSession session) {
 		// 사용자가 입력한 값을 불러와서
 		// 실패했을때는 실패했다고 알려주고 다시 로그인창
 		System.out.println("memberVO1="+memberVO.toString());
@@ -55,6 +57,8 @@ public class MemberController {
 			// id/pw가 맞음
 			// Session 설정
 			session.setAttribute("login", memberVO);
+			session.setAttribute("cart", cartVO);
+			session.setAttribute("OrderList", orderListVO);
 			
 			return "loginDone";
 		}
