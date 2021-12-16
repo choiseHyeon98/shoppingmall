@@ -97,7 +97,7 @@ public class ManagerController {
 
 	}
 	//게시글 삭제 체크박스, 
-	@RequestMapping(value="/muldelete",method=RequestMethod.GET)
+	@RequestMapping(value="/manager/muldelete",method=RequestMethod.GET)
 	  public String proMuldelete(Model model,@RequestParam("chkbox")List<Integer> productNums) {
 		  System.out.println("productNums="+productNums.toString());
 		//articleNOs를 Service에 전달해서 service에서 for문을 통해 삭제 
@@ -112,13 +112,13 @@ public class ManagerController {
 	  }
 	
 	//품절처리 체크박스
-	@RequestMapping(value="/mulSoldout",method=RequestMethod.GET)
+	@RequestMapping(value="/manager/mulSoldout",method=RequestMethod.GET)
 	  public String proSoldout(Model model,@RequestParam("chkbox")List<Integer> productNums) {
 		  System.out.println("productNums="+productNums.toString());
 		//articleNOs를 Service에 전달해서 service에서 for문을 통해 삭제 
 		  //그 결과를 model에 넣고 전달
 		  //articleNOs=[15,14,13,12,11,10,9]
-		   Map<String,Integer> map = managerService.soldoutSerivcle(productNums);
+		   Map<String,Integer> map = managerService.soldoutService(productNums);
 		 System.out.println("성공한갯수="+map.get("succ"));
 		 System.out.println("실패한갯수="+map.get("fail"));
 		 model.addAttribute("map", map);

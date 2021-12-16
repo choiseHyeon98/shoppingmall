@@ -223,7 +223,7 @@ public class ManagerService {
 		
 	}
 
-	public Map<String, Integer> soldoutSerivcle(List<Integer> productNums) {
+	public Map<String, Integer> soldoutService(List<Integer> productNums) {
 		// TODO Auto-generated method stub
 		
 		Map<String,Integer> map = new HashMap<String,Integer>();
