@@ -133,14 +133,14 @@ public class ProductController {
 	// colorOption
 	@RequestMapping(value = "/s/product/orderList", method = { RequestMethod.GET, RequestMethod.POST })
 	// test를 위해 일단 get도 열어둠/ test이후 post만 남길것.
-	
-	
 	String orderProduct(Model model, @ModelAttribute ProductVO productOption) {
 		System.out.println(productOption.toString());
-		List<ProductVO> Product = productService.selectProd(productOption);
+		ProductVO Product = productService.selectProd(productOption);
+		productOption.setPrice(productOption.getPrice()*productOption.getCountProNum());
 		// 상품 정보 담아오기...
-		System.out.println("상품Product 상세보기" + Product.toString());
-		System.out.println("상품Option 상세보기" + productOption.toString());
+		System.out.println("상품Product" + Product.toString());
+		System.out.println("상품Option" + productOption.toString());
+		
 		model.addAttribute("Product", Product);
 		model.addAttribute("productOption", productOption);
 		return "ProductOrder";
