@@ -40,7 +40,7 @@
 </head>
 <body>
 내 정보임
-<form name="frmArticle" method="post"  action="update"  >
+<form name="frmArticle" method="post">
 <table style="width:100%">
   <tr>
     <th>id</th>

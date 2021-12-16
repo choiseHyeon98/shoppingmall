@@ -53,7 +53,7 @@
 	<![CDATA[
 		INSERT INTO ASK
 		("id", "askPhoto", "askTitle", "askContent", "askNum")	
-		VALUES(#{id}, #{askPhoto}, #{askTitle}, #{askContent}, (SELECT max(askNum)+1)
+		 VALUES(#{id}, #{askPhoto}, #{askTitle}, #{askContent}, (SELECT max("askNum")+1 FROM ASK)) 
 	]]>
 	</insert>
 	

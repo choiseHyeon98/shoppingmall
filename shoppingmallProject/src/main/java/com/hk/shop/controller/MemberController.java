@@ -30,14 +30,14 @@ public class MemberController {
 	*/
 	
 	
-	@RequestMapping (value="/shop/login", method=RequestMethod.GET)
+	@RequestMapping (value="/login", method=RequestMethod.GET)
 	public String Login () {
 		// Session 설정
 		return "login"; // 로그인하는 창
 	}
 	
 	// 로그인
-	@RequestMapping (value="/shop/login", method=RequestMethod.POST)
+	@RequestMapping (value="/login", method=RequestMethod.POST)
 	public String LoginDone (@ModelAttribute MemberVO memberVO, HttpSession session) {
 		// 사용자가 입력한 값을 불러와서
 		// 실패했을때는 실패했다고 알려주고 다시 로그인창
@@ -55,6 +55,7 @@ public class MemberController {
 			// id/pw가 맞음
 			// Session 설정
 			session.setAttribute("login", memberVO);
+			
 			return "loginDone";
 		}
 		return retUrl;
@@ -62,7 +63,7 @@ public class MemberController {
 	
 	
 	// 로그아웃
-	@RequestMapping (value="/shop/logout", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping (value="/logout", method= {RequestMethod.GET, RequestMethod.POST})
 	public String logout (HttpSession session, Model model) {
 		// 기존의 세션이 있으면 로그아웃
 		String name=""; // jsp에서 불러야하니까 model
@@ -92,20 +93,6 @@ public class MemberController {
 		
 		return "registerDone"; // 가입 완료 된 창
 	}
-	
-/*	
-	// 내 정보 수정 GET 조회먼저
-	// 나중에 세션도 넣어야함
-	@RequestMapping (value="/mypage/myinfoUpdate", method=RequestMethod.GET)
-	public String MyinfoView (Model model, @RequestParam("id") String id) {
-		Map<String, Object> map = memberService.viewMyinfo(id);
-		model.addAttribute("member", map.get("memberVO"));
-		
-		return "mypageInfo";
-	}
-*/	
-	// 내 정보 수정 완 POST
-	
 	
 	
 	

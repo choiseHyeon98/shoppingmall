@@ -3,6 +3,8 @@ package com.hk.shop.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,13 +46,21 @@ public class MypageController {
 	// 세션 넣기
 	@RequestMapping (value="/s/myinfo", method=RequestMethod.GET)
 	// 로그인 하고 POST로 바꿀 예정
-	public String Mypageinfo (Model model) {
+	public String Mypageinfo ( Model model, HttpSession session) {
+		String id = "";
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		id = memberVO.getId();
+	//	Map<String, Object> map = mypageService.viewMyInfo(id);
+	//	model.addAttribute("member", map.get("memberVO"));
 		
-		List<MemberVO> mypageInfo = mypageService.myInfoPage();
+		return "mypageInfo"; //--> 이게 잘 나오는지
 		
-		model.addAttribute("mypageInfo", mypageInfo);
-		return "mypageInfo";
+	}
+	// GET 수정폼
+	@RequestMapping (value="s/myinfo/update", method=RequestMethod.GET)
+	public String UpdateMyinfo (Model model, HttpSession session) {
 		
+		return "";
 	}
 
 /*

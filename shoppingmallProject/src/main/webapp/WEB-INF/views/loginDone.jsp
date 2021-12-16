@@ -11,7 +11,9 @@
 	
 	<!-- 메인 홈페이지로 가는 URL 버튼 -->
 	<input type="button" value="상품 보러가기" onClick="location.href='/shop/'">
-	<input type="button" value="내 정보 페이지" onClick="location.href='/shop/myinfo'">
+	<input type="button" value="내 정보 페이지" onClick="location.href='/shop/s/myinfo'">
+	<br>
+	<input type="button" value="로그아웃" onClick="location.href='/shop/logout'">
 	
 </body>
 </html>

@@ -24,26 +24,22 @@ public class MypageService {
 	@Autowired
 	MemberDAO memberDAO;
 
-	public List<MemberVO> myInfoPage() {
-		// TODO Auto-generated method stub
-		return mypageDAO.showMyInfo();
-	}
 
-/*	
-	public Map<String, Object> selectMyinfo(String id) {
+	public Map<String, Object> viewMyInfo(String id) {
 		// TODO Auto-generated method stub
-		MemberVO memberVO = memberDAO.selectMyinfo(id);
-		Map<String, Object> map = new HashMap<String, Object>();
 		
+		MemberVO memberVO = mypageDAO.selectMyinfo(id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberVO", memberVO);
 		return map;
 	}
-*/
-/*	
+
+
 	public int updateMypage(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		return mypageDAO.updateMyInfo(memberVO);
 	}
-*/
+
 
 	public List<CartVO> myCartList() {
 		// TODO Auto-generated method stub
@@ -59,6 +55,8 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		return mypageDAO.insertMyReview(reviewVO);
 	}
+
+
 
 	
 

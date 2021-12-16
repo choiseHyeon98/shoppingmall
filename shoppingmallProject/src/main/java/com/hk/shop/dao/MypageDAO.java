@@ -18,19 +18,27 @@ public class MypageDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
+
+	public MemberVO selectMyinfo(String id) {
+		// TODO Auto-generated method stub
+		MemberVO memberVO = sqlSession.selectOne("mapper.mypage.selectMyInfo", id);
+		return memberVO;
+	}
+
+	
 	public List<MemberVO> showMyInfo() {
 		// TODO Auto-generated method stub
 		List <MemberVO> mypageinfo = sqlSession.selectList("mapper.mypage.showMyInfo");
 		return mypageinfo;
 	}
 	
-/*
+
 	public int updateMyInfo(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		int ret = sqlSession.update("mapper.mypage.updateMyInfo", memberVO);
 		return ret;
 	}
-*/
+
 
 	public List<CartVO> showMyCart() {
 		// TODO Auto-generated method stub
@@ -49,5 +57,6 @@ public class MypageDAO {
 		int ret = sqlSession.insert("mapper.mypage.insertMyReview");
 		return ret;
 	}
+
 
 }

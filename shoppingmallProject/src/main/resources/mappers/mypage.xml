@@ -25,10 +25,9 @@
 		<result property = "reviewDate" column="email" />
 	</resultMap>
 	
-	<select id ="showMyInfo" resultMap="mypageResult" >
+	<select id ="selectMyInfo" resultType="MemberVO" >
 	<![CDATA[
-		SELECT "id", "pw", "name", "phone", "address", "email", "rank", "joinDate"
-		FROM MEMBER
+		 SELECT * FROM MEMBER
 	]]>
 	</select>
 <!-- 

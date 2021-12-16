@@ -10,7 +10,7 @@
 <h1> 문의가 완료되었습니다! </h1>
 	
 	<!-- URL 버튼 -->
-	<input type="button" value="내 문의 내역으로" onClick="location.href='/board/askList'">
+	<input type="button" value="내 문의 내역으로" onClick="location.href='/shop/board/askList'">
 	
 </body>
 </html>

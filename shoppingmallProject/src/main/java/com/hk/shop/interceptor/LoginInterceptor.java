@@ -16,6 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			throws Exception {
 		// 세션 확인
 		HttpSession session = request.getSession(false);
+		System.out.println("----------------aaa");
 		
 		if(session == null) {
 			response.sendRedirect("/shop/login");
@@ -30,7 +31,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		}
 		// 둘 중에 하나라도 정상이면 로그인 된 상태
 		// 아니면 ...redirect("login");
-		return false;
+		return true;
 		
 	}
 	@Override

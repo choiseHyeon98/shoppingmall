@@ -49,16 +49,17 @@ public class BoardController {
 		return "myAskList";
 	}
 	
+	
 	// 새로 문의하기
 	@RequestMapping (value="/board/askAdd", method=RequestMethod.GET)
-	public String MyAskAddDone (Model model, @ModelAttribute AskVO askVO) {
-		int ret = boardService. insertMyAsk(askVO);
-		model.addAttribute("ret", ret);
+	public String MyAskAdd () {
 		return "myAskAdd";
 	}
 	
 	@RequestMapping (value="/board/askAdd", method=RequestMethod.POST)
-	public String MyAskAdd () {
+	public String MyAskAddDone (Model model, @ModelAttribute AskVO askVO) {
+		int ret = boardService. insertMyAsk(askVO);
+		model.addAttribute("ret", ret);
 		return "myAskAddDone";
 	}
 	

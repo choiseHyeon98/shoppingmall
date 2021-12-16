@@ -35,6 +35,7 @@ public class MemberDAO {
 		return memberVO;
 	}
 */
+	
 	public MemberVO viewId(String name) {
 		// TODO Auto-generated method stub
 		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewId", name);
