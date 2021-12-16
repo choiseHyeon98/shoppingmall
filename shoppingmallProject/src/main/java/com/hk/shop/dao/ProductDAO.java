@@ -116,13 +116,13 @@ public class ProductDAO {
 
 
 	//주문상세
-	public List<ProductVO> selectProd(ProductVO optionVO) {
+	public ProductVO selectProd(ProductVO optionVO) {
 		// TODO Auto-generated method stub
 		//상품상세에서 주문상세
 		//옵션에서 proNum만 받아서 상품 선택...
-		List<ProductVO> productVO;
+		ProductVO productVO;
 		int proNum = optionVO.getProNum();
-		productVO = session.selectList("mapper.product.selectProductViewOption",proNum);
+		productVO = session.selectOne("mapper.product.selectProductViewOption",proNum);
 		//SELECT * FROM PRODUCT WHERE "proNum" = #{proNum}
 		return productVO;
 	}

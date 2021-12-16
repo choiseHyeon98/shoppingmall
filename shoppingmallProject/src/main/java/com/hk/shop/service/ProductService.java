@@ -71,7 +71,7 @@ public class ProductService {
 		return productDAO.selectOne(proNum);
 	}
 
-	public List<ProductVO> selectProd(ProductVO optionVO) {
+	public ProductVO selectProd(ProductVO optionVO) {
 		// TODO Auto-generated method stub
 		//상품 주문정보 가져와야함!
 		//상세에서 가져오기.
