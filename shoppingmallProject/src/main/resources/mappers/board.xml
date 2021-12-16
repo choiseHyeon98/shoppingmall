@@ -86,7 +86,36 @@
 	]]>
 	</update>
 	
-	
+	<select id="FAQOrder" resultMap="FAQResult">
+   <![CDATA[
+  		SELECT * FROM FAQ  WHERE "FAQType" ='주문결제'
+   ]]>
+	</select>
+	<select id="FAQDel" resultMap="FAQResult">
+   <![CDATA[
+  		SELECT * FROM FAQ  WHERE "FAQType" ='배송안내'
+   ]]>
+	</select>
+	<select id="FAQCenOrd" resultMap="FAQResult">
+   <![CDATA[
+  		SELECT * FROM FAQ  WHERE "FAQType" ='주문취소'
+   ]]>
+	</select>
+	<select id="FAQRe" resultMap="FAQResult">
+   <![CDATA[
+  		SELECT * FROM FAQ  WHERE "FAQType" ='교환환불
+   ]]>
+	</select>
+	<select id="FAQPro" resultMap="FAQResult">
+   <![CDATA[
+  		SELECT * FROM FAQ  WHERE "FAQType" ='상품관련'
+   ]]>
+	</select>
+	<select id="FAQMem" resultMap="FAQResult">
+   <![CDATA[
+		SELECT * FROM FAQ  WHERE "FAQType" ='회원관련'
+   ]]>
+	</select>
 	
 	
 

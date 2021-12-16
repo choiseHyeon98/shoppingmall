@@ -16,14 +16,17 @@
 <title>상품상세</title>
 
 <script>
+
 	function info_chk() {
 		return true;
 	}
 
 	function info_chk2(frm) {
-		frm.action = '/shop/s/mypage/addCartList';
-		frm.submit();
-		return true;
+		if (confirm("찜하시겠습니까?")) {
+			frm.action = '/shop/s/mypage/addCartList';
+			frm.submit();s
+			return true;
+		}
 	}
 </script>
 
@@ -71,7 +74,7 @@
 				</div>
 				<div class="col-lg-5">
 					<form action="/shop/s/product/orderList"
-						onsubmit='return info_chk()' method="get">
+						onsubmit='return info_chk()' method="post">
 						<h1>${Product[0].proName }</h1>
 						<p>${Product[0].proContent }</p>
 						<p>색상: ${Product[0].colorOption }</p>
@@ -90,14 +93,14 @@
 						</select> <br> 색상: <select name="colorOption" class="widforsc">
 							<option value="${Product[0].colorOption }">${Product[0].colorOption }</option>
 						</select> <br> 수량 : <input type="number" name="countProNum"
-							style="width: 50%" class="widforn"> <br>
+							style="width: 50%" class="widforn" min="0" max="99" required> <br>
 						<!-- hidden -->
 						<input type="text" value="${Product[0].proNum }" name="proNum"
 							class="anone"><br> <input type="text"
 							value="${Product[0].price }" name="price" class="anone"><br>
 						<!-- submit -->
-						<input type="submit" value="구매하기"> <input type="button"
-							value='찜하기' onclick='return info_chk2(this.form);' value="찜하기">
+						<input type="submit" value="구매하기"> 
+						<input type="button" value='찜하기' onclick='return info_chk2(this.form);' value="찜하기">
 					</form>
 				</div>
 			</div>

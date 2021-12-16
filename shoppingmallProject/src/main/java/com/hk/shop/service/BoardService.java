@@ -26,7 +26,7 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		return boardDAO.allList();
 	}
-	public List<FAQVO> ViewOne(int fAQNum) {
+	public FAQVO ViewOne(int fAQNum) {
 		// TODO Auto-generated method stub
 		return boardDAO.ViewOne(fAQNum);
 	}
@@ -58,5 +58,33 @@ public class BoardService {
 		return boardDAO.updateMyAsk(askVO);
 	}
 	
+	
+	
+	public List<FAQVO> FAQOrder() {
+		// TODO Auto-generated method stub1
+		return boardDAO.FAQOrder();
+	}
+	public List<FAQVO> FAQDel() {
+		// TODO Auto-generated method stub2
+		return boardDAO.FAQDel();
+	}
+	public List<FAQVO> FAQCenOrd() {
+		// TODO Auto-generated method stub3
+		return boardDAO.FAQCenOrd();
+	}
+	public List<FAQVO> FAQRe() {
+		// TODO Auto-generated method stub4
+		return boardDAO.FAQRe();
+	}
+	public List<FAQVO> FAQPro() {
+		// TODO Auto-generated method stub5
+		return boardDAO.FAQPro();
+	}
+	public List<FAQVO> FAQMem() {
+		// TODO Auto-generated method stub6
+		return boardDAO.FAQMem();
+	}
+
+
 
 }

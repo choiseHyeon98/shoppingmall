@@ -21,9 +21,9 @@ public class BoardDAO {
 		return FAQList;
 	}
 	
-	public List<FAQVO> ViewOne(int FAQNum) {
+	public FAQVO ViewOne(int FAQNum) {
 		// TODO Auto-generated method stub
-		List<FAQVO> FAQList = session.selectList("mapper.board.selectFAQOneList", FAQNum);
+		FAQVO FAQList = session.selectOne("mapper.board.selectFAQOneList", FAQNum);
 		return FAQList;
 	}
 
@@ -49,6 +49,42 @@ public class BoardDAO {
 		// TODO Auto-generated method stub
 		int ret = session.update("mapper.board.updateAsk", askVO);
 		return ret;
+	}
+
+	public List<FAQVO> FAQOrder() {
+		// TODO Auto-generated method stub1
+		List<FAQVO> FAQList = session.selectList("mapper.board.FAQOrder");
+		return FAQList;
+	}
+
+	public List<FAQVO> FAQDel() {
+		// TODO Auto-generated method stub2
+		List<FAQVO> FAQList = session.selectList("mapper.board.FAQDel");
+		return FAQList;
+	}
+
+	public List<FAQVO> FAQCenOrd() {
+		// TODO Auto-generated method stub3
+		List<FAQVO> FAQList = session.selectList("mapper.board.FAQCenOrd");
+		return FAQList;
+	}
+
+	public List<FAQVO> FAQRe() {
+		// TODO Auto-generated method stub4
+		List<FAQVO> FAQList = session.selectList("mapper.board.FAQRe");
+		return FAQList;
+	}
+
+	public List<FAQVO> FAQPro() {
+		// TODO Auto-generated method stub5
+		List<FAQVO> FAQList = session.selectList("mapper.board.FAQPro");
+		return FAQList;
+	}
+
+	public List<FAQVO> FAQMem() {
+		// TODO Auto-generated method stub6
+		List<FAQVO> FAQList = session.selectList("mapper.board.FAQMem");
+		return FAQList;
 	}
 
 

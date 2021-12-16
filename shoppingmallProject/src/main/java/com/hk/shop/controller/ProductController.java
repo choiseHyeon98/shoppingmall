@@ -155,7 +155,9 @@ public class ProductController {
 		System.out.println("cartVO: "+cartVO);
 		int ret = productService.addCart(cartVO);
 		System.out.println("ret: "+ret);
+		 int proNum = cartVO.getProNum();
 		model.addAttribute("ret",ret);
+		model.addAttribute("proNum",proNum);
 		return "cartAddDone";
 	}
 	

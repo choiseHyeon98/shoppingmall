@@ -31,12 +31,66 @@ public class BoardController {
 		return "ServiceCenter";
 	}
 	
+	@RequestMapping (value="/board/serviceCenter/order", method= {RequestMethod.GET,RequestMethod.POST})
+	String FAQOrder(Model model) {
+		//FAQ 주문결제 리스트 보기 1
+		List<FAQVO> FAQLists = boardService.FAQOrder(); 
+		model.addAttribute("FAQLists", FAQLists);
+		System.out.println("FAQLists"+FAQLists);
+		return "ServiceCenter";
+	}
+	
+	@RequestMapping (value="/board/serviceCenter/del", method= {RequestMethod.GET,RequestMethod.POST})
+	String FAQDel(Model model) {
+		//FAQ 배송안내 리스트 보기 2
+		List<FAQVO> FAQLists = boardService.FAQDel(); 
+		model.addAttribute("FAQLists", FAQLists);
+		System.out.println("FAQLists"+FAQLists);
+		return "ServiceCenter";
+	}
+	
+	@RequestMapping (value="/board/serviceCenter/cenOrd", method= {RequestMethod.GET,RequestMethod.POST})
+	String FAQCenOrd(Model model) {
+		//FAQ 주문취소 리스트 보기 3
+		List<FAQVO> FAQLists = boardService.FAQCenOrd(); 
+		model.addAttribute("FAQLists", FAQLists);
+		System.out.println("FAQLists"+FAQLists);
+		return "ServiceCenter";
+	}
+	
+	@RequestMapping (value="/board/serviceCenter/re", method= {RequestMethod.GET,RequestMethod.POST})
+	String FAQRe(Model model) {
+		//FAQ 교환환불 리스트 보기 4
+		List<FAQVO> FAQLists = boardService.FAQRe(); 
+		model.addAttribute("FAQLists", FAQLists);
+		System.out.println("FAQLists"+FAQLists);
+		return "ServiceCenter";
+	}
+	
+	@RequestMapping (value="/board/serviceCenter/pro", method= {RequestMethod.GET,RequestMethod.POST})
+	String FAQPro(Model model) {
+		//FAQ 상품관련 리스트 보기 5 
+		List<FAQVO> FAQLists = boardService.FAQPro(); 
+		model.addAttribute("FAQLists", FAQLists);
+		System.out.println("FAQLists"+FAQLists);
+		return "ServiceCenter";
+	}
+	
+	@RequestMapping (value="/board/serviceCenter/mem", method= {RequestMethod.GET,RequestMethod.POST})
+	String FAQMem(Model model) {
+		//FAQ 회원관련 리스트 보기 6
+		List<FAQVO> FAQLists = boardService.FAQMem(); 
+		model.addAttribute("FAQLists", FAQLists);
+		System.out.println("FAQLists"+FAQLists);
+		return "ServiceCenter";
+	}
+	
 	@RequestMapping (value="/board/questionOne", method= {RequestMethod.GET,RequestMethod.POST})
 	String FAQView(Model model, @RequestParam("FAQNum") int FAQNum) {
 		//FAQ 하나 상세 보기
-		List<FAQVO> FAQList = boardService.ViewOne(FAQNum); 
-		model.addAttribute("FAQList", FAQList);
-		System.out.println("FAQOneList"+FAQList);
+		FAQVO FAQOne= boardService.ViewOne(FAQNum); 
+		model.addAttribute("FAQOne", FAQOne);
+		System.out.println("FAQOneList"+FAQOne);
 		
 		return "QuestionOne";
 	}

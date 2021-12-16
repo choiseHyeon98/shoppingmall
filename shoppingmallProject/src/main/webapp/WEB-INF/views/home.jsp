@@ -23,7 +23,7 @@ request.setCharacterEncoding("UTF-8");
 				<c:forEach var="eventList" items="${eventList }"
 					varStatus="eventNum">
 					<a
-						href="http://localhost:8888/shop/event/eventList?eventNum=${eventList.eventNum }">
+						href="shop/event/eventList?eventNum=${eventList.eventNum }">
 						<img class="mySlides"
 						src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
 						alt="${eventList.eventTitle }" style="width: 100%; height: 180px;">
@@ -60,7 +60,7 @@ request.setCharacterEncoding("UTF-8");
 								varStatus="status ">
 								<div class="col-md-4">
 									<div class="card mb-4 shadow-sm">
-										<a href="product/detail?proNum=${bestList.proNum }"> <img
+										<a href="/shop/product/detail?proNum=${bestList.proNum }"> <img
 											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
 											alt=" ${bestList.proName }" width="100%" height="240px"></a>
 										<div class="card-body">
@@ -88,7 +88,7 @@ request.setCharacterEncoding("UTF-8");
 							<c:forEach var="newList" items="${newList }" varStatus="status ">
 								<div class="col-md-4">
 									<div class="card mb-4 shadow-sm">
-										<a href="product/detail?proNum=${newList.proNum }"> <img
+										<a href="/shop/product/detail?proNum=${newList.proNum }"> <img
 											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
 											alt=" ${newList.proName }" width="100%" height="240px"></a>
 										<div class="card-body">
@@ -117,7 +117,7 @@ request.setCharacterEncoding("UTF-8");
 								varStatus="status ">
 								<div class="col-md-4">
 									<div class="card mb-4 shadow-sm">
-										<a href="product/detail?proNum=${dailyList.proNum }"> <img
+										<a href="/shop/product/detail?proNum=${dailyList.proNum }"> <img
 											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
 											alt=" ${dailyList.proName }" width="100%" height="240px"></a>
 										<div class="card-body">
@@ -146,7 +146,7 @@ request.setCharacterEncoding("UTF-8");
 								varStatus="status ">
 								<div class="col-md-4">
 									<div class="card mb-4 shadow-sm">
-										<a href="product/detail?proNum=${randomList.proNum }"> <img
+										<a href="/shop/product/detail?proNum=${randomList.proNum }"> <img
 											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
 											alt=" ${randomList.proName }" width="100%" height="240px"></a>
 										<div class="card-body">
