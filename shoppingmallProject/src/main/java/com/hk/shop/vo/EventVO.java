@@ -1,11 +1,15 @@
 package com.hk.shop.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class EventVO {
 	// 이건 VO
 	private int eventNum;
 	private String eventTitle;
 	private String eventImg;
 	private String eventContent;
+	private MultipartFile uploadEventImage;
+	
 	public int getEventNum() {
 		return eventNum;
 	}
@@ -30,10 +34,18 @@ public class EventVO {
 	public void setEventContent(String eventContent) {
 		this.eventContent = eventContent;
 	}
+	
+	
+	public MultipartFile getUploadEventImage() {
+		return uploadEventImage;
+	}
+	public void setUploadEventImage(MultipartFile uploadEventImage) {
+		this.uploadEventImage = uploadEventImage;
+	}
 	@Override
 	public String toString() {
 		return "EventVO [eventNum=" + eventNum + ", eventTitle=" + eventTitle + ", eventImg=" + eventImg
-				+ ", eventContent=" + eventContent + "]";
+				+ ", eventContent=" + eventContent + ", uploadEventImage=" + uploadEventImage + "]";
 	}
 	
 }

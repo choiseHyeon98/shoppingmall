@@ -28,6 +28,7 @@ import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
 
 import com.hk.shop.vo.ReviewVO;
+import com.hk.shop.vo.SerchVO;
 
 @Controller
 public class ManagerController {
@@ -72,14 +73,17 @@ public class ManagerController {
 		// 신상품받아오기
 		List<ProductVO> newList = new ArrayList<ProductVO>();
 		newList = managerService.newService();
+		System.out.println("newList="+newList.toString());
 
 		// 오늘배송상품 받아오기
 		List<ProductVO> todayList = new ArrayList<ProductVO>();
 		todayList = managerService.todayService();
+		System.out.println("todayList="+todayList.toString());
 
 		// 전체상품 리스트 받아오기
 		List<ProductVO> allList = new ArrayList<ProductVO>();
 		allList = managerService.allService();
+		System.out.println("allList="+allList.toString());
 
 		// 푸터받아오기
 		List<FooterVO> footerList = new ArrayList<FooterVO>();
@@ -96,6 +100,31 @@ public class ManagerController {
 		return "managerHome";
 
 	}
+	
+	//게시물 검색
+	@RequestMapping (value="/manager/product/serch", method= {RequestMethod.GET,RequestMethod.POST})
+	String serch(Model model, @ModelAttribute SerchVO serchVO){
+
+		String serch = serchVO.getSerch();
+		
+		serchVO.setSerch("%"+serchVO.getSerch()+"%");
+		System.out.println(serchVO.getSerch());
+		
+		List<ProductVO> product;
+		product = productService.serchPro(serchVO);
+		System.out.println(product.toString());
+		model.addAttribute("Product",product);
+		model.addAttribute("serch",serch);
+		String link;
+		if(product.toString()=="[]"){
+			link = "manager/serchFail";
+		} else {
+			link = "manager/serchDone";
+		}
+		
+		return link;
+	}
+	
 	//게시글 삭제 체크박스, 
 	@RequestMapping(value="/manager/muldelete",method=RequestMethod.GET)
 	  public String proMuldelete(Model model,@RequestParam("chkbox")List<Integer> productNums) {
@@ -187,34 +216,36 @@ public class ManagerController {
 		model.addAttribute("Product", Product);
 		return "ProductList";
 	}
-	// 당일배송 상품 전체보기 url
-	@RequestMapping(value = "/manager/listDaily", method = { RequestMethod.GET, RequestMethod.POST })
-	public String listDaily(Model model) {
-
-		List<ProductVO> product = new ArrayList<ProductVO>();
-		product = managerService.listDailyService();
-		model.addAttribute("product", product);
-
-		return "productList";
-			// productList로 view맞춰서 안에 값만 다르게 넣기 (ex:product.당일배송)
-	}
-
-	// 전체상품 리스트 URL
-	@RequestMapping(value = "/menager/listAll", method = { RequestMethod.GET, RequestMethod.POST })
-	public String listAll(Model model) {
-
-		List<ProductVO> product = new ArrayList<ProductVO>();
-		product = managerService.listAllService();
-		model.addAttribute("product", product);
-		return "productList";
-			// productList로 view맞춰서 안에 값만 다르게 넣기
-	}
 	
+	
+	//상품상세보기
+	// 상품상세//view뿐....
+		// form action으로 주문하기 url로 연결(post방식으로 전달)
+		@RequestMapping(value = "/manager/product/detail", method = { RequestMethod.GET, RequestMethod.POST })
+		String detailView(Model model, @RequestParam("proNum") int proNum) {
+			List<ProductVO> Product = productService.selectOne(proNum);
+			List<ReviewVO> review = productService.selectReview(proNum);
+			model.addAttribute("Product", Product);
+			model.addAttribute("review", review);
+			System.out.println("상품상세보기" + Product.toString());
+			System.out.println("review" + review.toString());
+			
+			String link;
+			if(Product.toString()!="[]") {
+				link="ProductView";
+			} else {
+				//요청하신 상품을 찾을 수 없습니다 로 보냄.
+			}
+			return "ProductView";
+		}
+
 	
 
 	// event배너 추가 폼
 	@RequestMapping(value = "/manager/event/add", method = RequestMethod.GET)
 	public String eventAdd() {
+		
+		
 
 		return "eventAdd";
 
@@ -222,7 +253,20 @@ public class ManagerController {
 
 	// event배너 추가 완료
 	@RequestMapping(value = "/manager/event/add", method = RequestMethod.POST)
-	public String eventAddDone(Model model, @ModelAttribute EventVO eventVO) {
+	public String eventAddDone(Model model, @ModelAttribute EventVO eventVO)throws IOException {
+		
+		String fileName=null;
+		MultipartFile uploadFile = eventVO.getUploadEventImage();
+		if (!uploadFile.isEmpty()) {
+			String originalFileName = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(originalFileName);
+			
+			UUID uuid = UUID.randomUUID();
+			fileName=uuid+"."+ext;
+			uploadFile.transferTo(new File("c:\\board/eventImg\\"+fileName));
+			
+		}
+		eventVO.setEventImg(fileName);
 
 		int ret = managerService.eventAddDoneService(eventVO);
 		System.out.println("eventVO=" + eventVO.toString());

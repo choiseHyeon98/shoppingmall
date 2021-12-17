@@ -11,6 +11,7 @@
 		<result property="eventTitle" column="eventTitle" />
 		<result property="eventImg" column="eventImg" />
 		<result property="eventContent" column="eventContent" />
+		
 	</resultMap>
 	
 	<!-- 쿼리집어넣는 장소! -->
@@ -30,7 +31,7 @@
 	<select id="insertEvent"  parameterType="EventVO">
    <![CDATA[
    INSERT INTO EVENT 
-   ("eventNum","eventTitle","eventImg","eventContent") VALUES ((SELECT max(eventNum)+1 FROM event),#{eventTitle}, #{eventImg}, #{eventContent})
+   ("eventNum","eventTitle","eventImg","eventContent") VALUES ((SELECT max("eventNum")+1 FROM EVENT),#{eventTitle}, #{eventImg}, #{eventContent})
    
    ]]>
 	</select>

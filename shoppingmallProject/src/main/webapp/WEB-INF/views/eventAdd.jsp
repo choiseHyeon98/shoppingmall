@@ -19,27 +19,32 @@
       }
   }  
   function backToList(obj){
-    obj.action="list";
+    obj.action="managerHome";
     obj.submit();a
   }
 </script>
  <title>새글 쓰기 창</title>
+	<!-- favicon -->
+	<%@include file="headerfooter/favicon.jsp"%>
 </head>
 <body>
-<h1 style="text-align:center">새글 쓰기</h1>
-  <form name="eventForm" method="post" action="add" >
+<!-- header -->
+<%@include file="manager/header.jsp"%>
+
+<h1 style="text-align:center">이벤트 등록</h1>
+  <form name="eventForm" method="post" action="add" enctype="multipart/form-data">
     <table border="0" align="center">
     <tr>
-      <td align="right" valign="top"><br>이벤트제목: </td>
-      <td colspan=2><textarea name="eventTitle" rows="10" cols="65" maxlength="20" required></textarea> </td>
+      <td align="right" valign="top">이벤트제목: </td>
+      <td colspan=2><textarea name="eventTitle" rows="1" cols="65" maxlength="20" required></textarea> </td>
      </tr>
     <tr>
-      <td align="right" valign="top"><br>글내용: </td>
+      <td align="right" valign="top">이벤트 설명: </td>
       <td colspan=2><textarea name="eventContent" rows="10" cols="65" maxlength="3000" required></textarea> </td>
      </tr>
      <tr>
         <td align="right">이미지파일 첨부:  </td>
-        <td> <input type="file" name="eventImg"  onchange="readURL(this);" /></td>
+        <td> <input type="file" name="uploadEventImage"  onchange="readURL(this);" /></td>
          <td><img  id="preview" src="#"   width=200 height=200/></td>
     </tr>
     <tr>
@@ -51,5 +56,7 @@
      </tr>
     </table>
   </form>
+  <!-- footer -->
+	<%@include file="headerfooter/footer.jsp"%>
 </body>
 </html>

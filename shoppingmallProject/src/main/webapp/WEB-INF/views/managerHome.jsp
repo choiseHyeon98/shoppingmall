@@ -25,12 +25,13 @@ request.setCharacterEncoding("UTF-8");
 </head>
 <body>
 	<!-- header -->
-	<%@include file="headerfooter/header.jsp"%>
+	<%@include file="manager/header.jsp"%>
 	<!-- 게시글 관리 버튼 -->
 	<div class = "managerMenu" >
 		<button type="button" class="btn btn-light" onClick="return muldelete()">게시글삭제</button>
 		<button type="button" class="btn btn-light" onClick="fn_eventAdd(this.form)">이벤트배너 등록</button>
-		<button type="button" class="btn btn-light">품절</button>
+		<button type="button" class="btn btn-light" onClick="fn_productAdd(this.form)">새상품 등록</button>
+		<button type="button" class="btn btn-light" onClick="return soldOut()">품절</button>
 	 
 	</div>
 	<!-- 이벤트 배너 -->
@@ -43,9 +44,8 @@ request.setCharacterEncoding("UTF-8");
 					varStatus="eventNum">
 				
 					<a
-						href="http://localhost:8888/shop/manager/event/mod?eventNum=${eventList.eventNum }">
-						<img class="mySlides"
-						src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+						href="../manager/event/mod?eventNum=${eventList.eventNum }">
+						<img class="mySlides" src="../fileDownload?eventImg=${eventList.eventImg}"
 						alt="${eventList.eventTitle }" style="width: 100%; height: 180px;">
 					</a>
 				</c:forEach>
@@ -108,11 +108,11 @@ request.setCharacterEncoding("UTF-8");
 				<div class="album py-3 bg-light">
 					<div class="container">
 						<div class="row">
-							<c:forEach var="newList" items="${newList }" varStatus="status ">
+							<c:forEach var="newList" items="${newList}" varStatus="status ">
 								<div class="col-md-4">
 									<div class="card mb-4 shadow-sm">
-										<a href="product/detail?proNum=${newList.proNum }"> <img
-											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+										<a href="product/detail?proNum=${newList.proNum }"> 
+										<img src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
 											alt=" ${newList.proName }" width="100%" height="240px"></a>
 										<div class="card-body">
 											<p class="card-text">${newList.proName }</p>
@@ -134,23 +134,23 @@ request.setCharacterEncoding("UTF-8");
 	<div class="album py-3 bg-light">
 		<h3>오늘배송</h3>
 		<c:choose>
-			<c:when test="${!empty dailyList}">
+			<c:when test="${!empty todayList}">
 				<div class="album py-3 bg-light">
 					<div class="container">
 						<div class="row">
-							<c:forEach var="dailyList" items="${dailyList}"
+							<c:forEach var="todayList" items="${todayList}"
 								varStatus="status ">
 								<div class="col-md-4">
 									<div class="card mb-4 shadow-sm">
-										<a href="product/detail?proNum=${dailyList.proNum }"> <img
+										<a href="product/detail?proNum=${todayList.proNum }"> <img
 											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-											alt=" ${dailyList.proName }" width="100%" height="240px"></a>
+											alt=" ${todayList.proName }" width="100%" height="240px"></a>
 										<div class="card-body">
-											<p class="card-text">${dailyList.proNum }</p>
+											<p class="card-text">${todayList.proName }</p>
 											<hr>
 										</div>
 									</div>
-									<input type="checkbox" name="chkbox" value="${dailyList.proNum}">
+									<input type="checkbox" name="chkbox" value="${todayList.proNum}">
 								</div>
 							</c:forEach>
 						</div>
@@ -164,23 +164,23 @@ request.setCharacterEncoding("UTF-8");
 	<div class="album py-3 bg-light">
 		<h3>상품 리스트</h3>
 		<c:choose>
-			<c:when test="${!empty randomList}">
+			<c:when test="${!empty allList}">
 				<div class="album py-3 bg-light">
 					<div class="container">
 						<div class="row">
-							<c:forEach var="randomList" items="${randomList}"
+							<c:forEach var="allList" items="${allList}"
 								varStatus="status ">
 								<div class="col-md-4">
 									<div class="card mb-4 shadow-sm">
-										<a href="product/detail?proNum=${randomList.proNum }"> <img
+										<a href="product/detail?proNum=${allList.proNum }"> <img
 											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-											alt=" ${randomList.proName }" width="100%" height="240px"></a>
+											alt=" ${allList.proName }" width="100%" height="240px"></a>
 										<div class="card-body">
-											<p class="card-text">${randomList.proNum }</p>
+											<p class="card-text">${allList.proName }</p>
 											<hr>
 										</div>
 									</div>
-									<input type="checkbox" name="chkbox" value="${randomList.proNum}">
+									<input type="checkbox" name="chkbox" value="${allList.proNum}">
 								</div>
 							</c:forEach>
 						</div>
@@ -229,12 +229,35 @@ function fn_eventAdd(url){
 	
 }
 
+function fn_productAdd(url){
+	
+	location.href="product/add";
+	
+}
 
 function muldelete(){
 	var form = document.getElementsByName("FormList");
-	form[0].action="muldelete"; 
-	form[0].submit();
-	return true;
+	var r = confirm("삭제하시겠습니까?");
+	
+	if(r == true){
+		form[0].action="muldelete";
+		form[0].submit();
+	} else {
+		
+	}
+	
+}
+
+function soldOut(){
+	var form = document.getElementsByName("FormList");
+	var r = confirm("품절처리하시겠습니까?");
+	
+	if(r == true){
+		form[0].action="mulSoldout";
+		form[0].submit();
+	} else {
+		
+	}
 }
 </script>
 </html>

@@ -59,12 +59,12 @@ public class ManagerService {
 
 	public List<ProductVO> todayService() {
 		// TODO Auto-generated method stub
-		return productDAO.selectBest();
+		return productDAO.selectDaily();
 	}
 
 	public List<ProductVO> allService() {
 		// TODO Auto-generated method stub
-		return productDAO.selectBest();
+		return productDAO.selectRandom();
 	}
 
 	public List<FooterVO> footerService() {
