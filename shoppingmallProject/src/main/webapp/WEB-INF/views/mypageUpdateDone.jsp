@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<input type="button" value="내 정보 보러가기" onClick="location.href='/shop/myinfo'">
+<input type="button" value="내 정보 보러가기" onClick="location.href='../myinfo'">
 <input type="button" value="상품 보러가기" onClick="location.href='/shop/'">
 
 </body>

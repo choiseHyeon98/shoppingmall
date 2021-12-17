@@ -154,10 +154,19 @@ public class ProductDAO {
 		return productVO;
 	}
 
+	// 찜목록에 넣기
 	public int addCart(CartVO cartVO) {
 		// TODO Auto-generated method stub
 		int ret  = session.insert("mapper.cart.addCart",cartVO);
 		return ret;
+	}
+
+	// 찜목록 값보여줄라고
+	public List<ProductVO> findMyProduct(List<CartVO> cartList) {
+		// TODO Auto-generated method stub
+		List<ProductVO> productVO;
+		productVO = session.selectList("mapper.mypage.findMP", cartList);
+		return productVO;
 	}
 
 

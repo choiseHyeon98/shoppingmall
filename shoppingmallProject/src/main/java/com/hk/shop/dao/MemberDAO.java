@@ -28,13 +28,7 @@ public class MemberDAO {
 		return ret;
 	}
 
-/*
-	public MemberVO selectMyinfo(String id) {
-		// TODO Auto-generated method stub
-		MemberVO memberVO = sqlSession.selectOne("mapper.member.selectOneInfo", id);
-		return memberVO;
-	}
-*/
+
 	
 	public MemberVO viewId(String name) {
 		// TODO Auto-generated method stub

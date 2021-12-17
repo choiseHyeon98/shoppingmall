@@ -25,30 +25,24 @@ public class MypageDAO {
 		return memberVO;
 	}
 
-	
-	public List<MemberVO> showMyInfo() {
-		// TODO Auto-generated method stub
-		List <MemberVO> mypageinfo = sqlSession.selectList("mapper.mypage.showMyInfo");
-		return mypageinfo;
-	}
-	
 
 	public int updateMyInfo(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		int ret = sqlSession.update("mapper.mypage.updateMyInfo", memberVO);
+		System.out.println("infoUpdate2="+memberVO.toString());
 		return ret;
 	}
 
 
-	public List<CartVO> showMyCart() {
+	public List<CartVO> showMyCart(String id) {
 		// TODO Auto-generated method stub
-		List <CartVO> cartList = sqlSession.selectList("mapper.mypage.showMyCart");
+		List <CartVO> cartList = sqlSession.selectList("mapper.mypage.showMyCart", id);
 		return cartList;
 	}
 
-	public List<OrderListVO> showMyOrderList() {
+	public List<OrderListVO> showMyOrderList(String id) {
 		// TODO Auto-generated method stub
-		List <OrderListVO> myOrders = sqlSession.selectList("mapper.mypage.showMyOrderList");
+		List <OrderListVO> myOrders = sqlSession.selectList("mapper.mypage.showMyOrderList", id);
 		return myOrders;
 	}
 

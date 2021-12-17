@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- mail 서버 연동 -->
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="465" />
+        <property name="username" value="ddh04023@gmail.com" />
+        <property name="password" value="cmh911209" />
+        
+        <property name="javaMailProperties" />
+        	<prop key="mail.transport.protocol">smtp</prop>
+        
+        
+    </bean>

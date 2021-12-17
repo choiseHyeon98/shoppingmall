@@ -17,34 +17,92 @@
 	</resultMap>
 	
 	<resultMap id="myReviewResult" type="ReviewVO">
-		<result property = "reviewNum" column="id" />
-		<result property = "id" column="pw" />
-		<result property = "proNum" column="name" />
-		<result property = "reviewPhoto" column="phone" />
-		<result property = "reviewContent" column="address" />
-		<result property = "reviewDate" column="email" />
+		<result property = "reviewNum" column="reviewNum" />
+		<result property = "id" column="id" />
+		<result property = "proNum" column="proNum" />
+		<result property = "reviewPhoto" column="reviewPhoto" />
+		<result property = "reviewContent" column="reviewContent" />
+		<result property = "reviewDate" column="reviewDate" />
 	</resultMap>
+	
+	<resultMap id="myCartResult" type="CartVO">
+		<result property = "cartNum" column="cartNum" />
+		<result property = "id" column="id" />
+		<result property = "proNum" column="proNum" />
+		<result property = "sizeOption" column="sizeOption" />
+		<result property = "colorOption" column="colorOption" />
+		<result property = "price" column="price" />
+		<result property = "countProNum" column="countProNum" />
+	</resultMap>
+	
+	<resultMap id="myProductResult" type="ProductVO">
+		<result property = "proNum" column="proNum" />
+		<result property = "proName" column="proName" />
+		<result property = "proContent" column="proContent" />
+		<result property = "proDetails" column="proDetails" />
+		<result property = "topImage" column="topImage" />
+    	<result property = "price" column="price" />
+		<result property = "delprice" column="delprice" />
+		<result property = "dailyDel" column="dailyDel" />
+		<result property = "proCon" column="proCon" />
+		<result property = "proCate" column="proCate" />
+		<result property = "sizeOption" column="sizeOption" />
+		<result property = "colorOption" column="colorOption" />
+		<result property = "countProNum" column="countProNum" />
+		<result property = "soldOut" column="soldOut" />
+		
+	</resultMap>
+	
+	<resultMap id="myOrderListResult" type="OrderListVO">
+		<result property = "orderNum" column="orderNum" />
+		<result property = "proNum" column="proNum" />
+		<result property = "id" column="id" />
+		<result property = "sizeOption" column="sizeOption" />
+		<result property = "colorOption" column="colorOption" />
+		<result property = "tprice" column="tprice" />
+		<result property = "delNum" column="delNum" />
+		<result property = "payment" column="payment" />
+		<result property = "cancleOrder" column="cancleOrder" />
+		<result property = "delStatus" column="delStatus" />	
+		<result property = "orderDate" column="orderDate" />
+		<result property = "orderCount" column="orderCount" />
+		
+		
+	</resultMap>
+	
+	
 	
 	<select id ="selectMyInfo" resultType="MemberVO" >
 	<![CDATA[
 		 SELECT * FROM MEMBER
 	]]>
 	</select>
-<!-- 
+ 
 	<update id ="updateMyInfo" parameterType="MemberVO" >
 	<![CDATA[
-		SET "name"='', "phone"='', "address"='', "email"=''
-		WHERE "id"=''
+		UPDATE MEMBER SET "name"=#{name}, "phone"=#{phone}, "address"=#{address}, "email"=#{email}
+		WHERE "id"=#{id}
 	]]>
 	</update>
- -->		
-	<select id ="showMyCart" resultMap="mypageResult" >
+		
+	<select id ="showMyCart" resultMap="myCartResult" >
 	<![CDATA[
-		SELECT * FROM CART
+		SELECT * FROM CART WHERE "id"=#{id}
+
 	]]>
 	</select>
 	
-	<select id ="showMyOrderList" resultMap="mypageResult" >
+	<select id ="findMP" resultMap="myCartResult" >
+	<![CDATA[
+		SELECT * 
+	FROM PRODUCT 
+	WHERE "proNum" in
+	(SELECT "proNum" FROM CART WHERE "id"='')
+		
+	]]>
+	</select>
+	
+	<select id ="showMyOrderList" resultMap="myOrderListResult" >
 	<![CDATA[
 		SELECT * FROM ORDERLIST
 	]]>
