@@ -12,6 +12,7 @@ request.setCharacterEncoding("UTF-8");
 <title>Insert title here</title>
 </head>
 <body>
-${info.next_redirect_pc_url }
+결제가 완료되었습니다.
+//주문완료창이 나와야함!
 </body>
 </html>
