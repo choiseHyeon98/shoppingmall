@@ -10,17 +10,13 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
-
-
-</script>
 </head>
 <body>
  
 <h1> kakaoPay api 이용하기 </h1>
  
-<form action="/shop/kakaoPay" method="post">
-    <input type="submit" value="카카오페이로 결제하기">
+<form method="post" action="/shop/kakaoPay">
+    <button>카카오페이로 결제하기</button>
 </form>
  
  

@@ -12,6 +12,6 @@ request.setCharacterEncoding("UTF-8");
 <title>Insert title here</title>
 </head>
 <body>
-${converter.next_redirect_pc_url }
+${info.next_redirect_pc_url }
 </body>
 </html>

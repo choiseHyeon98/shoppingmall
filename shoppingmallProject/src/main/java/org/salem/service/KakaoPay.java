@@ -27,22 +27,23 @@ public class KakaoPay {
  
         // 서버로 요청할 Header
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "KakaoAK " + "admin key를 넣어주세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!");
+        headers.add("Authorization", "KakaoAK " + "5aeeb59d72610df4d9f40616e4a98945");
         headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
         
         // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-        params.add("cid", "TC0ONETIME");
+        params.add("cid", "TC0ONETIME");//가맹점번호
         params.add("partner_order_id", "1001");
         params.add("partner_user_id", "gorany");
-        params.add("item_name", "갤럭시S9");
-        params.add("quantity", "1");
-        params.add("total_amount", "2100");
-        params.add("tax_free_amount", "100");
-        params.add("approval_url", "http://localhost:8888/kakaoPaySuccess");
-        params.add("cancel_url", "http://localhost:8888/kakaoPayCancel");
-        params.add("fail_url", "http://localhost:8888/kakaoPaySuccessFail");
+        params.add("item_name", "갤럭시S9");//주문상품
+        params.add("quantity", "1");//주문갯수
+        params.add("total_amount", "2100");//총가격
+        params.add("tax_free_amount", "100");//비과세
+        params.add("total_amount", "2100");//총합
+        params.add("approval_url", "http://localhost:8888/shop/kakaoPaySuccess");
+        params.add("cancel_url", "http://localhost:8888/shop/listAll");//주문취소
+        params.add("fail_url", "http://localhost:8888/shop/product/detail?proNum=1111");//주문성공
  
          HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
  
@@ -61,7 +62,7 @@ public class KakaoPay {
             e.printStackTrace();
         }
         
-        return "/pay";
+        return "/kakaoPaySuccess";
         
     }
     
@@ -74,7 +75,7 @@ public class KakaoPay {
  
         // 서버로 요청할 Header
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "KakaoAK " + "admin key를 넣어주세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!");
+        headers.add("Authorization", "KakaoAK " + "5aeeb59d72610df4d9f40616e4a98945");
         headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
  
@@ -85,7 +86,7 @@ public class KakaoPay {
         params.add("partner_order_id", "1001");
         params.add("partner_user_id", "gorany");
         params.add("pg_token", pg_token);
-        params.add("total_amount", "2100");
+
         
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
         

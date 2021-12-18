@@ -22,6 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.hk.shop" />
+	<context:component-scan base-package="org.salem" />
 	
 	<beans:bean id="LoginInterceptor"
       class="com.hk.shop.interceptor.LoginInterceptor" />
