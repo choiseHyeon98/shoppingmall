@@ -14,8 +14,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
  
-import lombok.extern.java.Log;
- 
 @Service
 public class KakaoPay {
     private static final String HOST = "https://kapi.kakao.com";

@@ -18,17 +18,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import lombok.Setter;
-
  
 
 @Controller
 public class SampleController {
     
-    @Setter(onMethod_ = @Autowired)
+    @Autowired
     private KakaoPay kakaopay;
     
+
+	public KakaoPay getKakaopay() {
+		return kakaopay;
+	}
+
+	public void setKakaopay(KakaoPay kakaopay) {
+		this.kakaopay = kakaopay;
+	}
 
 	@RequestMapping(value = "/kakaoPay", method =RequestMethod.GET)
 	String kakaoPayGet() {
