@@ -28,7 +28,7 @@
     </bean>
     
     <bean id="preConfiguredMessage" class="org.springframework.mail.SimpleMailMessage">
-    	<property name="to" value="수신메일주소"></property>
+    	<property name="to" value="ddh04023@naver.com"></property> 
     	<property name="from" value="ddh04023@gmail.com"></property>
     	<property name="subject" value="테스트 메일입니다."></property>
     </bean>

@@ -16,7 +16,7 @@ import com.hk.shop.service.MailService;
 @Controller
 @EnableAsync
 public class MailController {
-	
+	/*
 	@Autowired
 	private MailService mailService;
 	
@@ -26,9 +26,11 @@ public class MailController {
 		response.setContentType("text/html; cahrset=utf-8");
 		
 		PrintWriter out = response.getWriter();
-		mailService.sendMail("ddh04023@naver.com", "테스트메일", "안녕하세요. 테스트 메일입니다.");
-		mailService.sendPreConfigeredMail("테스트 메일입니다.");
+		mailService.sendMail("to", "subject", "body");
+		mailService.sendPreConfigeredMail("비밀번호 재설정 이메일입니다");
 		out.print("메일을 보냈습니다.");
+		
 	}
+	*/
 
 }
