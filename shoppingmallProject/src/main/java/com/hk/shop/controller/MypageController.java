@@ -129,7 +129,7 @@ public class MypageController {
 	
 	
 	
-	@RequestMapping (value="/s/mypage/addReview", method= RequestMethod.GET)
+	@RequestMapping (value="/s/mypage/addReview", method= RequestMethod.POST)
 	// URL �뿰寃고븳 �썑�뿉 POST濡� 怨좎튇�떎
 	public String addReviewDone (Model model, @ModelAttribute ReviewVO reviewVO) {
 		int ret = mypageService.insertReview(reviewVO);
