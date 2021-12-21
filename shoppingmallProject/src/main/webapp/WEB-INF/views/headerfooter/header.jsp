@@ -5,10 +5,38 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>
+<%@ page import = "com.hk.shop.vo.MemberVO" %>
+<link rel="stylesheet" href="css/bootstrap.css">
 <header>
 <br>
 <div style ="text-align:center;">
 <a href="/shop" style="text-align:center;"><img src="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small" alt="logo" style="width: 50px; height=50px;"></a>
+
+
+<%
+MemberVO memberVO = (MemberVO) session.getAttribute("login");
+%>
+
+<%
+
+if (memberVO == null) {
+%>
+<ul style="float: right;">
+<li><input type="button" value="LOGIN" onClick="location.href='/shop/login'"></li>
+<li><input type="button" value="REGISTER" onClick="location.href='/shop/register'" ></li>
+</ul>
+<%
+
+} else {
+%>
+<ul style="float: right;">
+<li><input type="button" value="내 정보" onClick="location.href='/shop/s/myinfo'"></li>
+<li><input type="button" value="LOGOUT" onClick="location.href='logout'" ></li>
+</ul>
+<%
+}
+%>
+
 <form action="/shop/product/serch" method="get">
 	<select name="serchType">
 		<option value="proName" name="proName">상품명</option>
