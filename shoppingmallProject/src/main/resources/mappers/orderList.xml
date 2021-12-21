@@ -20,25 +20,50 @@
 		<result property="orderDate" column="orderDate" />
 		<result property="orderCount" column="orderCount" />
 	</resultMap>
-	
+
+	<resultMap id="deliveryListResult" type="DeliveryVO">
+		<result property="id" column="id" />
+		<result property="orderNum" column="orderNum" />
+		<result property="Recipient" column="Recipient" />
+		<result property="shippingAddress" column="shippingAddress" />
+		<result property="delPhone" column="delPhone" />
+		<result property="delMemo" column="delMemo" />
+	</resultMap>
+
 	<select id="selectAllorder" resultMap="orderListResult">
    <![CDATA[
     SELECT * from ORDERLIST e ORDER by "orderNum" desc
    ]]>
 	</select>
-	
-	<select id="cancleOrder" >
+
+	<select id="cancleOrder">
 	 <![CDATA[ 
       UPDATE ORDERLIST SET "cancleOrder"='c' WHERE "orderNum"=#{orderNum}
 
    ]]>
-	
+
 	</select>
-	
+
 	<select id="updateOrder" parameterType="OrderListVO">
 	 <![CDATA[ 
       UPDATE ORDERLIST SET "delStatus"=#{delStatus} WHERE "orderNum"=#{orderNum}
 
    ]]>
 	</select>
+
+	<insert id="newOrder" parameterType="OrderListVO">
+	 <![CDATA[ 
+      INSERT INTO ORDERLIST
+	("orderNum", "proNum", "id", "sizeOption", "colorOption", "tprice",  "payment", "orderDate")
+	VALUES((SELECT MAX("orderNum") FROM ORDERLIST)+1, #{proNum}, #{id}, #{sizeOption}, #{colorOption}, #{tprice}, #{payment}, sysdate)
+
+   ]]>
+	</insert>
+	<insert id="newDel" parameterType="DeliveryVO">
+	 <![CDATA[ 
+     INSERT INTO DELIVERY
+	("id", "orderNum", "Recipient", "shippingAddress", "delPhone", "delMemo")
+	VALUES(#{id}, (SELECT MAX("orderNum") FROM ORDERLIST), #{Recipient}, #{shippingAddress}, #{delPhone}, #{delMemo})
+   ]]>
+	</insert>
 </mapper>

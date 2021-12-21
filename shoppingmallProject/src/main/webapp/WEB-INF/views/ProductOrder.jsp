@@ -28,7 +28,7 @@
 		id="card-body">
 		<div class="outer">
 			<div style="text-align: center;">
-				<form action="" method="post">
+				<form method="post" action="/shop/kakaoPay">
 					<table cellspacing="0" border="1" class="tb_list mgt">
 						<thead>
 							<tr>
@@ -36,6 +36,7 @@
 								<td style="width: 300px;">상품정보</td>
 								<td style="width: 150px;">상품금액/수량</td>
 								<td style="width: 100px;">배송비</td>
+								<td style="width: 100px;">최종결제금액</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -56,26 +57,15 @@
 									<div>
 										<dl>
 											<dt>${Product.proName }</dt>
-											<dd>색상:${productOption.colorOption }</dd>
+											<dd name="colorOption">색상:${productOption.colorOption }</dd>
+											<dd name="sizeOption">사이즈:${productOption.sizeOption }</dd>
 										</dl>
 									</div>
 								</td>
-								<td><em>${productOption.price }</em>원<br> <span>${productOption.countProNum }
-										개</span></td>
-								<td class="seller bg_point" rowspan="1">
-									<div class="send">
-										<div class="sum">
-											<em class="thm">${Product.delprice }</em>원
-										</div>
-										<div style="max-width: 200px; display: none; z-index: 100">
-											<a href="#"
-												class="clse _click(nmp.layer.hide()) _stopDefault"> <span>닫기</span>
-											</a>
-											<div class="edge_cen"></div>
-										</div>
-										<div class="tel"></div>
-									</div>
-								</td>
+								<td><em>${productOption.price }</em>원<br> 
+									<span name="orderCount">${productOption.countProNum }개</span></td><!-- 상품수량 -->
+								<td><em>${Product.delprice }</em>원</td> <!-- 상품 배송비 -->
+								<td>총<em>${productOption.price + Product.delprice}</em>원</td> <!-- 상품 최종가격 -->
 							</tr>
 						</tbody>
 					</table>
@@ -100,11 +90,20 @@
 						</tr>
 						<tr>
 							<td>결제수단</td>
-							<td><input type="text" name="payment"></td>
+							<td><input type="text" name="payment" value="카카오페이" disabled></td>
 						</tr>
 					</table>
-					<input type="submit" value="결제하기">
-					<input type="button" value="취소하기" onClick="location.href='/shop/product/detail?proNum=${Product.proNum}'">
+					<!-- 보내는 정보값 -->
+						<input type="text" name="proNum" value="${Product.proNum }" hidden>
+						<input type="text" name="proName" value="${Product.proName }" hidden>
+						<input type="text" name="tprice" value="${productOption.price + Product.delprice}" hidden>
+						<input type="text" name="colorOption" value="${productOption.colorOption }" hidden>
+						<input type="text" name="sizeOption" value="${productOption.sizeOption }" hidden>
+						<input type="text" name="orderCount" value="${productOption.countProNum }" hidden>
+						<input type="text" name="payment" value="kakaopay" hidden>
+					<input type="submit" value="결제하기"> <input type="button"
+						value="취소하기"
+						onClick="location.href='/shop/product/detail?proNum=${Product.proNum}'">
 				</form>
 			</div>
 		</div>

@@ -100,7 +100,6 @@
 					<input type="submit" value="결제하기"> 
 					<input type="button" value="취소하기"
 						onClick="location.href='/shop/s/mypage/cart?id=lee'">
-						
 				</form>
 			</div>
 		</div>
