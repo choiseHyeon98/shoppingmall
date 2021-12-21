@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <head>
    <meta charset="UTF-8">
    <title>companyInfo</title>
@@ -13,7 +12,7 @@
        display:none;
      }
      
-     #i_compInfo {
+     #i_privacy {
      	height: 200px;
  		width: 100%;
      }
@@ -28,14 +27,14 @@
      }
  
     function enable(obj){
-       document.getElementById("i_compInfo").disabled=false;
+       document.getElementById("i_privacy").disabled=false;
        document.getElementById("tr_btn_modify").style.display="block";
        document.getElementById("tr_btn").style.display="none";
      
     }
     
     function fn_modify_article(obj){
-       obj.action="./companyInfo";
+       obj.action="./privacy";
        obj.submit();
     }
     
@@ -47,34 +46,34 @@
 <body>
 	<!-- header -->
 <%@include file="manager/header.jsp"%>
- <form name="companyInfo" method="post"  action="companyInfo" >
+  <form name="privacyForm" method="post"  action="tems" >
   
-  	<table  border=3  align="center">
+  <table  border=3  align="center">
  
- 		 <tr>
-   		 <td width="70" align="center"  >
-    		  회사정보 
-  		 </td>
-  		 <td width="700px">
-    		<input type=text value="${footerVO.compInfo }" name="compInfo"  id="i_compInfo" disabled />
-   		</td>   
-  		</tr>
- 	</table>
- 		 <div id="tr_btn_modify" align="center" >
-     		
-        	   <input type=button value="수정반영하기" onClick="fn_modify_article(companyInfo)"  >
-				<input type=button value="취소"  onClick="backToList(companyInfo)">
-     		 
-  		</div>
+  <tr>
+    <td width="80" align="center"  >
+      개인정보 처리 방침
+   </td>
+   <td width="700px">
+    	<input type=text value="${footerVO.privacy }" name="privacy"  id="i_privacy" disabled />
+   </td>   
+  </tr>
+ </table>
+  <div id="tr_btn_modify" align="center" >
+     
+          <input type=button value="수정반영하기" onClick="fn_modify_article(privacyForm)"  >
+          <input type=button value="취소"  onClick="backToList(privacyForm)">
+         
+ </div>
     
-  		<div  id="tr_btn"  align="center"  >
-  		
-       		<input type=button value="수정하기" onClick="enable(this.form)">
-       		<input type=button value="취소"  onClick="backToList(this.form)">
-   		
- 	 </div>
- 	
-  <%@include file="manager/footer.jsp"%>
+  <div  id="tr_btn" align="center"   >
+   
+       <input type=button value="수정하기" onClick="enable(this.form)">
+       <input type=button value="취소"  onClick="backToList(this.form)">
+  
+  </div>
+
+ <%@include file="manager/footer.jsp"%>
  </form>
 </body>
 </html>

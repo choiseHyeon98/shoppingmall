@@ -14,7 +14,7 @@
      
      #i_tems {
      	height: 200px;
- 		width: 90%;
+ 		width: 100%;
      }
    
    </style>
@@ -51,28 +51,26 @@
   <table  border=3  align="center">
  
   <tr>
-    <td width="40" align="center"  >
-      회사정보 
+    <td width="50" align="center"  >
+      이용약관 및 환불규정 
    </td>
-   <td width="90%">
+   <td width="700px">
     	<input type=text value="${footerVO.tems }" name="tems"  id="i_tems" disabled />
    </td>   
   </tr>
- 
-  <tr id="tr_btn_modify"  >
-      <td colspan="2"   align="center" >
+  </table>
+  <div id="tr_btn_modify"  align="center" >
           <input type=button value="수정반영하기" onClick="fn_modify_article(temsForm)"  >
           <input type=button value="취소"  onClick="backToList(temsForm)">
-      </td>   
-  </tr>
+  </div>
     
-  <tr  id="tr_btn"    >
-   <td colspan="2" align="center">
+  <div id="tr_btn" align="center"  >
+   
        <input type=button value="수정하기" onClick="enable(this.form)">
        <input type=button value="취소"  onClick="backToList(this.form)">
-   </td>
-  </tr>
- </table>
+ 
+ </div>
+
  <%@include file="manager/footer.jsp"%>
  </form>
 </body>
