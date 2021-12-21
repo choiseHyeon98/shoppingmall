@@ -44,7 +44,7 @@ request.setCharacterEncoding("UTF-8");
 					varStatus="eventNum">
 				
 					<a
-						href="../manager/event/mod?eventNum=${eventList.eventNum }">
+						href="../manager/event/mod?eventNum=${eventList.eventNum }&eventImg=${eventList.eventImg}">
 						<img class="mySlides" src="../fileDownload?eventImg=${eventList.eventImg}"
 						alt="${eventList.eventTitle }" style="width: 100%; height: 180px;">
 					</a>

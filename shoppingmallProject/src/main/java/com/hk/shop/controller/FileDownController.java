@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.hk.shop.vo.EventVO;
 
 
 @Controller
@@ -17,11 +21,11 @@ public class FileDownController {
 
 	//파일다운로드
 	@RequestMapping(value="/fileDownload")
-	public void fileDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void fileDownload(HttpServletRequest request, HttpServletResponse response,@RequestParam("eventImg")String eventImg) throws Exception {
 		
-		String fileName = request.getParameter("eventImg");
+		String fileName = eventImg;
 		String realFileName="";
-		System.out.println("fileName");
+		System.out.println("fileName="+fileName);
 		
 		String browser = request.getHeader("User-Agent");
 		//파일인코딩

@@ -23,13 +23,13 @@ public class EventDAO {
 		return EventVO;
 	}
 
-	public EventVO selectOneEvents(int eventNum) {
+	public EventVO selectOneEvents(EventVO eventVO) {
 		// TODO Auto-generated method stub
 		
-		EventVO eventVO = session.selectOne("mapper.event.eventOne",eventNum);
+		EventVO event = session.selectOne("mapper.event.eventOne",eventVO);
 		//이벤트 리스트 번호 조회해서 가져옴
 		
-		return eventVO;
+		return event;
 	}
 
 }

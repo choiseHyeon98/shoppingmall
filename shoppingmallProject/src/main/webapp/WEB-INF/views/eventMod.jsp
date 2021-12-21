@@ -50,7 +50,6 @@
      */
     }
     
-   
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -60,43 +59,44 @@
             reader.readAsDataURL(input.files[0]);
         }
     }  
+    
+    
+   
  </script>
 </head>
 <body>
 <h1 align="center">${eventVO.eventTitle}</h1>
-  <form name="eventMod" action="mod" method="post" >
+  <form name="eventMod" action="mod" method="post"  enctype="multipart/form-data">
   <table  border=0  align="center">
   <tr>
   	<td width="150" align="center">
   		이벤트 등록 번호
   	</td>
  	<td>
- 		<input type="text" value="${eventVO.eventNum }" disabled />
- 		<input type="hidden" name="eventNum" value="${eventVO.eventNum}"  />
+ 		<input type="text" value="${event.eventNum }" disabled />
+ 		<input type="hidden" name="eventNum" value="${event.eventNum}"  />
  	</td>
  </tr>
-  <c:if test="${not empty eventVO.eventImg && eventVO.eventImg!='null' }">  
    <tr>
     <td width="150" align="center" rowspan="2">
       이미지
    </td>
-   <td>
-    <input type="hidden"  name="originalFileName" value="${eventList.eventImg }" />
-    <img src="${contextPath}/fileDownload.do?eventImg=${eventList.eventImg}" id="preview" src="#" width=200 height=200  />
-   </td>   
+  <td>
+   <input type="hidden"  name="eventImg" value="${event.eventImg }" />
+    <img src="/shop/fileDownload?eventImg=${event.eventImg}" id="preview" src="#" width=200 height=200  /> 
+   </td>     
   </tr>  
   <tr>
     <td>
-       <input type="file"  name="eventImg" id="eventImg" onchange="readURL(this);" />
+       <input type="file"  name="uploadEventImage" id="eventImg" onchange="readURL(this);" />
     </td>
   </tr>
- </c:if>  
   <tr>
     <td width="150" align="center" >
       제목 
    </td>
    <td>
-    <input type=text value="${eventVO.eventTitle }" name="eventTitle"  id="eventTitle" />
+    <input type=text value="${event.eventTitle }" name="eventTitle"  id="eventTitle" />
    </td>   
   </tr>
   <tr>
@@ -104,7 +104,7 @@
       내용
    </td>
    <td>
-    <textarea rows="20" cols="60"  name="eventContent"  id="eventContent" />${eventVO.eventContent }</textarea>
+    <textarea rows="20" cols="60"  name="eventContent"  id="eventContent" />${event.eventContent }</textarea>
    </td>  
   </tr>
   <tr>
@@ -115,9 +115,8 @@
           
       </td>   
   </tr>
-    
- 
  </table>
+ 
  </form>
 </body>
 </html>

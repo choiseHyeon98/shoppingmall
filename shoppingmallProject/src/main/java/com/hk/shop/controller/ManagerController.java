@@ -263,13 +263,13 @@ public class ManagerController {
 			
 			UUID uuid = UUID.randomUUID();
 			fileName=uuid+"."+ext;
-			uploadFile.transferTo(new File("c:\\board/eventImg\\"+fileName));
+			uploadFile.transferTo(new File("c:\\board\\eventImg\\"+fileName));
 			
 		}
 		eventVO.setEventImg(fileName);
 
 		int ret = managerService.eventAddDoneService(eventVO);
-		System.out.println("eventVO=" + eventVO.toString());
+		System.out.println("eventVO " + eventVO.toString());
 		model.addAttribute("ret", ret);
 
 		return "eventAddDone";
@@ -279,10 +279,12 @@ public class ManagerController {
 
 	// event배너 수정 폼
 	@RequestMapping(value = "/manager/event/mod", method = RequestMethod.GET)
-	public String eventMod(Model model, @RequestParam("eventNum") int eventNum) {
+	public String eventMod(Model model, @ModelAttribute EventVO eventVO) {
 
-		EventVO eventVO = managerService.eventModService(eventNum);
-		model.addAttribute("eventVO", eventVO);
+		EventVO event = managerService.eventModService(eventVO);
+		
+		System.out.println("eventVO="+eventVO);
+		model.addAttribute("event", event);
 
 		return "eventMod";
 

@@ -23,9 +23,9 @@ request.setCharacterEncoding("UTF-8");
 				<c:forEach var="eventList" items="${eventList }"
 					varStatus="eventNum">
 					<a
-						href="shop/event/eventList?eventNum=${eventList.eventNum }">
+						href="../shop/event/eventList?eventNum=${eventList.eventNum }">
 						<img class="mySlides"
-						src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+						src="./fileDownload?eventImg=${eventList.eventImg}"
 						alt="${eventList.eventTitle }" style="width: 100%; height: 180px;">
 					</a>
 				</c:forEach>
