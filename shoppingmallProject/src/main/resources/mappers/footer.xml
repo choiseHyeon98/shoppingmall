@@ -46,6 +46,17 @@
 	
 	</select>
 	
+	<select id="selecttems"  resultType="FooterVO">
+   <![CDATA[
+    SELECT "tems" from FOOTER
+   ]]>
+	</select>
+	
+	<select id="selectprivacy"  resultType="FooterVO">
+   <![CDATA[
+    SELECT "privacy" from FOOTER
+   ]]>
+	</select>
 
 	
 </mapper>

@@ -201,6 +201,34 @@ public class ManagerDAO {
 	}
 
 
+	public FooterVO companyInfoDAO(String compInfo) {
+		// TODO Auto-generated method stub
+		
+		FooterVO footerVO = session.selectOne("mapper.footer.selectCompInfo", compInfo);
+		
+		return footerVO;
+	}
+
+
+	public FooterVO temsUpdateFormDAO(String tems) {
+		// TODO Auto-generated method stub
+		
+		FooterVO footerVO = session.selectOne("mapper.footer.selecttems", tems);
+
+		
+		return footerVO;
+	}
+
+
+	public FooterVO privacyUpdateFormDAO(String privacy) {
+		// TODO Auto-generated method stub
+		
+		FooterVO footerVO = session.selectOne("mapper.footer.selectprivacy", privacy);
+		
+		return footerVO;
+	}
+
+
 	
 
 	

@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class FileDownController {
@@ -32,8 +31,8 @@ public class FileDownController {
 		} else {
 			fileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
 		}
-		realFileName = "C:\\board\\eventImg\\" +fileName;
-		System.out.println("realFileName");
+		realFileName = "C:\\board\\eventImg\\"+fileName;
+		System.out.println("realFileName="+ realFileName);
 		File file1 = new File(realFileName);
 		if (!file1.exists()) {
 			return ;

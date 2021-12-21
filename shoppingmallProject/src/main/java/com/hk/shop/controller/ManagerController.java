@@ -161,7 +161,7 @@ public class ManagerController {
 		List<ProductVO> Product = productService.selectAll();
 		model.addAttribute("Product", Product);
 		System.out.println("AllList" + Product.toString());
-		return "ProductList";
+		return "manager/ProductList";
 	}
 
 	// 2. 캐주얼 상품
@@ -170,7 +170,7 @@ public class ManagerController {
 		List<ProductVO> Product = productService.selectCasual();
 		model.addAttribute("Product", Product);
 		System.out.println("listCasual" + Product.toString());
-		return "ProductList";
+		return "manager/ProductList";
 	}
 
 	// 3. 오피스 상품/product/listOffice
@@ -179,7 +179,7 @@ public class ManagerController {
 		List<ProductVO> Product = productService.selectOffice();
 		model.addAttribute("Product", Product);
 		System.out.println("listOffice" + Product.toString());
-		return "ProductList";
+		return "manager/ProductList";
 	}
 
 	// 4. 페미닌 상품/product/listFeminine
@@ -188,7 +188,7 @@ public class ManagerController {
 		List<ProductVO> Product = productService.selectFeminine();
 		model.addAttribute("Product", Product);
 		System.out.println("listFeminine" + Product.toString());
-		return "ProductList";
+		return "manager/ProductList";
 	}
 
 	// 5. 힙 상품/product/listHip
@@ -197,7 +197,7 @@ public class ManagerController {
 		List<ProductVO> Product = productService.selectHip();
 		model.addAttribute("Product", Product);
 		System.out.println("listHip" + Product.toString());
-		return "ProductList";
+		return "manager/ProductList";
 	}
 
 	// 6. 빈티지 상품/product/listVintage
@@ -206,7 +206,7 @@ public class ManagerController {
 		List<ProductVO> Product = productService.selectVintage();
 		model.addAttribute("Product", Product);
 		System.out.println("listVintage" + Product.toString());
-		return "ProductList";
+		return "manager/ProductList";
 	}
 
 	// 오늘배송
@@ -214,7 +214,7 @@ public class ManagerController {
 	String dailyCategory(Model model) {
 		List<ProductVO> Product = productService.selectDaily();
 		model.addAttribute("Product", Product);
-		return "ProductList";
+		return "manager/ProductList";
 	}
 	
 	
@@ -532,10 +532,19 @@ public class ManagerController {
 
 	}
 	
-	
+	//관리자 -푸터 회사정보 수정 /manager/footer/companyInfo 
+	@RequestMapping(value = "/manager/footer/companyInfo", method = RequestMethod.GET)
+	public String companyInfo(Model model, @ModelAttribute("compInfo") String compInfo) {
+
+		FooterVO footerVO = managerService.companyInfoService(compInfo);
+		model.addAttribute("footerVO", footerVO);
+
+		return "companyInfoUpdate";
+
+	}
 	
 	//관리자 -푸터 회사정보 수정 /manager/footer/companyInfo 
-	@RequestMapping(value = "/manager/footer/companyInfo", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/manager/footer/companyInfo", method = RequestMethod.POST)
 	public String companyInfoUpdate(Model model, @ModelAttribute FooterVO footerVO) {
 
 		int ret = managerService.companyInfoUpdateSerivce(footerVO);
@@ -545,33 +554,54 @@ public class ManagerController {
 		
 		// update 후 결과받기
 
-		return "companyInfoUpdate";
+		return "companyInfoUpdateDone";
 		
 	}
 	
 	//관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms 
-	@RequestMapping(value = "/manager/footer/tems", method = {RequestMethod.GET,RequestMethod.POST})
+		@RequestMapping(value = "/manager/footer/tems", method = RequestMethod.GET)
+		public String temsUpdate(Model model, @ModelAttribute("tems") String tems) {
+
+			FooterVO footerVO = managerService.temsUpdateFormSerivce(tems);
+			model.addAttribute("footerVO", footerVO);
+
+			return "temsUpdate";
+
+		}
+	
+	//관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms 
+	@RequestMapping(value = "/manager/footer/tems", method = RequestMethod.POST)
 	public String temsUpdate(Model model, @ModelAttribute FooterVO footerVO) {
 
 		int ret = managerService.temsUpdateSerivce(footerVO);
 		model.addAttribute("ret", ret);
 		// update 후 결과받기
 
-		return "temsUpdate";
+		return "temsUpdateDone";
 		
 
 	}
 	
+	//관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms 
+	@RequestMapping(value = "/manager/footer/privacy", method = RequestMethod.GET)
+	public String privacyUpdate(Model model, @ModelAttribute("privacy") String privacy) {
+
+		FooterVO footerVO = managerService.privacyUpdateFormSerivce(privacy);
+		model.addAttribute("footerVO", footerVO);
+
+		return "privacyUpdate";
+
+	}
 	
 	//관리자-개인정보 처리방침 /manager/footer/privacy
-	@RequestMapping(value = "/manager/footer/privacy", method = {RequestMethod.GET,RequestMethod.POST})
-	public String privacyUpdate(Model model, @ModelAttribute FooterVO footerVO) {
+	@RequestMapping(value = "/manager/footer/privacy", method = RequestMethod.POST)
+	public String privacyUpdateDone(Model model, @ModelAttribute FooterVO footerVO) {
 
 		int ret = managerService.privacyUpdateSerivce(footerVO);
 		model.addAttribute("ret", ret);
 		// update 후 결과받기
 
-		return "privacyUpdate";
+		return "privacyUpdateDone";
 		
 
 	}

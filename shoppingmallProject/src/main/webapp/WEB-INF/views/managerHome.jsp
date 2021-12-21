@@ -21,7 +21,7 @@ request.setCharacterEncoding("UTF-8");
   	
   </style>
 <!-- favicon -->
-<%@include file="headerfooter/favicon.jsp"%>
+<%@include file="manager/favicon.jsp"%>
 </head>
 <body>
 	<!-- header -->
@@ -190,7 +190,7 @@ request.setCharacterEncoding("UTF-8");
 		</c:choose>
 	</div>
 	<!-- footer -->
-	<%@include file="headerfooter/footer.jsp"%>
+	<%@include file="manager/footer.jsp"%>
 </form>
 </body>
 <script>

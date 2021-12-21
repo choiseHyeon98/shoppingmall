@@ -8,11 +8,11 @@ request.setCharacterEncoding("UTF-8");
 <html>
 <title>ProductList</title>
 <!-- favicon -->
-<%@include file="headerfooter/favicon.jsp"%>
+<%@include file="./favicon.jsp"%>
 <body>
 	<!-- body -->
 	<!-- header -->
-	<%@include file="headerfooter/header.jsp"%>
+	<%@include file="./header.jsp"%>
 
 	<!-- 페이징 기능 미구현상태. -->
 
@@ -48,5 +48,5 @@ request.setCharacterEncoding("UTF-8");
 	</div>
 
 	<!-- footer -->
-	<%@include file="headerfooter/footer.jsp"%>
+	<%@include file="./footer.jsp"%>
 </body>

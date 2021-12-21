@@ -25,7 +25,7 @@
 </script>
  <title>새글 쓰기 창</title>
 	<!-- favicon -->
-	<%@include file="headerfooter/favicon.jsp"%>
+	<%@include file="manager/favicon.jsp"%>
 </head>
 <body>
 <!-- header -->
@@ -57,6 +57,6 @@
     </table>
   </form>
   <!-- footer -->
-	<%@include file="headerfooter/footer.jsp"%>
+	<%@include file="manager/footer.jsp"%>
 </body>
 </html>

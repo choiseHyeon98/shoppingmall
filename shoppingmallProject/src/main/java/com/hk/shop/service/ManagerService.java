@@ -250,6 +250,21 @@ public class ManagerService {
 		return map;
 	}
 
+	public FooterVO companyInfoService(String compInfo) {
+		// TODO Auto-generated method stub
+		return managerDAO.companyInfoDAO(compInfo);
+	}
+
+	public FooterVO temsUpdateFormSerivce(String tems) {
+		// TODO Auto-generated method stub
+		return managerDAO.temsUpdateFormDAO(tems);
+	}
+
+	public FooterVO privacyUpdateFormSerivce(String privacy) {
+		// TODO Auto-generated method stub
+		return managerDAO.privacyUpdateFormDAO(privacy);
+	}
+
 	
 
 	
