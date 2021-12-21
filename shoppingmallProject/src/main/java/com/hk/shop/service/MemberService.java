@@ -21,6 +21,20 @@ public class MemberService {
 		System.out.println("memberService="+memberVO.toString());
 		return memberDAO.isExisted(memberVO);
 	}
+	
+	// 중복체크 (코드)
+	public String duplicateCheck(String id) {
+		// TODO Auto-generated method stub
+		return memberDAO.duplicateCheckId(id);
+	}
+	
+	// 중복체크 (책)
+	public String overlapped(String id) {
+		// TODO Auto-generated method stub
+		return memberDAO.duplicateCheckId(id);
+	}
+
+
 
 	public int addMember(MemberVO memberVO) {
 		// TODO Auto-generated method stub
@@ -36,6 +50,8 @@ public class MemberService {
 		
 		return map;
 	}
+
+
 
 	
 	

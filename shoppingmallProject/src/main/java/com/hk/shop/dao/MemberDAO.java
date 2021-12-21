@@ -21,6 +21,13 @@ public class MemberDAO {
 		return memberVO;
 	}
 
+	// 아이디 중복 체크
+	public String duplicateCheckId(String id) {
+		// TODO Auto-generated method stub
+		String dupId = sqlSession.selectOne("mapper.member.dupId", id);
+		return dupId;
+	}
+	
 
 	public int addMember(MemberVO memberVO) {
 		// TODO Auto-generated method stub
@@ -42,6 +49,8 @@ public class MemberDAO {
 		MemberVO memberVO = sqlSession.selectOne("mapper.member.selectName", id);
 		return memberVO;
 	}
+
+
 
 
 

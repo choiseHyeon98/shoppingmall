@@ -1,16 +1,23 @@
 package com.hk.shop.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.shop.service.MemberService;
 import com.hk.shop.vo.CartVO;
@@ -18,7 +25,7 @@ import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OrderListVO;
 
 @Controller
-public class MemberController {
+public class MemberController extends HttpServlet {
 	//Controller
 	
 	@Autowired
@@ -85,6 +92,33 @@ public class MemberController {
 	public String Register () {
 		// 회원가입
 		return "register"; // 회원가입하는 창
+	}
+	/*
+	@RequestMapping (value="/dupId", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public Map<String, Object> dupId (@RequestParam("id")String id) {
+		System.out.println("id="+id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		String dupId = memberService.duplicateCheck(id);
+		if (dupId == null) {
+			// 중복이 아니다
+			map.put("id", "false");
+		} else {
+			// 중복
+			map.put("id", "true");
+		}
+		return map;
+	}
+	*/
+	
+	// @Override
+	@RequestMapping (value="/overlapped.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public ResponseEntity overlapped(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ResponseEntity resEntity = null;
+		String result = memberService.overlapped(id);
+		resEntity = new ResponseEntity (result, HttpStatus.OK);
+		
+		return resEntity;
 	}
 	
 	@RequestMapping (value="/member/register", method=RequestMethod.POST)

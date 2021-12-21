@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xmlns:aop="http://www.springframework.org/schema/aop"
    xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
@@ -11,29 +11,49 @@
    
    <!--  Namespace : 패키지 개념. -->   
    <!--  DB 접속관련 정보 기록 -->
-   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-        <property name="username" value="STUDY" />
-        <property name="password" value="STUDY" />
-    </bean>       
+   <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+        <beans:property name="username" value="STUDY" />
+        <beans:property name="password" value="STUDY" />
+    </beans:bean>       
     
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-      <property name="dataSource" ref="dataSource" />
+    <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <beans:property name="dataSource" ref="dataSource" />
 
-      <property name="configLocation" value="WEB-INF/spring/mybatis-config.xml"/>   
+      <beans:property name="configLocation" value="WEB-INF/spring/mybatis-config.xml"/>   
 
       <!-- DB에서 실행할 sql 문장을 태그로 정의해 놓는다. -->
-      <property name="mapperLocations" value="classpath:mappers/*.xml"/>
+      <beans:property name="mapperLocations" value="classpath:mappers/*.xml"/>
       <!-- mappers/board.xml -->
       <!-- mappers/member.xml -->
       <!-- mapper를 테이블명과 1:1로-->
-   </bean>
+   </beans:bean>
+   
+   <!-- mail 서버 연동 -->
+	<beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+      <beans:property name="host" value="smtp.gmail.com"/>
+        <beans:property name="port" value="587" />
+        <beans:property name="username" value="ddh04023@gmail.com" />
+        <beans:property name="password" value="cmh911209" />
+        
+        <beans:property name="javaMailProperties" >
+          <beans:props>
+          <beans:prop key="mail.transport.protocol">smtp</beans:prop>
+          <beans:prop key="mail.smtp.auth">true</beans:prop>
+          <beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+          <beans:prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</beans:prop>
+          <beans:prop key="mail.debug">true</beans:prop>
+          
+          </beans:props>
+        </beans:property>
+     
+    </beans:bean>
 
    
    <!-- 3. Mybatis DB 프로그램의 자동화 객체 -> template -->
-   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-      <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
-   </bean> 
+   <beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+      <beans:constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+   </beans:bean> 
    
-</beans>
+</beans:beans>

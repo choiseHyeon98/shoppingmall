@@ -39,6 +39,12 @@
 	]]>
 	</insert>
 	
+	<select id ="dupId" parameterType="String" resultType="String">
+	<![CDATA[
+        SELECT "id" FROM MEMBER where "id"=#{id}
+	]]>
+	</select>
+	
 <!-- 
 	<select id ="selectOneInfo" resultType="MemberVO" >
 	<![CDATA[

@@ -23,7 +23,7 @@ if (memberVO == null) {
 %>
 <ul style="float: right;">
 <li><input type="button" value="LOGIN" onClick="location.href='/shop/login'"></li>
-<li><input type="button" value="REGISTER" onClick="location.href='/shop/register'" ></li>
+<li><input type="button" value="REGISTER" onClick="location.href='/shop/member/register'" ></li>
 </ul>
 <%
 
@@ -31,7 +31,7 @@ if (memberVO == null) {
 %>
 <ul style="float: right;">
 <li><input type="button" value="내 정보" onClick="location.href='/shop/s/myinfo'"></li>
-<li><input type="button" value="LOGOUT" onClick="location.href='logout'" ></li>
+<li><input type="button" value="LOGOUT" onClick="location.href='/shop/logout'" ></li>
 </ul>
 <%
 }

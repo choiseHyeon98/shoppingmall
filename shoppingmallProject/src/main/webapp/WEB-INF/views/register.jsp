@@ -16,16 +16,23 @@
 
 
 
-<form action="register" method="post">
-	ID : <input type="text" name="id" maxlength="10" required><br>
-	PW : <input type="text" name="pw" maxlength="20" required><br>
-	NAME : <input type="text" name="name" maxlength="20" required><br>
-	PHONE : <input type="text" name="phone" maxlength="12"><br>
-	ADDRESS : <input type="text" name="address" maxlength="100" required><br>
-	EMAIL : <input type="text" name="email" maxlength="100"><br> 
+<form name="frmLogin" action="register" method="post">
+	<input type="text" name="id" maxlength="10" class="text-field" placeholder="ID" required>
+	<input type="button" value="중복체크" onClick='idCheck()'><br>
+	<input type="text" name="pw" maxlength="20" class="text-field" placeholder="PW" required><br>
+	<input type="text" name="name" maxlength="20" class="text-field" placeholder="NAME" required><br>
+	<input type="text" name="phone" maxlength="12" class="text-field" placeholder="PHONE" ><br>
+	<input type="text" name="address" maxlength="100" class="text-field" placeholder="ADDRESS" required><br>
+	<input type="text" name="email" maxlength="100" class="text-field" placeholder="EMAIL"><br> 
 	
 	<input type="submit" value="회원가입">
 	<input type="reset" value="초기화">
 </form>
 </body>
+<script>
+function idCheck(){
+	document.frmLogin.action="../../shop/overlapped.do";
+	document.frmLogin.submit();
+}
+</script>
 </html>

@@ -36,13 +36,13 @@ div {
 <div id = "sform">
 <form name="loginForm" action="login" method="post">
 <h3> LOGIN </h3>
-   ID : <input type="text" name="id" maxlength="10"> <br>
-   PW : <input type="password" name="pw" maxlength="10"> <br><br>
+   <input type="text" name="id" maxlength="10" class="text-field" placeholder="ID"> <br>
+   <input type="password" name="pw" maxlength="10" class="text-field" placeholder="PW"> <br><br>
 
    <input type="submit" value="LOGIN" style="width:254px;"> <br> 
 
    
-   <input type="button" value="REGISTER" onClick="location.href='register'"  style="width:125px;">
+   <input type="button" value="REGISTER" onClick="location.href='/shop/member/register'"  style="width:125px;">
    <input type="button" value="FIND ID/PW" onClick="location.href='findIdPw'" style="width:125px;">
    </form>
 
