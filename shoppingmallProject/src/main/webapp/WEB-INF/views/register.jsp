@@ -14,7 +14,7 @@
 </head>
 <body>
 
-개인정보 입력하시오
+
 
 <form action="register" method="post">
 	ID : <input type="text" name="id" maxlength="10" required><br>

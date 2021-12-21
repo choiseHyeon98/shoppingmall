@@ -9,20 +9,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+div {
+	width : 350px;
+    height : 250px;
+    border : 1px solid black;
+    posittion: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: 150px;
+    margin-top: 100px;
+
+}
+
+#sform {
+	display : inline-block;
+    text-align: center;
+	padding: 30px 25px 10px 25px;
+}
+</style>
 <meta charset="UTF-8">
 <title>로그인 창</title>
 </head>
 <body>
 
+<div id = "sform">
 <form name="loginForm" action="login" method="post">
-   아이디 : <input type="text" name="id" maxlength="10"> <br>
-   비밀번호 : <input type="password" name="pw" maxlength="10"> <br><br>
-   <input type="submit" value="로그인"> <br> 
-   <input type="reset" value="지우기"> <br>
+<h3> LOGIN </h3>
+   ID : <input type="text" name="id" maxlength="10"> <br>
+   PW : <input type="password" name="pw" maxlength="10"> <br><br>
+
+   <input type="submit" value="LOGIN" style="width:254px;"> <br> 
+
    
-   <input type="button" value="회원가입하기" onClick="location.href='register'">
-   <input type="button" value="아이디/비밀번호 찾기" onClick="location.href='findIdPw'">
+   <input type="button" value="REGISTER" onClick="location.href='register'"  style="width:125px;">
+   <input type="button" value="FIND ID/PW" onClick="location.href='findIdPw'" style="width:125px;">
    </form>
 
+</div>
 </body>
 </html>
