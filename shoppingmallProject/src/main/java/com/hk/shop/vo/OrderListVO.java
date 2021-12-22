@@ -15,8 +15,17 @@ public class OrderListVO {
 	private String payment;
 	private String cancleOrder;
 	private String delStatus;
+	private String token;
 	private Date orderDate;
 	private int orderCount;
+	
+	
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
 	
 	public int getOrderNum() {
 		return orderNum;
@@ -67,7 +76,6 @@ public class OrderListVO {
 		this.payment = payment;
 	}
 	
-	
 	public String getCancleOrder() {
 		return cancleOrder;
 	}
@@ -96,8 +104,8 @@ public class OrderListVO {
 	public String toString() {
 		return "OrderListVO [orderNum=" + orderNum + ", proNum=" + proNum + ", id=" + id + ", sizeOption=" + sizeOption
 				+ ", colorOption=" + colorOption + ", tprice=" + tprice + ", delNum=" + delNum + ", payment=" + payment
-				+ ", cancleOrder=" + cancleOrder + ", delStatus=" + delStatus + ", orderDate=" + orderDate
-				+ ", orderCount=" + orderCount + "]";
+				+ ", cancleOrder=" + cancleOrder + ", delStatus=" + delStatus + ", token=" + token + ", orderDate="
+				+ orderDate + ", orderCount=" + orderCount + "]";
 	}
 	
 	

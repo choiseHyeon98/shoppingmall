@@ -19,6 +19,7 @@
 		<result property="delStatus" column="delStatus" />
 		<result property="orderDate" column="orderDate" />
 		<result property="orderCount" column="orderCount" />
+		<result property="token" column="token" />
 	</resultMap>
 
 	<resultMap id="deliveryListResult" type="DeliveryVO">
@@ -54,8 +55,8 @@
 	<insert id="newOrder" parameterType="OrderListVO">
 	 <![CDATA[ 
       INSERT INTO ORDERLIST
-	("orderNum", "proNum", "id", "sizeOption", "colorOption", "tprice",  "payment", "orderDate")
-	VALUES((SELECT MAX("orderNum") FROM ORDERLIST)+1, #{proNum}, #{id}, #{sizeOption}, #{colorOption}, #{tprice}, #{payment}, sysdate)
+	("orderNum", "proNum", "id", "sizeOption", "colorOption", "tprice",  "payment", "orderDate", "token")
+	VALUES((SELECT MAX("orderNum") FROM ORDERLIST)+1, #{proNum}, #{id}, #{sizeOption}, #{colorOption}, #{tprice}, #{payment}, sysdate, #{token})
 
    ]]>
 	</insert>
@@ -66,4 +67,11 @@
 	VALUES(#{id}, (SELECT MAX("orderNum") FROM ORDERLIST), #{Recipient}, #{shippingAddress}, #{delPhone}, #{delMemo})
    ]]>
 	</insert>
+	
+	
+	<select id="chkToken" parameterType="java.lang.String" resultType="String">
+	 <![CDATA[ 
+      SELECT * FROM ORDERLIST WHERE "token" = #{token}
+   ]]>
+	</select>
 </mapper>

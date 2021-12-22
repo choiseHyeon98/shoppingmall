@@ -33,6 +33,12 @@ public class OrderListDAO {
 		int ret = session.insert("mapper.orderList.newDel", delVo);
 		return ret;
 	}
+
+	public String chkToken(String token) {
+		// TODO Auto-generated method stub
+		String chktoken = session.selectOne("mapper.orderList.chkToken", token);
+		return chktoken;
+	}
 		
 		
 

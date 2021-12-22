@@ -26,4 +26,9 @@ public class OrderService {
 		return orderdao.newDel(delVo);
 	}
 
+	public String chkToken(String token) {
+		// TODO Auto-generated method stub
+		return orderdao.chkToken(token);
+	}
+
 }
