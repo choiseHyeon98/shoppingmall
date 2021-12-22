@@ -48,11 +48,12 @@ public class MypageController {
 	@RequestMapping (value="/s/myinfo", method=RequestMethod.GET)
 	// 濡쒓렇�씤 �븯怨� POST濡� 諛붽� �삁�젙
 	public String Mypageinfo ( Model model, HttpSession session) {
-	//	String id = "";
+		String id = "";
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
-	//	id = memberVO.getId();
-	//	Map<String, Object> map = mypageService.viewMyInfo(id);
-	//	model.addAttribute("member", map.get("memberVO"));
+		id = memberVO.getId();
+		Map<String, Object> map = mypageService.viewMyInfo(id);
+		model.addAttribute("member", map.get("memberVO"));
+		// 세션뺴고 디비가기. 모델써서 login.id를 memberVO.id로 바꾸기
 		
 		return "mypageInfo"; //--> �씠寃� �옒 �굹�삤�뒗吏�
 		
@@ -71,6 +72,8 @@ public class MypageController {
 	// 내 정보 수정입력
 		@RequestMapping (value="s/mypage/update", method=RequestMethod.POST)
 		public String MypageUpdateDone(Model model, @ModelAttribute MemberVO memberVO) {
+			System.out.println("infoUpdate0="+memberVO.toString());
+
 			int ret = mypageService.updateMypage(memberVO);
 			System.out.println("infoUpdate1="+memberVO.toString());
 			model.addAttribute("ret", ret);
@@ -82,7 +85,6 @@ public class MypageController {
 	// 濡쒓렇�씤 �븯怨� POST濡� 諛붽� �삁�젙
 	public String Cart (Model model, HttpSession session) {
 		
-		// 값 못불러오던 코드
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
 		String id= memberVO.getId();
 			//이 아이디로 카트 정보 가져오기.
@@ -92,12 +94,13 @@ public class MypageController {
 		
 	//	List<ProductVO> productList = mypageService.findProduct(cartList);
 		model.addAttribute("cartList", cartList);
-		System.out.println("cartList="+cartList.toString());
+		System.out.println("cartList3="+cartList.toString());
+		
 		return "cartList"; // �옣諛붽뎄�땲+李쒕ぉ濡� 李�
 	}
 	
 	
-	@RequestMapping (value="/s/mypage/myorders", method=RequestMethod.GET)
+	@RequestMapping (value="/s/mypage/myorders", method= {RequestMethod.GET, RequestMethod.POST})
 	// 濡쒓렇�씤 �븯怨� POST濡� 諛붽� �삁�젙
 	public String MyOrders (Model model, HttpSession session) {
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
@@ -109,20 +112,30 @@ public class MypageController {
 		
 		model.addAttribute("myOrders", myOrders);
 		System.out.println("myOrders="+myOrders.toString());
-		
-		
-		/* 값못불러오던 코드
-		String id = "";
-		OrderListVO orderListVO = (OrderListVO) session.getAttribute("orderList");
-		// id = orderListVO.getId();
-		List<OrderListVO> myOrders = mypageService.myOrderList();
-		model.addAttribute("myOrders", myOrders);
-		*/
+
 		return "myorders"; // �궡 二쇰Ц湲곕줉李�
 	}
 	
+	@RequestMapping (value="/delete", method=RequestMethod.GET)
+	public String cartDelete (Model model, @RequestParam("cartNum") int cartNum) {
+		int ret = mypageService.removeCart(cartNum);
+		model.addAttribute("ret", ret);
+		return "cartDeleteDone";
+	}
 	
-	@RequestMapping (value="/mypage/addReview", method=RequestMethod.GET)
+	@RequestMapping (value="/s/mypage/muldelete", method=RequestMethod.GET)
+	public String cartMulDelete (Model model, @RequestParam("chkbox") List<Integer> cartNums) {
+		System.out.println("cartNums="+cartNums.toString());
+		Map<String, Integer> map = mypageService.cartMultiDelete(cartNums);
+		// 그 결과를 model에 넣고 jsp를 전달하라는데..?
+		model.addAttribute("cart", map.get("cartVO"));
+		
+		System.out.println("성공한 갯수="+map.get("succ"));
+		System.out.println("실패한 갯수="+map.get("fail"));
+		return "cartMulDelete";
+	}
+	
+	@RequestMapping (value="s/mypage/addReview", method=RequestMethod.GET)
 	public String addReview () {
 		return "addReview"; // 由щ럭 �옉�꽦李� + 二쇰Ц湲곕줉�뿉�꽌留� �뱾�뼱媛꾨떎
 	}

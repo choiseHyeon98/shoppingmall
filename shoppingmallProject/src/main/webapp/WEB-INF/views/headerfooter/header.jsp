@@ -6,7 +6,7 @@
   request.setCharacterEncoding("UTF-8");
 %>
 <%@ page import = "com.hk.shop.vo.MemberVO" %>
-<link rel="stylesheet" href="css/bootstrap.css">
+
 <header>
 <br>
 <div style ="text-align:center;">
@@ -18,7 +18,7 @@ MemberVO memberVO = (MemberVO) session.getAttribute("login");
 %>
 
 <%
-
+// 로그인 안되어있는 상태
 if (memberVO == null) {
 %>
 <ul style="float: right;">
@@ -26,7 +26,7 @@ if (memberVO == null) {
 <li><input type="button" value="REGISTER" onClick="location.href='/shop/member/register'" ></li>
 </ul>
 <%
-
+// 로그인 된 상태
 } else {
 %>
 <ul style="float: right;">

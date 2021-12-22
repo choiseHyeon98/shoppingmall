@@ -21,7 +21,7 @@ public class MypageDAO {
 
 	public MemberVO selectMyinfo(String id) {
 		// TODO Auto-generated method stub
-		MemberVO memberVO = sqlSession.selectOne("mapper.mypage.selectMyInfo", id);
+		MemberVO memberVO = sqlSession.selectList("mapper.mypage.selectMyInfo", id);
 		return memberVO;
 	}
 
@@ -29,7 +29,8 @@ public class MypageDAO {
 	public int updateMyInfo(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		int ret = sqlSession.update("mapper.mypage.updateMyInfo", memberVO);
-		System.out.println("infoUpdate2="+memberVO.toString());
+		System.out.println("infoUpdate3="+memberVO.toString());
+		
 		return ret;
 	}
 
@@ -37,6 +38,9 @@ public class MypageDAO {
 	public List<CartVO> showMyCart(String id) {
 		// TODO Auto-generated method stub
 		List <CartVO> cartList = sqlSession.selectList("mapper.mypage.showMyCart", id);
+		System.out.println("cart2="+id.toString());
+		System.out.println("cartList2="+cartList.toString());
+
 		return cartList;
 	}
 
@@ -50,6 +54,14 @@ public class MypageDAO {
 		// TODO Auto-generated method stub
 		int ret = sqlSession.insert("mapper.mypage.insertMyReview");
 		return ret;
+	}
+
+
+	public int deleteCart(int cartNum) {
+		// TODO Auto-generated method stub
+		System.out.println("cartNum3="+cartNum);
+		sqlSession.delete("mapper.mypage.deleteCart", cartNum);
+		return 0;
 	}
 
 

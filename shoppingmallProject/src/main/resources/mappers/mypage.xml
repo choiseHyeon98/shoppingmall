@@ -116,5 +116,12 @@
 	]]>
 	</insert>
 	
+	<delete id="deleteCart" parameterType="int">
+	<![CDATA[ 
+		DELETE FROM CART WHERE "cartNum"=#{cartNum}
+		
+	]]>
+	</delete>
+	
 	
 </mapper>

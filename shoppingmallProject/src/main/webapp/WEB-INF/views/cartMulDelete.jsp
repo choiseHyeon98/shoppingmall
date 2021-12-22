@@ -4,15 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 정보 수정 완료</title>
+<title>찜 목록 삭제</title>
 </head>
 <body>
-
 <script>
-	 alert("내 정보 수정이 완료 되었습니다.\n 내 정보 창으로 돌아갑니다.");
-	 document.location.href="/shop/s/myinfo";
+	 alert("선택하신 상품이 삭제되었습니다.");
+	 document.location.href="/shop/s/mypage/cart";
 	 
 </script>
-
 </body>
 </html>

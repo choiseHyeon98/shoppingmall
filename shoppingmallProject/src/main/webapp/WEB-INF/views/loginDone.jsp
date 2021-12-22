@@ -23,6 +23,14 @@ p {
 </style>
 <meta charset="UTF-8">
 <title>로그인 성공</title>
+
+<script type="text/javascript">
+function backToList(obj){
+    obj.action="/shop/";
+    obj.submit();
+  }
+</script>
+
 </head>
 <body>
 <div>
@@ -31,7 +39,7 @@ p {
 	
 	<!-- 메인 홈페이지로 가는 URL 버튼 -->
 	<input type="button" value="상품 보러가기" onClick="location.href='/shop/'" style="width:250px; height: 30px">
-
+	<input type=button value=""  onClick="backToList(frmArticle)">
 <!-- 	로그인 안된 상태에서 찜눌렀을때 로그인하고나서 상품상세로 돌아가기
 	<script>
 	alert("원래 페이지로 되돌아 갑니다.");

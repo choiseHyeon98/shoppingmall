@@ -13,16 +13,12 @@ request.setCharacterEncoding("UTF-8");
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+
+// form을 넘김
 function muldelete() {
-
-	// form을 넘김
-
 	var form = document.getElementsByName("muldelForm");
-
 	form[0].submit();
-
 	return true;
-
 }
 
 	
@@ -45,11 +41,16 @@ function muldelete() {
 		<span>찜한 상품이 없습니다</span>
 	</c:when>
 	<c:when test="${!empty cartList}">
-	  <c:forEach var="cartList" items="${cartList }" varStatus="proNum">
-		  <td><input type="checkbox" name="chkbox" value="${cartList.proNum }"></td>
+	<tr>
+	  <c:forEach var="cartList" items="${cartList }" varStatus="cartNum">
+	  	
+		  <td><input type="checkbox" name="chkbox" value="${cartList.cartNum }"></td>
 		  <td>${productVO.topImage }</td>
 		  <td>${cartList.sizeOption }, ${cartList.colorOption }</td>
-	  </c:forEach> <br>
+		
+	  </c:forEach>
+	</tr> <br>
+	
 	</c:when>
 
 </c:choose>
@@ -60,7 +61,7 @@ function muldelete() {
   <input type="submit" value="주문하기" onClick="location.href='/mypage/orderList'"> <br>
  -->
 		<input type="button" onclick="getCheckboxValue()"  value="주문하기">
-		<input type="button" onclick="return muldelete()"  value="삭제">
+		<input type="button" onclick="return muldelete()" class="cls2" value="삭제하기">
 </form>
 </body>
 </html>

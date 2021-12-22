@@ -42,6 +42,8 @@ public class MypageService {
 
 	public int updateMypage(MemberVO memberVO) {
 		// TODO Auto-generated method stub
+		System.out.println("infoUpdate="+memberVO.toString());
+
 		return mypageDAO.updateMyInfo(memberVO);
 	
 	}
@@ -68,6 +70,43 @@ public class MypageService {
 		return mypageDAO.insertMyReview(reviewVO);
 	}
 
+	public int removeCart(int cartNum) {
+		// TODO Auto-generated method stub
+		return mypageDAO.deleteCart(cartNum);
+	}
+
+	
+	// cartMulDel
+	public Map<String, Integer> cartMultiDelete(List<Integer> cartNums) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		
+		int succ = 0, fail = 0;
+		
+		for (int i=0; i<cartNums.size(); i++) {
+			// 지울 번호 하나 꺼내서
+			int cartNum = cartNums.get(i);
+			System.out.println("cartNum2="+cartNum);
+			int ret = mypageDAO.deleteCart(cartNum);
+			// ret = 0이면 실패, ret != 0이면 성공
+			if (ret!=0) {
+				// 성공이면
+				++succ;
+			} else {
+				// 실패면
+				++fail;
+			}
+		}
+		
+		// 성공갯수, 실패 갯수
+		map.put("succ", succ);
+		map.put("fail", fail);
+		
+		return map;
+	}
+
+
+	
 
 
 

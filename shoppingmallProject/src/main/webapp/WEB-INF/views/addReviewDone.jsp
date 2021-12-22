@@ -15,8 +15,12 @@
 </head>
 <body>
 
-주문기록으로 돌아가기
-홈페이지로 가기
+
+<script>
+	 alert("리뷰 작성이 완료 되었습니다.\n 주문 기록 창으로 돌아갑니다.");
+	 document.location.href="/s/mypage/myorders";
+	 
+	 </script>
 
 
 </body>

@@ -6,6 +6,7 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %> 
+<%@ page import = "com.hk.shop.vo.OrderListVO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,43 +17,48 @@
 
 나는 그동안 뭘 시켰나아아
 
+
+
 <table>
 
  <tr>
-    <th>상품이미지</th><th>상품이름/가격/수량/옵션</th><th>배송현황</th><th>리뷰작성</th>
-  </tr>
-  <tr>
-  	
-    
-    
-    <td>${myOrders.orderNum }</td>
-	<td>${myOrders.sizeOption }, ${myOrders.colorOption }</td>
-	<td>${myOrders.delStatus }</td>
-	<input type="button" value="리뷰작성" onClick="location.href=''">
-    </td>
-  </tr>
-  <tr>
-  	<td>${myOrders.orderNum }</td>
-	<td>${myOrders.sizeOption }, ${myOrders.colorOption }</td>
-	<td>${myOrders.delStatus }</td>
-	<input type="button" value="리뷰작성" onClick="location.href=''">
-    </td>
-  </tr>
-  <tr>
-  <td>${myOrders.orderNum }</td>
-	<td>${myOrders.sizeOption }, ${myOrders.colorOption }</td>
-	<td>${myOrders.delStatus }</td>
-	<input type="button" value="리뷰작성" onClick="location.href=''">
-    </td>
-  </tr>
-  <tr>
-  	<td>${myOrders.orderNum }</td>
-	<td>${myOrders.sizeOption }, ${myOrders.colorOption }</td>
-	<td>${myOrders.delStatus }</td>
-	<input type="button" value="리뷰작성" onClick="location.href=''">
-    </td>
-  </tr>
+    <th>상품이미지</th>
+    <th>상품이름/가격/수량/옵션</th>
+    <th>배송현황</th>
 
+  </tr>
+  
+<c:set var="delStatus" value="배송완료"/>
+
+<c:choose>
+<!-- 
+  <c:when test="${empty myOrders }">
+    <span>주문하신 상품이 없습니다.</span>
+  </c:when>
+ -->
+  
+  <c:when test="${delStatus eq '배송완료'}">
+    <tr>
+      <c:forEach var="myOrders" items="${myOrders }" varStatus="orderNum">
+        <td>${myOrders.orderNum }</td>
+		<td>${myOrders.sizeOption }, ${myOrders.colorOption }</td>
+		<td>${myOrders.delStatus }
+		<input type="button" value="리뷰작성" onClick="location.href='/shop/s/mypage/addReview'"></td>
+      </c:forEach>
+    </tr>
+  </c:when>
+  
+  <c:when test="${delStatus ne '배송완료' }">
+  <tr>
+      <c:forEach var="myOrders" items="${myOrders }" varStatus="orderNum">
+        <td>${myOrders.orderNum }</td>
+		<td>${myOrders.sizeOption }, ${myOrders.colorOption }</td>
+		<td>
+        <input type="text" value="${myOrders.delStatus }" name="delStatus" readonly></td>
+      </c:forEach>
+    </tr>
+  </c:when>
+</c:choose>
 </table>
 
 
