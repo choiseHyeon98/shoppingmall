@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
+
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,24 +35,15 @@ import com.hk.shop.vo.SerchVO;
 @Controller
 public class ManagerController {
 	/*
-	 * 관리자모드 홈페이지 /manager/managerHome 
-	 * 관리자모드 카테고리별 상세리스트 /manager/category 
-	 * 관리자모드이벤트등록 /manager/eventAdd 
-	 * 관리자 모드 이벤트 수정 /manager/eventMod 
-	 * 관리자 모드 이벤트 삭제 /manager/eventDel
-	 * 관리자 상품 등록 /manager/product/add 
-	 * 관리자 리뷰 관리 /manager/review/list 
-	 * 관리자 리뷰 댓글 /manager/review/comment 
-	 * 관리자 회원 관리리스트 /manager/member/list 
-	 * 관리자 회원 삭제 /manager/member/del 
-	 * 관리자 회원 관리 적용 /manager/member/update
-	 * 관리자 주문 관리 /manager/order/list 
-	 * 관ㄹ자 주문 취소 /manager/order/cancel
-	 * 관리자 문의 관리 /manager/FAQ/list
-	 * 관리자 문의 댓글 /manager/FAQ/comment
-	 * 관리자 문의 댓글 삭제 /manager/FAQ/del
-	 * 관리자 -푸터 회사정보 수정 /manager/footer/companyInfo 
-	 * 관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms 
+	 * 관리자모드 홈페이지 /manager/managerHome 관리자모드 카테고리별 상세리스트 /manager/category
+	 * 관리자모드이벤트등록 /manager/eventAdd 관리자 모드 이벤트 수정 /manager/eventMod 관리자 모드 이벤트 삭제
+	 * /manager/eventDel 관리자 상품 등록 /manager/product/add 관리자 리뷰 관리
+	 * /manager/review/list 관리자 리뷰 댓글 /manager/review/comment 관리자 회원 관리리스트
+	 * /manager/member/list 관리자 회원 삭제 /manager/member/del 관리자 회원 관리 적용
+	 * /manager/member/update 관리자 주문 관리 /manager/order/list 관ㄹ자 주문 취소
+	 * /manager/order/cancel 관리자 문의 관리 /manager/FAQ/list 관리자 문의 댓글
+	 * /manager/FAQ/comment 관리자 문의 댓글 삭제 /manager/FAQ/del 관리자 -푸터 회사정보 수정
+	 * /manager/footer/companyInfo 관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms
 	 * 관리자-개인정보 처리방침 /manager/footer/privacy
 	 */
 	@Autowired
@@ -73,17 +66,17 @@ public class ManagerController {
 		// 신상품받아오기
 		List<ProductVO> newList = new ArrayList<ProductVO>();
 		newList = managerService.newService();
-		System.out.println("newList="+newList.toString());
+		System.out.println("newList=" + newList.toString());
 
 		// 오늘배송상품 받아오기
 		List<ProductVO> todayList = new ArrayList<ProductVO>();
 		todayList = managerService.todayService();
-		System.out.println("todayList="+todayList.toString());
+		System.out.println("todayList=" + todayList.toString());
 
 		// 전체상품 리스트 받아오기
 		List<ProductVO> allList = new ArrayList<ProductVO>();
 		allList = managerService.allService();
-		System.out.println("allList="+allList.toString());
+		System.out.println("allList=" + allList.toString());
 
 		// 푸터받아오기
 		List<FooterVO> footerList = new ArrayList<FooterVO>();
@@ -100,60 +93,61 @@ public class ManagerController {
 		return "managerHome";
 
 	}
-	
-	//게시물 검색
-	@RequestMapping (value="/manager/product/serch", method= {RequestMethod.GET,RequestMethod.POST})
-	String serch(Model model, @ModelAttribute SerchVO serchVO){
+
+	// 게시물 검색
+	@RequestMapping(value = "/manager/product/serch", method = { RequestMethod.GET, RequestMethod.POST })
+	String serch(Model model, @ModelAttribute SerchVO serchVO) {
 
 		String serch = serchVO.getSerch();
-		
-		serchVO.setSerch("%"+serchVO.getSerch()+"%");
+
+		serchVO.setSerch("%" + serchVO.getSerch() + "%");
 		System.out.println(serchVO.getSerch());
-		
+
 		List<ProductVO> product;
 		product = productService.serchPro(serchVO);
 		System.out.println(product.toString());
-		model.addAttribute("Product",product);
-		model.addAttribute("serch",serch);
+		model.addAttribute("Product", product);
+		model.addAttribute("serch", serch);
 		String link;
-		if(product.toString()=="[]"){
+		if (product.toString() == "[]") {
 			link = "manager/serchFail";
 		} else {
 			link = "manager/serchDone";
 		}
-		
+
 		return link;
 	}
-	
-	//게시글 삭제 체크박스, 
-	@RequestMapping(value="/manager/muldelete",method=RequestMethod.GET)
-	  public String proMuldelete(Model model,@RequestParam("chkbox")List<Integer> productNums) {
-		  System.out.println("productNums="+productNums.toString());
-		//articleNOs를 Service에 전달해서 service에서 for문을 통해 삭제 
-		  //그 결과를 model에 넣고 전달
-		  //articleNOs=[15,14,13,12,11,10,9]
-		   Map<String,Integer> map = managerService.mulSerivcle(productNums);
-		 System.out.println("성공한갯수="+map.get("succ"));
-		 System.out.println("실패한갯수="+map.get("fail"));
-		 model.addAttribute("map", map);
-		  return "proMuldelete";
-		  
-	  }
-	
-	//품절처리 체크박스
-	@RequestMapping(value="/manager/mulSoldout",method=RequestMethod.GET)
-	  public String proSoldout(Model model,@RequestParam("chkbox")List<Integer> productNums) {
-		  System.out.println("productNums="+productNums.toString());
-		//articleNOs를 Service에 전달해서 service에서 for문을 통해 삭제 
-		  //그 결과를 model에 넣고 전달
-		  //articleNOs=[15,14,13,12,11,10,9]
-		   Map<String,Integer> map = managerService.soldoutService(productNums);
-		 System.out.println("성공한갯수="+map.get("succ"));
-		 System.out.println("실패한갯수="+map.get("fail"));
-		 model.addAttribute("map", map);
-		  return "proSoldout";
-		  
-	  }
+
+	// 게시글 삭제 체크박스,
+	@RequestMapping(value = "/manager/muldelete", method = RequestMethod.GET)
+	public String proMuldelete(Model model, @RequestParam("chkbox") List<Integer> productNums) {
+		System.out.println("productNums=" + productNums.toString());
+		// articleNOs를 Service에 전달해서 service에서 for문을 통해 삭제
+		// 그 결과를 model에 넣고 전달
+		// articleNOs=[15,14,13,12,11,10,9]
+		Map<String, Integer> map = managerService.mulSerivcle(productNums);
+		System.out.println("성공한갯수=" + map.get("succ"));
+		System.out.println("실패한갯수=" + map.get("fail"));
+		model.addAttribute("map", map);
+		return "proMuldelete";
+
+	}
+
+	// 품절처리 체크박스
+	@RequestMapping(value = "/manager/mulSoldout", method = RequestMethod.GET)
+	public String proSoldout(Model model, @RequestParam("chkbox") List<Integer> productNums) {
+		System.out.println("productNums=" + productNums.toString());
+		// articleNOs를 Service에 전달해서 service에서 for문을 통해 삭제
+		// 그 결과를 model에 넣고 전달
+		// articleNOs=[15,14,13,12,11,10,9]
+		Map<String, Integer> map = managerService.soldoutService(productNums);
+		System.out.println("성공한갯수=" + map.get("succ"));
+		System.out.println("실패한갯수=" + map.get("fail"));
+		model.addAttribute("map", map);
+		return "proSoldout";
+
+	}
+
 	// 카테고리별 상세리스트
 	// 1.전체상품
 	@RequestMapping(value = "/manager/product/listAll", method = { RequestMethod.GET, RequestMethod.POST })
@@ -216,36 +210,31 @@ public class ManagerController {
 		model.addAttribute("Product", Product);
 		return "manager/ProductList";
 	}
-	
-	
-	//상품상세보기
-	// 상품상세//view뿐....
-		// form action으로 주문하기 url로 연결(post방식으로 전달)
-		@RequestMapping(value = "/manager/product/detail", method = { RequestMethod.GET, RequestMethod.POST })
-		String detailView(Model model, @RequestParam("proNum") int proNum) {
-			List<ProductVO> Product = productService.selectOne(proNum);
-			List<ReviewVO> review = productService.selectReview(proNum);
-			model.addAttribute("Product", Product);
-			model.addAttribute("review", review);
-			System.out.println("상품상세보기" + Product.toString());
-			System.out.println("review" + review.toString());
-			
-			String link;
-			if(Product.toString()!="[]") {
-				link="ProductView";
-			} else {
-				//요청하신 상품을 찾을 수 없습니다 로 보냄.
-			}
-			return "ProductView";
-		}
 
-	
+	// 상품상세보기
+	// 상품상세//view뿐....
+	// form action으로 주문하기 url로 연결(post방식으로 전달)
+	@RequestMapping(value = "/manager/product/detail", method = { RequestMethod.GET, RequestMethod.POST })
+	String detailView(Model model, @RequestParam("proNum") int proNum) {
+		List<ProductVO> Product = productService.selectOne(proNum);
+		List<ReviewVO> review = productService.selectReview(proNum);
+		model.addAttribute("Product", Product);
+		model.addAttribute("review", review);
+		System.out.println("상품상세보기" + Product.toString());
+		System.out.println("review" + review.toString());
+
+		String link;
+		if (Product.toString() != "[]") {
+			link = "ProductView";
+		} else {
+			// 요청하신 상품을 찾을 수 없습니다 로 보냄.
+		}
+		return "ProductView";
+	}
 
 	// event배너 추가 폼
 	@RequestMapping(value = "/manager/event/add", method = RequestMethod.GET)
 	public String eventAdd() {
-		
-		
 
 		return "eventAdd";
 
@@ -253,18 +242,18 @@ public class ManagerController {
 
 	// event배너 추가 완료
 	@RequestMapping(value = "/manager/event/add", method = RequestMethod.POST)
-	public String eventAddDone(Model model, @ModelAttribute EventVO eventVO)throws IOException {
-		
-		String fileName=null;
+	public String eventAddDone(Model model, @ModelAttribute EventVO eventVO) throws IOException {
+
+		String fileName = null;
 		MultipartFile uploadFile = eventVO.getUploadEventImage();
 		if (!uploadFile.isEmpty()) {
 			String originalFileName = uploadFile.getOriginalFilename();
 			String ext = FilenameUtils.getExtension(originalFileName);
-			
+
 			UUID uuid = UUID.randomUUID();
-			fileName=uuid+"."+ext;
-			uploadFile.transferTo(new File("c:\\board\\eventImg\\"+fileName));
-			
+			fileName = uuid + "." + ext;
+			uploadFile.transferTo(new File("c:\\board\\eventImg\\" + fileName));
+
 		}
 		eventVO.setEventImg(fileName);
 
@@ -282,19 +271,57 @@ public class ManagerController {
 	public String eventMod(Model model, @ModelAttribute EventVO eventVO) {
 
 		EventVO event = managerService.eventModService(eventVO);
-		
-		System.out.println("eventVO="+eventVO);
+
+		System.out.println("eventVO=" + eventVO);
 		model.addAttribute("event", event);
 
 		return "eventMod";
 
 	}
-	
 
+	
+	  // event배너 파일삭제
+	  
+	  @RequestMapping(value = "/manager/event/fileDel", method = RequestMethod.POST) 
+	  public String eventFileDel(Model model, @ModelAttribute EventVO eventVO,MultipartFile file) {
+			/*
+			 * System.out.println("originalFile="+file); if(!file.isEmpty()) { //String
+			 * fileName = file.getOriginalFilename();
+			 */
+	  
+	  if(!eventVO.getEventImg().isEmpty() || eventVO.getEventImg()!= null) { 
+		  File fileDel = new File("c:\\board\\eventImg\\"+eventVO.getEventImg()); 
+		  if (fileDel.exists()) {
+			  fileDel.delete(); 
+			  System.out.println("기존이미지삭제"); 
+			  } 
+		  }
+	  
+	  int ret = managerService.fileDelete(eventVO);
+	  model.addAttribute("ret", ret);
+	  System.out.println("del:"+ret);
+	  
+	  return "redirect:mod?eventNum="+eventVO.getEventNum();
+	  
+	  }
+	 
 	// event배너 수정 완료
 	@RequestMapping(value = "/manager/event/mod", method = RequestMethod.POST)
-	public String eventModDone(Model model, @ModelAttribute EventVO eventVO) {
+	public String eventModDone(Model model, @ModelAttribute EventVO eventVO, MultipartFile file)throws IOException {
 
+		String fileName = null;
+		MultipartFile uploadFile = eventVO.getUploadEventImage();
+		if (!uploadFile.isEmpty()) {
+			String originalFileName = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(originalFileName);
+
+			UUID uuid = UUID.randomUUID();
+			fileName = uuid + "." + ext;
+			uploadFile.transferTo(new File("c:\\board\\eventImg\\" + fileName));
+
+		}
+		eventVO.setEventImg(fileName);
+		
 		int ret = managerService.eventModDoneService(eventVO);
 		System.out.println("eventVO 수정" + eventVO.toString());
 
@@ -303,17 +330,17 @@ public class ManagerController {
 		return "eventModDone";
 		// 이벤트 폼이 수정되었습니다 alert
 	}
-	
-	//event 배너 삭제
-	@RequestMapping(value="/manager/event/del",method=RequestMethod.POST)
-	public String eventDel(Model model, @RequestParam("eventNum")int eventNum) {
+
+	// event 배너 삭제
+	@RequestMapping(value = "/manager/event/del", method = RequestMethod.POST)
+	public String eventDel(Model model, @RequestParam("eventNum") int eventNum) {
+		
 		
 		int ret = managerService.eventDelService(eventNum);
 		model.addAttribute("ret", ret);
-		
-		return "eventDel";
+
+		return "redirect:/manager/managerHome";
 	}
-	
 
 	// 관리자 상품 등록 폼으로 가는 URL
 	@RequestMapping(value = "/manager/product/add", method = RequestMethod.GET)
@@ -326,50 +353,50 @@ public class ManagerController {
 	// 관리자 상품 등록 완료
 	@RequestMapping(value = "/manager/product/add", method = RequestMethod.POST)
 	public String productAddDone(Model model, @ModelAttribute ProductVO productVO) throws IOException {
-		
-		String fileName=null;
+
+		String fileName = null;
 		MultipartFile uploadFile = productVO.getUploadFile();
 		if (!uploadFile.isEmpty()) {
 			String originalFileName = uploadFile.getOriginalFilename();
 			String ext = FilenameUtils.getExtension(originalFileName);
-			
+
 			UUID uuid = UUID.randomUUID();
-			fileName=uuid+"."+ext;
-			uploadFile.transferTo(new File("c:\\board\\"+fileName));
-			
+			fileName = uuid + "." + ext;
+			uploadFile.transferTo(new File("c:\\board\\" + fileName));
+
 		}
 		productVO.setProSpecification(fileName);
-	
+
 		int ret = managerService.productAddDoneService(productVO);
 		model.addAttribute("ret", ret);
-		
-		System.out.println("prductVo="+productVO.toString());
+
+		System.out.println("prductVo=" + productVO.toString());
 		return "productAddDone";
 	} // 추가가 완료되었습니다 alert
-	
-	//상품 등록 수정 페이지
-	//상품 삭제
-	
+
+	// 상품 등록 수정 페이지
+	// 상품 삭제
+
 	// 관리자 리뷰 리스트
 	@RequestMapping(value = "/manager/review/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String reviewList(Model model) {
 
 		List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
 		reviewList = managerService.reviewListService();
-		
-		System.out.println("reviewList="+reviewList.toString());
-		
+
+		System.out.println("reviewList=" + reviewList.toString());
+
 		model.addAttribute("reviewList", reviewList);
 
 		return "reviewList";
 	}
 
-	//관리자 리뷰 댓글 작성 폼이동 /manager/reviewComment
+	// 관리자 리뷰 댓글 작성 폼이동 /manager/reviewComment
 	@RequestMapping(value = "/manager/review/comment", method = RequestMethod.GET)
 	public String reviewComment(Model model, @RequestParam("reviewNum") int reviewNum) {
 
 		ReviewVO reviewVO = managerService.reviewCommentSerivce(reviewNum);
-		System.out.println("comment="+reviewVO.toString());
+		System.out.println("comment=" + reviewVO.toString());
 		model.addAttribute("reviewVO", reviewVO);
 
 		return "reviewComment";
@@ -381,7 +408,7 @@ public class ManagerController {
 	public String reviewCommentDone(Model model, @ModelAttribute ReviewVO reviewVO) {
 
 		int ret = managerService.reviewCommentDoneSerivce(reviewVO);
-		
+
 		model.addAttribute("ret", ret);
 		// update 후 결과받기
 
@@ -389,19 +416,19 @@ public class ManagerController {
 		// 답글작성이 완료되었습니다 alert -> reviewList
 
 	}
-	
-	// 관리자 리뷰 삭제 -> update? 나중에 get 지우기 
-	@RequestMapping(value = "/manager/review/del", method = {RequestMethod.GET,RequestMethod.POST})
+
+	// 관리자 리뷰 삭제 -> update? 나중에 get 지우기
+	@RequestMapping(value = "/manager/review/del", method = { RequestMethod.GET, RequestMethod.POST })
 	public String reviewDel(Model model, @RequestParam("reviewNum") int reviewNum) {
 
 		int ret = managerService.reviewDelService(reviewNum);
-		
+
 		model.addAttribute("ret", ret);
 
 		return "reviewDel";
 		// 리뷰가 삭제되었습니다 alert
 	}
-	
+
 	// 관리자 회원 관리 /manager/memberList
 	@RequestMapping(value = "/manager/member/list", method = RequestMethod.GET)
 	public String memberList(Model model) {
@@ -409,132 +436,126 @@ public class ManagerController {
 		List<MemberVO> memberList = new ArrayList<MemberVO>();
 		memberList = managerService.memberListService();
 		model.addAttribute("memberList", memberList);
-		
-		System.out.println("memberList="+memberList.toString());
+
+		System.out.println("memberList=" + memberList.toString());
 
 		return "memberList";
 		// 회원목록
 	}
 
 	// 관리자 회원 삭제 /manager/memberDel
-	@RequestMapping(value = "/manager/member/del", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/manager/member/del", method = { RequestMethod.GET, RequestMethod.POST })
 	public String memberDel(Model model, @RequestParam("id") String id) {
 
 		int ret = managerService.memberDelService(id);
 		model.addAttribute("ret", ret);
-		
-		System.out.println("memberDel="+ret);
+
+		System.out.println("memberDel=" + ret);
 		return "memberDel";
 		// 회원정보가 삭제되었습니다 alert .jsp
 	}
 
 	// 관리자 회원 관리 적용 /manager/memberUpdate
-	@RequestMapping(value="/manager/member/update",method= {RequestMethod.GET,RequestMethod.POST})
-	public String memberUpdate(Model model,@ModelAttribute MemberVO memberVO) {
-		//등급설정, 블랙리스트 체크박스 정보 업데이트
-		
-		int ret =managerService.memberUpdateService(memberVO);
+	@RequestMapping(value = "/manager/member/update", method = { RequestMethod.GET, RequestMethod.POST })
+	public String memberUpdate(Model model, @ModelAttribute MemberVO memberVO) {
+		// 등급설정, 블랙리스트 체크박스 정보 업데이트
+
+		int ret = managerService.memberUpdateService(memberVO);
 		model.addAttribute("ret", ret);
-		
-		System.out.println("memberUpdate="+ret);
-		
+
+		System.out.println("memberUpdate=" + ret);
+
 		return "memberUpdate";
 	}
-	//관리자 주문 관리 /manager/order/list 
-	
-	@RequestMapping(value="/manager/order/list",method= {RequestMethod.GET,RequestMethod.POST})
+	// 관리자 주문 관리 /manager/order/list
+
+	@RequestMapping(value = "/manager/order/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String memberOrderList(Model model) {
-		
-		List<OrderListVO> orderList = new ArrayList<OrderListVO>(); 
+
+		List<OrderListVO> orderList = new ArrayList<OrderListVO>();
 		orderList = managerService.memberOrderListService();
 		System.out.println("orderList=" + orderList.toString());
-		
+
 		model.addAttribute("orderList", orderList);
-		
+
 		return "memberOrderList";
 	}
-	
-	// lists  -> VO 1ro,, VO 2
-	// 
-	
-	
-	//관리자 주문 한개 주문 선택 /manager/order/cancel
-	
-	//관ㄹ자 주문 취소 /manager/order/cancel
-	
-	@RequestMapping(value="/manager/order/cancle",method= {RequestMethod.GET,RequestMethod.POST})
-	public String orderCancel(Model model, @RequestParam("orderNum")int orderNum) {
-		
+
+	// lists -> VO 1ro,, VO 2
+	//
+
+	// 관리자 주문 한개 주문 선택 /manager/order/cancel
+
+	// 관ㄹ자 주문 취소 /manager/order/cancel
+
+	@RequestMapping(value = "/manager/order/cancle", method = { RequestMethod.GET, RequestMethod.POST })
+	public String orderCancel(Model model, @RequestParam("orderNum") int orderNum) {
+
 		int ret = managerService.memberOrderCancleService(orderNum);
-		System.out.println("orderNum="+orderNum);
+		System.out.println("orderNum=" + orderNum);
 		model.addAttribute("ret", ret);
-		
-		
-		//update로 주문상태 환불로 변경 하시겠습니까?
+
+		// update로 주문상태 환불로 변경 하시겠습니까?
 		return "orderCnacel";
 	}
-	
-	//관리자 주문관리 변경 저장 /manager/order/update
-	//수정해야됨
-	//orderNum하고 delStatus하고 한방에 가져와야됨
-	@RequestMapping(value="/manager/order/update",method= {RequestMethod.GET,RequestMethod.POST})
-	public String orderUpdate (Model model , @ModelAttribute OrderListVO orderVO) {
-		
+
+	// 관리자 주문관리 변경 저장 /manager/order/update
+	// 수정해야됨
+	// orderNum하고 delStatus하고 한방에 가져와야됨
+	@RequestMapping(value = "/manager/order/update", method = { RequestMethod.GET, RequestMethod.POST })
+	public String orderUpdate(Model model, @ModelAttribute OrderListVO orderVO) {
+
 		int ret = managerService.memberOrderUpdateService(orderVO);
-		
-		System.out.println("orderupdate="+orderVO.toString());
+
+		System.out.println("orderupdate=" + orderVO.toString());
 		model.addAttribute("ret", ret);
-		System.out.println("memberOrderList="+ret);
-		
+		System.out.println("memberOrderList=" + ret);
+
 		return "orederUpdate";
 	}
-	
-	//관리자 문의 관리 목록 /manager/ask/list
-	@RequestMapping(value="/manager/ask/list",method= {RequestMethod.GET,RequestMethod.POST})
-	public String askList(Model model) {
-		
-		List<AskVO> askList = new ArrayList<AskVO>(); 
-		askList = managerService.askListService();
-		
 
-		
+	// 관리자 문의 관리 목록 /manager/ask/list
+	@RequestMapping(value = "/manager/ask/list", method = { RequestMethod.GET, RequestMethod.POST })
+	public String askList(Model model) {
+
+		List<AskVO> askList = new ArrayList<AskVO>();
+		askList = managerService.askListService();
+
 		model.addAttribute("askList", askList);
-		System.out.println("askList="+askList.toString());
-		
+		System.out.println("askList=" + askList.toString());
+
 		return "askList";
 	}
-	
-	
-	//관리자 문의 댓글 폼이동 /manager/ask/comment->update 셀렉트
-		@RequestMapping(value ="/manager/ask/comment", method = RequestMethod.GET)
-		public String askSelectOne(Model model, @RequestParam("askNum")int askNum) {
 
-			AskVO askVO = managerService.askSelectOneSerivce(askNum);
-			model.addAttribute("askVO", askVO);
-			System.out.println("askVO="+askVO.toString());
-			// update 후 결과받기
+	// 관리자 문의 댓글 폼이동 /manager/ask/comment->update 셀렉트
+	@RequestMapping(value = "/manager/ask/comment", method = RequestMethod.GET)
+	public String askSelectOne(Model model, @RequestParam("askNum") int askNum) {
 
-			return "askSelectOne";
-			// 답글작성이 완료되었습니다 alert -> reviewList
+		AskVO askVO = managerService.askSelectOneSerivce(askNum);
+		model.addAttribute("askVO", askVO);
+		System.out.println("askVO=" + askVO.toString());
+		// update 후 결과받기
 
-		}
-		
-	
-	//관리자 문의 댓글 /manager/FAQ/comment->update
+		return "askSelectOne";
+		// 답글작성이 완료되었습니다 alert -> reviewList
+
+	}
+
+	// 관리자 문의 댓글 /manager/FAQ/comment->update
 	@RequestMapping(value = "/manager/ask/comment", method = RequestMethod.POST)
 	public String askComment(Model model, @ModelAttribute AskVO askVO) {
 
 		int ret = managerService.askCommentSerivce(askVO);
 		model.addAttribute("ret", ret);
 		// update 후 결과받기
-		
-		System.out.println("askVO="+askVO.toString());
+
+		System.out.println("askVO=" + askVO.toString());
 		return "askComment";
 		// 답글작성이 완료되었습니다 alert -> reviewList
 
 	}
-	
-	//관리자 -푸터 회사정보 수정 /manager/footer/companyInfo 
+
+	// 관리자 -푸터 회사정보 수정 /manager/footer/companyInfo
 	@RequestMapping(value = "/manager/footer/companyInfo", method = RequestMethod.GET)
 	public String companyInfo(Model model, @ModelAttribute("compInfo") String compInfo) {
 
@@ -544,34 +565,34 @@ public class ManagerController {
 		return "companyInfoUpdate";
 
 	}
-	
-	//관리자 -푸터 회사정보 수정 /manager/footer/companyInfo 
+
+	// 관리자 -푸터 회사정보 수정 /manager/footer/companyInfo
 	@RequestMapping(value = "/manager/footer/companyInfo", method = RequestMethod.POST)
 	public String companyInfoUpdate(Model model, @ModelAttribute FooterVO footerVO) {
 
 		int ret = managerService.companyInfoUpdateSerivce(footerVO);
 		model.addAttribute("ret", ret);
-		
-		System.out.println("companyInfo="+footerVO.getCompInfo());
-		
+
+		System.out.println("companyInfo=" + footerVO.getCompInfo());
+
 		// update 후 결과받기
 
 		return "companyInfoUpdateDone";
-		
+
 	}
-	
-	//관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms 
-		@RequestMapping(value = "/manager/footer/tems", method = RequestMethod.GET)
-		public String temsUpdate(Model model, @ModelAttribute("tems") String tems) {
 
-			FooterVO footerVO = managerService.temsUpdateFormSerivce(tems);
-			model.addAttribute("footerVO", footerVO);
+	// 관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms
+	@RequestMapping(value = "/manager/footer/tems", method = RequestMethod.GET)
+	public String temsUpdate(Model model, @ModelAttribute("tems") String tems) {
 
-			return "temsUpdate";
+		FooterVO footerVO = managerService.temsUpdateFormSerivce(tems);
+		model.addAttribute("footerVO", footerVO);
 
-		}
-	
-	//관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms 
+		return "temsUpdate";
+
+	}
+
+	// 관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms
 	@RequestMapping(value = "/manager/footer/tems", method = RequestMethod.POST)
 	public String temsUpdate(Model model, @ModelAttribute FooterVO footerVO) {
 
@@ -580,11 +601,10 @@ public class ManagerController {
 		// update 후 결과받기
 
 		return "temsUpdateDone";
-		
 
 	}
-	
-	//관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms 
+
+	// 관리자-푸터 이용 약관 및 환불규정 /manager/footer/terms
 	@RequestMapping(value = "/manager/footer/privacy", method = RequestMethod.GET)
 	public String privacyUpdate(Model model, @ModelAttribute("privacy") String privacy) {
 
@@ -594,8 +614,8 @@ public class ManagerController {
 		return "privacyUpdate";
 
 	}
-	
-	//관리자-개인정보 처리방침 /manager/footer/privacy
+
+	// 관리자-개인정보 처리방침 /manager/footer/privacy
 	@RequestMapping(value = "/manager/footer/privacy", method = RequestMethod.POST)
 	public String privacyUpdateDone(Model model, @ModelAttribute FooterVO footerVO) {
 
@@ -604,8 +624,7 @@ public class ManagerController {
 		// update 후 결과받기
 
 		return "privacyUpdateDone";
-		
 
 	}
-	
+
 }

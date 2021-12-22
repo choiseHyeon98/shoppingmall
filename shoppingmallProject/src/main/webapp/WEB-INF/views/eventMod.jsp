@@ -36,18 +36,7 @@
     	  } else {
     	    
     	  }
-      /*  var form = document.createElement("form");
-       form.setAttribute("method", "get");
-       form.setAttribute("action", url);
-        var articleNOInput = document.createElement("input");
-        articleNOInput.setAttribute("type","hidden");
-        articleNOInput.setAttribute("name","articleNO");
-        articleNOInput.setAttribute("value", articleNO);
-       
-        form.appendChild(articleNOInput);
-        document.body.appendChild(form);
-        form.submit();
-     */
+
     }
     
     function readURL(input) {
@@ -60,63 +49,67 @@
         }
     }  
     
+    function deleteImg(obj) {
+    	
+    	obj.action="fileDel";
+    	obj.submit();
+    }
+    
     
    
  </script>
+ <!-- favicon -->
+<%@include file="manager/favicon.jsp"%>
 </head>
 <body>
-<h1 align="center">${eventVO.eventTitle}</h1>
+<!-- header -->
+	<%@include file="manager/header.jsp"%>
+<h1 align="center">${event.eventTitle}</h1>
   <form name="eventMod" action="mod" method="post"  enctype="multipart/form-data">
-  <table  border=0  align="center">
-  <tr>
-  	<td width="150" align="center">
-  		이벤트 등록 번호
-  	</td>
- 	<td>
- 		<input type="text" value="${event.eventNum }" disabled />
+ 
+	<div>
  		<input type="hidden" name="eventNum" value="${event.eventNum}"  />
- 	</td>
- </tr>
-   <tr>
-    <td width="150" align="center" rowspan="2">
+	</div>
+ <c:if test="${not empty event.eventImg && event.eventImg!='null' }">  
+   
+   <div align="center" >
       이미지
-   </td>
-  <td>
+  </div>
+  <div align="center">
    <input type="hidden"  name="eventImg" value="${event.eventImg }" />
-    <img src="/shop/fileDownload?eventImg=${event.eventImg}" id="preview" src="#" width=200 height=200  /> 
-   </td>     
-  </tr>  
-  <tr>
-    <td>
-       <input type="file"  name="uploadEventImage" id="eventImg" onchange="readURL(this);" />
-    </td>
-  </tr>
-  <tr>
-    <td width="150" align="center" >
-      제목 
-   </td>
-   <td>
+    <img src="/shop/fileDownload?eventImg=${event.eventImg}" id="preview" src="#" width=200 height=200  /><br>
+    <input type="button" value="파일삭제" onClick="deleteImg(eventMod)" />
+   </div>   
+
+  </c:if>
+  <c:if test="${event.eventImg =='null' }">
+   
+  <div align="center" >
+      <p>이미지</p>
+   <input type="hidden"  name="eventImg" value="${event.eventImg }" />
+   <img src="/shop/fileDownload?eventImg=${event.eventImg}" id="preview" src="#" width=200 height=200  />
+   <input type="file"  name="uploadEventImage" id="eventImg" onchange="readURL(this);" />
+ </div>
+</c:if>
+  <div align="center" > 
+   <p>제목</p>
     <input type=text value="${event.eventTitle }" name="eventTitle"  id="eventTitle" />
-   </td>   
-  </tr>
-  <tr>
-    <td width="150" align="center" >
-      내용
-   </td>
-   <td>
-    <textarea rows="20" cols="60"  name="eventContent"  id="eventContent" />${event.eventContent }</textarea>
-   </td>  
-  </tr>
-  <tr>
-      <td colspan="2"  align="center" >
+  </div>  
+    <div align="center" >
+      <p>내용</p>
+    <textarea name="eventContent"  id="eventContent" rows="30" cols="50"/>${event.eventContent }</textarea>
+   </div>  
+      <div align="center" >
      	  
           <input type="button" value="수정반영하기" onClick="fn_modify_article(eventMod)">
           <input type="button" value="취소" onClick="backToList(eventMod)">
+          <input type="button" value="삭제" onClick="fn_remove_article(eventMod)">
           
-      </td>   
-  </tr>
- </table>
- 
+      </div>
+  
+
+ <!-- footer -->
+<%@include file="manager/footer.jsp"%>
  </form>
 </body>
 </html>

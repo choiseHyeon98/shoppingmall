@@ -265,6 +265,11 @@ public class ManagerService {
 		return managerDAO.privacyUpdateFormDAO(privacy);
 	}
 
+	public int fileDelete(EventVO eventVO) {
+		// TODO Auto-generated method stub
+		return managerDAO.fileDeleteDAO(eventVO);
+	}
+
 	
 
 	

@@ -52,5 +52,14 @@
 	
 	</select>
 	
+	<select id="deleteFile" parameterType="EventVO">
+	 <![CDATA[ 
+      UPDATE EVENT SET "eventImg"='null',"eventTitle"=#{eventTitle},"eventContent"=#{eventContent} WHERE "eventNum"=#{eventNum}
+ 		
+
+   ]]>
+	
+	</select>
+	
 	
 </mapper>

@@ -229,6 +229,15 @@ public class ManagerDAO {
 	}
 
 
+	public int fileDeleteDAO(EventVO eventVO) {
+		// TODO Auto-generated method stub
+		
+		int ret = session.update("mapper.event.deleteFile",eventVO);
+		
+		return ret;
+	}
+
+
 	
 
 	
