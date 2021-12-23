@@ -20,6 +20,7 @@ public class ProductVO {
 	private String dailyDel;
 	private String proCon;
 	private String proCate;
+	private String detailsImg;
 	
 	//상세보기 및 상품주문을 위한 VO정보들
 	private String sizeOption;
@@ -140,16 +141,22 @@ public class ProductVO {
 		
 	}
 	
-	
+	public String getDetailsImg() {
+		return detailsImg;
+	}
+	public void setDetailsImg(String detailsImg) {
+		this.detailsImg = detailsImg;
+	}
 	@Override
 	public String toString() {
 		return "ProductVO [proNum=" + proNum + ", proName=" + proName + ", proContent=" + proContent + ", proDetails="
 				+ proDetails + ", proSpecification=" + proSpecification + ", uploadFileTop=" + uploadFileTop
 				+ ", uploadFileDetail=" + uploadFileDetail + ", refundPolicy=" + refundPolicy + ", topImage=" + topImage
 				+ ", price=" + price + ", delprice=" + delprice + ", dailyDel=" + dailyDel + ", proCon=" + proCon
-				+ ", proCate=" + proCate + ", sizeOption=" + sizeOption + ", colorOption=" + colorOption
-				+ ", countProNum=" + countProNum + ", soldOut=" + soldOut + "]";
+				+ ", proCate=" + proCate + ", detailsImg=" + detailsImg + ", sizeOption=" + sizeOption
+				+ ", colorOption=" + colorOption + ", countProNum=" + countProNum + ", soldOut=" + soldOut + "]";
 	}
+	
 	
 	
 }

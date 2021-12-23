@@ -226,11 +226,11 @@ public class ManagerController {
 
 		String link;
 		if (Product.toString() != "[]") {
-			link = "ProductView";
+			link = "/manager/ProductView";
 		} else {
 			// 요청하신 상품을 찾을 수 없습니다 로 보냄.
 		}
-		return "ProductView";
+		return "/manager/ProductView";
 	}
 
 	// event배너 추가 폼
@@ -411,8 +411,7 @@ public class ManagerController {
 		  uploadFileDetail.transferTo(new File("c:\\board\\productImg\\productImg" + fileDetail));
 		  
 		  } 
-		  productVO.setProDetails(fileDetail);
-		  
+		  productVO.setDetailsImg(fileDetail);
 		  int ret = managerService.productAddDoneService(productVO);
 		  model.addAttribute("ret", ret);
 		  

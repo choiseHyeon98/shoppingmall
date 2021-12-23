@@ -95,13 +95,12 @@
 				<div class="col-lg-7">
 					<img  id="preview" src="#" width=300 height=300/>
 				</div>
-				<div class="col-lg-5">
+				<div class="col-lg-5" >
 					<form action="add"  method="post" enctype="multipart/form-data">
-						제품명: <input type="text" name="proName"><br><br>
+						제품명: <input type="text" name="proName" ><br><br>
 						상품간략설명: <input type ="text" name="proContent"><br><br>
-						가격:   <input type="text" name="price"><br><br>
-						배송비: <input type="text" name="delprice" ><br><br>
-					
+						가격: <input type="number" name="price"><br><br>
+						배송비: <input type="number" name="delprice" ><br><br>
 						색상: <input type="text" name="colorOption" size="10"><br><br>
 						옵션 추가<button onClick="addoption(this)">+</button><br>
 						<div id="option">
@@ -125,12 +124,9 @@
 						 		<option value="shose" >shose</option>
 						 		<option value="acc" >acc</option>
 						 </select> <br><br>
-
 						<!-- submit -->
-						
-						<input type="file" name="uploadFileTop" onchange="readURL(this);"/>
-						
-					
+						<input type="file" name="uploadFileTop" onchange="readURL(this);"/><br><br>
+						당일배송상품: <input type="checkbox" name="dailyDel" value='Y'>
 				</div>
 			</div>
 		</div>
@@ -143,7 +139,7 @@
 				<li><a href="#proDetails" class="m_link">상품설명</a></li>
 				<li>| <a href="#proSpecification" class="m_link">제품규격</a></li>
 				<li>| <a href="#refundPolicy" class="m_link">환불규정</a></li>
-				<li>| <a href="#review" class="m_link">리뷰</a></li>
+				
 			</ul>
 			<hr>
 
@@ -152,9 +148,13 @@
 				<a name="proDetails">상품상세설명</a>
 			</p>
 			<hr>
-			<input type="text" name="proDetails" />
-			<img id="previewPro" src="#" width=300 height=300/>
+			<div align="left">
+			
+			<img id="previewPro" src="#" width=300 height=300 />
 			<input type="file" name="uploadFileDetail" onchange="readURLpro(this);"/>
+			</div><br><br>
+			<textarea name="proDetails" rows="10" cols="30" ></textarea>
+			
 			<hr>
 
 			<!-- 제품규격 -->
@@ -162,7 +162,8 @@
 				<a name="proSpecification">제품규격 </a>
 			</p>
 			<hr>
-			<input type="text" name="proSpecification" />
+		
+			<textarea name="proSpecification" rows="10" cols="30" ></textarea>
 			<hr>
 
 			<!-- 환불규정 상세내용 -->
@@ -170,42 +171,15 @@
 				<a name="refundPolicy">환불규정 </a>
 			</p>
 			<hr>
-			<input type="text" name="refundPolicy">
+			<textarea name="refundPolicy" rows="10" cols="30" ></textarea>
 			<hr>
 		</div>
 	</div>
+	<div align="center">
 	<input type="submit" value="상품등록" />
+	</div>
 	</form>
 	
-	<!-- 리뷰 -->
-	<div class="card-body">
-		<div class="card text-white bg-light my-5 py-4 text-center">
-			<!-- 리뷰 -->
-			<p class="text-dark m-0" style="text-align: left;">
-				<a name="review">리뷰</a>
-			</p>
-			<hr>
-			<table class="text-dark m-0">
-				<tr>
-					<td width=20%>아이디</td>
-					<td width=50%>리뷰</td>
-					<td width=50%>작성일</td>
-				</tr>
-				<c:choose>
-					<c:when test="${!empty review}">
-						<c:forEach var="review" items="${review }" varStatus="status ">
-							<tr>
-								<td>${review.id }</td>
-								<td>${review.reviewContent }</td>
-								<td>${review.reviewDate }</td>
-							</tr>
-						</c:forEach>
-					</c:when>
-				</c:choose>
-			</table>
-			<hr>
-		</div>
-	</div>
 
 	<!-- footer -->
 	<%@include file="manager/footer.jsp"%>

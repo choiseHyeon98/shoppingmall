@@ -56,11 +56,11 @@
 </style>
 
 <!-- favicon -->
-<%@include file="favicon.jsp"%>
+<%@include file="./favicon.jsp"%>
 </head>
 <body>
 	<!-- header -->
-	<%@include file="header.jsp"%>
+	<%@include file="./header.jsp"%>
 
 	<!-- 상품 이미지, 상품 주문form -->
 	<div class="card-body">
@@ -69,7 +69,7 @@
 			<div class="row gx-4 gx-lg-5 align-items-center my-5">
 				<div class="col-lg-7">
 					<img class="img-fluid rounded mb-4 mb-lg-0"
-						src="https://pbs.twimg.com/media/FGiPOEFUYAQqmiz?format=jpg&name=large"
+						src="../fileDownloadPro?topImage=${Product[0].topImage}"
 						alt="제품이미지상세뷰900*400" />
 				</div>
 				<div class="col-lg-5">
@@ -173,8 +173,8 @@
 		</div>
 	</div>
 
-	<!-- Footer-->
-	<%@include file="footer.jsp"%>
+		<!-- footer -->
+		<%@include file="./footer.jsp"%>
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

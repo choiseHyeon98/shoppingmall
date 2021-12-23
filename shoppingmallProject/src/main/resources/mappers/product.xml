@@ -22,6 +22,7 @@
 		<result property="sizeOption" column="sizeOption" />
 		<result property="colorOption" column="colorOption" />
 		<result property="soldOut" column="soldOut" />
+		<result property="detailsImg" column="detailsImg" />
 	</resultMap>
 	<!-- 쿼리집어넣는 장소! -->
 	
@@ -158,8 +159,8 @@
 	<!-- 상품등록 -->
 	<select id="insertPro">
 		<![CDATA[
-		INSERT INTO PRODUCT ("proNum","proName","proContent","proDetails","topImage","price","delprice","proCon","proCate","proSpecification")
-		VALUES((SELECT max("proNum") FROM PRODUCT)+1,#{proName}, #{proContent}, #{proDetails},#{topImage},#{price},#{delprice},#{proCon},#{proCate},#{proSpecification})
+		INSERT INTO PRODUCT ("proNum","proName","proContent","proDetails","topImage","price","delprice","proCon","proCate","proSpecification","dailyDel","detailsImg","refundPolicy")
+		VALUES((SELECT max("proNum") FROM PRODUCT)+1,#{proName}, #{proContent}, #{proDetails},#{topImage},#{price},#{delprice},#{proCon},#{proCate},#{proSpecification},'#{dailyDel},#{detailsImg},#{refundPolicy})
 		]]>
 	</select>
 	
