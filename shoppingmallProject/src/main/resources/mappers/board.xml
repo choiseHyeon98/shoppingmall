@@ -103,7 +103,7 @@
 	</select>
 	<select id="FAQRe" resultMap="FAQResult">
    <![CDATA[
-  		SELECT * FROM FAQ  WHERE "FAQType" ='교환환불
+  		SELECT * FROM FAQ  WHERE "FAQType" ='교환환불'
    ]]>
 	</select>
 	<select id="FAQPro" resultMap="FAQResult">
