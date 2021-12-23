@@ -24,15 +24,13 @@
 	function info_chk2(frm) {
 		if (confirm("찜하시겠습니까?")) {
 			frm.action = '/shop/s/mypage/addCartList';
-			frm.submit();s
+			frm.submit();
 			return true;
 		}
 	}
 </script>
 
-
 <!-- Core theme CSS (includes Bootstrap)-->
-<link rel="stylesheet" type="text/css" href="/css/productView.css">
 <style>
 .card-body {
 	flex: 1 1 auto;
