@@ -5,12 +5,30 @@
 <%
 request.setCharacterEncoding("UTF-8");
 %>
-
 <html>
 <head>
 <title>Home</title>
 <!-- favicon -->
 <%@include file="headerfooter/favicon.jsp"%>
+
+<style>
+.nameforpro {
+	text-align: left;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	font-size: 35px;
+}
+
+#cardbodyforentier {
+	flex: 1 1 auto;
+	padding: 1rem 1rem;
+	margin: 0px 70px 0px 70px;
+	text-align: center;
+}
+.card-text{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	font-size: 20px;
+}
+</style>
 </head>
 <body>
 	<!-- header -->
@@ -22,8 +40,7 @@ request.setCharacterEncoding("UTF-8");
 				<!-- 슬라이드 이미지 -->
 				<c:forEach var="eventList" items="${eventList }"
 					varStatus="eventNum">
-					<a
-						href="../shop/event/eventList?eventNum=${eventList.eventNum }">
+					<a href="../shop/event/eventList?eventNum=${eventList.eventNum }">
 						<img class="mySlides"
 						src="./fileDownload?eventImg=${eventList.eventImg}"
 						alt="${eventList.eventTitle }" style="width: 100%; height: 180px;">
@@ -49,118 +66,129 @@ request.setCharacterEncoding("UTF-8");
 	</c:choose>
 	<!-- 베스트 -->
 	<hr>
-	<div class="album py-3 bg-light">
-		<h3>베스트 상품</h3>
-		<c:choose>
-			<c:when test="${!empty bestList}">
-				<div>
-					<div class="container">
-						<div class="row">
-							<c:forEach var="bestList" items="${bestList }"
-								varStatus="status ">
-								<div class="col-md-4">
-									<div class="card mb-4 shadow-sm">
-										<a href="/shop/product/detail?proNum=${bestList.proNum }"> <img
-											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-											alt=" ${bestList.proName }" width="100%" height="240px"></a>
-										<div class="card-body">
-											<p class="card-text">${bestList.proName }</p>
-											<hr>
+	<div class="album py-3 bg-light" id="cardbodyforentier">
+		<div>
+			<c:choose>
+				<c:when test="${!empty bestList}">
+					<div>
+						<div class="container">
+							<h3 class="nameforpro">베스트 상품</h3>
+							<br>
+							<div class="row">
+								<c:forEach var="bestList" items="${bestList }"
+									varStatus="status ">
+									<div class="col-md-4">
+										<div class="card mb-4 shadow-sm">
+											<a href="/shop/product/detail?proNum=${bestList.proNum }">
+												<img
+												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												alt=" ${bestList.proName }" width="100%" height="240px">
+											</a>
+											<div class="card-body">
+												<p class="card-text">${bestList.proName }</p>
+												<hr>
+											</div>
 										</div>
 									</div>
-								</div>
-							</c:forEach>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
-				</div>
-			</c:when>
-		</c:choose>
-	</div>
-	<!-- 신상품 -->
-	<hr>
-	<div class="album py-3 bg-light">
-		<h3>신상품</h3>
-		<c:choose>
-			<c:when test="${!empty newList}">
-				<div class="album py-3 bg-light">
-					<div class="container">
-						<div class="row">
-							<c:forEach var="newList" items="${newList }" varStatus="status ">
-								<div class="col-md-4">
-									<div class="card mb-4 shadow-sm">
-										<a href="/shop/product/detail?proNum=${newList.proNum }"> <img
-											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-											alt=" ${newList.proName }" width="100%" height="240px"></a>
-										<div class="card-body">
-											<p class="card-text">${newList.proName }</p>
-											<hr>
+				</c:when>
+			</c:choose>
+		</div>
+		<!-- 신상품 -->
+		<hr>
+		<div>
+			<c:choose>
+				<c:when test="${!empty newList}">
+					<div class="album py-3 bg-light">
+						<div class="container">
+							<h3 class="nameforpro">신상품</h3>
+							<div class="row">
+								<c:forEach var="newList" items="${newList }" varStatus="status ">
+									<div class="col-md-4">
+										<div class="card mb-4 shadow-sm">
+											<a href="/shop/product/detail?proNum=${newList.proNum }">
+												<img
+												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												alt=" ${newList.proName }" width="100%" height="240px">
+											</a>
+											<div class="card-body">
+												<p class="card-text">${newList.proName }</p>
+												<hr>
+											</div>
 										</div>
 									</div>
-								</div>
-							</c:forEach>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
-				</div>
-			</c:when>
-		</c:choose>
-	</div>
-	<!-- 오늘배송 -->
-	<hr>
-	<div class="album py-3 bg-light">
-		<h3>오늘배송</h3>
-		<c:choose>
-			<c:when test="${!empty dailyList}">
-				<div class="album py-3 bg-light">
-					<div class="container">
-						<div class="row">
-							<c:forEach var="dailyList" items="${dailyList}"
-								varStatus="status ">
-								<div class="col-md-4">
-									<div class="card mb-4 shadow-sm">
-										<a href="/shop/product/detail?proNum=${dailyList.proNum }"> <img
-											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-											alt=" ${dailyList.proName }" width="100%" height="240px"></a>
-										<div class="card-body">
-											<p class="card-text">${dailyList.proName }</p>
-											<hr>
+				</c:when>
+			</c:choose>
+		</div>
+		<!-- 오늘배송 -->
+		<hr>
+		<div>
+			<c:choose>
+				<c:when test="${!empty dailyList}">
+					<div class="album py-3 bg-light">
+						<div class="container">
+							<h3 class="nameforpro">오늘배송</h3>
+							<div class="row">
+								<c:forEach var="dailyList" items="${dailyList}"
+									varStatus="status ">
+									<div class="col-md-4">
+										<div class="card mb-4 shadow-sm">
+											<a href="/shop/product/detail?proNum=${dailyList.proNum }">
+												<img
+												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												alt=" ${dailyList.proName }" width="100%" height="240px">
+											</a>
+											<div class="card-body">
+												<p class="card-text">${dailyList.proName }</p>
+												<hr>
+											</div>
 										</div>
 									</div>
-								</div>
-							</c:forEach>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
-				</div>
-			</c:when>
-		</c:choose>
-	</div>
-	<!-- 랜덤상품 -->
-	<hr>
-	<div class="album py-3 bg-light">
-		<h3>상품 리스트</h3>
-		<c:choose>
-			<c:when test="${!empty randomList}">
-				<div class="album py-3 bg-light">
-					<div class="container">
-						<div class="row">
-							<c:forEach var="randomList" items="${randomList}"
-								varStatus="status ">
-								<div class="col-md-4">
-									<div class="card mb-4 shadow-sm">
-										<a href="/shop/product/detail?proNum=${randomList.proNum }"> <img
-											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-											alt=" ${randomList.proName }" width="100%" height="240px"></a>
-										<div class="card-body">
-											<p class="card-text">${randomList.proName }</p>
-											<hr>
+				</c:when>
+			</c:choose>
+		</div>
+		<!-- 랜덤상품 -->
+		<hr>
+		<div>
+			<c:choose>
+				<c:when test="${!empty randomList}">
+					<div class="album py-3 bg-light">
+						<div class="container">
+							<h3 class="nameforpro">상품 리스트</h3>
+							<div class="row">
+								<c:forEach var="randomList" items="${randomList}"
+									varStatus="status ">
+									<div class="col-md-4">
+										<div class="card mb-4 shadow-sm">
+											<a href="/shop/product/detail?proNum=${randomList.proNum }">
+												<img
+												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												alt=" ${randomList.proName }" width="100%" height="240px">
+											</a>
+											<div class="card-body">
+												<p class="card-text">${randomList.proName }</p>
+												<hr>
+											</div>
 										</div>
 									</div>
-								</div>
-							</c:forEach>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
-				</div>
-			</c:when>
-		</c:choose>
+				</c:when>
+			</c:choose>
+		</div>
 	</div>
 	<!-- footer -->
 	<%@include file="headerfooter/footer.jsp"%>

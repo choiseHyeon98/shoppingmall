@@ -8,11 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.shop.service.EventService;
+import com.hk.shop.service.FooterService;
 import com.hk.shop.service.ProductService;
 import com.hk.shop.vo.EventVO;
+import com.hk.shop.vo.FooterVO;
 import com.hk.shop.vo.ProductVO;
 import com.hk.shop.vo.SerchVO;
 
@@ -25,6 +26,9 @@ public class HomepageController {
 	
 	@Autowired
 	EventService eventService;
+	
+	@Autowired
+	FooterService footerService;
 	
 	//홈페이지(기본 페이지)
 	@RequestMapping (value="/", method= {RequestMethod.GET,RequestMethod.POST})
@@ -86,6 +90,37 @@ public class HomepageController {
 		}
 		
 		return link;
+	}
+	
+	@RequestMapping (value="/footer/companyInfo", method= {RequestMethod.GET,RequestMethod.POST})
+	String footerCompanyInfo(Model model){
+		//회사정보
+		FooterVO footerVO = footerService.selectAll();
+		model.addAttribute("footerVO", footerVO);
+		String name = "회사정보";
+		model.addAttribute("name", name);
+		System.out.println(footerVO);
+		return "footerCompInfo";
+	}
+	@RequestMapping (value="/footer/terms", method= {RequestMethod.GET,RequestMethod.POST})
+	String footerTems(Model model){
+		//이용약관
+		FooterVO footerVO = footerService.selectAll();
+		System.out.println(footerVO);
+		model.addAttribute("footerVO", footerVO);
+		String name = "이용약관 및 환불규정";
+		model.addAttribute("name", name);
+		return "footerTems";
+	}
+	@RequestMapping (value="/footer/privacy", method= {RequestMethod.GET,RequestMethod.POST})
+	String footerPrivacy(Model model){
+		//개인정보 처리방침
+		FooterVO footerVO = footerService.selectAll();
+		model.addAttribute("footerVO", footerVO);
+		String name = "개인정보 처리방침";
+		model.addAttribute("name", name);
+		System.out.println(footerVO);
+		return "footerPrivacy";
 	}
 
 }

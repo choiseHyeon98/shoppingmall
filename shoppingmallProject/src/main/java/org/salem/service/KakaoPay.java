@@ -59,17 +59,17 @@ public class KakaoPay {
         params.add("total_amount",tprice);//총가격-- orderListVO.getTprice()
         params.add("tax_free_amount", "100");//비과세
         params.add("approval_url", "http://localhost:8888/shop/kakaoPaySuccess");
-        params.add("cancel_url", "http://localhost:8888/shop/listAll");//주문취소
-        params.add("fail_url", "http://localhost:8888/shop/product/detail?proNum=1111");//주문성공
+        params.add("cancel_url", "http://localhost:8888/shop/kakaoPayCancle");//주문취소
+        params.add("fail_url", "http://localhost:8888/shop/kakaoPayFail");//주문실패
  
          HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
  
         try {
         	kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
         	
-        	Map<String, Object> map = new HashMap<String, Object>();
-        	//새로운 통을 만들고
         	//블루코딩의 유준상씨의 도움을 받아 작성된 코드입니다.
+        	//새로운 통을 만들고
+        	Map<String, Object> map = new HashMap<String, Object>();
         	map.put("kakaoPayReadyVO", kakaoPayReadyVO);
         	map.put("orderListVO", orderListVO);
         	map.put("delVo", delVO);

@@ -16,7 +16,6 @@
 <title>상품상세</title>
 
 <script>
-
 	function info_chk() {
 		return true;
 	}
@@ -91,14 +90,15 @@
 						</select> <br> 색상: <select name="colorOption" class="widforsc">
 							<option value="${Product[0].colorOption }">${Product[0].colorOption }</option>
 						</select> <br> 수량 : <input type="number" name="countProNum"
-							style="width: 50%" class="widforn" min="0" max="99" required> <br>
+							style="width: 50%" class="widforn" min="0" max="99" required>
+						<br>
 						<!-- hidden -->
 						<input type="text" value="${Product[0].proNum }" name="proNum"
 							class="anone"><br> <input type="text"
 							value="${Product[0].price }" name="price" class="anone"><br>
 						<!-- submit -->
-						<input type="submit" value="구매하기"> 
-						<input type="button" value='찜하기' onclick='return info_chk2(this.form);' value="찜하기">
+						<input type="submit" value="구매하기"> <input type="button"
+							value='찜하기' onclick='return info_chk2(this.form);' value="찜하기">
 					</form>
 				</div>
 			</div>
@@ -170,11 +170,7 @@
 			<hr>
 		</div>
 	</div>
-
 	<!-- Footer-->
 	<%@include file="headerfooter/footer.jsp"%>
-	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

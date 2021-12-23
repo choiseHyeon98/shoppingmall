@@ -120,6 +120,20 @@ public class SampleController {
 		
 	}
 	
+	@GetMapping("/kakaoPayCancle")
+	public String kakaoPayCancle() {
+		System.out.println("kakaoPayCancle get............................................");
+		//주문이 취소되었습니다.
+		return "kakaoPayCancle";
+	}
+	
+	@GetMapping("/kakaoPayFail")
+	public String kakaoPayFail() {
+		System.out.println("kakaoPayCancle get............................................");
+		//주문에 실패하였습니다.
+		return "kakaoPayFail";
+	}
+	
 	
 
 }

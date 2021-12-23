@@ -57,6 +57,11 @@
     SELECT "privacy" from FOOTER
    ]]>
 	</select>
-
 	
+	<select id="selectAll"  resultType="FooterVO">
+   <![CDATA[
+    SELECT * from FOOTER
+   ]]>
+	</select>
+
 </mapper>
