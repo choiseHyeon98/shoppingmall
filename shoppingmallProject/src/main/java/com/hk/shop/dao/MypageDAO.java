@@ -21,7 +21,9 @@ public class MypageDAO {
 
 	public MemberVO selectMyinfo(String id) {
 		// TODO Auto-generated method stub
-		MemberVO memberVO = sqlSession.selectList("mapper.mypage.selectMyInfo", id);
+		MemberVO memberVO = sqlSession.selectOne("mapper.mypage.selectMyInfo", id);
+		System.out.println("id3="+id);
+
 		return memberVO;
 	}
 

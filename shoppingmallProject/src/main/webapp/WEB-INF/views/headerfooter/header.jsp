@@ -30,7 +30,7 @@ if (memberVO == null) {
 } else {
 %>
 <ul style="float: right;">
-<li><input type="button" value="내 정보" onClick="location.href='/shop/s/myinfo'"></li>
+<li><input type="button" value="마이 페이지" onClick="location.href='/shop/mypage'"></li>
 <li><input type="button" value="LOGOUT" onClick="location.href='/shop/logout'" ></li>
 </ul>
 <%

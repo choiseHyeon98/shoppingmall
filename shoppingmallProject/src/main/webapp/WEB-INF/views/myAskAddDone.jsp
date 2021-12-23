@@ -7,10 +7,12 @@
 <title>문의 완료</title>
 </head>
 <body>
-<h1> 문의가 완료되었습니다! </h1>
-	
-	<!-- URL 버튼 -->
-	<input type="button" value="내 문의 내역으로" onClick="location.href='/shop/board/askList'">
+
+	 <script>
+	 alert("문의가 완료되었습니다");
+	 document.location.href="/shop/board/askList";
+	 
+	 </script>
 	
 </body>
 </html>

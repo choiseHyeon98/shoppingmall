@@ -10,7 +10,7 @@
 
 <script>
 	 alert("내 정보 수정이 완료 되었습니다.\n 내 정보 창으로 돌아갑니다.");
-	 document.location.href="/shop/s/myinfo";
+	 document.location.href="/shop/s/mypage/update";
 	 
 </script>
 
