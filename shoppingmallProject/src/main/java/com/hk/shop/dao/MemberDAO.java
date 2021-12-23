@@ -53,6 +53,14 @@ public class MemberDAO {
 		return memberVO;
 	}
 
+	public int updateNewPW(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.member.updatePw", memberVO);
+		System.out.println("pwSubmit3="+memberVO.toString());
+
+		return ret;
+	}
+
 
 
 

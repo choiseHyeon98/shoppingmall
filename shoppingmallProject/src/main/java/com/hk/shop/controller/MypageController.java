@@ -27,40 +27,7 @@ public class MypageController {
 	@Autowired
 	MypageService mypageService;
 
-	/*
-	@RequestMapping (value="/mypage", method = RequestMethod.GET)
-	String mypageHome() {
-		
-		// Get�쑝濡� �젒�냽�븯硫� 鍮꾨�踰덊샇 �씤利앹갹 �쑝濡� �뿰寃�
-		// �꽦怨듯븯硫� �궡 �젙蹂� 蹂댁뿬二쇨퀬
-		// �떎�뙣�븯硫� �떎�떆 �씤利앹갹
-		
-		// 李� 紐⑸줉
-		// 二쇰Ц �궡�뿭 議고쉶
-		// 由щ럭 �옉�꽦李� 
-		
-		return ""; // 鍮꾨쾲 �씤利앹갹
-	}
-	*/
 	
-	// �궡 �젙蹂� 議고쉶
-	// �꽭�뀡 �꽔湲�
-	
-	/*
-	@RequestMapping (value="/s/myinfo", method=RequestMethod.GET)
-	// 濡쒓렇�씤 �븯怨� POST濡� 諛붽� �삁�젙
-	public String Mypageinfo ( Model model, HttpSession session) {
-		String id = "";
-		MemberVO memberVO = (MemberVO) session.getAttribute("login");
-		id = memberVO.getId();
-		Map<String, Object> map = mypageService.viewMyInfo(id);
-		model.addAttribute("member", map.get("memberVO"));
-		// 세션뺴고 디비가기. 모델써서 login.id를 memberVO.id로 바꾸기
-		
-		return "mypageInfo"; //--> �씠寃� �옒 �굹�삤�뒗吏�
-		
-	}
-	*/
 	@RequestMapping (value="/mypage", method=RequestMethod.GET)
 	public String ViewMyPage () {
 		return "mypageView";

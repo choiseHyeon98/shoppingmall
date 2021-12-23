@@ -44,11 +44,11 @@
 <table style="width:100%">
   <tr>
     <th>id</th>
-    <td><input type="text" value="${member.id }" name="pw" readonly></td>
+    <td><input type="text" value="${member.id }" name="id" readonly></td>
   </tr>
   <tr>
   	<th>pw</th>
-    <td><input type=text value="${member.pw }" name="id" readonly></td>
+    <td><input type=text value="${member.pw }" name="pw" readonly></td>
   </tr>
   <!-- id/pw는 수정할때 readonly -->
   <tr>

@@ -50,6 +50,13 @@ public class MemberService {
 
 	}
 
+	public int updatePw(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		System.out.println("pwSubmit2="+memberVO.toString());
+
+		return memberDAO.updateNewPW(memberVO);
+	}
+
 
 
 	

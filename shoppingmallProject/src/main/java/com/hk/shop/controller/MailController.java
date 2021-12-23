@@ -43,7 +43,9 @@ public class MailController {
 			messageHelper.setFrom("ddh04023@gmail.com", "담당자");
 			messageHelper.setSubject("[쇼핑몰] 비밀번호 재설정 안내입니다.");
 			messageHelper.setTo("ddh04023@naver.com");
-			messageHelper.setText("비밀번호 재설정 링크입니다");
+			messageHelper.setText("비밀번호 재설정 링크입니다. "
+					+ "링크를 통해 새 비밀번호를 설정해주세요"
+					+ "http://localhost:8888/shop/ylhqlalfqjsghwotjdwjdfldzmwlfhd");
 
 			mailSender.send(message);
 			

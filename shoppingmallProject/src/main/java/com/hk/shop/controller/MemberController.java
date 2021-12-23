@@ -152,6 +152,7 @@ public class MemberController extends HttpServlet {
 		
 		if (memberVO == null) {
 			// 정보 없음
+		//	System.out.println("MEMBERVO="+memberVO.toString());
 
 			retUrl = "findIdFail";
 		} else {
@@ -165,7 +166,7 @@ public class MemberController extends HttpServlet {
 	
 	
 	@RequestMapping (value="/member/resetPw", method=RequestMethod.POST)
-	public String ResetPw (@ModelAttribute MemberVO memberVO) {
+	public String ResetPw (@ModelAttribute MemberVO memberVO, HttpSession session) {
 		
 		System.out.println("memberVO1="+memberVO.toString());
 		memberVO = memberService.findId(memberVO);
@@ -173,16 +174,43 @@ public class MemberController extends HttpServlet {
 		//return "redirect:sendMail.do"; // 재설정 이메일 보내
 		String retUrl = "findIdFail";
 		if (memberVO != null) {
-
+			session.setAttribute("itsme", memberVO);
 			// 정보가 있어 그럼 메일을 보내
-			return "redirect:sendMail.do";
+			return "redirect:/sendMail.do";
 
 		}
 		return retUrl;
 		
 	}
 	
-
+	
+	@RequestMapping (value="/ylhqlalfqjsghwotjdwjdfldzmwlfhd", method=RequestMethod.GET)
+	public String SubmitNewPw (Model model, HttpSession session) {
+		// 본인인증한 기록이 있어야함
+		MemberVO memberVO = (MemberVO) session.getAttribute("itsme");
+		String id = memberVO.getId();
+		System.out.println("id="+id);
+		
+		String retUrl = "submitNewPw"; // 비번재설정창으로
+		
+		if (memberVO == null) {
+			retUrl = "warning";
+		} else {
+			return "submitNewPw";
+		}
+		return retUrl;
+	}
+	
+	@RequestMapping (value="/ylhqlalfqjsghwotjdwjdfldzmwlfhd", method=RequestMethod.POST)
+	public String SubmitNewPwDone (Model model, @ModelAttribute MemberVO memberVO) {
+		System.out.println("pwSubmit0="+memberVO.toString());
+		
+		int ret = memberService.updatePw(memberVO);
+		System.out.println("pwSubmit1="+memberVO.toString());
+		model.addAttribute("ret", ret);
+		
+		return "submitNewPwDone"; // 비번재설정
+	}
 	
 	
 }

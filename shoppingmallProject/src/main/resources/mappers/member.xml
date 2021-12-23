@@ -78,5 +78,13 @@
    ]]>
 	
 	</select>
+	
+	
+	<update id ="updatePw" parameterType="MemberVO" >
+	<![CDATA[
+		UPDATE MEMBER SET "pw"=#{pw}
+		WHERE "id"=#{id}
+	]]>
+	</update>
 
 </mapper>
