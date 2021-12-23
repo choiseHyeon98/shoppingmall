@@ -41,14 +41,13 @@ public class MemberService {
 		return memberDAO.addMember(memberVO);
 	}
 
-	public Map<String, Object> findId(String name) {
+
+	public MemberVO findId(MemberVO memberVO) {
 		// TODO Auto-generated method stub
-		MemberVO memberVO = memberDAO.viewId(name);
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("MemberVO", memberVO);
-		
-		return map;
+		System.out.println("memberVO2="+memberVO.toString());
+
+		return memberDAO.viewId(memberVO);
+
 	}
 
 

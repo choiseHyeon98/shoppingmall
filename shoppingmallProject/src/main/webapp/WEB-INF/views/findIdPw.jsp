@@ -16,40 +16,55 @@
 
 <h1>아이디 찾기</h1>
 <form action="findId" method="post">
+<table>
+	<tr>
+	  <th>name</th>
+		<td><input type="text" name="name" maxlength="20" required><br>
+		</td>
+	</tr>
+	<tr>
+	  <th>email</th>
+		<td><input type="text" name="email" maxlength="100" required>
+		</td>
+	  
+	</tr>
 
-	NAME : <input type="text" name="name" maxlength="20" required><br>
-  <input type="checkbox" name="email" value=${email }/>이메일 인증
-  <input type="text" name="email" maxlength="100">
-  <input type="button" value="전송"><br>
-   
-  <input type="checkbox" name="phone" value=${phone }/>전화번호 인증
-  <input type="text" name="phone" maxlength="12">
-    <input type="button" value="전송"><br>
+  <input type="submit" value="내 아이디 찾기"><br>
+
  
-	
-	인증번호 입력 : <input type="text" name="pinnum" maxlength="6">
-	<input type="button" value="아이디 조회하기" onClick="location.href='findId?name='"><br>
+</table>
 </form>
 	
 
+ 
 
 <h1>비밀번호 찾기</h1>
 <form action="resetPw" method="post">
-NAME : <input type="text" name="name" maxlength="20" required><br>
-ID : <input type="text" name="id" maxlength="10" required> <br>
-  <input type="checkbox" name="email" value=${email }/>이메일 인증
-  <input type="text" name="email" maxlength="100">
-  <input type="button" value="전송"><br>
-   
-  <input type="checkbox" name="phone" value=${phone }/>전화번호 인증
-  <input type="text" name="phone" maxlength="12">
-    <input type="button" value="전송"><br>
-  
-  <input type="text" name="" maxlength="100"><br>
-	
-	인증번호 입력 : <input type="text" name="pinnum" maxlength="6">
-	<input type="button" value="비밀번호 재설정" onClick="location.href='resetPw'"><br>
 
+<table>
+	<tr>
+	  <th>id</th>
+		<td><input type="text" name="id" maxlength="10" required><br>
+		</td>
+	</tr>
+	<tr>
+	  <th>name</th>
+		<td><input type="text" name="name" maxlength="20" required>
+		</td>
+	</tr>
+	<tr>
+	  <th>email</th>
+		<td><input type="text" name="email" maxlength="100" required>
+		</td>
+	</tr>
+
+  <input type="submit" value="내 비밀번호 찾기" ><br>
+
+ 
+</table>
 </form>
+
+
+
 </body>
 </html>

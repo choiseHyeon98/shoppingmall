@@ -54,8 +54,7 @@
  -->		
 	<select id ="viewId" resultType="MemberVO" >
 	<![CDATA[
-		SELECT "id" from MEMBER
-		WHERE "name"=#{name}
+	SELECT "id" FROM MEMBER WHERE "name"=#{name} AND "email" =#{email}
 	]]>
 	</select>
 	

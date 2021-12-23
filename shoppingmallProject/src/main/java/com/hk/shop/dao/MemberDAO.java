@@ -37,9 +37,12 @@ public class MemberDAO {
 
 
 	
-	public MemberVO viewId(String name) {
+	public MemberVO viewId(MemberVO memberVO) {
 		// TODO Auto-generated method stub
-		MemberVO memberVO = sqlSession.selectOne("mapper.member.viewId", name);
+		System.out.println("memberVO3="+memberVO.toString());
+		memberVO = sqlSession.selectOne("mapper.member.viewId", memberVO);
+		// System.out.println("memberVO4="+memberVO.toString());
+
 		return memberVO;
 	}
 	

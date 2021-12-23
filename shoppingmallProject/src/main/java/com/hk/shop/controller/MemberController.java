@@ -57,7 +57,7 @@ public class MemberController extends HttpServlet {
 		
 		if (memberVO == null) {
 			// id/pw가 틀림
-			
+
 			retUrl ="loginFail";
 			// return "redirect:/login"
 		} else {
@@ -140,22 +140,46 @@ public class MemberController extends HttpServlet {
 	}
 	
 	@RequestMapping (value="/member/findId", method=RequestMethod.POST)
-	public String FindId (Model model, @RequestParam("name") String name) {
-		Map<String, Object> map = memberService.findId(name); // 인증번호는?
+	//public String FindId (Model model, @RequestParam("name") String name, @RequestParam("email") String email) {
+	public String FindId (@ModelAttribute MemberVO memberVO) {
+		System.out.println("memberVO1="+memberVO.toString());
+
+		//Map<String, String> map = memberService.findId(name, email);
+		//model.addAttribute("member", map.get("memberVO"));
+		memberVO = memberService.findId(memberVO);
 		
-		model.addAttribute("id", map.get("id"));
-		return "findId"; // 아이디 찾기 완료
+		String retUrl = "findIdDone"; // 아이디 찾기 완료
+		
+		if (memberVO == null) {
+			// 정보 없음
+
+			retUrl = "findIdFail";
+		} else {
+			// 정보 있음
+			
+			return "findIdDone";
+			
+		}
+		return retUrl; // 아이디 찾기 완료
 	}
+	
 	
 	@RequestMapping (value="/member/resetPw", method=RequestMethod.POST)
-	public String ResetPw () {
+	public String ResetPw (@ModelAttribute MemberVO memberVO) {
 		
-		return "resetPw"; // 앞에서 받은 아이디에 대한 재설정할 비번 받음
-	}
-	
-	@RequestMapping (value="/member/findPw", method=RequestMethod.POST)
-	public String FindPw () {
-		return "findPw"; // 앞에서 입력된 재설정비번 완료
+		System.out.println("memberVO1="+memberVO.toString());
+		memberVO = memberService.findId(memberVO);
+		
+		//return "redirect:sendMail.do"; // 재설정 이메일 보내
+		String retUrl = "findIdFail";
+		if (memberVO != null) {
+
+			// 정보가 있어 그럼 메일을 보내
+			return "redirect:sendMail.do";
+
+		}
+		return retUrl;
+		
 	}
 	
 

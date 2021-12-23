@@ -43,7 +43,7 @@ div {
 
    
    <input type="button" value="REGISTER" onClick="location.href='/shop/member/register'"  style="width:125px;">
-   <input type="button" value="FIND ID/PW" onClick="location.href='findIdPw'" style="width:125px;">
+   <input type="button" value="FIND ID/PW" onClick="location.href='/shop/member/findIdPw'" style="width:125px;">
    </form>
 
 </div>

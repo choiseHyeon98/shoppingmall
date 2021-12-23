@@ -51,7 +51,7 @@ public class MailController {
 			e.printStackTrace();
 		}
 		
-		out.print("메일을 보냈습니다.");
+		out.print("비밀번호 재설정 이메일을 보냈습니다. 메일함을 확인해주세요!");
 		
 	}
 	
