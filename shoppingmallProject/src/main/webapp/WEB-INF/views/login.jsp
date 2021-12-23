@@ -9,30 +9,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-div {
+<!-- favicon -->
+<link rel=" shortcut icon" href="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small">
+<link rel="icon" href="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small">
+<style>
+#sform {
 	width : 350px;
     height : 250px;
     border : 1px solid black;
-    posittion: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: 150px;
-    margin-top: 100px;
-
-}
-
-#sform {
-	display : inline-block;
+    display : inline-block;
     text-align: center;
 	padding: 30px 25px 10px 25px;
+}
+
+.forCenter {
+	text-align:center;
 }
 </style>
 <meta charset="UTF-8">
 <title>로그인 창</title>
 </head>
 <body>
-
+<div style="text-align:center; margin: 31px auto;">
+<a href="/shop" class="forcenter" style=" "><img src="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small" alt="logo" style="width: 50px; height=50px;" ></a>
+</div>
+<div class="forCenter">
 <div id = "sform">
 <form name="loginForm" action="login" method="post">
 <h3> LOGIN </h3>
@@ -46,6 +47,7 @@ div {
    <input type="button" value="FIND ID/PW" onClick="location.href='/shop/member/findIdPw'" style="width:125px;">
    </form>
 
+</div>
 </div>
 </body>
 </html>
