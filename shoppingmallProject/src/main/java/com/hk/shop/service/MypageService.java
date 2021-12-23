@@ -1,5 +1,6 @@
 package com.hk.shop.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,9 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		
 		MemberVO memberVO = mypageDAO.selectMyinfo(id);
+		System.out.println("id2="+id);
+
+		// Map<String, Object> map = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberVO", memberVO);
 		return map;

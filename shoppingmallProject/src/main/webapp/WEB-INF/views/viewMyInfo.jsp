@@ -29,7 +29,7 @@
     }
     
     function fn_modify_article(obj){
-       obj.action="mypage/update";
+       obj.action="update";
        obj.submit();
     }
     
@@ -44,32 +44,32 @@
 <table style="width:100%">
   <tr>
     <th>id</th>
-    <td><input type="text" value="${memberVO.id }" name="pw" readonly></td>
+    <td><input type="text" value="${member.id }" name="pw" readonly></td>
   </tr>
   <tr>
   	<th>pw</th>
-    <td><input type=text value="${memberVO.pw }" name="id" readonly></td>
+    <td><input type=text value="${member.pw }" name="id" readonly></td>
   </tr>
   <!-- id/pw는 수정할때 readonly -->
   <tr>
     <th>name</th>
-    <td><input type=text value="${memberVO.name }" name="name" id="i_name" disabled /></td>
+    <td><input type=text value="${member.name }" name="name" id="i_name" disabled /></td>
   </tr>
   <tr>
     <th>phone</th>
-    <td><input type=text value="${memberVO.phone }" name="phone" id="i_phone" disabled /></td>
+    <td><input type=text value="${member.phone }" name="phone" id="i_phone" disabled /></td>
   </tr>
   <tr>
   	<th>address</th>
-    <td><input type=text value="${memberVO.address }" name="address" id="i_address" disabled /></td>
+    <td><input type=text value="${member.address }" name="address" id="i_address" disabled /></td>
   </tr>
   <tr>
     <th>email</th>
-    <td><input type=text value="${memberVO.email }" name="email" id="i_email" disabled /></td>
+    <td><input type=text value="${member.email }" name="email" id="i_email" disabled /></td>
   </tr>
   <tr>
     <th>rank</th>
-    <td>${memberVO.rank }</td>
+    <td>${member.rank }</td>
   </tr>
 </table>
  

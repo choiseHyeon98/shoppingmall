@@ -45,6 +45,8 @@ public class MypageController {
 	
 	// �궡 �젙蹂� 議고쉶
 	// �꽭�뀡 �꽔湲�
+	
+	/*
 	@RequestMapping (value="/s/myinfo", method=RequestMethod.GET)
 	// 濡쒓렇�씤 �븯怨� POST濡� 諛붽� �삁�젙
 	public String Mypageinfo ( Model model, HttpSession session) {
@@ -58,15 +60,24 @@ public class MypageController {
 		return "mypageInfo"; //--> �씠寃� �옒 �굹�삤�뒗吏�
 		
 	}
+	*/
+	@RequestMapping (value="/mypage", method=RequestMethod.GET)
+	public String ViewMyPage () {
+		return "mypageView";
+	}
 
 
 	// 내정보 수정창
 	@RequestMapping (value="s/mypage/update", method=RequestMethod.GET)
-	public String MypageUpdate(Model model, @RequestParam("id") String id) {
+	public String MypageUpdate(Model model, HttpSession session) {
+		//String id = ""; // session 선언 후에 , @RequestParam("id") String id 붙이기
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		String id = memberVO.getId();
+		System.out.println("id="+id);
 		Map<String, Object> map = mypageService.viewMyInfo(id);
 		
 		model.addAttribute("member", map.get("memberVO"));
-		return "mypageInfo";
+		return "viewMyInfo";
 	}
 	
 	// 내 정보 수정입력
