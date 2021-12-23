@@ -83,7 +83,7 @@ public class MemberController extends HttpServlet {
 			name = memberVO.getName();
 		} // session 날리기전에 model에서 name불러 jsp에서 사용
 		session.invalidate();
-		
+		model.addAttribute("name", name);
 		return "logout";
 	}
 	

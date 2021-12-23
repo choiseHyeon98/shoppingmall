@@ -17,7 +17,7 @@
       </script>
  -->      
       <script>
-	 alert("${login.name } 님! 안녕히 가십시오! \n 메인 페이지로 이동합니다.");
+	 alert("${name }님! 안녕히 가십시오! \n 메인 페이지로 이동합니다.");
 	 document.location.href="/shop";
 	 
 	 </script>
