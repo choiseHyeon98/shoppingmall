@@ -11,7 +11,8 @@ public class ProductVO {
 	private String proDetails;
 	private String proSpecification;
 	//파일 업로드를 위해 multipartfile 추가
-	private MultipartFile uploadFile;
+	private MultipartFile uploadFileTop;
+	private MultipartFile uploadFileDetail;
 	private String refundPolicy;
 	private String topImage;
 	private int price;
@@ -123,20 +124,32 @@ public class ProductVO {
 		this.soldOut = soldOut;
 	}
 
-	public MultipartFile getUploadFile() {
-		return uploadFile;
+	public MultipartFile getUploadFileTop() {
+		
+		return uploadFileTop;
 	}
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
+	public void setUploadFileTop(MultipartFile uploadFileTop) {
+		this.uploadFileTop = uploadFileTop;
 	}
+	
+	public MultipartFile getUploadFileDetail() {
+		return uploadFileDetail;
+	}
+	public void setUploadFileDetail(MultipartFile uploadFileDetail) {
+		this.uploadFileDetail = uploadFileDetail;
+		
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "ProductVO [proNum=" + proNum + ", proName=" + proName + ", proContent=" + proContent + ", proDetails="
-				+ proDetails + ", proSpecification=" + proSpecification + ", uploadFile=" + uploadFile
-				+ ", refundPolicy=" + refundPolicy + ", topImage=" + topImage + ", price=" + price + ", delprice="
-				+ delprice + ", dailyDel=" + dailyDel + ", proCon=" + proCon + ", proCate=" + proCate + ", sizeOption="
-				+ sizeOption + ", colorOption=" + colorOption + ", countProNum=" + countProNum + ", soldOut=" + soldOut
-				+ "]";
+				+ proDetails + ", proSpecification=" + proSpecification + ", uploadFileTop=" + uploadFileTop
+				+ ", uploadFileDetail=" + uploadFileDetail + ", refundPolicy=" + refundPolicy + ", topImage=" + topImage
+				+ ", price=" + price + ", delprice=" + delprice + ", dailyDel=" + dailyDel + ", proCon=" + proCon
+				+ ", proCate=" + proCate + ", sizeOption=" + sizeOption + ", colorOption=" + colorOption
+				+ ", countProNum=" + countProNum + ", soldOut=" + soldOut + "]";
 	}
+	
 	
 }

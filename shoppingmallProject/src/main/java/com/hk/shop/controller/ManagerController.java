@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hk.shop.service.ManagerService;
 import com.hk.shop.service.ProductService;
@@ -308,9 +309,20 @@ public class ManagerController {
 	// event배너 수정 완료
 	@RequestMapping(value = "/manager/event/mod", method = RequestMethod.POST)
 	public String eventModDone(Model model, @ModelAttribute EventVO eventVO, MultipartFile file)throws IOException {
-
+		
 		String fileName = null;
-		MultipartFile uploadFile = eventVO.getUploadEventImage();
+		MultipartFile uploadFile = eventVO.getUploadEventImage();;
+				
+		if(uploadFile==null) {
+			int ret = managerService.eventModDoneService(eventVO);
+			System.out.println("eventVO 수정" + eventVO.toString());
+
+			model.addAttribute("ret", ret);
+
+			return "eventModDone";
+		}
+		
+		
 		if (!uploadFile.isEmpty()) {
 			String originalFileName = uploadFile.getOriginalFilename();
 			String ext = FilenameUtils.getExtension(originalFileName);
@@ -319,15 +331,18 @@ public class ManagerController {
 			fileName = uuid + "." + ext;
 			uploadFile.transferTo(new File("c:\\board\\eventImg\\" + fileName));
 
-		}
-		eventVO.setEventImg(fileName);
+			eventVO.setEventImg(fileName);
 		
+		
+		
+		}
 		int ret = managerService.eventModDoneService(eventVO);
 		System.out.println("eventVO 수정" + eventVO.toString());
 
 		model.addAttribute("ret", ret);
 
 		return "eventModDone";
+			
 		// 이벤트 폼이 수정되었습니다 alert
 	}
 
@@ -353,24 +368,56 @@ public class ManagerController {
 	// 관리자 상품 등록 완료
 	@RequestMapping(value = "/manager/product/add", method = RequestMethod.POST)
 	public String productAddDone(Model model, @ModelAttribute ProductVO productVO) throws IOException {
-
-		String fileName = null;
-		MultipartFile uploadFile = productVO.getUploadFile();
-		if (!uploadFile.isEmpty()) {
-			String originalFileName = uploadFile.getOriginalFilename();
-			String ext = FilenameUtils.getExtension(originalFileName);
-
-			UUID uuid = UUID.randomUUID();
-			fileName = uuid + "." + ext;
-			uploadFile.transferTo(new File("c:\\board\\" + fileName));
-
-		}
-		productVO.setProSpecification(fileName);
-
-		int ret = managerService.productAddDoneService(productVO);
-		model.addAttribute("ret", ret);
-
-		System.out.println("prductVo=" + productVO.toString());
+		/*
+		 * List<MultipartFile> fileList = mtfReqeust.getFiles("file"); String src =
+		 * mtfReqeust.getParameter("src"); System.out.println("src value=" +src);
+		 * 
+		 * String path = "c:\\board\\productImg";
+		 * 
+		 * for (MultipartFile mf : fileList) { String originFileName =
+		 * mf.getOriginalFilename(); long fileSize = mf.getSize();
+		 * 
+		 * System.out.println("orgin="+originFileName);
+		 * System.out.println("fileSize="+fileSize);
+		 * 
+		 * String safeFile = path + System.currentTimeMillis() + originFileName; try {
+		 * mf.transferTo(new File(safeFile));
+		 * 
+		 * } catch (IllegalStateException e) { e.printStackTrace();
+		 * 
+		 * } catch (IOException e) { e.printStackTrace(); } }
+		 */
+			
+		System.out.println("저장실행");
+		  String fileName = null;
+		  MultipartFile uploadFile = productVO.getUploadFileTop();
+		  if (!uploadFile.isEmpty()) { 
+			  String originalFileName =uploadFile.getOriginalFilename(); 
+			  String ext = FilenameUtils.getExtension(originalFileName);
+		  
+		  UUID uuid = UUID.randomUUID(); fileName = uuid + "." + ext;
+		  uploadFile.transferTo(new File("c:\\board\\productImg\\productImg" + fileName));
+		  
+		  } 
+		  productVO.setTopImage(fileName);
+		  
+		  String fileDetail = null;
+		  MultipartFile uploadFileDetail = productVO.getUploadFileDetail();
+		  if (!uploadFileDetail.isEmpty()) { 
+			  String originalFileName =uploadFileDetail.getOriginalFilename(); 
+			  String ext = FilenameUtils.getExtension(originalFileName);
+		  
+		  UUID uuid = UUID.randomUUID(); fileDetail = uuid + "." + ext;
+		  uploadFileDetail.transferTo(new File("c:\\board\\productImg\\productImg" + fileDetail));
+		  
+		  } 
+		  productVO.setProDetails(fileDetail);
+		  
+		  int ret = managerService.productAddDoneService(productVO);
+		  model.addAttribute("ret", ret);
+		  
+		  System.out.println("prductVo=" + productVO.toString());
+		 
 		return "productAddDone";
 	} // 추가가 완료되었습니다 alert
 

@@ -19,7 +19,7 @@ function proMuldelete(){
 
 	if (r > 0){
 		alert("삭제되었습니다");
-		location.replace("http://localhost:8888/shop/manager/managerHome");
+		location.replace("/shop/manager/managerHome");
 	} else {
 		document.wirte("에러입니다");
 	}

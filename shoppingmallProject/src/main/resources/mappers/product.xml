@@ -159,7 +159,7 @@
 	<select id="insertPro">
 		<![CDATA[
 		INSERT INTO PRODUCT ("proNum","proName","proContent","proDetails","topImage","price","delprice","proCon","proCate","proSpecification")
-		VALUES(#{proNum},#{proName}, #{proContent}, #{proDetails},#{topImage},#{price},#{delprice},#{proCon},#{proCate},#{proSpecification})
+		VALUES((SELECT max("proNum") FROM PRODUCT)+1,#{proName}, #{proContent}, #{proDetails},#{topImage},#{price},#{delprice},#{proCon},#{proCate},#{proSpecification})
 		]]>
 	</select>
 	

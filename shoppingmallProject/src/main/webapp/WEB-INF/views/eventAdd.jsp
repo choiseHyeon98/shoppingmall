@@ -19,7 +19,7 @@
       }
   }  
   function backToList(obj){
-    obj.action="managerHome";
+    obj.action="/shop/manager/managerHome";
     obj.submit();a
   }
 </script>
@@ -51,7 +51,7 @@
        <td align="right"> </td>
        <td colspan="2">
           <input type="submit" value="글쓰기" />
-          <input type=button value="목록보기" onClick="backToList(this.form)" />
+          <input type=button value="홈으로" onClick="backToList(this.form)" />
        </td>
      </tr>
     </table>
