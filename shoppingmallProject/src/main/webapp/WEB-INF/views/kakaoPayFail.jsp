@@ -28,13 +28,6 @@ request.setCharacterEncoding("UTF-8");
 	font-size: 15px;
 }
 
-.forcenter {
-	
-	flex: 1 1 auto;
-	padding: 1rem 1rem;
-	padding: 10px 10px;
-}
-
 #middleTitle {
 	font-family: 'IBM Plex Sans KR', sans-serif;
 	font-size: 20px;

@@ -101,7 +101,6 @@ public class ProductController {
 	}
 
 	// 상품상세//view뿐....
-	// form action으로 주문하기 url로 연결(post방식으로 전달)
 	@RequestMapping(value = "/product/detail", method = { RequestMethod.GET, RequestMethod.POST })
 	String detailView(Model model, @RequestParam("proNum") int proNum) {
 		List<ProductVO> Product = productService.selectOne(proNum);
@@ -115,23 +114,12 @@ public class ProductController {
 		if(Product.toString()!="[]") {
 			link="ProductView";
 		} else {
-			//요청하신 상품을 찾을 수 없습니다 로 보냄.
+			link="warning";
 		}
-		return "ProductView";
+		return link;
 	}
 
-	// 주문하기
-	// form으로 액션... 들어오면
-	// 찜목록에서 여러 옵션이 들어오면...?
-	// 옵션 수량은 찜목록 수량을 가져오기.
-	// 찜목록에서 cartNum받아와서 구현....
-
-	// 상세보기옵션 선택후 그 값을 받아서 VO에 담아서 전달!
-	// 받아야할 정보들
-	// proNum
-	// sizeOption
-	// colorOption
-	@RequestMapping(value = "/s/product/orderList", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/s/product/orderList", method =RequestMethod.POST)
 	// test를 위해 일단 get도 열어둠/ test이후 post만 남길것.
 	String orderProduct(Model model, @ModelAttribute ProductVO productOption) {
 		System.out.println(productOption.toString());
@@ -147,8 +135,7 @@ public class ProductController {
 	}
 	
 	//찜목록에 추가하기
-	@RequestMapping(value = "/s/mypage/addCartList", method = { RequestMethod.GET, RequestMethod.POST })
-	// test를 위해 일단 get도 열어둠/ test이후 post만 남길것.
+	@RequestMapping(value = "/s/mypage/addCartList", method = RequestMethod.POST)
 	String orderCartProduct(Model model, @ModelAttribute CartVO cartVO) {
 		System.out.println("cartVO: "+cartVO);
 		cartVO.setPrice(cartVO.getPrice()*cartVO.getCountProNum());
@@ -161,18 +148,29 @@ public class ProductController {
 		return "cartAddDone";
 	}
 	
+	@RequestMapping(value = "/s/product/orderList", method = RequestMethod.GET)
+	String orderProductNo() {
+		//잘못된 요청
+		return "warning";
+	}
+	@RequestMapping(value = "/s/mypage/addCartList", method = RequestMethod.GET)
+	String orderCartProductNo() {
+		//잘못된 요청
+		return "warning";
+	}
+	
 	
 
-	// 찜목록에서 주문하기!
-	@RequestMapping(value = "/s/mypage/orderList", method = { RequestMethod.GET, RequestMethod.POST })
-	// test를 위해 일단 get도 열어둠/ test이후 post만 남길것.
-	String orderCartProduct(Model model, @RequestParam("cartNum") int cartNum) {
-		//
-		List<ProductVO> Product = productService.selectProd(cartNum);
-		model.addAttribute("Product", Product);
-		System.out.println("찜Product 상세보기" + Product.toString());
-		return "ProductOrderC";
-	}
+	/*
+	 * // 찜목록에서 주문하기!-삭제된 기능입니다.
+	 * 
+	 * @RequestMapping(value = "/s/mypage/orderList", method = { RequestMethod.GET,
+	 * RequestMethod.POST }) // test를 위해 일단 get도 열어둠/ test이후 post만 남길것. String
+	 * orderCartProduct(Model model, @RequestParam("cartNum") int cartNum) { //
+	 * List<ProductVO> Product = productService.selectProd(cartNum);
+	 * model.addAttribute("Product", Product); System.out.println("찜Product 상세보기" +
+	 * Product.toString()); return "ProductOrderC"; }
+	 */
 
 	// 주문취소(취소가 눌리면 alret으로 취소되었습니다.홈페이지로 보내기or이전페이지로 보내기)(onClick function으로 jsp에서
 	// 처리. 페이지 필요 X)

@@ -8,15 +8,12 @@
 <%@ page import = "com.hk.shop.vo.MemberVO" %>
 
 <header>
-<br>
-<div style ="text-align:center;">
-<a href="/shop" style="text-align:center;"><img src="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small" alt="logo" style="width: 50px; height=50px;"></a>
 
+<div style="margin:10px;">
 
 <%
 MemberVO memberVO = (MemberVO) session.getAttribute("login");
 %>
-
 <%
 // 로그인 안되어있는 상태
 if (memberVO == null) {
@@ -36,7 +33,16 @@ if (memberVO == null) {
 <%
 }
 %>
+<br>
+</div>
 
+
+<div style="text-align:center; margin: 31px auto;">
+<a href="/shop" class="forcenter" style=" "><img src="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small" alt="logo" style="width: 50px; height=50px;" ></a>
+</div>
+
+
+<div  class = textcenter>
 <form action="/shop/product/serch" method="get">
 	<select name="serchType">
 		<option value="proName" name="proName">상품명</option>
@@ -44,10 +50,11 @@ if (memberVO == null) {
 <input type="text" name="serch"><input type="submit" value="검색">
 </form>
 </div>
+
 <hr>
-<div id = menu>
+<div class="textcenter" id="cookieFont">
 <ul>
-    <li><a href="/shop/product/listAll" class="m_link">All</a></li>
+    <li>| <a href="/shop/product/listAll" class="m_link">All</a></li>
     <li>| <a href="/shop/product/listCasual" class="m_link">Casual</a></li>
     <li>| <a href="/shop/product/listOffice" class="m_link">Office</a></li>
     <li>| <a href="/shop/product/listFeminine" class="m_link">Feminine</a></li>

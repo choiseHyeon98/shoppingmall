@@ -12,21 +12,13 @@ request.setCharacterEncoding("UTF-8");
 <%@include file="headerfooter/favicon.jsp"%>
 
 <style>
-.nameforpro {
-	text-align: left;
-	font-family: 'IBM Plex Sans KR', sans-serif;
-	font-size: 35px;
-}
+
 
 #cardbodyforentier {
 	flex: 1 1 auto;
 	padding: 1rem 1rem;
 	margin: 0px 70px 0px 70px;
 	text-align: center;
-}
-.card-text{
-	font-family: 'IBM Plex Sans KR', sans-serif;
-	font-size: 20px;
 }
 </style>
 </head>
@@ -42,7 +34,7 @@ request.setCharacterEncoding("UTF-8");
 					varStatus="eventNum">
 					<a href="../shop/event/eventList?eventNum=${eventList.eventNum }">
 						<img class="mySlides"
-						src="./fileDownload?eventImg=${eventList.eventImg}"
+						src="/shop/fileDownload?eventImg=${eventList.eventImg}"
 						alt="${eventList.eventTitle }" style="width: 100%; height: 180px;">
 					</a>
 				</c:forEach>
@@ -81,7 +73,7 @@ request.setCharacterEncoding("UTF-8");
 										<div class="card mb-4 shadow-sm">
 											<a href="/shop/product/detail?proNum=${bestList.proNum }">
 												<img
-												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												src="./fileDownload?topImage=${bestList.topImage}"
 												alt=" ${bestList.proName }" width="100%" height="240px">
 											</a>
 											<div class="card-body">

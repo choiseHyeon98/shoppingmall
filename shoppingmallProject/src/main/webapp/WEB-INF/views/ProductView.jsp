@@ -90,7 +90,7 @@
 						</select> <br> 색상: <select name="colorOption" class="widforsc">
 							<option value="${Product[0].colorOption }">${Product[0].colorOption }</option>
 						</select> <br> 수량 : <input type="number" name="countProNum"
-							style="width: 50%" class="widforn" min="0" max="99" required>
+							style="width: 50%" class="widforn" min="1" max="99" required>
 						<br>
 						<!-- hidden -->
 						<input type="text" value="${Product[0].proNum }" name="proNum"

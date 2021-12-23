@@ -9,6 +9,15 @@ request.setCharacterEncoding("UTF-8");
 <title>ProductList</title>
 <!-- favicon -->
 <%@include file="headerfooter/favicon.jsp"%>
+
+<style>
+#cardbodyforentier {
+	flex: 1 1 auto;
+	padding: 1rem 1rem;
+	margin: 0px 70px 0px 70px;
+	text-align: center;
+}
+</style>
 <body>
 	<!-- body -->
 	<!-- header -->
@@ -20,19 +29,21 @@ request.setCharacterEncoding("UTF-8");
 	<br>
 	<br>
 
-	<div class="album py-3 bg-light">
-		<h3>${Name }</h3>
+	<div class="album py-3 bg-light" id="cardbodyforentier">
 		<c:choose>
 			<c:when test="${!empty Product}">
 				<div>
 					<div class="container">
+						<h3 class="nameforpro">${Name }</h3>
 						<div class="row">
 							<c:forEach var="Product" items="${Product }" varStatus="status ">
 								<div class="col-md-4">
 									<div class="card mb-4 shadow-sm">
-										<a href="/shop/product/detail?proNum=${Product.proNum }"> <img
+										<a href="/shop/product/detail?proNum=${Product.proNum }">
+											<img
 											src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
-											alt=" ${Product.proName }" width="100%" height="240px"></a>
+											alt=" ${Product.proName }" width="100%" height="240px">
+										</a>
 										<div class="card-body">
 											<p class="card-text">${Product.proName }</p>
 											<hr>
@@ -46,6 +57,7 @@ request.setCharacterEncoding("UTF-8");
 			</c:when>
 		</c:choose>
 	</div>
+
 
 	<!-- footer -->
 	<%@include file="headerfooter/footer.jsp"%>
