@@ -50,3 +50,4 @@ request.setCharacterEncoding("UTF-8");
 	<!-- footer -->
 	<%@include file="headerfooter/footer.jsp"%>
 </body>
+</html>
