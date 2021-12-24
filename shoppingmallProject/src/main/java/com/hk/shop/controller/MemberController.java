@@ -191,12 +191,10 @@ public class MemberController extends HttpServlet {
 		String id = memberVO.getId();
 		System.out.println("id="+id);
 		
-		String retUrl = "submitNewPw"; // 비번재설정창으로
+		String retUrl = "warning"; // 잘못된 접근입니다가 기본
 		
-		if (memberVO == null) {
-			retUrl = "warning";
-		} else {
-			return "submitNewPw";
+		if (memberVO != null) { // memberVO에 세션이 null이 아니면 재설정하러
+			retUrl = "submitNewPw";
 		}
 		return retUrl;
 	}

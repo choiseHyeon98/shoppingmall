@@ -42,8 +42,11 @@ function muldelete() {
 
 </tr>
 
-
+	<br>
 	<a class="cls1" href="/shop/board/askAdd">글쓰기</a>
+	<br>
+	<input type="button" value="상품 보러가기" onClick="location.href='/shop/'" style="width:250px; height: 30px">
+	
 
 </body>
 </html>

@@ -31,11 +31,7 @@
 <c:set var="delStatus" value="배송완료"/>
 
 <c:choose>
-<!-- 
-  <c:when test="${empty myOrders }">
-    <span>주문하신 상품이 없습니다.</span>
-  </c:when>
- -->
+
   
   <c:when test="${delStatus eq '배송완료'}">
     <tr>

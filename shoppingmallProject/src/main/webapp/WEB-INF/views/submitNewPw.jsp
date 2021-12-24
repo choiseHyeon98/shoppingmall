@@ -8,13 +8,14 @@
  <script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script type="text/javascript">
 	function passConfirm() {
-		var pw = document.getElementId('pw');
-		var pwConfirm = document.getElementId('pwConfirm');
-		var confirmMsg = document.getElementId('confirmMsg');
+		var pw = document.getElementById('pw').value;
+		var pwConfirm = document.getElementById('pwConfirm').value;
+		var confirmMsg = document.getElementById('confirmMsg').value;
 		var correctColor = "#00ff00";
 		var wrongColor = "#ff0000";
 		
-		if(pw.value == pwConfirm.value) {
+		if(document.getElementById('pw').value != "&& document.getElementById('pwConfirm').value !=") {
+			if (document.getElementById('pw').value==document.getElementById('pwConfirm').value) 
 			confirmMsg.style.color = correctColor;
 			confirmMsg.innerHTML = "비밀번호 일치";
 		} else {
@@ -33,15 +34,17 @@
 </head>
 <body>
 
-<form name="frmArticle" action="ylhqlalfqjsghwotjdwjdfldzmwlfhd" method="post">
+<form name="frmArticle" action="/shop/ylhqlalfqjsghwotjdwjdfldzmwlfhd" method="post">
 <table>
 <tr>
   <th>새 비밀번호</th>
-  <td> <input type="text" id="pw" maxlength="10" required></td>
+  <td> <input type="text" name="pw" id="pw" maxlength="10" onchange="passConfirm()" required ></td>
 </tr>
 <tr>
   <th>새 비밀번호 확인</th>
-  <td> <input type="text" id="pwConfirm" maxlength="10" required></td>
+  <td> <input type="text" name="pwConfirm" id="pwConfirm" maxlength="10" onchange="passConfirm()" required>
+  &nbsp;<span id="check"></span>
+  </td>
 </tr>
 
 </table>
