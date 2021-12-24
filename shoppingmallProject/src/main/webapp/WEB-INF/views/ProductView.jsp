@@ -91,7 +91,7 @@
 								</c:when>
 							</c:choose>
 						</select> <br> 
-						색상: <select name="colorOption" class="widforsc">
+						색상: <select name="colorOption" class="widforsc"> 
 							<c:choose>
 								<c:when test="${!empty Product}">
 									<c:forEach var="Product" items="${Product }" varStatus="status">
