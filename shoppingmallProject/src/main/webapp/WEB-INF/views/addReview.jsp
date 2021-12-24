@@ -11,37 +11,90 @@
 <meta charset="UTF-8">
 <title>리뷰 작성 창</title>
 
+<!-- favicon -->
+<link rel=" shortcut icon"
+	href="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small">
+<link rel="icon"
+	href="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small"> 
+	
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-    
-     </script>
+
+function readURL(input) {
+   if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#preview').attr('src', e.target.result);
+       }
+      reader.readAsDataURL(input.files[0]);
+   }
+}  
+function backToList(obj){
+ obj.action="/shop";
+ obj.submit();a
+}
+
+</script>
 
 </head>
+
+<style>
+.forCenter {
+	text-align: center;
+	
+}
+</style>
 <body>
 
 		리뷰 작성해라
 
-		<tr>
-			<td width=150 align="center" bgcolor=#FF9933>리뷰번호</td>
-			<td><input type="text" value="${ask.askNum }" disabled />
-				<input type="hidden" name="articleNO" value="${ask.askNum}" />
-			</td>
-		</tr>
-		<tr>
-			<td width="150" align="center" bgcolor="#FF9933">작성자 아이디</td>
-			<td><input type=text value="${ask.id }" name="writer"
-				disabled /> <input type=text value="${member.name }" name="writer"
-				disabled /></td>
-		</tr>
-		<tr>
-			<td width="150" align="center" bgcolor="#FF9933">내용</td>
-			<td><textarea rows="20" cols="60" name="content" id="i_content"
-					disabled />${ask.askContent }</textarea></td>
-		</tr>
+		<div style="text-align: center; margin: 31px auto;">
+		<a href="/shop" class="forcenter" style=""><img
+			src="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small"
+			alt="logo" style="width: 50px;"></a>
+	</div>
+	<div class="forCenter">
+		<div style="display: inline-block;">
+			<form action="/shop/s/mypage/addReview" method="post">
+				<table class="table table-striped"
+					style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="2"
+								style="background-color: #eeeeee; text-align: center;">리뷰 작성하기</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td><input type="text" class="form-control"
+								value="${login.id }" name="id" readonly
+								style="width: 450px;" ></td>
+						</tr>
+						<tr>
+							<td><input type="text" class="form-control"
+								value="${review.proNum }" name="proNum" readonly 
+								style="width: 450px;"></td>
+						</tr>
+						<tr>
+							<td><textarea class="form-control" placeholder="리뷰를 남겨주세요"
+									name="askContent" maxlength="2048"
+									style="height: 350px; width: 500px;"></textarea></td>
+						</tr>
+							<td>이미지파일 첨부:  </td>
+       						<td><input type="file" name="uploadEventImage"  onchange="readURL(this);" /></td>
+         					<td><img  id="preview" src="#"   width=200 height=200/></td>
+						<tr>
+						
+						</tr>
+					</tbody>
+				</table>
+				<input type="submit" value="리뷰 등록하기">
+				<input type=button value="홈으로" onClick="backToList(this.form)" />
+			</form>
+		</div>
+	</div>
+
 		
-		이미지 첨부  +  이미지 추가
-		
-		<input type="submit" value="리뷰 등록하기">
 
 		
 

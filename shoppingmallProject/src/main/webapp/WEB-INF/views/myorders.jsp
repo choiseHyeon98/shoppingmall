@@ -36,10 +36,10 @@
   <c:when test="${delStatus eq '배송완료'}">
     <tr>
       <c:forEach var="myOrders" items="${myOrders }" varStatus="orderNum">
-        <td>${myOrders.orderNum }</td>
+        <td>${myOrders.orderNum }, ${myOrders.proNum }</td>
 		<td>${myOrders.sizeOption }, ${myOrders.colorOption }</td>
 		<td>${myOrders.delStatus }
-		<input type="button" value="리뷰작성" onClick="location.href='/shop/s/mypage/addReview'"></td>
+		<input type="button" value="리뷰작성" onClick="location.href='/shop/s/mypage/addReview?proNum=${myOrders.proNum}'"></td>
       </c:forEach>
     </tr>
   </c:when>
@@ -47,7 +47,7 @@
   <c:when test="${delStatus ne '배송완료' }">
   <tr>
       <c:forEach var="myOrders" items="${myOrders }" varStatus="orderNum">
-        <td>${myOrders.orderNum }</td>
+        <td>${myOrders.orderNum }, ${myOrders.proNum }</td>
 		<td>${myOrders.sizeOption }, ${myOrders.colorOption }</td>
 		<td>
         <input type="text" value="${myOrders.delStatus }" name="delStatus" readonly></td>

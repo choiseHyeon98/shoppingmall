@@ -54,7 +54,7 @@ public class MypageDAO {
 
 	public int insertMyReview(ReviewVO reviewVO) {
 		// TODO Auto-generated method stub
-		int ret = sqlSession.insert("mapper.mypage.insertMyReview");
+		int ret = sqlSession.insert("mapper.mypage.insertMyReview", reviewVO);
 		return ret;
 	}
 

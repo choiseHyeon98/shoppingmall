@@ -1,10 +1,14 @@
 package com.hk.shop.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.shop.service.MypageService;
 import com.hk.shop.vo.CartVO;
@@ -113,8 +118,17 @@ public class MypageController {
 		return "cartMulDelete";
 	}
 	
-	@RequestMapping (value="s/mypage/addReview", method=RequestMethod.GET)
-	public String addReview () {
+	
+	@RequestMapping (value="s/mypage/addReview", method= RequestMethod.GET)
+	public String addReview (Model model, HttpSession session, @RequestParam("proNum") int proNum , @ModelAttribute ReviewVO reviewVO) {
+		// 세션 아이디랑 proNum 불러오기
+		// , @ModelAttribute ReviewVO reviewVO ??
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		String id = memberVO.getId();
+		System.out.println("id="+id);
+		System.out.println("proNum="+proNum);
+		//Map <String, Object> map = mypageService.getOrderInfo4Review(id);
+		model.addAttribute("review", reviewVO);
 		return "addReview"; // 由щ럭 �옉�꽦李� + 二쇰Ц湲곕줉�뿉�꽌留� �뱾�뼱媛꾨떎
 	}
 	
@@ -122,8 +136,36 @@ public class MypageController {
 	
 	@RequestMapping (value="/s/mypage/addReview", method= RequestMethod.POST)
 	// URL �뿰寃고븳 �썑�뿉 POST濡� 怨좎튇�떎
-	public String addReviewDone (Model model, @ModelAttribute ReviewVO reviewVO) {
+	public String addReviewDone (Model model, @ModelAttribute ReviewVO reviewVO) throws IOException {
+		
+		
+		String fileName = null;
+		MultipartFile uploadFile = reviewVO.getUploadReviewImage();
+		
+		if(uploadFile==null) {
+			int ret = mypageService.insertReview(reviewVO);
+			System.out.println("eventVO 수정" + reviewVO.toString());
+
+			model.addAttribute("ret", ret);
+
+			return "eventModDone";
+		}
+		
+		if (!uploadFile.isEmpty()) {
+			String originalFileName = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(originalFileName);
+
+			UUID uuid = UUID.randomUUID();
+			fileName = uuid + "." + ext;
+			uploadFile.transferTo(new File("c:\\board\\reviewPhoto\\" + fileName));
+
+		}
+		reviewVO.setReviewPhoto(fileName);
+				
 		int ret = mypageService.insertReview(reviewVO);
+		System.out.println("newReiview="+reviewVO.toString());
+
+		
 		model.addAttribute("ret", ret);
 		return "addReviewDone"; // 由щ럭 �옉�꽦李� + 二쇰Ц湲곕줉�뿉�꽌留� �뱾�뼱媛꾨떎
 	}

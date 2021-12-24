@@ -2,6 +2,8 @@ package com.hk.shop.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ReviewVO {
 	private int reviewNum;
 	private String id;
@@ -11,6 +13,8 @@ public class ReviewVO {
 	private Date reviewDate;
 	private String rereviewCont;
 	private Date rereviewDate;
+	private MultipartFile uploadReviewImage;
+	
 	// 이건 VO
 	public int getReviewNum() {
 		return reviewNum;
@@ -60,11 +64,21 @@ public class ReviewVO {
 	public void setRereviewDate(Date rereviewDate) {
 		this.rereviewDate = rereviewDate;
 	}
+	
+	public MultipartFile getUploadReviewImage() {
+		return uploadReviewImage;
+	}
+	public void setUploadReviewImage(MultipartFile uploadReviewImage) {
+		this.uploadReviewImage = uploadReviewImage;
+	}
 	@Override
 	public String toString() {
 		return "ReviewVO [reviewNum=" + reviewNum + ", id=" + id + ", proNum=" + proNum + ", reviewPhoto=" + reviewPhoto
 				+ ", reviewContent=" + reviewContent + ", reviewDate=" + reviewDate + ", rereviewCont=" + rereviewCont
-				+ ", rereviewDate=" + rereviewDate + "]";
+				+ ", rereviewDate=" + rereviewDate + ", uploadReviewImage=" + uploadReviewImage + "]";
 	}
+	
+	
+	
 	
 }
