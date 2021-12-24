@@ -9,19 +9,19 @@
 <script type="text/javascript">
 	function passConfirm() {
 		var pw = document.getElementById('pw').value;
-		var pwConfirm = document.getElementById('pwConfirm').value;
-		var confirmMsg = document.getElementById('confirmMsg').value;
-		var correctColor = "#00ff00";
-		var wrongColor = "#ff0000";
+		var btn = document.getElementById('btn');
 		
-		if(document.getElementById('pw').value != "&& document.getElementById('pwConfirm').value !=") {
-			if (document.getElementById('pw').value==document.getElementById('pwConfirm').value) 
-			confirmMsg.style.color = correctColor;
-			confirmMsg.innerHTML = "비밀번호 일치";
-		} else {
-			confirmMsg.style.color = wrongColor
-			confirmMsg.innerHTML = "비밀번호 불일치";
-		}
+		if (document.getElementById('pw').value==document.getElementById('pwConfirm').value) {
+			
+				document.getElementById('check').innerHTML='비밀번호 일치'
+				document.getElementById('check').style.color='blue'
+				btn.disabled=false;
+
+			} else {
+				document.getElementById('check').innerHTML='비밀번호 불일치'
+				document.getElementById('check').style.color='red'
+				btn.disabled=true;
+			}
 	}
 
     function fn_modify_article(obj){
@@ -51,7 +51,7 @@
 
 <tr   id="tr_btn_modify"  >
       <td colspan="2"   align="center" >
-          <input type=button value="비밀번호 재설정"   onClick="fn_modify_article(frmArticle)"  >
+          <input type=button value="비밀번호 재설정" id="btn" onClick="fn_modify_article(frmArticle)" disabled="">
           
       </td>   
   </tr>

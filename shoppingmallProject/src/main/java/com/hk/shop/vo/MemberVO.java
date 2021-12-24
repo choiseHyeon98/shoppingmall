@@ -71,4 +71,5 @@ public class MemberVO {
 				+ ", email=" + email + ", rank=" + rank + ", joinDate=" + joinDate + "]";
 	}
 	
+	
 }
