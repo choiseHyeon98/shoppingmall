@@ -122,5 +122,14 @@ public class HomepageController {
 		System.out.println(footerVO);
 		return "footerPrivacy";
 	}
+	
+	
+	
+	@RequestMapping (value="/error", method= {RequestMethod.GET,RequestMethod.POST})
+	String errorPage(Model model){
+		//에러페이지
+		System.out.println("에러페이지입니다.");
+		return "warning";
+	}
 
 }

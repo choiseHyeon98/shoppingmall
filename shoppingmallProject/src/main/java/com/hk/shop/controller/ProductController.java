@@ -120,7 +120,6 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/s/product/orderList", method =RequestMethod.POST)
-	// test를 위해 일단 get도 열어둠/ test이후 post만 남길것.
 	String orderProduct(Model model, @ModelAttribute ProductVO productOption) {
 		System.out.println(productOption.toString());
 		ProductVO Product = productService.selectProd(productOption);
@@ -147,20 +146,6 @@ public class ProductController {
 		model.addAttribute("proNum",proNum);
 		return "cartAddDone";
 	}
-	
-	@RequestMapping(value = "/s/product/orderList", method = RequestMethod.GET)
-	String orderProductNo() {
-		//잘못된 요청
-		return "warning";
-	}
-	@RequestMapping(value = "/s/mypage/addCartList", method = RequestMethod.GET)
-	String orderCartProductNo() {
-		//잘못된 요청
-		return "warning";
-	}
-	
-	
-
 	/*
 	 * // 찜목록에서 주문하기!-삭제된 기능입니다.
 	 * 
@@ -172,12 +157,8 @@ public class ProductController {
 	 * Product.toString()); return "ProductOrderC"; }
 	 */
 
-	// 주문취소(취소가 눌리면 alret으로 취소되었습니다.홈페이지로 보내기or이전페이지로 보내기)(onClick function으로 jsp에서
-	// 처리. 페이지 필요 X)
-
 	// 주문완료
-	@RequestMapping(value = "/s/product/orderDone", method = { RequestMethod.GET, RequestMethod.POST })
-	// test를 위해 일단 get도 열어둠/ test이후 post만 남길것.
+	@RequestMapping(value="/s/product/orderDone", method=RequestMethod.POST)
 	String orderDone(Model model , @ModelAttribute OrderListVO orderListVO) {
 		//주문정보 받아야함...
 		//상품번호, 주문자 id, 사이즈옵션, 컬러옵션, 주문금액, 운송장 번호, 결제방법, 상품 주문 수량

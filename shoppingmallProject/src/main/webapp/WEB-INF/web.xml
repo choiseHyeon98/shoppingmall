@@ -6,16 +6,40 @@
          version="3.1">
 
    <!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+ 	
    <context-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>/WEB-INF/spring/root-context.xml</param-value>
    </context-param>
-   
+	
+ 
    <!-- Creates the Spring Container shared by all Servlets and Filters -->
    <listener>
       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
    </listener>
-
+	<!-- error page -->
+	
+	<error-page>
+		<error-code>400</error-code>
+		<location>/WEB-INF/views/warning.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/warning.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/WEB-INF/views/warning.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/warning.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/WEB-INF/views/warning.jsp</location>
+	</error-page>
+	    
    <!-- Processes application requests -->
    <servlet>
       <servlet-name>appServlet</servlet-name>

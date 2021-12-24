@@ -17,7 +17,7 @@
 	
 }
 </style>
-<body>
+<body style="background-color: #fffef5;">
 	<div style="text-align: center; margin: 31px auto;">
 		<a href="/shop" class="forcenter" style=""><img
 			src="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small"

@@ -15,22 +15,15 @@ table {
 	border-collapse: collapse;
 	text-align: center;
 	justify-content: center;
-	width:500px;
-	height:300px;
+	width: 100%;
+	height: 450px;
 }
 
 td {
 	border: 1px solid #444444;
 }
-
-.card-board {
-	background-color: light-gray;
-	justify-content: center;
-	display: flex;
-}
-
 .card-body {
-	background-color: lightgray;
+	background-color: #fffef5;
 	margin: 0 50px 0 50px;
 	flex: 1 1 auto;
 	padding: 1rem 1rem;
@@ -49,33 +42,37 @@ td {
 	<!-- header -->
 	<%@include file="headerfooter/header.jsp"%>
 	<div class="card-body">
-		<div>
-			<h2>고객센터</h2>
-			<small>Customer Service</small>
-			<p>
-				<a class="color-black" href="/shop/board/serviceCenter">> 자주묻는 질문</a> <br> 
-				<a class="color-black" href="/shop/board/askAdd">> 문의하기</a>
-			</p>
-		</div>
-		<br>
-		<div class="card-body">
-			<div>
-				<div>
-					 <h4>${FAQOne.FAQTitle }</h4>
-					 <small>${FAQOne.id }|${FAQOne.name }|${FAQOne.FAQType }</small>
-					<hr>
+		<div class="container px-4 px-lg-5">
+			<div class="row gx-4 gx-lg-5 align-items-center my-5">
+				<div class="col-lg-4" style="text-align: left;">
+					<h2>고객센터</h2>
+					<small>Customer Service</small>
+					<p>
+						<a class="color-black" href="/shop/board/serviceCenter">> 자주묻는
+							질문</a> <br> <a class="color-black" href="/shop/s/board/askAdd">>
+							문의하기</a>
+					</p>
 				</div>
-				<br>
-				<div class="card-body">
-					<table>
-						<tr>
-							<td>문의내역${FAQOne.FAQContent }</td>
-						<tr>
-					</table>
+				<div class="col-lg-8">
+					<div style="text-align:left;">
+					<h4>${FAQOne.FAQTitle }</h4>
+					<small style="text-align:right;">${FAQOne.id }&nbsp;|&nbsp;${FAQOne.name }&nbsp;|&nbsp;${FAQOne.FAQType }</small>
+					<hr>
+					</div>
+					<div style="text-align: left;">
+						<div>
+							<table>
+								<tr>
+									<td>문의내역${FAQOne.FAQContent }</td>
+								<tr>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- footer -->
 	<%@include file="headerfooter/footer.jsp"%>
 </body>

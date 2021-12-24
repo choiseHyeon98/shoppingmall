@@ -75,9 +75,12 @@
 						<h1>${Product[0].proName }</h1>
 						<p>${Product[0].proContent }</p>
 						<p>색상: ${Product[0].colorOption }</p>
-						<p name="price" value="${Product[0].price }">가격:
+						
+						<p name="price" value="${Product[0].price }">
+						가격:
 							${Product[0].price }</p>
-						<p name="delprice" value="${Product[0].delprice }">배송비:
+						<p name="delprice" value="${Product[0].delprice }">
+						배송비:
 							${Product[0].delprice }</p>
 						사이즈: <select name="sizeOption" class="widforsc">
 							<c:choose>
@@ -87,9 +90,17 @@
 									</c:forEach>
 								</c:when>
 							</c:choose>
-						</select> <br> 색상: <select name="colorOption" class="widforsc">
-							<option value="${Product[0].colorOption }">${Product[0].colorOption }</option>
-						</select> <br> 수량 : <input type="number" name="countProNum"
+						</select> <br> 
+						색상: <select name="colorOption" class="widforsc">
+							<c:choose>
+								<c:when test="${!empty Product}">
+									<c:forEach var="Product" items="${Product }" varStatus="status">
+										<option>${Product.colorOption }</option>
+									</c:forEach>
+								</c:when>
+							</c:choose>
+						</select> <br> 
+						수량 : <input type="number" name="countProNum"
 							style="width: 50%" class="widforn" min="1" max="99" required>
 						<br>
 						<!-- hidden -->
