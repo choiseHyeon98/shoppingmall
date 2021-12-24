@@ -70,6 +70,7 @@
 
    ]]>
    	</select>
+
    	
    	<select id="updateMember" parameterType="MemberVO">
 	 <![CDATA[ 
@@ -77,6 +78,12 @@
 
    ]]>
 	
+	</select>
+	
+	   	<select id ="selectExPw" resultType="MemberVO" >
+	<![CDATA[
+		 SELECT * FROM MEMBER WHERE "id" =#{id}
+	]]>
 	</select>
 	
 	

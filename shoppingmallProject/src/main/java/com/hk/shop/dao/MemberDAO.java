@@ -53,6 +53,13 @@ public class MemberDAO {
 		return memberVO;
 	}
 
+	public MemberVO selectMyPw(String id) {
+		// TODO Auto-generated method stub
+		MemberVO memberVO = sqlSession.selectOne("mapper.member.selectExPw", id);
+		return memberVO;
+	}
+
+
 	public int updateNewPW(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		int ret = sqlSession.update("mapper.member.updatePw", memberVO);
@@ -60,7 +67,6 @@ public class MemberDAO {
 
 		return ret;
 	}
-
 
 
 

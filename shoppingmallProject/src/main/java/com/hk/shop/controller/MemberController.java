@@ -189,23 +189,31 @@ public class MemberController extends HttpServlet {
 		// 본인인증한 기록이 있어야함
 		MemberVO memberVO = (MemberVO) session.getAttribute("itsme");
 		String id = memberVO.getId();
-		System.out.println("id="+id);
+		System.out.println("pwSubmitGetId="+id);
 		
-		String retUrl = "warning"; // 잘못된 접근입니다가 기본
+		Map <String, Object> map = memberService.getMyPW(id);
+		System.out.println("pwSubmitGet="+memberVO.toString());
+		model.addAttribute("member", map.get("memberVO"));
+		System.out.println("pwSubmitGet2="+memberVO.toString());
+
+		return "submitNewPw";
 		
-		if (memberVO != null) { // memberVO에 세션이 null이 아니면 재설정하러
-			retUrl = "submitNewPw";
-		}
-		return retUrl;
 	}
 	
 	@RequestMapping (value="/ylhqlalfqjsghwotjdwjdfldzmwlfhd", method=RequestMethod.POST)
-	public String SubmitNewPwDone (Model model, @ModelAttribute MemberVO memberVO) {
+	public String SubmitNewPwDone (Model model,  HttpSession session , @RequestParam("pw") String pw) {
+
+		MemberVO memberVO =  (MemberVO) session.getAttribute("itsme");
+		
+		memberVO.setPw(pw);
+				 
 		System.out.println("pwSubmit0="+memberVO.toString());
 		
 		int ret = memberService.updatePw(memberVO);
-		System.out.println("pwSubmit1="+memberVO.toString());
+		System.out.println("pwSubmit00="+memberVO.toString());
+
 		model.addAttribute("ret", ret);
+		System.out.println("pwSubmitRet="+ret);
 		
 		return "submitNewPwDone"; // 비번재설정
 	}

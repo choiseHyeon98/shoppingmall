@@ -49,6 +49,16 @@ public class MemberService {
 		return memberDAO.viewId(memberVO);
 
 	}
+	
+
+	public Map<String, Object> getMyPW(String id) {
+		// TODO Auto-generated method stub
+		MemberVO memberVO = memberDAO.selectMyPw(id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberVO", memberVO);
+		return map;
+	}
+
 
 	public int updatePw(MemberVO memberVO) {
 		// TODO Auto-generated method stub
@@ -56,7 +66,6 @@ public class MemberService {
 
 		return memberDAO.updateNewPW(memberVO);
 	}
-
 
 
 	
