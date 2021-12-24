@@ -17,7 +17,7 @@ request.setCharacterEncoding("UTF-8");
 productAdd();
 
 function productAdd(){
-	var r = "${ret}";
+	var r = ${ret};
 	
 	if (r > 0){
 		alert("상품이 등록되었습니다");

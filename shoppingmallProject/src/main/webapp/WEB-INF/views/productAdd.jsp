@@ -41,17 +41,19 @@
 	function addoption(obj) {
 		
 		var div = document.createElement('div');
-		div.innerHTML = document.getElementById("option").innerHTML;
+		div.innerHTML = document.getElementById("option").innerHTML + "<button onClick=\"deleteOption(this)\" id=\"delete\" >-</button>";
 		document.getElementById('optionAdd').appendChild(div);
-	
 		
 		}
 
 
 	
 	function deleteOption(obj) {
+		
 		 document.getElementById('optionAdd').removeChild(obj.parentNode);
+
 		 
+
 		}
 	
 	
@@ -101,11 +103,10 @@
 						상품간략설명: <input type ="text" name="proContent"><br><br>
 						가격: <input type="number" name="price"><br><br>
 						배송비: <input type="number" name="delprice" ><br><br>
-						색상: <input type="text" name="colorOption" size="10"><br><br>
 						옵션 추가<button onClick="addoption(this)">+</button><br>
-						<div id="option">
+						<div id="option" >
+						색상: <input type="text" name="colorOption" size="10">
 						사이즈: <input type="text" name="sizeOption" size="10">
-						<button onClick="deleteOption(this)" id="delete" >-</button>
 						</div>
 						<div id="optionAdd">
 						</div><br>

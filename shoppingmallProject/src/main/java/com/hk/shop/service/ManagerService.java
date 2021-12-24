@@ -1,5 +1,6 @@
 package com.hk.shop.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import com.hk.shop.vo.EventVO;
 
 import com.hk.shop.vo.FooterVO;
 import com.hk.shop.vo.MemberVO;
+import com.hk.shop.vo.OptionVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
 
@@ -95,10 +97,11 @@ public class ManagerService {
 		return managerDAO.eventDelDao(eventNum);
 	}
 
-	public int productAddDoneService(ProductVO productVO) {
+	public int productAddDoneService(ProductVO productVO, List<OptionVO> optionList) {
 		
+			
 		// TODO Auto-generated method stub
-		return managerDAO.productAddDoneDao(productVO);
+		return managerDAO.productAddDoneDao(productVO,optionList);
 	}
 
 	public List<ProductVO> listDailyService() {
@@ -270,7 +273,12 @@ public class ManagerService {
 		return managerDAO.fileDeleteDAO(eventVO);
 	}
 
+
+
 	
+
+
+
 
 	
 

@@ -3,6 +3,7 @@ package com.hk.shop.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -27,6 +28,7 @@ import com.hk.shop.vo.EventVO;
 
 import com.hk.shop.vo.FooterVO;
 import com.hk.shop.vo.MemberVO;
+import com.hk.shop.vo.OptionVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
 
@@ -367,29 +369,29 @@ public class ManagerController {
 
 	// 관리자 상품 등록 완료
 	@RequestMapping(value = "/manager/product/add", method = RequestMethod.POST)
-	public String productAddDone(Model model, @ModelAttribute ProductVO productVO) throws IOException {
-		/*
-		 * List<MultipartFile> fileList = mtfReqeust.getFiles("file"); String src =
-		 * mtfReqeust.getParameter("src"); System.out.println("src value=" +src);
-		 * 
-		 * String path = "c:\\board\\productImg";
-		 * 
-		 * for (MultipartFile mf : fileList) { String originFileName =
-		 * mf.getOriginalFilename(); long fileSize = mf.getSize();
-		 * 
-		 * System.out.println("orgin="+originFileName);
-		 * System.out.println("fileSize="+fileSize);
-		 * 
-		 * String safeFile = path + System.currentTimeMillis() + originFileName; try {
-		 * mf.transferTo(new File(safeFile));
-		 * 
-		 * } catch (IllegalStateException e) { e.printStackTrace();
-		 * 
-		 * } catch (IOException e) { e.printStackTrace(); } }
-		 */
-			
+	public String productAddDone(Model model, @ModelAttribute ProductVO productVO,@RequestParam("sizeOption")List<Object> sizeOption, @RequestParam("colorOption")List<Object> colorOption ) throws IOException {
+		
+		
+		
 		System.out.println("저장실행");
-		  String fileName = null;
+		System.out.println("값 ==="+colorOption); 
+		System.out.println("값 ==="+sizeOption);
+		
+		int i=0;
+		List<OptionVO> OptionList = new ArrayList<OptionVO>();
+		for(Object color: colorOption) {
+			OptionVO option = new OptionVO();
+			
+			option.setColorOption((String)color);
+		
+			option.setSizeOption((String)sizeOption.get(i));
+			OptionList.add(option);
+			i++;
+		}
+		System.out.println("리스트값 ==="+OptionList.toString());
+		
+		
+		String fileName = null;
 		  MultipartFile uploadFile = productVO.getUploadFileTop();
 		  if (!uploadFile.isEmpty()) { 
 			  String originalFileName =uploadFile.getOriginalFilename(); 
@@ -400,7 +402,7 @@ public class ManagerController {
 		  
 		  } 
 		  productVO.setTopImage(fileName);
-		  
+		                             
 		  String fileDetail = null;
 		  MultipartFile uploadFileDetail = productVO.getUploadFileDetail();
 		  if (!uploadFileDetail.isEmpty()) { 
@@ -412,9 +414,14 @@ public class ManagerController {
 		  
 		  } 
 		  productVO.setDetailsImg(fileDetail);
-		  int ret = managerService.productAddDoneService(productVO);
-		  model.addAttribute("ret", ret);
 		  
+		 
+		  System.out.println("optionList!!!!!!!!!!!!!!!!!!!"+OptionList);
+		  
+		  int ret = managerService.productAddDoneService(productVO,OptionList);
+		 
+		  model.addAttribute("ret", ret);
+		  System.out.println("ret="+ret);
 		  System.out.println("prductVo=" + productVO.toString());
 		 
 		return "productAddDone";

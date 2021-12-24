@@ -1,6 +1,8 @@
 package com.hk.shop.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import com.hk.shop.vo.AskVO;
 import com.hk.shop.vo.EventVO;
 import com.hk.shop.vo.FooterVO;
 import com.hk.shop.vo.MemberVO;
+import com.hk.shop.vo.OptionVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
 import com.hk.shop.vo.ReviewVO;
@@ -52,10 +55,18 @@ public class ManagerDAO {
 		return ret;
 	}
 
-	public int productAddDoneDao(ProductVO productVO) {
+	public int productAddDoneDao(ProductVO productVO, List<OptionVO> optionList) {
 		// TODO Auto-generated method stub
+		int ret =0;
+		 int proret = session.insert("mapper.product.insertPro",productVO);
 		
-		int  ret = session.insert("mapper.product.insertPro",productVO);
+		 int optionret = session.insert("mapper.option.insertOption",optionList);
+		 
+		 if((proret+optionret)>2) {
+			ret=1;  
+		 } else { 
+			ret=0; }
+		 
 		
 		return ret;
 		
@@ -228,7 +239,6 @@ public class ManagerDAO {
 		return footerVO;
 	}
 
-
 	public int fileDeleteDAO(EventVO eventVO) {
 		// TODO Auto-generated method stub
 		
@@ -236,6 +246,16 @@ public class ManagerDAO {
 		
 		return ret;
 	}
+
+
+
+
+
+
+
+
+
+
 
 
 	

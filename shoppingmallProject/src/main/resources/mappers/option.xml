@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.option">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="optionResult" type="OptionVO">
+		<result property="proNum" column="proNum" />
+		<result property="sizeOption" column="sizeOption" />
+		<result property="colorOption" column="colorOption" />
+		
+	</resultMap>
+	
+	<!-- 꺼내면 OptionVO size,pronum,coloroption  -->
+		
+		<insert id="insertOption" >
+		 INSERT ALL
+		  <foreach collection="list" item="item" index="index" separator=" ">
+    		INTO "OPTION" ("proNum","sizeOption","colorOption")
+    		VALUES(
+        	   (SELECT max("proNum") FROM PRODUCT),#{item.sizeOption},#{item.colorOption}
+     		)
+          </foreach>
+    		SELECT * FROM DUAL
+</insert>
+	
+
+</mapper>

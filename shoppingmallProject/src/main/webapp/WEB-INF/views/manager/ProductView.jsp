@@ -69,7 +69,7 @@
 			<div class="row gx-4 gx-lg-5 align-items-center my-5">
 				<div class="col-lg-7">
 					<img class="img-fluid rounded mb-4 mb-lg-0"
-						src="../fileDownloadPro?topImage=${Product[0].topImage}"
+						src="/shop/fileDownloadPro?topImage=${Product[0].topImage}"
 						alt="제품이미지상세뷰900*400" />
 				</div>
 				<div class="col-lg-5">

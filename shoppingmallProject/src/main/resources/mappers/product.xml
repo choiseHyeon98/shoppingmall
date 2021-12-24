@@ -160,7 +160,7 @@
 	<select id="insertPro">
 		<![CDATA[
 		INSERT INTO PRODUCT ("proNum","proName","proContent","proDetails","topImage","price","delprice","proCon","proCate","proSpecification","dailyDel","detailsImg","refundPolicy")
-		VALUES((SELECT max("proNum") FROM PRODUCT)+1,#{proName}, #{proContent}, #{proDetails},#{topImage},#{price},#{delprice},#{proCon},#{proCate},#{proSpecification},'#{dailyDel},#{detailsImg},#{refundPolicy})
+		VALUES((SELECT max("proNum") FROM PRODUCT)+1,#{proName}, #{proContent}, #{proDetails},#{topImage},#{price},#{delprice},#{proCon},#{proCate},#{proSpecification},#{dailyDel},#{detailsImg},#{refundPolicy})
 		]]>
 	</select>
 	
@@ -178,6 +178,5 @@
       UPDATE PRODUCT SET "soldOut"='so' WHERE "proNum"=#{proNum}
    ]]>
    </select>
-   
-   
+	
 </mapper>
