@@ -41,6 +41,7 @@ request.setCharacterEncoding("UTF-8");
 		<button type="button" class="btn btn-light"
 			onClick="fn_productAdd(this.form)">새상품 등록</button>
 		<button type="button" class="btn btn-light" onClick="return soldOut()">품절</button>
+		<button type="button" class="btn btn-light" onClick="manageMent(this.form)">관리페이지</button>
 	</div>
 	<br>
 	<hr>
@@ -254,6 +255,12 @@ function fn_eventAdd(url){
 function fn_productAdd(url){
 	
 	location.href="product/add";
+	
+}
+
+function manageMent(url){
+	
+	location.href="member/list";
 	
 }
 

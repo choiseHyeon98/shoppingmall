@@ -429,7 +429,9 @@ public class ManagerController {
 
 	// 상품 등록 수정 페이지
 	// 상품 삭제
-
+	
+	
+	
 	// 관리자 리뷰 리스트
 	@RequestMapping(value = "/manager/review/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String reviewList(Model model) {
@@ -488,23 +490,25 @@ public class ManagerController {
 
 		List<MemberVO> memberList = new ArrayList<MemberVO>();
 		memberList = managerService.memberListService();
+		
 		model.addAttribute("memberList", memberList);
 
 		System.out.println("memberList=" + memberList.toString());
 
-		return "memberList";
+		return "management";
 		// 회원목록
 	}
 
 	// 관리자 회원 삭제 /manager/memberDel
 	@RequestMapping(value = "/manager/member/del", method = { RequestMethod.GET, RequestMethod.POST })
 	public String memberDel(Model model, @RequestParam("id") String id) {
-
+		System.out.println("id="+ id);
 		int ret = managerService.memberDelService(id);
 		model.addAttribute("ret", ret);
 
 		System.out.println("memberDel=" + ret);
-		return "memberDel";
+		
+		return "redirect:list";
 		// 회원정보가 삭제되었습니다 alert .jsp
 	}
 
@@ -518,7 +522,7 @@ public class ManagerController {
 
 		System.out.println("memberUpdate=" + ret);
 
-		return "memberUpdate";
+		return "redirect:list";
 	}
 	// 관리자 주문 관리 /manager/order/list
 
