@@ -66,7 +66,7 @@
 			<div class="row gx-4 gx-lg-5 align-items-center my-5">
 				<div class="col-lg-7">
 					<img class="img-fluid rounded mb-4 mb-lg-0"
-						src="https://pbs.twimg.com/media/FGiPOEFUYAQqmiz?format=jpg&name=large"
+						src="/shop/fileDownloadPro?topImage=${Product[0].topImage }"
 						alt="제품이미지상세뷰900*400" />
 				</div>
 				<div class="col-lg-5">
@@ -92,13 +92,7 @@
 							</c:choose>
 						</select> <br> 
 						색상: <select name="colorOption" class="widforsc"> 
-							<c:choose>  
-								<c:when test="${!empty Product}">
-									<c:forEach var="Product" items="${Product }" varStatus="status">
-										<option>${Product.colorOption }</option>
-									</c:forEach>
-								</c:when>
-							</c:choose>
+										<option>${Product[0].colorOption }</option>
 						</select> <br> 
 						수량 : <input type="number" name="countProNum"
 							style="width: 50%" class="widforn" min="1" max="99" required>
@@ -160,11 +154,12 @@
 				<a name="review">리뷰</a>
 			</p>
 			<hr>
-			<table class="text-dark m-0">
+			<table class="text-dark m-0" style="margin:10px;">
 				<tr>
 					<td width=20%>아이디</td>
-					<td width=50%>리뷰</td>
-					<td width=50%>작성일</td>
+					<td width=35%>리뷰</td>
+					<td width=35%>작성일</td>
+					<td width=10%>photo</td>
 				</tr>
 				<c:choose>
 					<c:when test="${!empty review}">
@@ -173,6 +168,10 @@
 								<td>${review.id }</td>
 								<td>${review.reviewContent }</td>
 								<td>${review.reviewDate }</td>
+								<td>
+								<img src="/shop/fileDownloadReview?reviewPhoto=${review.reviewPhoto }"
+										alt="reviewImage" style="width: 50px; height: 50px;">
+								</td>
 							</tr>
 						</c:forEach>
 					</c:when>

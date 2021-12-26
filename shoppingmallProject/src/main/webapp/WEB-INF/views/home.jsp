@@ -72,8 +72,8 @@ request.setCharacterEncoding("UTF-8");
 									<div class="col-md-4">
 										<div class="card mb-4 shadow-sm">
 											<a href="/shop/product/detail?proNum=${bestList.proNum }">
-												<img src="https://pikwizard.com/photos/various-t-shirts-hanging-on-cloth-hanger--db4de6115babb4ca368ab71007281447-m.jpg"
-												alt=" ${bestList.proName }" width="100%" height="240px">
+												<img src="/shop/fileDownloadPro?topImage=${bestList.topImage }"
+												alt=" 제품이미지:${bestList.proName }" width="100%" height="240px">
 											</a>
 											<div class="card-body">
 												<p class="card-text">${bestList.proName }</p>
@@ -102,7 +102,7 @@ request.setCharacterEncoding("UTF-8");
 										<div class="card mb-4 shadow-sm">
 											<a href="/shop/product/detail?proNum=${newList.proNum }">
 												<img
-												src="https://pikwizard.com/photos/various-t-shirts-hanging-on-cloth-hanger--db4de6115babb4ca368ab71007281447-m.jpg"
+												src="/shop/fileDownloadPro?topImage=${newList.topImage }"
 												alt=" ${newList.proName }" width="100%" height="240px">
 											</a>
 											<div class="card-body">
@@ -133,7 +133,7 @@ request.setCharacterEncoding("UTF-8");
 										<div class="card mb-4 shadow-sm">
 											<a href="/shop/product/detail?proNum=${dailyList.proNum }">
 												<img
-												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												src="/shop/fileDownloadPro?topImage=${dailyList.topImage }"
 												alt=" ${dailyList.proName }" width="100%" height="240px">
 											</a>
 											<div class="card-body">
@@ -164,7 +164,7 @@ request.setCharacterEncoding("UTF-8");
 										<div class="card mb-4 shadow-sm">
 											<a href="/shop/product/detail?proNum=${randomList.proNum }">
 												<img
-												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												src="/shop/fileDownloadPro?topImage=${randomList.topImage }"
 												alt=" ${randomList.proName }" width="100%" height="240px">
 											</a>
 											<div class="card-body">

@@ -1,6 +1,6 @@
 package com.hk.shop.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 

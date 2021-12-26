@@ -108,6 +108,7 @@
 						색상: <input type="text" name="colorOption" size="10">
 						사이즈: <input type="text" name="sizeOption" size="10">
 						</div>
+						<small>색상은 제일 첫번째 색상만 들어갑니다. 다른 색상을 등록하려면 다른색으로 상품을 등록해주세요.</small>
 						<div id="optionAdd">
 						</div><br>
 						 수량 : <input type="number" name="countProNum"
