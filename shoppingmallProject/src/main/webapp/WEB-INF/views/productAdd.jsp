@@ -55,7 +55,11 @@
 		 
 
 		}
-	
+	function back(obj){
+		
+		obj.action="/shop/manager/managerHome";
+		obj.submit();
+	}
 	
 </script>
 
@@ -179,6 +183,8 @@
 	</div>
 	<div align="center">
 	<input type="submit" value="상품등록" />
+	<input type="button" value="등록 취소" onClick="back(this.form)"/>
+	<input type="reset" value="다시입력" />
 	</div>
 	</form>
 	

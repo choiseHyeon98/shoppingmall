@@ -150,4 +150,48 @@ public class FileDownController {
       
    }
    
+   //파일다운로드
+   @RequestMapping(value="/fileDownloadDetail")
+   public void fileDownloadDetail(HttpServletRequest request, HttpServletResponse response,@RequestParam("detailsImg")String detailsImg) throws Exception {
+      
+      String fileName = detailsImg;
+      String realFileName="";
+      System.out.println("fileName="+fileName);
+      
+      String browser = request.getHeader("User-Agent");
+      //파일인코딩
+      if(browser.contains("MSIE") || browser.contains("Trident") || browser.contains("Chrome")) {
+         fileName = URLEncoder.encode(fileName,"UTF-8").replaceAll("\\+", "%20");
+         
+      } else {
+         fileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
+      }
+      realFileName = "C:\\board\\productImg\\detailsImg"+fileName;
+      System.out.println("realFileName="+ realFileName);
+      File file1 = new File(realFileName);
+      if (!file1.exists()) {
+         return ;
+      }
+      
+      //파일명 지정
+      response.setContentType("application/octer-stream");
+      response.setHeader("Content-Transfer-Encoding", "binary");
+      response.setHeader("content-Disposition", "attachment; fileName=\""+fileName+"\"");
+      
+      
+      OutputStream os = response.getOutputStream();
+      FileInputStream fis = new FileInputStream(realFileName);
+      
+      int ncount = 0;
+      byte[] bytes = new byte[512];
+      
+      while ((ncount = fis.read(bytes)) != -1) {
+         os.write(bytes,0,ncount);
+      }
+      fis.close();
+      os.close();
+      
+      
+   }
+   
 }

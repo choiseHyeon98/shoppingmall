@@ -103,7 +103,7 @@ request.setCharacterEncoding("UTF-8");
 									<div class="col-md-4">
 										<div class="card mb-4 shadow-sm">
 											<a href="product/detail?proNum=${bestList.proNum }"> <img
-												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												src="/shop/fileDownloadPro?topImage=${bestList.topImage}"
 												alt=" ${bestList.proName }" width="100%" height="240px"></a>
 											<div class="card-body">
 												<p class="card-text">${bestList.proName }</p>
@@ -134,7 +134,7 @@ request.setCharacterEncoding("UTF-8");
 									<div class="col-md-4">
 										<div class="card mb-4 shadow-sm">
 											<a href="product/detail?proNum=${newList.proNum }"> <img
-												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												src="/shop/fileDownloadPro?topImage=${newList.topImage}"
 												alt=" ${newList.proName }" width="100%" height="240px"></a>
 											<div class="card-body">
 												<p class="card-text">${newList.proName }</p>
@@ -165,7 +165,7 @@ request.setCharacterEncoding("UTF-8");
 									<div class="col-md-4">
 										<div class="card mb-4 shadow-sm">
 											<a href="product/detail?proNum=${todayList.proNum }"> <img
-												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												src="/shop/fileDownloadPro?topImage=${todayList.topImage}"
 												alt=" ${todayList.proName }" width="100%" height="240px"></a>
 											<div class="card-body">
 												<p class="card-text">${todayList.proName }</p>
@@ -195,7 +195,7 @@ request.setCharacterEncoding("UTF-8");
 									<div class="col-md-4">
 										<div class="card mb-4 shadow-sm">
 											<a href="product/detail?proNum=${allList.proNum }"> <img
-												src="https://imgscf.slidemembers.com/docs/1/1/45/free_ppt_sample_-_blackboard_and_children_education_44971.jpg"
+												src="/shop/fileDownloadPro?topImage=${allList.topImage}"
 												alt=" ${allList.proName }" width="100%" height="240px"></a>
 											<div class="card-body">
 												<p class="card-text">${allList.proName }</p>

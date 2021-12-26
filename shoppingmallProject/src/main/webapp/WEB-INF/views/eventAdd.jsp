@@ -20,7 +20,7 @@
   }  
   function backToList(obj){
     obj.action="/shop/manager/managerHome";
-    obj.submit();a
+    obj.submit();
   }
 </script>
  <title>새글 쓰기 창</title>

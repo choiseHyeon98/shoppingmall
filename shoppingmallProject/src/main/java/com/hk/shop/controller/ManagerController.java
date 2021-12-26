@@ -410,7 +410,7 @@ public class ManagerController {
 			  String ext = FilenameUtils.getExtension(originalFileName);
 		  
 		  UUID uuid = UUID.randomUUID(); fileDetail = uuid + "." + ext;
-		  uploadFileDetail.transferTo(new File("c:\\board\\productImg\\productImg" + fileDetail));
+		  uploadFileDetail.transferTo(new File("c:\\board\\productImg\\detailsImg" + fileDetail));
 		  
 		  } 
 		  productVO.setDetailsImg(fileDetail);
