@@ -9,6 +9,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- favicon -->
+<link rel=" shortcut icon" href="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small">
+<link rel="icon" href="https://pbs.twimg.com/media/FGeTy0CVEAAK7j9?format=png&name=small">
+<style>
+#sform {
+	width : 350px;
+    height : 300px;
+    border : 1px solid black;
+    display : inline-block;
+    text-align: center;
+	padding: 30px 25px 10px 25px;
+}
+
+.forCenter {
+	text-align:center;
+}
+
+h3 {
+    text-align: center;
+}
+</style>
+
+<head>
 <meta charset="UTF-8">
 <title>내 정보</title>
 
@@ -39,33 +62,37 @@
 
 </head>
 <body>
-내 정보임
+
+
+<div class="forCenter">
+<div id = "sform">
 <form name="frmArticle" method="post">
+<h3>내 정보</h3>
 <table style="width:100%">
   <tr>
     <th>id</th>
-    <td><input type="text" value="${member.id }" name="id" readonly></td>
+    <td><input type="text" value="${login.id }" name="id" readonly></td>
   </tr>
   <tr>
   	<th>pw</th>
-    <td><input type=text value="${member.pw }" name="pw" readonly></td>
+    <td><input type="text" value="${login.pw }" name="pw" readonly></td>
   </tr>
   <!-- id/pw는 수정할때 readonly -->
   <tr>
     <th>name</th>
-    <td><input type=text value="${member.name }" name="name" id="i_name" disabled /></td>
+    <td><input type="text" value="${member.name }" name="name" id="i_name" disabled /></td>
   </tr>
   <tr>
     <th>phone</th>
-    <td><input type=text value="${member.phone }" name="phone" id="i_phone" disabled /></td>
+    <td><input type="text" value="${member.phone }" name="phone" id="i_phone" disabled /></td>
   </tr>
   <tr>
   	<th>address</th>
-    <td><input type=text value="${member.address }" name="address" id="i_address" disabled /></td>
+    <td><input type="text" value="${member.address }" name="address" id="i_address" disabled /></td>
   </tr>
   <tr>
     <th>email</th>
-    <td><input type=text value="${member.email }" name="email" id="i_email" disabled /></td>
+    <td><input type="text" value="${member.email }" name="email" id="i_email" disabled /></td>
   </tr>
   <tr>
     <th>rank</th>
@@ -79,7 +106,7 @@
        <input type=button value="수정하기" onClick="fn_enable(this.form)">
        <input type=button value="홈페이지로"  onClick="backToList(this.form)">
    </td>
-  </tr>
+  </tr><br>
  
   <tr   id="tr_btn_modify"  >
       <td colspan="2"   align="center" >
@@ -89,5 +116,7 @@
   </tr>
  
 </form>
+</div>
+</div>
 </body>
 </html>

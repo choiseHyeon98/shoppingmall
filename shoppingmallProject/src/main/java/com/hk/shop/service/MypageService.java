@@ -31,16 +31,17 @@ public class MypageService {
 	ProductDAO productDAO;
 
 
-	public Map<String, Object> viewMyInfo(String id) {
+	public List<MemberVO> viewMyInfo(String id) {
 		// TODO Auto-generated method stub
-		
+		/*
 		MemberVO memberVO = mypageDAO.selectMyinfo(id);
 		System.out.println("id2="+id);
 
 		// Map<String, Object> map = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberVO", memberVO);
-		return map;
+		*/
+		return mypageDAO.selectMyinfo(id);
 	}
 
 

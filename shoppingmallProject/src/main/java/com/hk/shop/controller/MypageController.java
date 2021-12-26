@@ -46,9 +46,12 @@ public class MypageController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
 		String id = memberVO.getId();
 		System.out.println("id="+id);
-		Map<String, Object> map = mypageService.viewMyInfo(id);
 		
-		model.addAttribute("member", map.get("memberVO"));
+		//Map<String, Object> map = mypageService.viewMyInfo(id);
+		List<MemberVO> member = mypageService.viewMyInfo(id);
+		System.out.println("member="+member);
+		model.addAttribute("member", member);
+		//model.addAttribute("member", map.get("memberVO"));
 		return "viewMyInfo";
 	}
 	

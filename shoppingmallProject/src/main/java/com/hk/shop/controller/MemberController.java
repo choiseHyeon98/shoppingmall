@@ -120,6 +120,11 @@ public class MemberController extends HttpServlet {
 		 } catch (Exception e) {
 			 throw new RuntimeException();
 		 }
+		 String member ="";
+			memberVO = memberService.findId(memberVO);
+			member = memberVO.getName();
+			model.addAttribute("member", member);
+		//	System.out.println("member="+member.toString());
 		return "registerDone"; // 가입 완료 된 창
 	}
 	
@@ -132,13 +137,15 @@ public class MemberController extends HttpServlet {
 	
 	@RequestMapping (value="/member/findId", method=RequestMethod.POST)
 	//public String FindId (Model model, @RequestParam("name") String name, @RequestParam("email") String email) {
-	public String FindId (@ModelAttribute MemberVO memberVO) {
+	public String FindId (Model model, @ModelAttribute MemberVO memberVO) {
 		System.out.println("memberVO1="+memberVO.toString());
 
 		//Map<String, String> map = memberService.findId(name, email);
 		//model.addAttribute("member", map.get("memberVO"));
+		String member ="";
 		memberVO = memberService.findId(memberVO);
-		
+		member = memberVO.getName();
+		model.addAttribute("member", member);
 		String retUrl = "findIdDone"; // 아이디 찾기 완료
 		
 		if (memberVO == null) {

@@ -9,12 +9,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style>
+#sform {
+	width : 350px;
+    height : 400px;
+    border : 1px solid black;
+    display : inline-block;
+    text-align: center;
+	padding: 30px 25px 10px 25px;
+}
+
+.forCenter {
+	text-align:center;
+}
+</style>
+
 <meta charset="UTF-8">
 <title>ID/PW 찾기</title>
 </head>
 <body>
 
-<h1>아이디 찾기</h1>
+<div class="forCenter">
+<div id = "sform">
+
+<h3>아이디 찾기</h3>
 <form action="findId" method="post">
 <table>
 	<tr>
@@ -29,16 +48,16 @@
 	  
 	</tr>
 
+
+</table>
   <input type="submit" value="내 아이디 찾기"><br>
 
- 
-</table>
 </form>
 	
 
  
 
-<h1>비밀번호 찾기</h1>
+<h3>비밀번호 찾기</h3>
 <form action="resetPw" method="post">
 
 <table>
@@ -58,12 +77,13 @@
 		</td>
 	</tr>
 
-  <input type="submit" value="내 비밀번호 찾기" ><br>
 
- 
 </table>
+  <input type="submit" value="내 비밀번호 찾기" ><br>
 </form>
 
+</div>
+</div>
 
 
 </body>
