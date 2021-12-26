@@ -126,6 +126,9 @@
 			</p>
 			<hr>
 			<p class="text-dark m-0">${Product[0].proDetails }</p>
+			<img class="img-fluid rounded mb-4 mb-lg-0"
+						src="/shop/fileDownloadDetail?detailsImg=${Product[0].detailsImg}"
+						alt="제품이미지상세뷰900*400" />
 			<hr>
 
 			<!-- 제품규격 -->
