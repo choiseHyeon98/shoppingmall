@@ -5,17 +5,20 @@
 <head>
 
 <style type="text/css">
-div {
-	width : 400px;
-    height : 300px;
+
+#sform {
+	width : 350px;
+    height : 250px;
     border : 1px solid black;
-    posittion: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: 150px;
-    margin-top: 100px;
-	text-align: center;
+    display : inline-block;
+    text-align: center;
+	padding: 30px 25px 10px 25px;
 }
+
+.forCenter {
+	text-align:center;
+}
+
 
 p {
 	padding: 30px 25px 50px 25px;
@@ -32,16 +35,17 @@ p {
 
 </head>
 <body>
-
-<div>
+<div class="forCenter">
+<div id = "sform">
 	<p>
-	<h2> 비밀번호 재설정이 완료 되었습니다! </h2>
+	<h3> 비밀번호 재설정이 완료 되었습니다! </h3>
 	
 	<!-- 메인 홈페이지로 가는 URL 버튼 -->
 	<input type="button" value="로그인 하러가기" onClick="location.href='login'" style="width:250px; height: 30px">
 
 	
 	</p>
+</div>
 </div>
 
 </body>

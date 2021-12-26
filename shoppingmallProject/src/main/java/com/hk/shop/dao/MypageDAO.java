@@ -19,12 +19,13 @@ public class MypageDAO {
 	SqlSession sqlSession;
 	
 
-	public MemberVO selectMyinfo(String id) {
+	public List<MemberVO> selectMyinfo(String id) {
 		// TODO Auto-generated method stub
-		MemberVO memberVO = sqlSession.selectOne("mapper.mypage.selectMyInfo", id);
-		System.out.println("id3="+id);
+		//MemberVO memberVO = sqlSession.selectOne("mapper.mypage.selectMyInfo", id);
+		//System.out.println("id3="+id);
+		List <MemberVO> member = sqlSession.selectList("mapper.mypage.selectMyInfo", id);
 
-		return memberVO;
+		return member;
 	}
 
 

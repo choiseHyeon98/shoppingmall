@@ -11,7 +11,22 @@
 <head>
 
 <style>
+#sform {
+	width : 350px;
+    height : 250px;
+    border : 1px solid black;
+    display : inline-block;
+    text-align: center;
+	padding: 30px 25px 10px 25px;
+}
 
+.forCenter {
+	text-align:center;
+}
+
+h3 {
+    text-align: center;
+}
 </style>
 
 <meta charset="UTF-8">
@@ -38,13 +53,16 @@ function fn_idCheck(){
     })
   }
 
+
+
 </script>
 </head>
 <body>
 
-
-
+<div class="forCenter">
+<div id = "sform">
 <form name="frmLogin" action="register" method="post">
+	<h3>회원가입</h3>
 	<input type="text" name="id" maxlength="10" class="text-field" placeholder="ID" required>
 	<button class="idCheck" type="button" id="idCheck" onclick="fn_idCheck();" value="N">중복체크</button><br>
 	<input type="text" name="pw" maxlength="20" class="text-field" placeholder="PW" required><br>
@@ -56,6 +74,9 @@ function fn_idCheck(){
 	<input type="submit" value="회원가입">
 	<input type="reset" value="초기화">
 </form>
+
+</div>
+</div>
 </body>
 
 </html>

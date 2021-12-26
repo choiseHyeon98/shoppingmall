@@ -15,6 +15,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -29,7 +30,7 @@ public class MailController {
 
 	
 	@RequestMapping (value="/sendMail.do", method=RequestMethod.GET)
-	public void sendSimpleMail (HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void sendSimpleMail (HttpServletRequest request, HttpServletResponse response, @RequestParam("email") String email) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
@@ -42,7 +43,7 @@ public class MailController {
 
 			messageHelper.setFrom("ddh04023@gmail.com", "담당자");
 			messageHelper.setSubject("[쇼핑몰] 비밀번호 재설정 안내입니다.");
-			messageHelper.setTo("ddh04023@naver.com");
+			messageHelper.setTo("email");
 			messageHelper.setText("비밀번호 재설정 링크입니다. "
 					+ "링크를 통해 새 비밀번호를 설정해주세요"
 					+ "http://localhost:8888/shop/ylhqlalfqjsghwotjdwjdfldzmwlfhd");

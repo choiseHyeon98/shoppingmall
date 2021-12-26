@@ -75,7 +75,7 @@
 	
 	<select id ="selectMyInfo" resultType="MemberVO" >
 	<![CDATA[
-		 SELECT * FROM MEMBER
+		 SELECT * FROM MEMBER WHERE "id"=#{id}
 	]]>
 	</select>
  

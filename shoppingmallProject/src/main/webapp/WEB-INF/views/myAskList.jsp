@@ -4,49 +4,106 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-  request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <script>
-function muldelete() {
-	// form을 넘김
-	var form = document.getElementsByName("muldelForm");
-	form[0].submit();
-	return true;
-}
+	function muldelete() {
+		// form을 넘김
+		var form = document.getElementsByName("muldelForm");
+		form[0].submit();
+		return true;
+	}
 </script>
 
 <meta charset="UTF-8">
 <title>내 문의 내역</title>
+
+<style>
+table {
+	border: 1px solid #444444;
+	border-collapse: collapse;
+	text-align: center;
+	justify-content: center;
+	width: 100%;
+	height: 450px;
+}
+
+td {
+	border: 1px solid #444444;
+}
+
+.card-body {
+	background-color: #fffef5;
+	margin: 0 50px 0 50px;
+	flex: 1 1 auto;
+	padding: 1rem 1rem;
+	justify-content: center;
+	display: flex;
+}
+
+.color-black {
+	color: black;
+}
+</style>
+<!-- favicon -->
+<%@include file="headerfooter/favicon.jsp"%>
 </head>
 <body>
+	<!-- header -->
+	<%@include file="headerfooter/header.jsp"%>
+	<div class="card-body">
+		<div class="container px-4 px-lg-5">
+			<div class="row gx-4 gx-lg-5 align-items-center my-5">
+				<div class="col-lg-4" style="text-align: left;">
+					<table align="center" border="1" width="80%">
+						<h2>내 문의 내역</h2>
+						<p>
+							<a class="color-black" href="/shop/board/serviceCenter">
+								자주묻는질문</a> <br> <a class="color-black"
+								href="/shop/s/board/askAdd">문의하기</a>
+						</p>
+				</div>
+						<c:choose>
+							<c:when test="${empty myAskList}">
+								<p align="center">
+									<span>문의 내역이 없습니다</span>
+								</p>
+							</c:when>
+							<c:when test="${!empty myAskListist}">
+
+								<c:forEach var="myAskList" items="${myAskList }"
+									varStatus="askNum">
+									<tr>
+										<th style="background-color: #eeeeee; text-align: center;">문의번호</th>
+										<th style="background-color: #eeeeee; text-align: center;">제목</th>
+										<th style="background-color: #eeeeee; text-align: center;">답변상태</th>
+
+									</tr>
 
 
 
-<tr>
-	<th style="background-color: #eeeeee; text-align: center;">문의번호</th>
-	<th style="background-color: #eeeeee; text-align: center;">제목</th>
-	<th style="background-color: #eeeeee; text-align: center;">답변상태</th>
+									<tr align="center">
+										<td>${myAskListist.askNum }</td>
+										<!-- 게시글 제목을 누르면 해당 글을 볼 수 있도록 링크를 걸어둔다 -->
+										<td><a href="myAskOne.jsp?asknNum=askNum"></a>${myAskListist.askTitle }</td>
+										<td>${myAskListist.askWhether }</td>
 
-</tr>
+									</tr>
+								</c:forEach>
+							</c:when>
+						</c:choose>
+
+					</table>
+
+			</div>
+		</div>
+	</div>
 
 
-
-<tr>
-	<td>${ask.askNum }</td>
-	<!-- 게시글 제목을 누르면 해당 글을 볼 수 있도록 링크를 걸어둔다 -->
-	<td><a href="myAskOne.jsp?asknNum=askNum"></a>${ask.askTitle }</td>
-	<td>${askWhether }</td>
-
-</tr>
-
-	<br>
-	<a class="cls1" href="/shop/board/askAdd">글쓰기</a>
-	<br>
-	<input type="button" value="상품 보러가기" onClick="location.href='/shop/'" style="width:250px; height: 30px">
-	
-
+		<!-- footer -->
+		<%@include file="headerfooter/footer.jsp"%>
 </body>
 </html>
