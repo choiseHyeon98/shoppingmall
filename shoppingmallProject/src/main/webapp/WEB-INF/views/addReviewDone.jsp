@@ -18,7 +18,7 @@
 
 <script>
 	 alert("리뷰 작성이 완료 되었습니다.\n 주문 기록 창으로 돌아갑니다.");
-	 document.location.href="/s/mypage/myorders";
+	 document.location.href="/shop/s/mypage/myorders";
 	 
 	 </script>
 

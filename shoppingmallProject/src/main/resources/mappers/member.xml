@@ -38,25 +38,21 @@
 			VALUES(#{id}, #{pw}, #{name}, #{phone}, #{address}, #{email})
 	]]>
 	</insert>
-	
-	<select id ="dupId" parameterType="String" resultType="String">
+
+
+	<select id ="idCheck" resultType="int" >
 	<![CDATA[
-        SELECT "id" FROM MEMBER where "id"=#{id}
+        SELECT COUNT(*) FROM MEMBER where "id"=#{id, jdbcType=VARCHAR}
 	]]>
 	</select>
-	
-<!-- 
-	<select id ="selectOneInfo" resultType="MemberVO" >
-	<![CDATA[
-        SELECT * FROM MEMBER where "id"=#{id, jdbcType=VARCHAR}
-	]]>
-	</select>
- -->		
+
+
 	<select id ="viewId" resultType="MemberVO" >
 	<![CDATA[
 	SELECT "id" FROM MEMBER WHERE "name"=#{name} AND "email" =#{email}
 	]]>
 	</select>
+	
 	
 	<select id="selectAllMember" resultMap="memberResult">
    <![CDATA[

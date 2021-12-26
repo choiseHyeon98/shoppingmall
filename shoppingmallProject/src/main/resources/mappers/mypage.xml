@@ -113,7 +113,7 @@
 	<![CDATA[
 		INSERT INTO REVIEW
 		("reviewNum", "id", "proNum", "reviewPhoto", "reviewContent", "reviewDate")
-		VALUES((SELECT max(reviewNum)+1 FROM REVIEW), '', '', '', '', sysdate )
+		VALUES((SELECT max("reviewNum")+1 FROM REVIEW), #{id}, #{proNum}, #{reviewPhoto}, #{reviewContent}, sysdate )
 	]]>
 	</insert>
 	
