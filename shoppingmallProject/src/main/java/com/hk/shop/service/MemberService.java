@@ -21,26 +21,19 @@ public class MemberService {
 		System.out.println("memberService="+memberVO.toString());
 		return memberDAO.isExisted(memberVO);
 	}
-	
-	// 중복체크 (코드)
-	public String duplicateCheck(String id) {
-		// TODO Auto-generated method stub
-		return memberDAO.duplicateCheckId(id);
-	}
-	
-	// 중복체크 (책)
-	public String overlapped(String id) {
-		// TODO Auto-generated method stub
-		return memberDAO.duplicateCheckId(id);
-	}
-
 
 
 	public int addMember(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		return memberDAO.addMember(memberVO);
 	}
-
+	
+	
+	// 아이디 중복체크
+	public int idCheck (MemberVO memberVO) {
+		return memberDAO.idCheck(memberVO);
+	}
+	
 
 	public MemberVO findId(MemberVO memberVO) {
 		// TODO Auto-generated method stub

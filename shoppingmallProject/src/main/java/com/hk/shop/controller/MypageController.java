@@ -144,11 +144,11 @@ public class MypageController {
 		
 		if(uploadFile==null) {
 			int ret = mypageService.insertReview(reviewVO);
-			System.out.println("eventVO 수정" + reviewVO.toString());
+			System.out.println("reviewVO 수정" + reviewVO.toString());
 
 			model.addAttribute("ret", ret);
 
-			return "eventModDone";
+			return "addReviewDone";
 		}
 		
 		if (!uploadFile.isEmpty()) {

@@ -30,13 +30,7 @@ public class MemberController extends HttpServlet {
 	
 	@Autowired
 	MemberService memberService;
-	
-	/*
-	@RequestMapping (value="/", method=RequestMethod.GET)
-	public String home () {
-		return "home"; // 최초 접속이니까 홈페이지
-	}
-	*/
+
 	
 	
 	@RequestMapping (value="/login", method=RequestMethod.GET)
@@ -93,42 +87,39 @@ public class MemberController extends HttpServlet {
 		// 회원가입
 		return "register"; // 회원가입하는 창
 	}
-	/*
-	@RequestMapping (value="/dupId", method= {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-	public Map<String, Object> dupId (@RequestParam("id")String id) {
-		System.out.println("id="+id);
-		Map<String, Object> map = new HashMap<String, Object>();
-		String dupId = memberService.duplicateCheck(id);
-		if (dupId == null) {
-			// 중복이 아니다
-			map.put("id", "false");
-		} else {
-			// 중복
-			map.put("id", "true");
-		}
-		return map;
-	}
-	*/
 	
-	// @Override
-	@RequestMapping (value="/overlapped.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public ResponseEntity overlapped(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ResponseEntity resEntity = null;
-		String result = memberService.overlapped(id);
-		resEntity = new ResponseEntity (result, HttpStatus.OK);
-		
-		return resEntity;
+	
+	// 아이디 중복체크
+	@ResponseBody
+	@RequestMapping (value="/member/register/idCheck", method=RequestMethod.POST) 
+	public int IdCheck (MemberVO memberVO) {
+		int ret1 = memberService.idCheck(memberVO);
+		System.out.println("ret11="+ret1);
+		return ret1;
 	}
+
+	
 	
 	@RequestMapping (value="/member/register", method=RequestMethod.POST)
 	public String RegisterDone (Model model, @ModelAttribute MemberVO memberVO) {
 		
 		System.out.println("id="+memberVO.getId());
-		
-		int ret = memberService.addMember(memberVO);
-		model.addAttribute("ret", ret);
-		
+		int ret1 = memberService.idCheck(memberVO);
+
+		 try {
+			 if (ret1 != 0) {
+				 model.addAttribute("ret1", ret1);
+				 System.out.println("ret1="+ret1);
+				  
+				 return "dupId";
+				 // model.addAttribute("refreshUrl", "2;url=register");
+			 } else if (ret1 == 0) {
+				int ret = memberService.addMember(memberVO);
+				model.addAttribute("ret", ret);
+			 }
+		 } catch (Exception e) {
+			 throw new RuntimeException();
+		 }
 		return "registerDone"; // 가입 완료 된 창
 	}
 	

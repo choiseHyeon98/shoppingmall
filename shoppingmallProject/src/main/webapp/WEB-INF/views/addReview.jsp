@@ -67,21 +67,21 @@ function backToList(obj){
 					<tbody>
 					<tr>
 						<td><input type="text" class="form-control"
-								value="${login.id }" name="id" readonly
+								value="${login.id }" id="id" name="id" readonly
 								style="width: 450px;" ></td>
 						</tr>
 						<tr>
 							<td><input type="text" class="form-control"
-								value="${review.proNum }" name="proNum" readonly 
+								value="${review.proNum }" id="proNum" name="proNum" readonly 
 								style="width: 450px;"></td>
 						</tr>
 						<tr>
 							<td><textarea class="form-control" placeholder="리뷰를 남겨주세요"
-									name="askContent" maxlength="2048"
+									id="reviewContent" name="reviewContent" maxlength="2048"
 									style="height: 350px; width: 500px;"></textarea></td>
 						</tr>
 							<td>이미지파일 첨부:  </td>
-       						<td><input type="file" name="uploadEventImage"  onchange="readURL(this);" /></td>
+       						<td><input type="file" id="reviewPhoto" name="reviewPhoto"  onchange="readURL(this);" /></td>
          					<td><img  id="preview" src="#"   width=200 height=200/></td>
 						<tr>
 						
