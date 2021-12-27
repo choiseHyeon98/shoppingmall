@@ -146,6 +146,10 @@ public class ProductController {
 		System.out.println("cartVO: "+cartVO);
 		cartVO.setPrice(cartVO.getPrice()*cartVO.getCountProNum());
 		System.out.println("cartVO: "+cartVO);
+		//id받아와서 cart에 추가
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		cartVO.setId(memberVO.getId());
+		System.out.println(cartVO);
 		int ret = productService.addCart(cartVO);
 		System.out.println("ret: "+ret);
 		 int proNum = cartVO.getProNum();

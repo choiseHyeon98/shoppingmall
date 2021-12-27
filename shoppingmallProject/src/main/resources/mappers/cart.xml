@@ -23,7 +23,7 @@
 	<![CDATA[
 		INSERT INTO CART
 		("cartNum", "id", "proNum", "sizeOption", "colorOption", "price", "countProNum")
-		VALUES ((SELECT max("cartNum") FROM CART)+1, 'ForTEST', #{proNum}, #{sizeOption}, #{colorOption}, #{price}, #{countProNum})
+		VALUES ((SELECT max("cartNum") FROM CART)+1, #{id}, #{proNum}, #{sizeOption}, #{colorOption}, #{price}, #{countProNum})
 	]]>
 	</insert>
 	
