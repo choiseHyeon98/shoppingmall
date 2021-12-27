@@ -35,8 +35,9 @@ h3 {
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script type="text/javascript">
 
-
-function fn_idCheck(id){
+ /*
+function fn_idCheck(form){
+	alert(form);
     $.ajax({
       url : "/shop/member/register/idCheck?id=",
       type : "post",
@@ -51,9 +52,31 @@ function fn_idCheck(id){
         }
       }
     })
+  } 
+
+  function fn_idCheck(obj){
+	 alert("obj"+obj);
+	   
+      if(yesno == true) { 
+         location.href=url+id;
+     } else { 
+      
+     }
   }
 
+  function info_chk2(frm) {
+      if (confirm("찜하시겠습니까?")) {
+         frm.action = '/shop/s/mypage/addCartList';
+         frm.submit();
+         return true;
+      }
+   }
 
+ <input type="button"
+                     value='찜하기' onclick='return info_chk2(this.form);' value="찜하기">
+  
+  
+*/
 
 </script>
 </head>
@@ -64,7 +87,7 @@ function fn_idCheck(id){
 <form name="frmLogin" action="register" method="post">
 	<h3>회원가입</h3>
 	<input type="text" name="id" maxlength="10" class="text-field" placeholder="ID" required>
-	<button class="idCheck" type="button" id="idCheck" onclick="fn_idCheck(id);" value="N">중복체크</button><br>
+	<button class="idCheck" type="button" name="idCheck" onclick="fn_idCheck(this.form);" value="N">중복체크</button><br>
 	<input type="text" name="pw" maxlength="20" class="text-field" placeholder="PW" required><br>
 	<input type="text" name="name" maxlength="20" class="text-field" placeholder="NAME" required><br>
 	<input type="text" name="phone" maxlength="12" class="text-field" placeholder="PHONE" ><br>

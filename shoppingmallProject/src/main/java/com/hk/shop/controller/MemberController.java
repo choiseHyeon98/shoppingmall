@@ -26,33 +26,32 @@ import com.hk.shop.vo.OrderListVO;
 
 @Controller
 public class MemberController extends HttpServlet {
-	//Controller
-	
+	// Controller
+
 	@Autowired
 	MemberService memberService;
 
-	
-	
-	@RequestMapping (value="/login", method=RequestMethod.GET)
-	public String Login () {
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String Login() {
 		// Session 설정
 		return "login"; // 로그인하는 창
 	}
-	
+
 	// 로그인
-	@RequestMapping (value="/login", method=RequestMethod.POST)
-	public String LoginDone (@ModelAttribute MemberVO memberVO, @ModelAttribute CartVO cartVO, @ModelAttribute OrderListVO orderListVO, HttpSession session) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String LoginDone(@ModelAttribute MemberVO memberVO, @ModelAttribute CartVO cartVO,
+			@ModelAttribute OrderListVO orderListVO, HttpSession session) {
 		// 사용자가 입력한 값을 불러와서
 		// 실패했을때는 실패했다고 알려주고 다시 로그인창
-		System.out.println("memberVO1="+memberVO.toString());
+		System.out.println("memberVO1=" + memberVO.toString());
 		memberVO = memberService.isExisted(memberVO);
-		
+
 		String retUrl = "loginDone"; // 로그인 성공이면 완료창
-		
+
 		if (memberVO == null) {
 			// id/pw가 틀림
 
-			retUrl ="loginFail";
+			retUrl = "loginFail";
 			// return "redirect:/login"
 		} else {
 			// id/pw가 맞음
@@ -60,18 +59,17 @@ public class MemberController extends HttpServlet {
 			session.setAttribute("login", memberVO);
 			session.setAttribute("cart", cartVO);
 			session.setAttribute("OrderList", orderListVO);
-			
+
 			return "loginDone";
 		}
 		return retUrl;
 	}
-	
-	
+
 	// 로그아웃
-	@RequestMapping (value="/logout", method= {RequestMethod.GET, RequestMethod.POST})
-	public String logout (HttpSession session, Model model) {
+	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
+	public String logout(HttpSession session, Model model) {
 		// 기존의 세션이 있으면 로그아웃
-		String name=""; // jsp에서 불러야하니까 model
+		String name = ""; // jsp에서 불러야하니까 model
 		if (session != null && session.getAttribute("login") != null) {
 			MemberVO memberVO = (MemberVO) session.getAttribute("login");
 			name = memberVO.getName();
@@ -80,106 +78,99 @@ public class MemberController extends HttpServlet {
 		model.addAttribute("name", name);
 		return "logout";
 	}
-	
-	
-	@RequestMapping (value="/member/register", method=RequestMethod.GET)
-	public String Register () {
+
+	@RequestMapping(value = "/member/register", method = RequestMethod.GET)
+	public String Register() {
 		// 회원가입
 		return "register"; // 회원가입하는 창
 	}
-	
-//	
-//	// 아이디 중복체크
-//	@ResponseBody
-//	@RequestMapping (value="/member/register/idCheck", method=RequestMethod.POST) 
-//	public int IdCheck (MemberVO memberVO, @RequestParam("id")String id) {
-//		//int ret1 = memberService.idCheck(memberVO);
-//		System.out.println("idCheck1="+id);
-//		System.out.println(memberVO.toString());
-//		//System.out.println("ret11="+ret1);
-//		return 0;
-//		//return 0;
-//	}
 
-	
-	
-	@RequestMapping (value="/member/register", method=RequestMethod.POST)
-	public String RegisterDone (Model model, @ModelAttribute MemberVO memberVO, @RequestParam("id")String id) {
+	// 아이디 중복체크
 
+	@ResponseBody
+	@RequestMapping(value = "/member/register/idCheck", method = {RequestMethod.GET, RequestMethod.POST})
+	public int IdCheck(MemberVO memberVO, @RequestParam("id") String id) {
+		System.out.println("idCheck1=" + id);
+		System.out.println(memberVO.toString());
+		//System.out.println("ret11=" + ret1);
+		//int ret1 = memberService.idCheck(memberVO);
 
-		System.out.println("id="+memberVO.getId());
-		System.out.println("id="+id);
-	//	int ret1 = memberService.idCheck(memberVO);
-		int ret = memberService.addMember(memberVO);
+		return 0;
+	}
 
-/*
-		 try {
-			 if (ret1 != 0) {
-				 model.addAttribute("ret1", ret1);
-				 System.out.println("ret1="+ret1);
-				  
-				 return "dupId";
-				 // model.addAttribute("refreshUrl", "2;url=register");
-			 } else if (ret1 == 0) {
+	@RequestMapping(value = "/member/register", method = RequestMethod.POST)
+	public String RegisterDone(Model model, @ModelAttribute MemberVO memberVO, @RequestParam("id") String id) {
+
+		System.out.println("id=" + memberVO.getId());
+		System.out.println("id=" + id);
+		 int ret1 = memberService.idCheck(memberVO);
+		 // int ret = memberService.addMember(memberVO);
+
+		try {
+			if (ret1 != 0) {
+				model.addAttribute("ret1", ret1);
+				System.out.println("ret1=" + ret1);
+
+				return "dupId";
+				// model.addAttribute("refreshUrl", "2;url=register");
+			} else if (ret1 == 0) {
 				int ret = memberService.addMember(memberVO);
 				model.addAttribute("ret", ret);
-			 }
-		 } catch (Exception e) {
-			 throw new RuntimeException();
-		 }
-		 String member ="";
-			memberVO = memberService.findId(memberVO);
-			member = memberVO.getName();
-			model.addAttribute("member", member);
-		//	System.out.println("member="+member.toString()); 
-		 
-		 */
-		return "registerDone"; // 가입 완료 된 창
-	}
-	
-	
-	
-	@RequestMapping (value="/member/findIdPw", method=RequestMethod.GET)
-	public String FindIdPw () {
-		return "findIdPw"; // 아이디/비번찾기 입력창
-	}
-	
-	@RequestMapping (value="/member/findId", method=RequestMethod.POST)
-	//public String FindId (Model model, @RequestParam("name") String name, @RequestParam("email") String email) {
-	public String FindId (Model model, @ModelAttribute MemberVO memberVO) {
-		System.out.println("memberVO1="+memberVO.toString());
-
-		//Map<String, String> map = memberService.findId(name, email);
-		//model.addAttribute("member", map.get("memberVO"));
-		String member ="";
+			}
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
+		String member = "";
 		memberVO = memberService.findId(memberVO);
 		member = memberVO.getName();
 		model.addAttribute("member", member);
+		// System.out.println("member="+member.toString());
+
+		return "registerDone"; // 가입 완료 된 창
+	}
+
+	@RequestMapping(value = "/member/findIdPw", method = RequestMethod.GET)
+	public String FindIdPw() {
+		return "findIdPw"; // 아이디/비번찾기 입력창
+	}
+
+	@RequestMapping(value = "/member/findId", method = RequestMethod.POST)
+	// public String FindId (Model model, @RequestParam("name") String name,
+	// @RequestParam("email") String email) {
+	public String FindId(Model model, @ModelAttribute MemberVO memberVO) {
+		System.out.println("memberVO1=" + memberVO.toString());
+
+		// Map<String, String> map = memberService.findId(name, email);
+		// model.addAttribute("member", map.get("memberVO"));
+		// String member ="";
+		memberVO = memberService.findId(memberVO);
+		// member = memberVO.getName();
+
+		model.addAttribute("memberVO", memberVO);
 
 		String retUrl = "findIdDone"; // 아이디 찾기 완료
-		
+
 		if (memberVO == null) {
 			// 정보 없음
-		//	System.out.println("MEMBERVO="+memberVO.toString());
+			// System.out.println("MEMBERVO="+memberVO.toString());
 
 			retUrl = "findIdFail";
 		} else {
 			// 정보 있음
-			
+
 			return "findIdDone";
-			
+
 		}
 		return retUrl; // 아이디 찾기 완료
 	}
-	
-	
-	@RequestMapping (value="/member/resetPw", method=RequestMethod.POST)
-	public String ResetPw (@ModelAttribute MemberVO memberVO, HttpSession session) {
-		
-		System.out.println("memberVO1="+memberVO.toString());
+
+	@RequestMapping(value = "/member/resetPw", method = RequestMethod.POST)
+	public String ResetPw(@ModelAttribute MemberVO memberVO, HttpSession session) {
+
+		System.out.println("memberVO1=" + memberVO.toString());
 		memberVO = memberService.findId(memberVO);
-		
-		//return "redirect:sendMail.do"; // 재설정 이메일 보내
+
+		// return "redirect:sendMail.do"; // 재설정 이메일 보내
 		String retUrl = "findIdFail";
 		if (memberVO != null) {
 			session.setAttribute("itsme", memberVO);
@@ -188,43 +179,41 @@ public class MemberController extends HttpServlet {
 
 		}
 		return retUrl;
-		
+
 	}
-	
-	
-	@RequestMapping (value="/ylhqlalfqjsghwotjdwjdfldzmwlfhd", method=RequestMethod.GET)
-	public String SubmitNewPw (Model model, HttpSession session) {
+
+	@RequestMapping(value = "/ylhqlalfqjsghwotjdwjdfldzmwlfhd", method = RequestMethod.GET)
+	public String SubmitNewPw(Model model, HttpSession session) {
 		// 본인인증한 기록이 있어야함
 		MemberVO memberVO = (MemberVO) session.getAttribute("itsme");
 		String id = memberVO.getId();
-		System.out.println("pwSubmitGetId="+id);
-		
-		Map <String, Object> map = memberService.getMyPW(id);
-		System.out.println("pwSubmitGet="+memberVO.toString());
+		System.out.println("pwSubmitGetId=" + id);
+
+		Map<String, Object> map = memberService.getMyPW(id);
+		System.out.println("pwSubmitGet=" + memberVO.toString());
 		model.addAttribute("member", map.get("memberVO"));
-		System.out.println("pwSubmitGet2="+memberVO.toString());
+		System.out.println("pwSubmitGet2=" + memberVO.toString());
 
 		return "submitNewPw";
-		
-	}
-	
-	@RequestMapping (value="/ylhqlalfqjsghwotjdwjdfldzmwlfhd", method=RequestMethod.POST)
-	public String SubmitNewPwDone (Model model,  HttpSession session , @RequestParam("pw") String pw) {
 
-		MemberVO memberVO =  (MemberVO) session.getAttribute("itsme");
-		
+	}
+
+	@RequestMapping(value = "/ylhqlalfqjsghwotjdwjdfldzmwlfhd", method = RequestMethod.POST)
+	public String SubmitNewPwDone(Model model, HttpSession session, @RequestParam("pw") String pw) {
+
+		MemberVO memberVO = (MemberVO) session.getAttribute("itsme");
+
 		memberVO.setPw(pw);
-				 
-		System.out.println("pwSubmit0="+memberVO.toString());
-		
+
+		System.out.println("pwSubmit0=" + memberVO.toString());
+
 		int ret = memberService.updatePw(memberVO);
-		System.out.println("pwSubmit00="+memberVO.toString());
+		System.out.println("pwSubmit00=" + memberVO.toString());
 
 		model.addAttribute("ret", ret);
-		System.out.println("pwSubmitRet="+ret);
-		
+		System.out.println("pwSubmitRet=" + ret);
+
 		return "submitNewPwDone"; // 비번재설정
 	}
-	
-	
+
 }

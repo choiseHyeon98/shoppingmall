@@ -46,7 +46,7 @@ function backToList(obj){
 </style>
 <body>
 
-		리뷰 작성해라
+
 
 		<div style="text-align: center; margin: 31px auto;">
 		<a href="/shop" class="forcenter" style=""><img

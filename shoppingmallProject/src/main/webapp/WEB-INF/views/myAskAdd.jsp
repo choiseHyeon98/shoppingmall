@@ -25,7 +25,8 @@
 	</div>
 	<div class="forCenter">
 		<div style="display: inline-block;">
-			<form method="post">
+			<form action="/shop/board/askAdd" method="post">
+			
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
