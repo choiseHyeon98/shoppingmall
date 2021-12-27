@@ -51,19 +51,20 @@
 
    ]]>
 	</select>
-
+	<!-- 주문완료 주문리스트(고객용) -->
 	<insert id="newOrder" parameterType="OrderListVO">
 	 <![CDATA[ 
       INSERT INTO ORDERLIST
-	("orderNum", "proNum", "id", "sizeOption", "colorOption", "tprice",  "payment", "orderDate", "token")
-	VALUES((SELECT MAX("orderNum") FROM ORDERLIST)+1, #{proNum}, #{id}, #{sizeOption}, #{colorOption}, #{tprice}, #{payment}, sysdate, #{token})
+	("orderNum", "proNum", "id", "sizeOption", "colorOption", "tprice",  "payment", "orderDate", "token", "delStatus")
+	VALUES((SELECT MAX("orderNum") FROM ORDERLIST)+1, #{proNum}, #{id}, #{sizeOption}, #{colorOption}, #{tprice}, #{payment}, sysdate, #{token}, '주문접수')
 
    ]]>
 	</insert>
+	<!-- 주문완료 배송정보 -->
 	<insert id="newDel" parameterType="DeliveryVO">
 	 <![CDATA[ 
      INSERT INTO DELIVERY
-	("id", "orderNum", "Recipient", "shippingAddress", "delPhone", "delMemo")
+	("id", "orderNum", "Recipient", "shippingAddress", "delPhone", "delMemo" )
 	VALUES(#{id}, (SELECT MAX("orderNum") FROM ORDERLIST), #{Recipient}, #{shippingAddress}, #{delPhone}, #{delMemo})
    ]]>
 	</insert>
