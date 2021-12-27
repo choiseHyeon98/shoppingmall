@@ -27,14 +27,14 @@ public class MemberDAO {
 		int ret = sqlSession.insert("mapper.member.addMember", memberVO);
 		return ret;
 	}
-
+/*
 	// 아이디 중복체크
 	public int idCheck(MemberVO memberVO) {
 		System.out.println("idCheckDAO="+memberVO.getId());
 		int ret1 = sqlSession.selectOne("mapper.member.idCheck", memberVO);
 		return ret1;
 	}
-
+*/
 	
 	public MemberVO viewId(MemberVO memberVO) {
 		// TODO Auto-generated method stub

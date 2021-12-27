@@ -28,12 +28,12 @@ public class MemberService {
 		return memberDAO.addMember(memberVO);
 	}
 	
-	
+/*	
 	// 아이디 중복체크
 	public int idCheck (MemberVO memberVO) {
 		return memberDAO.idCheck(memberVO);
 	}
-	
+*/	
 
 	public MemberVO findId(MemberVO memberVO) {
 		// TODO Auto-generated method stub

@@ -48,9 +48,10 @@ td {
 					<h2>고객센터</h2>
 					<small>Customer Service</small>
 					<p>
-						<a class="color-black" href="/shop/board/serviceCenter">> 자주묻는
-							질문</a> <br> <a class="color-black" href="/shop/s/board/askAdd">>
-							문의하기</a>
+						<a class="color-black" href="/shop/board/serviceCenter"> 자주묻는
+							질문</a> <br><a class="color-black" href="/shop/s/board/askList">
+							내 문의 내역</a> <br> <a class="color-black" href="/shop/s/board/askAdd">
+							문의하기</a> <br> 
 					</p>
 				</div>
 				<div class="col-lg-8">

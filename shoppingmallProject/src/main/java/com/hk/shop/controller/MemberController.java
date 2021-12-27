@@ -86,7 +86,7 @@ public class MemberController extends HttpServlet {
 	}
 
 	// 아이디 중복체크
-
+/*
 	@ResponseBody
 	@RequestMapping(value = "/member/register/idCheck", method = {RequestMethod.GET, RequestMethod.POST})
 	public int IdCheck(MemberVO memberVO, @RequestParam("id") String id) {
@@ -97,15 +97,16 @@ public class MemberController extends HttpServlet {
 
 		return 0;
 	}
+*/
 
 	@RequestMapping(value = "/member/register", method = RequestMethod.POST)
 	public String RegisterDone(Model model, @ModelAttribute MemberVO memberVO, @RequestParam("id") String id) {
 
 		System.out.println("id=" + memberVO.getId());
 		System.out.println("id=" + id);
-		 int ret1 = memberService.idCheck(memberVO);
-		 // int ret = memberService.addMember(memberVO);
-
+		 // int ret1 = memberService.idCheck(memberVO);
+		 int ret = memberService.addMember(memberVO);
+/*
 		try {
 			if (ret1 != 0) {
 				model.addAttribute("ret1", ret1);
@@ -125,6 +126,8 @@ public class MemberController extends HttpServlet {
 		member = memberVO.getName();
 		model.addAttribute("member", member);
 		// System.out.println("member="+member.toString());
+		 * 
+		 */
 
 		return "registerDone"; // 가입 완료 된 창
 	}
