@@ -14,13 +14,11 @@ request.setCharacterEncoding("UTF-8");
 h2 {
 	text-align: center;
 }
-
 .card-body {
 	flex: 1 1 auto;
 	padding: 1rem 1rem;
 	margin: 0px 30px 0px 30px;
 }
-
 #card-body {
 	flex: 1 1 auto;
 	padding: 1rem 1rem;
@@ -58,9 +56,7 @@ h2 {
 							<span>주문하신 상품이 없습니다</span>
 						</p>
 					</c:when>
-
 					<c:when test="${delStatus eq '배송완료'}">
-
 						<c:forEach var="myOrders" items="${myOrders }"
 							varStatus="orderNum">
 							<tr align="center">

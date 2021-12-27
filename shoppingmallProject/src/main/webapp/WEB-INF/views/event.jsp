@@ -20,7 +20,7 @@
 	<div style="text-align:center;">
 		<img src="/shop/fileDownload?eventImg=${eventList.eventImg}"" alt="event:${eventList.eventTitle }">
 		<br>
-		<input type="text" style="width:80%; height:100%;" value="${eventList.eventContent }">
+		<input type="text" style="width:80%; height:100%;" value="${eventList.eventContent }" disabled>
 		
 	</div>
 	<!-- Footer-->
