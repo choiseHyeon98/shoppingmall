@@ -34,8 +34,8 @@
 	<insert id ="addMember" parameterType="MemberVO" >
 	<![CDATA[
 		INSERT INTO MEMBER
-		("id", "pw", "name", "phone", "address", "email")
-			VALUES(#{id}, #{pw}, #{name}, #{phone}, #{address}, #{email})
+		("id", "pw", "name", "phone", "address", "email", "rank")
+			VALUES(#{id}, #{pw}, #{name}, #{phone}, #{address}, #{email}, 'new')
 	]]>
 	</insert>
 
