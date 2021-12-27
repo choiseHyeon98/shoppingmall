@@ -68,6 +68,14 @@ public class MemberDAO {
 	}
 
 
+	public String duplcateCheck(String id) {
+		// TODO Auto-generated method stub
+		
+		String dupId = sqlSession.selectOne("mapper.member.checkId", id);
+		return dupId;
+	}
+
+
 
 
 

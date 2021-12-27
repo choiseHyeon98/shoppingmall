@@ -2,36 +2,36 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-        
-<mapper namespace = "mapper.member">
 
-<!-- 테이블 컬럼, VO 1:1로 매핑했을때 이름이 다른 경우 -->
+<mapper namespace="mapper.member">
+
+	<!-- 테이블 컬럼, VO 1:1로 매핑했을때 이름이 다른 경우 -->
 	<resultMap id="memberResult" type="MemberVO">
-		<result property = "id" column="id" />
-		<result property = "pw" column="pw" />
-		<result property = "name" column="name" />
-		<result property = "phone" column="phone" />
-		<result property = "address" column="address" />
-		<result property = "email" column="email" />
-		<result property = "rank" column="rank" />
-		<result property = "joinDate" column="joinDate" />
+		<result property="id" column="id" />
+		<result property="pw" column="pw" />
+		<result property="name" column="name" />
+		<result property="phone" column="phone" />
+		<result property="address" column="address" />
+		<result property="email" column="email" />
+		<result property="rank" column="rank" />
+		<result property="joinDate" column="joinDate" />
 
 	</resultMap>
-	
-	<!-- mybatis에서 받는 건 parameter 보내는 건 result-->
-	<select id ="isExisted" resultType="MemberVO" >
+
+	<!-- mybatis에서 받는 건 parameter 보내는 건 result -->
+	<select id="isExisted" resultType="MemberVO">
 	<![CDATA[
         SELECT * FROM MEMBER where "id"=#{id, jdbcType=VARCHAR} and "pw"=#{pw, jdbcType=VARCHAR}
 	]]>
 	</select>
-	
-	<select id ="selectName" resultType="MemberVO" >
+
+	<select id="selectName" resultType="MemberVO">
 	<![CDATA[
         SELECT * FROM MEMBER where "id"=#{id, jdbcType=VARCHAR}
 	]]>
 	</select>
-	
-	<insert id ="addMember" parameterType="MemberVO" >
+
+	<insert id="addMember" parameterType="MemberVO">
 	<![CDATA[
 		INSERT INTO MEMBER
 		("id", "pw", "name", "phone", "address", "email", "rank")
@@ -40,54 +40,60 @@
 	</insert>
 
 
-	<select id ="idCheck" resultType="MemberVO" >
+	<select id="idCheck" resultType="MemberVO">
 	<![CDATA[
         SELECT COUNT(*) FROM MEMBER where "id"=#{id, jdbcType=VARCHAR}
 	]]>
 	</select>
 
 
-	<select id ="viewId" resultType="MemberVO" >
+	<select id="viewId" resultType="MemberVO">
 	<![CDATA[
 	SELECT "id" FROM MEMBER WHERE "name"=#{name} AND "email" =#{email}
 	]]>
 	</select>
-	
-	
+
+
 	<select id="selectAllMember" resultMap="memberResult">
    <![CDATA[
   		SELECT * FROM MEMBER
    ]]>
 	</select>
-	
-	<select id="delMemebr" parameterType="String" resultMap="memberResult">
+
+	<select id="delMemebr" parameterType="String"
+		resultMap="memberResult">
 	 <![CDATA[ 
       DELETE FROM MEMBER WHERE "id"=#{id}
 
    ]]>
-   	</select>
+	</select>
 
-   	
-   	<select id="updateMember" parameterType="MemberVO">
+
+	<select id="updateMember" parameterType="MemberVO">
 	 <![CDATA[ 
       UPDATE MEMBER SET "rank"=#{rank} WHERE "id" =#{id}
 
    ]]>
-	
+
 	</select>
-	
-	   	<select id ="selectExPw" resultType="MemberVO" >
+
+	<select id="selectExPw" resultType="MemberVO">
 	<![CDATA[
 		 SELECT * FROM MEMBER WHERE "id" =#{id}
 	]]>
 	</select>
-	
-	
-	<update id ="updatePw" parameterType="MemberVO" >
+
+
+	<update id="updatePw" parameterType="MemberVO">
 	<![CDATA[
 		UPDATE MEMBER SET "pw"=#{pw}
 		WHERE "id"=#{id}
 	]]>
 	</update>
+
+	<select id="checkId" resultType="java.lang.String">
+		SELECT "id" from MEMBER
+		where "id"=#{id}
+	</select>
 
 </mapper>

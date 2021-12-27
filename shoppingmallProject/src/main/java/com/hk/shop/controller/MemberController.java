@@ -219,5 +219,34 @@ public class MemberController extends HttpServlet {
 
 		return "submitNewPwDone"; // 비번재설정
 	}
+	
+	
+	 @RequestMapping(value="/dupId",method= { RequestMethod.GET , RequestMethod.POST },produces = "application/json; charset=utf8")
+	   @ResponseBody
+	   public Map<String, Object> dupId(@RequestParam("id")String id) { 
+	      // jsp 화면을 줄필요가 없으므로. 
+	      // 사용자 유무만 확인해주면 된다.
+	      // 클라이언트->서버에 요청할때는 String으로 
+	      // 서버->클라이언트에 답변할때는 JSON으로
+	      System.out.println("id = " + id);
+	      //Service로 id값 보냄
+	      //DAO에 id값 보냄
+	      //DAO에서 mapper.id하고 mapping수행결과 ???
+	      String dupId = memberService.duplcateCheck(id);
+	      Map<String, Object> map = new HashMap<String, Object>();
+	      //dupID==lee ==>중복
+	      //dupID==null ==>중복X
+	       if(dupId==null) {
+	    	   //중복아님
+	    	   map.put("id","false");//중복은 true, 아니면 false
+	       }else {
+	    	   //중복
+	    	   map.put("id","true");
+	       }
+	       System.out.println(map);
+	      //service에서 id가 중복인지 체크하는 모듈...(Service DAO member.xml...)
+	       // 중복이면 true, 아니면 false라는 String반환
+	      return map;//jsp를 찾지 않고 그냥 데이터만 client에 보내줌
+	   }
 
 }

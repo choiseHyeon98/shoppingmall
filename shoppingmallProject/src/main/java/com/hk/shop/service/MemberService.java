@@ -61,6 +61,12 @@ public class MemberService {
 	}
 
 
+	public String duplcateCheck(String id) {
+		// TODO Auto-generated method stub
+		return memberDAO.duplcateCheck(id);
+	}
+
+
 	
 	
 	
