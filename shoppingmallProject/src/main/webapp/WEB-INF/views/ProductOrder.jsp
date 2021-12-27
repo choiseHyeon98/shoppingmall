@@ -74,15 +74,15 @@
 						<tr>
 							<td>배송지</td>
 							<td style="width: 300px;"><input type="text"
-								name="shippingAddress"></td>
+								name="shippingAddress" value="${memberVO.address }"></td>
 						</tr>
 						<tr>
 							<td>수령인</td>
-							<td><input type="text" name="Recipient"></td>
+							<td><input type="text" name="Recipient" value="${memberVO.name }"></td>
 						</tr>
 						<tr>
 							<td>연락처</td>
-							<td><input type="text" name="delPhone"></td>
+							<td><input type="text" name="delPhone" value="${memberVO.phone }"></td>
 						</tr>
 						<tr>
 							<td>배송메모</td>

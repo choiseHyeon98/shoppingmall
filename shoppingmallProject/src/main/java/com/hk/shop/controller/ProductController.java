@@ -2,6 +2,8 @@ package com.hk.shop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.shop.service.ProductService;
 import com.hk.shop.vo.CartVO;
+import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OrderListVO;
 import com.hk.shop.vo.ProductVO;
 import com.hk.shop.vo.ReviewVO;
@@ -21,6 +24,8 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
+	@Autowired
+	HttpSession session;
 
 	// 카테고리 리스트 페이지...
 	// 1. 전체상품
@@ -127,7 +132,9 @@ public class ProductController {
 		// 상품 정보 담아오기...
 		System.out.println("상품Product" + Product.toString());
 		System.out.println("상품Option" + productOption.toString());
-		
+        MemberVO memberVO = (MemberVO) session.getAttribute("login");
+        System.out.println("memberVO controllerprocon:"+memberVO);
+        model.addAttribute("memberVO", memberVO);
 		model.addAttribute("Product", Product);
 		model.addAttribute("productOption", productOption);
 		return "ProductOrder";
