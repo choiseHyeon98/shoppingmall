@@ -62,7 +62,7 @@ public class ManagerDAO {
 		
 		 int optionret = session.insert("mapper.option.insertOption",optionList);
 		 
-		 if((proret+optionret)>2) {
+		 if((proret+optionret)>1) {
 			ret=1;  
 		 } else { 
 			ret=0; }
