@@ -106,6 +106,7 @@ public class MemberController extends HttpServlet {
 		System.out.println("id=" + id);
 		 // int ret1 = memberService.idCheck(memberVO);
 		 int ret = memberService.addMember(memberVO);
+		 model.addAttribute("name", memberVO.getName());
 /*
 		try {
 			if (ret1 != 0) {
