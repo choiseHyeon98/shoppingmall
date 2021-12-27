@@ -39,11 +39,11 @@ td {
 }
 </style>
 <script>
-function memberDel(url,id) {
-    var yesno = confirm(id + "삭제하시겠습니까? ");
+function askComment(url,askNum) {
+    var yesno = confirm("답글을 입력하시겠습니까? ");
     
       if(yesno == true) { 
-         location.href=url+'?id='+id;
+         location.href=url+'?askNum='+askNum;
      } else { 
       	 alert("취소하였습니다");
      }
@@ -51,17 +51,7 @@ function memberDel(url,id) {
 	
 	
 	
-	function memberUpdate(obj) {
-		
-		
-		 var r = confirm("회원정보를 수정하시겠습니까??");
-		  if (r == true) {
-			  value.action ="update";
-			  value.submit();
-		  } else {
-	      
-	      }
-	}
+	
 </script>
 	
 
@@ -86,39 +76,30 @@ function memberDel(url,id) {
 				</div>
 				<div class="col-lg-8">
 					<div>      
-						<b>회원 아이디</b>&nbsp;&nbsp;|&nbsp;&nbsp;
-						<b>이름</b>&nbsp;&nbsp;|&nbsp;&nbsp;
-						<b>전화번호</b>&nbsp;&nbsp;|&nbsp;&nbsp;
-						<b>주소</b>&nbsp;&nbsp;|&nbsp;&nbsp;
-						<b>이메일</b>&nbsp;&nbsp;|&nbsp;&nbsp;
-						<b>등급</b>&nbsp;&nbsp;|&nbsp;&nbsp;
-						<b>회원 삭제</b>
+						<b>문의 유형</b>&nbsp;&nbsp;|&nbsp;&nbsp;
+						<b>문의 제목</b>&nbsp;&nbsp;|&nbsp;&nbsp;
+						<b>회원아이디</b>&nbsp;&nbsp;|&nbsp;&nbsp;
+						<b>현황</b>&nbsp;&nbsp;|&nbsp;&nbsp;
+						<b>답변</b>
 						<hr>
 					</div>
-					<form name="memberForm" method="post" >
+					<form name="askForm" method="post" >
 					<div style="text-align: center; ">
 						<div>
 							<table style="margin-left: auto; margin-right: auto;">
 								<c:choose>
-									<c:when test="${!empty memberList}">
-										<c:forEach var="memberList" items="${memberList }"
-											varStatus="member">
+									<c:when test="${!empty askList}">
+										<c:forEach var="askList" items="${askList }"
+											varStatus="ask">
 											<tr>
 											<table>
 											<tr>
-												<td class="tdNum" style="width: 30px; text-align: center;">${member.count }</td>
+												<td class="tdNum" style="width: 30px; text-align: center;">${ask.count }</td>
 												<td id="tdTitle" style="width: 120%; text-align:center;"><a
 													class="color-black" ></a>
-														|&nbsp; ${memberList.id }&nbsp;|&nbsp;${memberList.name }&nbsp;|&nbsp;${memberList.phone }&nbsp;|&nbsp;${memberList.address }&nbsp;|&nbsp;${memberList.email }&nbsp;|&nbsp;
+														|&nbsp; ${askList.askContent }&nbsp;|&nbsp;${askList.askTitle }&nbsp;|&nbsp;${askList.id }&nbsp;|&nbsp;${askList.askWhether }&nbsp;|&nbsp;
 														
-														<select id="${memberList.rank }" name="rank" >
-														<option value="new">new</option>
-														<option value="vip">vip</option>
-														<option value="vvip">vvip</option>
-														
-														</select>
-														
-														<input type="button" value="회원삭제" onClick="memberDel('del','${memberList.id}')">
+														<input type="button" value="답글달기" onClick="askComment('comment','${askList.askNum}')">
 												</td>
 												</tr>
 												</table>
@@ -129,7 +110,6 @@ function memberDel(url,id) {
 							</table>
 						</div>
 					</div>
-					<input type="button" value="회원정보 수정" onClick="memberUpdate(memberForm)" align="center" />
 					</form>
 				</div>
 			</div>

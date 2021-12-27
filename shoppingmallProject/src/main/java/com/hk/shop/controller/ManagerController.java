@@ -528,11 +528,14 @@ public class ManagerController {
 
 	@RequestMapping(value = "/manager/order/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String memberOrderList(Model model) {
-
+		
+		
 		List<OrderListVO> orderList = new ArrayList<OrderListVO>();
+		
 		orderList = managerService.memberOrderListService();
+		
+		
 		System.out.println("orderList=" + orderList.toString());
-
 		model.addAttribute("orderList", orderList);
 
 		return "memberOrderList";
@@ -553,14 +556,14 @@ public class ManagerController {
 		model.addAttribute("ret", ret);
 
 		// update로 주문상태 환불로 변경 하시겠습니까?
-		return "orderCnacel";
+		return "redirect:list";
 	}
 
 	// 관리자 주문관리 변경 저장 /manager/order/update
 	// 수정해야됨
 	// orderNum하고 delStatus하고 한방에 가져와야됨
 	@RequestMapping(value = "/manager/order/update", method = { RequestMethod.GET, RequestMethod.POST })
-	public String orderUpdate(Model model, @ModelAttribute OrderListVO orderVO) {
+	public String orderUpdate(Model model, @RequestParam ArrayList<OrderListVO> orderVO) {
 
 		int ret = managerService.memberOrderUpdateService(orderVO);
 
@@ -568,7 +571,7 @@ public class ManagerController {
 		model.addAttribute("ret", ret);
 		System.out.println("memberOrderList=" + ret);
 
-		return "orederUpdate";
+		return "redirect:list";
 	}
 
 	// 관리자 문의 관리 목록 /manager/ask/list
@@ -593,7 +596,7 @@ public class ManagerController {
 		System.out.println("askVO=" + askVO.toString());
 		// update 후 결과받기
 
-		return "askSelectOne";
+		return "askComment";
 		// 답글작성이 완료되었습니다 alert -> reviewList
 
 	}
@@ -605,9 +608,9 @@ public class ManagerController {
 		int ret = managerService.askCommentSerivce(askVO);
 		model.addAttribute("ret", ret);
 		// update 후 결과받기
-
+		System.out.println("askVO!!!!!!!!!!!!!!!!!!!"+ ret);
 		System.out.println("askVO=" + askVO.toString());
-		return "askComment";
+		return "redirect:list";
 		// 답글작성이 완료되었습니다 alert -> reviewList
 
 	}

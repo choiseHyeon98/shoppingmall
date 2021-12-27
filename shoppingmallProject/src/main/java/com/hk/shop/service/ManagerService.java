@@ -163,7 +163,7 @@ public class ManagerService {
 		return managerDAO.orderCancleDAO(orderNum);
 	}
 
-	public int memberOrderUpdateService(OrderListVO orderVO) {
+	public int memberOrderUpdateService(ArrayList<OrderListVO> orderVO) {
 		// TODO Auto-generated method stub
 		return managerDAO.orderUpdateDAO(orderVO);
 	}

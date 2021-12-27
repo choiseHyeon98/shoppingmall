@@ -16,7 +16,6 @@
 <title>상품상세</title>
 
 <script>
-
 	function info_chk() {
 		return true;
 	}
@@ -24,7 +23,8 @@
 	function info_chk2(frm) {
 		if (confirm("찜하시겠습니까?")) {
 			frm.action = '/shop/s/mypage/addCartList';
-			frm.submit();s
+			frm.submit();
+			s
 			return true;
 		}
 	}
@@ -38,12 +38,14 @@
 	flex: 1 1 auto;
 	padding: 1rem 1rem;
 	margin: 0px 30px 0px 30px;
+	text-align: center;
 }
 
 #card-body {
 	flex: 1 1 auto;
 	padding: 1rem 1rem;
 	margin: 0px 30px 0px 30px;
+	text-align: center;
 }
 
 .anone {
@@ -52,6 +54,14 @@
 
 .widforsc {
 	width: 30%;
+}
+
+#color {
+	border: none;
+	border-right: 0px;
+	border-top: 0px;
+	boder-left: 0px;
+	boder-bottom: 0px;
 }
 </style>
 
@@ -82,7 +92,10 @@
 							${Product[0].price }</p>
 						<p name="delprice" value="${Product[0].delprice }">배송비:
 							${Product[0].delprice }</p>
-						사이즈: <select name="sizeOption" class="widforsc">
+						색상: <input type="text" name="colorOption"
+							value=${Product[0].colorOption } id="color" size="3" readonly />
+						<br> <br> 사이즈: <select name="sizeOption"
+							class="widforsc">
 							<c:choose>
 								<c:when test="${!empty Product}">
 									<c:forEach var="Product" items="${Product }" varStatus="status">
@@ -90,17 +103,16 @@
 									</c:forEach>
 								</c:when>
 							</c:choose>
-						</select> <br> 색상: <select name="colorOption" class="widforsc">
-							<option value="${Product[0].colorOption }">${Product[0].colorOption }</option>
-						</select> <br> 수량 : <input type="number" name="countProNum"
-							style="width: 50%" class="widforn" min="0" max="99" required> <br>
+						</select> <br> <br> 수량 : <input type="number" name="countProNum"
+							style="width: 50%" class="widforn" min="0" max="99" required>
+						<br>
 						<!-- hidden -->
 						<input type="text" value="${Product[0].proNum }" name="proNum"
 							class="anone"><br> <input type="text"
 							value="${Product[0].price }" name="price" class="anone"><br>
 						<!-- submit -->
-						<input type="submit" value="구매하기"> 
-						<input type="button" value='찜하기' onclick='return info_chk2(this.form);' value="찜하기">
+						<input type="submit" value="구매하기"> <input type="button"
+							value='찜하기' onclick='return info_chk2(this.form);' value="찜하기">
 					</form>
 				</div>
 			</div>
@@ -119,27 +131,29 @@
 			<hr>
 
 			<!-- 상품 상세 -->
-			<p class="text-dark m-0" style="text-align: left;">
-				<a name="proDetails">상품상세설명</a>
+			<p class="text-dark m-0" >
+				<b><a name="proDetails">상품상세설명</a></b>
 			</p>
 			<hr>
+			<div style="text-align: center;">
+				<img class="img-fluid rounded mb-4 mb-lg-0"
+					src="/shop/fileDownloadDetail?detailsImg=${Product[0].detailsImg}"
+					alt="제품이미지상세뷰900*400" style="width: 500px; height: 500px;" />
+			</div>
 			<p class="text-dark m-0">${Product[0].proDetails }</p>
-			<img class="img-fluid rounded mb-4 mb-lg-0"
-						src="/shop/fileDownloadDetail?detailsImg=${Product[0].detailsImg}"
-						alt="제품이미지상세뷰900*400" />
 			<hr>
 
 			<!-- 제품규격 -->
-			<p class="text-dark m-0" style="text-align: left;">
-				<a name="proSpecification">제품규격 </a>
+			<p class="text-dark m-0" >
+				<b><a name="proSpecification">제품규격 </a></b>
 			</p>
 			<hr>
 			<p class="text-dark m-0">${Product[0].proSpecification }</p>
 			<hr>
 
 			<!-- 환불규정 상세내용 -->
-			<p class="text-dark m-0" style="text-align: left;">
-				<a name="refundPolicy">환불규정 </a>
+			<p class="text-dark m-0">
+				<b><a name="refundPolicy">환불규정 </a></b>
 			</p>
 			<hr>
 			<p class="text-dark m-0">${Product[0].refundPolicy }</p>
@@ -151,7 +165,7 @@
 		<div class="card text-white bg-light my-5 py-4 text-center">
 			<!-- 리뷰 -->
 			<p class="text-dark m-0" style="text-align: left;">
-				<a name="review">리뷰</a>
+				<b><a name="review">리뷰</a></b>
 			</p>
 			<hr>
 			<table class="text-dark m-0">
@@ -176,8 +190,8 @@
 		</div>
 	</div>
 
-		<!-- footer -->
-		<%@include file="./footer.jsp"%>
+	<!-- footer -->
+	<%@include file="./footer.jsp"%>
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

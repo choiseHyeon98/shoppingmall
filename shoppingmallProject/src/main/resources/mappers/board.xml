@@ -81,7 +81,7 @@
 	<update id ="updateComment" parameterType="AskVO" >
 	<![CDATA[
 		UPDATE ASK SET
-		"askManagerContent"=#{askManagerContent}
+		"askManagerContent"=#{askManagerContent} ,"askWhether"='o'
 		WHERE "askNum"=#{askNum}
 	]]>
 	</update>
