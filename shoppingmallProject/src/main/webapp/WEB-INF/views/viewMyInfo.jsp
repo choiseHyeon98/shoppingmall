@@ -80,23 +80,23 @@ h3 {
   <!-- id/pw는 수정할때 readonly -->
   <tr>
     <th>name</th>
-    <td><input type="text" value="${member.name }" name="name" id="i_name" disabled /></td>
+    <td><input type="text" value="${membeR[0].name }" name="name" id="i_name" disabled /></td>
   </tr>
   <tr>
     <th>phone</th>
-    <td><input type="text" value="${member.phone }" name="phone" id="i_phone" disabled /></td>
+    <td><input type="text" value="${membeR[0].phone }" name="phone" id="i_phone" disabled /></td>
   </tr>
   <tr>
   	<th>address</th>
-    <td><input type="text" value="${member.address }" name="address" id="i_address" disabled /></td>
+    <td><input type="text" value="${membeR[0].address }" name="address" id="i_address" disabled /></td>
   </tr>
   <tr>
     <th>email</th>
-    <td><input type="text" value="${member.email }" name="email" id="i_email" disabled /></td>
+    <td><input type="text" value="${membeR[0].email }" name="email" id="i_email" disabled /></td>
   </tr>
   <tr>
     <th>rank</th>
-    <td>${member.rank }</td>
+    <td>${membeR[0].rank }</td>
   </tr>
 </table>
  

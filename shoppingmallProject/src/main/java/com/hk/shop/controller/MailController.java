@@ -6,6 +6,7 @@ import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.hk.shop.vo.MemberVO;
 
 
 
@@ -30,9 +33,13 @@ public class MailController {
 
 	
 	@RequestMapping (value="/sendMail.do", method=RequestMethod.GET)
-	public void sendSimpleMail (HttpServletRequest request, HttpServletResponse response, @RequestParam("email") String email) throws Exception {
+	public void sendSimpleMail (HttpServletRequest request, HttpServletResponse response, @RequestParam("email") String email, HttpSession session) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		
+		MemberVO memberVO = (MemberVO) session.getAttribute("itsme");
+		email = memberVO.getEmail();
+		System.out.println("email="+email);
 		
 		PrintWriter out = response.getWriter();
 		

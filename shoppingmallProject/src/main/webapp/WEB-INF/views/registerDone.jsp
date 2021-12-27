@@ -32,7 +32,7 @@
 
 <div class="forCenter">
 <div id="sform">
-	<h3> ${member.name } 님! <br>
+	<h3> ${name } 님! <br>
 	회원 가입을 축하드립니다!</h3>
 	
 	<!-- 메인 홈페이지로 가는 URL 버튼 -->

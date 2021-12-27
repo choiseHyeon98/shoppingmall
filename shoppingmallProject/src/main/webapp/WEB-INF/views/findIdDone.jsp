@@ -26,7 +26,7 @@
 
 <div class="forCenter">
 <div id = "sform">
-고객님의 ID는 ${memberVO.id } 입니다.
+고객님의 ID는 ${id } 입니다.
 <br>
 <br>
 

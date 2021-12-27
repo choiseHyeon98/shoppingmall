@@ -88,24 +88,31 @@ public class MemberController extends HttpServlet {
 		return "register"; // 회원가입하는 창
 	}
 	
-	
-	// 아이디 중복체크
-	@ResponseBody
-	@RequestMapping (value="/member/register/idCheck", method=RequestMethod.POST) 
-	public int IdCheck (MemberVO memberVO) {
-		int ret1 = memberService.idCheck(memberVO);
-		System.out.println("ret11="+ret1);
-		return ret1;
-	}
+//	
+//	// 아이디 중복체크
+//	@ResponseBody
+//	@RequestMapping (value="/member/register/idCheck", method=RequestMethod.POST) 
+//	public int IdCheck (MemberVO memberVO, @RequestParam("id")String id) {
+//		//int ret1 = memberService.idCheck(memberVO);
+//		System.out.println("idCheck1="+id);
+//		System.out.println(memberVO.toString());
+//		//System.out.println("ret11="+ret1);
+//		return 0;
+//		//return 0;
+//	}
 
 	
 	
 	@RequestMapping (value="/member/register", method=RequestMethod.POST)
-	public String RegisterDone (Model model, @ModelAttribute MemberVO memberVO) {
-		
-		System.out.println("id="+memberVO.getId());
-		int ret1 = memberService.idCheck(memberVO);
+	public String RegisterDone (Model model, @ModelAttribute MemberVO memberVO, @RequestParam("id")String id) {
 
+
+		System.out.println("id="+memberVO.getId());
+		System.out.println("id="+id);
+	//	int ret1 = memberService.idCheck(memberVO);
+		int ret = memberService.addMember(memberVO);
+
+/*
 		 try {
 			 if (ret1 != 0) {
 				 model.addAttribute("ret1", ret1);
@@ -124,7 +131,9 @@ public class MemberController extends HttpServlet {
 			memberVO = memberService.findId(memberVO);
 			member = memberVO.getName();
 			model.addAttribute("member", member);
-		//	System.out.println("member="+member.toString());
+		//	System.out.println("member="+member.toString()); 
+		 
+		 */
 		return "registerDone"; // 가입 완료 된 창
 	}
 	
@@ -146,6 +155,7 @@ public class MemberController extends HttpServlet {
 		memberVO = memberService.findId(memberVO);
 		member = memberVO.getName();
 		model.addAttribute("member", member);
+
 		String retUrl = "findIdDone"; // 아이디 찾기 완료
 		
 		if (memberVO == null) {
