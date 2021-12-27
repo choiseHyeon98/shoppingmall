@@ -18,7 +18,7 @@
 	<!-- header -->
 	<%@include file="headerfooter/header.jsp"%>
 	<div style="text-align:center;">
-		<img src="/shop/event/eventList?eventNum=${eventList.eventNum }" alt="event:${eventList.eventTitle }">
+		<img src="/shop/fileDownload?eventImg=${eventList.eventImg}"" alt="event:${eventList.eventTitle }">
 		<br>
 		<input type="text" style="width:80%; height:100%;" value="${eventList.eventContent }">
 		
