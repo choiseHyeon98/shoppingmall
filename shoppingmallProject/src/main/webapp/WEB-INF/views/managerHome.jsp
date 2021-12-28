@@ -41,7 +41,8 @@ request.setCharacterEncoding("UTF-8");
 		<button type="button" class="btn btn-light"
 			onClick="fn_productAdd(this.form)">새상품 등록</button>
 		<button type="button" class="btn btn-light" onClick="return soldOut()">품절</button>
-		<button type="button" class="btn btn-light" onClick="manageMent(this.form)">관리페이지</button>
+		<button type="button" class="btn btn-light"
+			onClick="manageMent(this.form)">관리페이지</button>
 	</div>
 	<br>
 	<hr>
@@ -106,10 +107,19 @@ request.setCharacterEncoding("UTF-8");
 											<a href="product/detail?proNum=${bestList.proNum }"> <img
 												src="/shop/fileDownloadPro?topImage=${bestList.topImage}"
 												alt=" ${bestList.proName }" width="100%" height="240px"></a>
+
 											<div class="card-body">
-												<p class="card-text">${bestList.proName }</p>
+												<c:if test="${bestList.soldOut eq 'so'}">
+													<p style="color: red">[품절]</p>
+													<strike style="color: lightgray"><p
+															class="card-text">${bestList.proName }</p></strike>
+												</c:if>
+												<c:if test="${bestList.soldOut ne 'so'}">
+													<p class="card-text">${bestList.proName }</p>
+												</c:if>
 												<hr>
 											</div>
+
 										</div>
 										<input type="checkbox" name="chkbox"
 											value="${bestList.proNum}">
@@ -137,8 +147,18 @@ request.setCharacterEncoding("UTF-8");
 											<a href="product/detail?proNum=${newList.proNum }"> <img
 												src="/shop/fileDownloadPro?topImage=${newList.topImage}"
 												alt=" ${newList.proName }" width="100%" height="240px"></a>
+
 											<div class="card-body">
-												<p class="card-text">${newList.proName }</p>
+												<c:if test="${newList.soldOut eq 'so'}">
+													<p style="color: red">[품절]</p>
+													<strike style="color: lightgray"><p
+															class="card-text">${newList.proName }</p></strike>
+												</c:if>
+												<c:if test="${newList.soldOut ne 'so'}">
+													<p class="card-text">${newList.proName }</p>
+												</c:if>
+
+
 
 												<hr>
 											</div>
@@ -168,10 +188,20 @@ request.setCharacterEncoding("UTF-8");
 											<a href="product/detail?proNum=${todayList.proNum }"> <img
 												src="/shop/fileDownloadPro?topImage=${todayList.topImage}"
 												alt=" ${todayList.proName }" width="100%" height="240px"></a>
+
 											<div class="card-body">
-												<p class="card-text">${todayList.proName }</p>
+
+												<c:if test="${todayList.soldOut eq 'so'}">
+													<p style="color: red">[품절]</p>
+													<strike style="color: lightgray"><p
+															class="card-text">${todayList.proName }</p></strike>
+												</c:if>
+												<c:if test="${todayList.soldOut ne 'so'}">
+													<p class="card-text">${todayList.proName }</p>
+												</c:if>
 												<hr>
 											</div>
+
 										</div>
 										<input type="checkbox" name="chkbox"
 											value="${todayList.proNum}">
@@ -199,7 +229,14 @@ request.setCharacterEncoding("UTF-8");
 												src="/shop/fileDownloadPro?topImage=${allList.topImage}"
 												alt=" ${allList.proName }" width="100%" height="240px"></a>
 											<div class="card-body">
-												<p class="card-text">${allList.proName }</p>
+												<c:if test="${allList.soldOut eq 'so'}">
+													<p style="color: red">[품절]</p>
+													<strike style="color: lightgray"><p
+															class="card-text">${allList.proName }</p></strike>
+												</c:if>
+												<c:if test="${allList.soldOut ne 'so'}">
+													<p class="card-text">${allList.proName }</p>
+												</c:if>
 												<hr>
 											</div>
 										</div>

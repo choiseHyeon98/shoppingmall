@@ -85,7 +85,16 @@
 				<div class="col-lg-5">
 					<form action="/shop/s/product/orderList"
 						onsubmit='return info_chk()' method="post">
-						<h1>${Product[0].proName }</h1>
+
+						<c:if test="${Product[0].soldOut eq 'so'}">
+							<h1 style="color: red">[품절]</h1>
+							<strike style="color: lightgray"><h1>${Product[0].proName }</h1></strike>
+						</c:if>s
+						<c:if test="${Product[0].soldOut ne 'so'}">
+							<h1>${Product[0].proName }</h1>
+						</c:if>
+
+
 						<p>${Product[0].proContent }</p>
 						<p>색상: ${Product[0].colorOption }</p>
 						<p name="price" value="${Product[0].price }">가격:
@@ -131,7 +140,7 @@
 			<hr>
 
 			<!-- 상품 상세 -->
-			<p class="text-dark m-0" >
+			<p class="text-dark m-0">
 				<b><a name="proDetails">상품상세설명</a></b>
 			</p>
 			<hr>
@@ -144,7 +153,7 @@
 			<hr>
 
 			<!-- 제품규격 -->
-			<p class="text-dark m-0" >
+			<p class="text-dark m-0">
 				<b><a name="proSpecification">제품규격 </a></b>
 			</p>
 			<hr>

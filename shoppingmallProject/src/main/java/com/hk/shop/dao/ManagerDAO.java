@@ -110,7 +110,7 @@ public class ManagerDAO {
 	}
 
 
-	public int orderUpdateDAO(ArrayList<OrderListVO> orderVO) {
+	public int orderUpdateDAO(OrderListVO orderVO) {
 		// TODO Auto-generated method stub
 		
 		int ret = session.update("mapper.orderList.updateOrder",orderVO);

@@ -70,17 +70,17 @@ td {
 <div class="card-body">
 		<div class="container px-4 px-lg-5" >
 			<div class="row gx-4 gx-lg-5 align-items-center my-5">
-				<div class="col-lg-4" width="80%">
+				<div class="col-lg-3" width="80%">
 					<h2>관리 페이지</h2>
 					<small>Manager Service</small>
 					<p>
 						<a class="color-black" href="/shop/manager/member/list">> 회원관리</a> <br> 
 						<a class="color-black" href="/shop/manager/order/list">> 주문관리</a> <br>
-						<a class="color-black" href="/shop/s/board/askAdd">> 문의관리</a> <br>
-						<a class="color-black" href="/shop/s/board/askAdd">> 리뷰관리</a> <br>
+						<a class="color-black" href="/shop/manager/ask/list">> 문의관리</a> <br>
+						
 					</p>
 				</div>
-				<div class="col-lg-8">
+				<div class="col-lg-9">
 					<div>      
 						<b>주문자 아이디</b>&nbsp;&nbsp;|&nbsp;&nbsp;
 						<b>주문일자</b>&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -122,16 +122,23 @@ td {
 														</select>
 														
 														<input type="button" value="주문취소" onClick="orderDel('cancle',${orderList.orderNum})">
+														<input type="hidden" name="orderNum" value="${orderList.orderNum }" />
 												</td>
 												
 											</tr>
+										
 										</c:forEach>
+										<tr>
+										<td style="text-align: right;">
+										<input type="button" value="주문관리 저장" onClick="orderUpdate(orderForm)" />
+										</td>
+										</tr>
 									</c:when>
 								</c:choose>
 							</table>
 						</div>
 					</div>
-					<input type="button" value="주문관리 저장" onClick="orderUpdate(orderForm)" align="center" />
+					
 					</form>
 				</div>
 			</div>

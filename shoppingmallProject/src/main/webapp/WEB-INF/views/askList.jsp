@@ -71,7 +71,7 @@ function askComment(url,askNum) {
 						<a class="color-black" href="/shop/manager/member/list">> 회원관리</a> <br> 
 						<a class="color-black" href="/shop/manager/order/list">> 주문관리</a> <br>
 						<a class="color-black" href="/shop/manager/ask/list">> 문의관리</a> <br>
-						<a class="color-black" href="/shop/s/board/askAdd">> 리뷰관리</a> <br>
+						
 					</p>
 				</div>
 				<div class="col-lg-8">

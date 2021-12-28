@@ -84,7 +84,8 @@ public class ManagerController {
 		// 푸터받아오기
 		List<FooterVO> footerList = new ArrayList<FooterVO>();
 		footerList = managerService.footerService();
-
+		
+		System.out.println("proudct!!!!!"+ bestList);
 		model.addAttribute("eventList", eventList);
 		model.addAttribute("bestList", bestList);
 		model.addAttribute("newList", newList);
@@ -514,9 +515,21 @@ public class ManagerController {
 
 	// 관리자 회원 관리 적용 /manager/memberUpdate
 	@RequestMapping(value = "/manager/member/update", method = { RequestMethod.GET, RequestMethod.POST })
-	public String memberUpdate(Model model, @ModelAttribute MemberVO memberVO) {
+	public String memberUpdate(Model model, @ModelAttribute MemberVO memberVO ) {
 		// 등급설정, 블랙리스트 체크박스 정보 업데이트
-
+		
+		
+		/*
+		 * List<OrderListVO> orderList = new ArrayList<OrderListVO>(); for(Object
+		 * ranking: rank) { OptionVO option = new OptionVO();
+		 * 
+		 * option.setColorOption((String)color);
+		 * 
+		 * option.setSizeOption((String)sizeOption.get(i)); OptionList.add(option); i++;
+		 * }
+		 */
+		
+		System.out.println("MemberVO!!!!!!!!!!!!"+memberVO);
 		int ret = managerService.memberUpdateService(memberVO);
 		model.addAttribute("ret", ret);
 
@@ -563,11 +576,11 @@ public class ManagerController {
 	// 수정해야됨
 	// orderNum하고 delStatus하고 한방에 가져와야됨
 	@RequestMapping(value = "/manager/order/update", method = { RequestMethod.GET, RequestMethod.POST })
-	public String orderUpdate(Model model, @RequestParam ArrayList<OrderListVO> orderVO) {
+	public String orderUpdate(Model model ,@ModelAttribute OrderListVO orderVO  ) {
 
 		int ret = managerService.memberOrderUpdateService(orderVO);
-
-		System.out.println("orderupdate=" + orderVO.toString());
+		
+		System.out.println("orderupdate!!!!!!!!!" + orderVO.toString());
 		model.addAttribute("ret", ret);
 		System.out.println("memberOrderList=" + ret);
 

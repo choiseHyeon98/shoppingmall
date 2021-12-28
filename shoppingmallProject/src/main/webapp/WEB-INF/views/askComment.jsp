@@ -33,6 +33,12 @@ td {
 	justify-content: center;
 	display: flex;
 }
+
+#inputBox{
+	background-color: #fffef5; 
+	border:0;
+	text-align :center
+}
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -49,51 +55,48 @@ td {
 	<!-- header -->
 	<%@include file="manager/header.jsp"%>
 	<div class="card-body">
-		<div class="container px-4 px-lg-5">
-				<div class="col-lg-4" align="center" >
+		<div class="container px-2 px-lg-3"  >
+			
 						<form name="frmArticle" method="post" action="comment">
-							<table border=0 align="center">
+							<table border=0 align="center" >
 								<tr>
-									<td width=150 align="center">문의번호</td>
-									<td><input type="text" name="askNum"
+									<td width=150 >문의번호</td>
+									<td><input type="text" name="askNum" id="inputBox" 
 										value="${askVO.askNum }" disabled /> <input type="hidden"
 										name="askNum" value="${askVO.askNum }" /></td>
 								</tr>
 								<tr>
-									<td width="150" align="center">작성자 아이디</td>
+									<td width="150" >작성자 아이디</td>
 									<td><input type=text value="${askVO.id }" name="writer"
-										disabled /></td>
+										id="inputBox" disabled /></td>
 								</tr>
 								<tr>
-									<td width="150" align="center">제목</td>
+									<td width="150" >제목</td>
 									<td><input type=text value="${askVO.askTitle }"
-										name="title" id="i_title" disabled /></td>
+										id="inputBox" name="title"  disabled /></td>
 								</tr>
 								<tr>
-									<td width="150" align="center">내용</td>
-									<td><textarea rows="20" cols="40" name="content"
-											id="i_content" disabled />${askVO.askContent }</textarea></td>
+									<td width="150" >내용</td>
+									<td><input type=text name="content" id="inputBox" size=100 value="${askVO.askContent }" disabled /></td>
 								</tr>
 								<tr>
 									<td width="150" align="center">답글</td>
-									<td><textarea rows="20" cols="40" name="askManagerContent"
-											id="i_content" />${askVO.askManagerContent }</textarea></td>
+									<td><textarea style="width:100%; resize: none;"  cols="100" name="askManagerContent" rows=20>${askVO.askManagerContent }</textarea></td>
 								</tr>
 
 								<tr id="tr_btn_modify">
-									<td colspan="2" align="center"><input type=button
-										value="취소" onClick="backToList(frmArticle)"></td>
+									<td colspan="2" align="center">
+									<input type="button" value="취소" onClick="backToList(frmArticle)">
+									<input type="submit"value="답글달기">
+									</td>
 								</tr>
 
-								<tr id="tr_btn">
-									<td colspan="2" align="center"><input type="submit"
-										value="답글달기"></td>
-								</tr>
+								
 							</table>
 						</form>
-					</div>
+				
 		</div>
-
+</div>
 
 	<!-- footer -->
 	<%@include file="manager/footer.jsp"%>
