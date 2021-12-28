@@ -42,7 +42,7 @@ public class MypageController {
 	// 내정보 수정창
 	@RequestMapping (value="s/mypage/update", method=RequestMethod.GET)
 	public String MypageUpdate(Model model, HttpSession session) {
-		//String id = ""; // session 선언 후에 , @RequestParam("id") String id 붙이기
+		//String id = "";
 		MemberVO memberVO = (MemberVO) session.getAttribute("login");
 		String id = memberVO.getId();
 		System.out.println("id="+id);

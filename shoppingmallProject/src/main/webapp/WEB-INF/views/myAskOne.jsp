@@ -38,7 +38,7 @@ td {
    <script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
    <script type="text/javascript" >
      function backToList(obj){
-       obj.action="/board/askList";
+       obj.action="/shop/s/board/askList";
        obj.submit();
      }
  
@@ -60,7 +60,7 @@ td {
       문의번호
    </td>
    <td >
-    <input type="text"  value="${ask.askNum }"  disabled />
+    <input type="text"  value="${myAsk.askNum }"  disabled />
    </td>
   </tr>
   <tr>
@@ -68,7 +68,7 @@ td {
       작성자 아이디
    </td>
    <td >
-    <input type=text value="${ask.id }" name="writer"  disabled />
+    <input type=text value="${myAsk.id }" name="writer"  disabled />
    </td>
   </tr>
   <tr>
@@ -76,7 +76,7 @@ td {
       제목 
    </td>
    <td>
-    <input type=text value="${ask.askTitle }"  name="title"  id="i_title" disabled />
+    <input type=text value="${myAsk.askTitle }"  name="title"  id="i_title" disabled />
    </td>   
   </tr>
   <tr>
@@ -84,7 +84,7 @@ td {
       내용
    </td>
    <td>
-    <textarea rows="20" cols="40"  name="content"  id="i_content"  disabled />${ask.askContent }</textarea>
+    <textarea rows="20" cols="40"  name="content"  id="i_content"  disabled />${myAsk.askContent }</textarea>
    </td>  
   </tr>
  

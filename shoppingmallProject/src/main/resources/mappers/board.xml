@@ -45,7 +45,7 @@
 	
 	<select id="selectMyQList" resultType="AskVO">
    <![CDATA[
-  		SELECT "askNum", "askTitle", "askWhether" FROM ASK
+  		SELECT * FROM ASK WHERE "id"=#{id}
    ]]>
 	</select>
 	
@@ -57,7 +57,7 @@
 	]]>
 	</insert>
 	
-	<select id="selectMyAsk" resultType="AskVO">
+	<select id="selectMyAsk" resultMap="AskResult">
    <![CDATA[
   		SELECT * from ASK
 		WHERE "askNum"=#{askNum}

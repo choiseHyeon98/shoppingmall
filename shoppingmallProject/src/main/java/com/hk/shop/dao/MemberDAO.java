@@ -36,6 +36,16 @@ public class MemberDAO {
 	}
 */
 	
+	public MemberVO getItsmeSession(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		System.out.println("memberVO3="+memberVO.toString());
+		memberVO = sqlSession.selectOne("mapper.member.getItsmeSession", memberVO);
+		// System.out.println("memberVO4="+memberVO.toString());
+
+		return memberVO;
+	}
+	
+	
 	public MemberVO viewId(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		System.out.println("memberVO3="+memberVO.toString());

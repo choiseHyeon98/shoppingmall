@@ -42,7 +42,7 @@
 	<br>
 	<input type="button" value="내 정보 보기" onClick="location.href='/shop/s/mypage/update'" style="width:250px; height: 30px">
 	<br>
-	<input type="button" value="내 문의 보기" onClick="location.href='/shop/board/askList'" style="width:250px; height: 30px">
+	<input type="button" value="내 문의 보기" onClick="location.href='/shop/s/board/askList'" style="width:250px; height: 30px">
 	<br><br>
 	<input type="button" value="상품 보러가기" onClick="location.href='/shop/'" style="width:250px; height: 30px">
 </div>

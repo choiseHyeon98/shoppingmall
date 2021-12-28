@@ -52,6 +52,12 @@
 	SELECT "id" FROM MEMBER WHERE "name"=#{name} AND "email" =#{email}
 	]]>
 	</select>
+	
+	<select id="getItsmeSession" resultType="MemberVO">
+	<![CDATA[
+	SELECT "email" FROM MEMBER WHERE "name"=#{name} AND "email" =#{email}
+	]]>
+	</select>
 
 
 	<select id="selectAllMember" resultMap="memberResult">

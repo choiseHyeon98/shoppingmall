@@ -27,9 +27,11 @@ public class BoardDAO {
 		return FAQList;
 	}
 
-	public List<AskVO> myQuestions(AskVO askVO) {
+	public List<AskVO> myQuestions(String id) {
 		// TODO Auto-generated method stub
-		List<AskVO> myAskList = session.selectList("mapper.board.selectMyQList", askVO);
+		List<AskVO> myAskList = session.selectList("mapper.board.selectMyQList", id);
+		System.out.println("myBoardDAOid="+id);
+		System.out.println("myAskListDAO="+myAskList.toString());
 		return myAskList;
 	}
 	
@@ -41,8 +43,8 @@ public class BoardDAO {
 
 	public AskVO selectMyAsk(int askNum) {
 		// TODO Auto-generated method stub
-		AskVO askVO = session.selectOne("mapper.board.selectMyAsk", askNum);
-		return askVO;
+		AskVO myAsk = session.selectOne("mapper.board.selectMyAsk", askNum);
+		return myAsk;
 	}
 
 	public int updateMyAsk(AskVO askVO) {

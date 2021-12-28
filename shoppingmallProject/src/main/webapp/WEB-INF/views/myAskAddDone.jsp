@@ -10,7 +10,7 @@
 
 	 <script>
 	 alert("문의가 완료되었습니다");
-	 document.location.href="/shop/board/askList";
+	 document.location.href="/shop/s/board/askList";
 	 
 	 </script>
 	

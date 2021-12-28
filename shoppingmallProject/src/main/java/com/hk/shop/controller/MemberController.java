@@ -14,10 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hk.shop.service.MemberService;
 import com.hk.shop.vo.CartVO;
@@ -85,19 +87,7 @@ public class MemberController extends HttpServlet {
 		return "register"; // 회원가입하는 창
 	}
 
-	// 아이디 중복체크
-/*
-	@ResponseBody
-	@RequestMapping(value = "/member/register/idCheck", method = {RequestMethod.GET, RequestMethod.POST})
-	public int IdCheck(MemberVO memberVO, @RequestParam("id") String id) {
-		System.out.println("idCheck1=" + id);
-		System.out.println(memberVO.toString());
-		//System.out.println("ret11=" + ret1);
-		//int ret1 = memberService.idCheck(memberVO);
 
-		return 0;
-	}
-*/
 
 	@RequestMapping(value = "/member/register", method = RequestMethod.POST)
 	public String RegisterDone(Model model, @ModelAttribute MemberVO memberVO, @RequestParam("id") String id) {
@@ -107,28 +97,7 @@ public class MemberController extends HttpServlet {
 		 // int ret1 = memberService.idCheck(memberVO);
 		 int ret = memberService.addMember(memberVO);
 		 model.addAttribute("name", memberVO.getName());
-/*
-		try {
-			if (ret1 != 0) {
-				model.addAttribute("ret1", ret1);
-				System.out.println("ret1=" + ret1);
 
-				return "dupId";
-				// model.addAttribute("refreshUrl", "2;url=register");
-			} else if (ret1 == 0) {
-				int ret = memberService.addMember(memberVO);
-				model.addAttribute("ret", ret);
-			}
-		} catch (Exception e) {
-			throw new RuntimeException();
-		}
-		String member = "";
-		memberVO = memberService.findId(memberVO);
-		member = memberVO.getName();
-		model.addAttribute("member", member);
-		// System.out.println("member="+member.toString());
-		 * 
-		 */
 
 		return "registerDone"; // 가입 완료 된 창
 	}
@@ -139,14 +108,10 @@ public class MemberController extends HttpServlet {
 	}
 
 	@RequestMapping(value = "/member/findId", method = RequestMethod.POST)
-	// public String FindId (Model model, @RequestParam("name") String name,
-	// @RequestParam("email") String email) {
+
 	public String FindId(Model model, @ModelAttribute MemberVO memberVO) {
 		System.out.println("memberVO1=" + memberVO.toString());
 
-		// Map<String, String> map = memberService.findId(name, email);
-		// model.addAttribute("member", map.get("memberVO"));
-		// String member ="";
 		memberVO = memberService.findId(memberVO);
 		// member = memberVO.getName();
 
@@ -168,18 +133,19 @@ public class MemberController extends HttpServlet {
 		return retUrl; // 아이디 찾기 완료
 	}
 
-	@RequestMapping(value = "/member/resetPw", method = RequestMethod.POST)
+	@RequestMapping (value = "/member/resetPw", method=RequestMethod.POST)
 	public String ResetPw(@ModelAttribute MemberVO memberVO, HttpSession session) {
-
+		// , RedirectAttributes rrtr
 		System.out.println("memberVO1=" + memberVO.toString());
-		memberVO = memberService.findId(memberVO);
-
+		memberVO = memberService.getItsmeSession(memberVO);
+		System.out.println("memberVO2=" + memberVO.toString());
 		// return "redirect:sendMail.do"; // 재설정 이메일 보내
 		String retUrl = "findIdFail";
 		if (memberVO != null) {
 			session.setAttribute("itsme", memberVO);
+			//rrtr.addAttribute("email", memberVO.getEmail());
 			// 정보가 있어 그럼 메일을 보내
-			return "redirect:/sendMail.do";
+			return "redirect:../sendMail.do";
 
 		}
 		return retUrl;

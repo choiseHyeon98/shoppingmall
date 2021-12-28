@@ -35,6 +35,14 @@ public class MemberService {
 	}
 */	
 
+	public MemberVO getItsmeSession(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		System.out.println("memberVO2="+memberVO.toString());
+
+		return memberDAO.getItsmeSession(memberVO);
+
+	}
+	
 	public MemberVO findId(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		System.out.println("memberVO2="+memberVO.toString());

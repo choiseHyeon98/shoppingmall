@@ -31,9 +31,9 @@ public class BoardService {
 		return boardDAO.ViewOne(fAQNum);
 	}
 	
-	public List<AskVO> myQuestions(AskVO askVO) {
+	public List<AskVO> myQuestions(String id) {
 		// TODO Auto-generated method stub
-		return boardDAO.myQuestions(askVO);
+		return boardDAO.myQuestions(id);
 	}
 	
 	public int insertMyAsk(AskVO askVO) {
@@ -41,16 +41,16 @@ public class BoardService {
 		return boardDAO.insertMyAsk(askVO);
 	}
 	
-	public Map<String, Object> viewMyAsk(int askNum) {
+	public AskVO viewMyAsk(int askNum) {
 		// TODO Auto-generated method stub
-		AskVO askVO = boardDAO.selectMyAsk(askNum);
-		MemberVO memberVO = memberDAO.selectName(askVO.getId());
+		//AskVO askVO = boardDAO.selectMyAsk(askNum);
+		//MemberVO memberVO = memberDAO.selectName(askVO.getId());
 		//MemberVO memberVO = MemberDAO.selectName(memberVO.getId());
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("askVO", askVO);
+		//Map<String, Object> map = new HashMap<String, Object>();
+		//map.put("askVO", askVO);
 		//map.put("memberVO", memberVO);
-		return map;
+		return boardDAO.selectMyAsk(askNum);
 	}
 	
 	public int modifyAsk(AskVO askVO) {

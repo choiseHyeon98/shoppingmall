@@ -25,7 +25,7 @@
 	</div>
 	<div class="forCenter">
 		<div style="display: inline-block;">
-			<form action="/shop/board/askAdd" method="post">
+			<form action="/shop/s/board/askAdd" method="post">
 			
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
@@ -36,16 +36,29 @@
 						</tr>
 					</thead>
 					<tbody>
+
+						<tr> 
+  							 <td >
+    							<input type=text class="form-control"
+								placeholder="아이디" name="id" maxlength="10"
+    							style="width: 450px;"/>
+   							</td>
+ 						 </tr>
+					
 						<tr>
 							<td><input type="text" class="form-control"
 								placeholder="글 제목" name="askTitle" maxlength="50"
 								style="width: 450px;"></td>
 						</tr>
+						
+						
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용"
 									name="askContent" maxlength="2048"
 									style="height: 350px; width: 500px;"></textarea></td>
 						</tr>
+						
+						
 					</tbody>
 				</table>
 				<!-- 글쓰기 버튼 생성 -->

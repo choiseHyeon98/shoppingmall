@@ -3,6 +3,8 @@ package com.hk.shop.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hk.shop.service.BoardService;
 import com.hk.shop.vo.AskVO;
 import com.hk.shop.vo.FAQVO;
+import com.hk.shop.vo.MemberVO;
 
 @Controller
 public class BoardController {
@@ -96,21 +99,29 @@ public class BoardController {
 	}
 	
 	// 내 문의 내역
-	@RequestMapping (value="/board/askList", method= {RequestMethod.GET, RequestMethod.POST} )
-	String MyAskList(Model model, AskVO askVO) {
-		List <AskVO> myAskList = boardService.myQuestions(askVO);
+	@RequestMapping (value="/s/board/askList", method= {RequestMethod.GET, RequestMethod.POST} )
+	String MyAskList(Model model, HttpSession session) {
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		String id = memberVO.getId();
+		System.out.println("myBoardId="+id);
+		List <AskVO> myAskList = boardService.myQuestions(id);
+		System.out.println("myAskListCon1="+myAskList.toString());
+
 		model.addAttribute("myAskList", myAskList);
+		System.out.println("myAskListCon2="+myAskList.toString());
+
 		return "myAskList";
 	}
 	
 	
 	// 새로 문의하기
-	@RequestMapping (value="/s/board/askAdd", method=RequestMethod.GET)
-	public String MyAskAdd () {
+	@RequestMapping (value="/s/board/askAdd", method= {RequestMethod.GET, RequestMethod.POST})
+	public String MyAskAdd (Model model, HttpSession session) {
+		
 		return "myAskAdd";
 	}
 	
-	@RequestMapping (value="/board/askAdd", method=RequestMethod.POST)
+	@RequestMapping (value="/s/board/askAdd", method=RequestMethod.POST)
 	public String MyAskAddDone (Model model, @ModelAttribute AskVO askVO) {
 		int ret = boardService. insertMyAsk(askVO);
 		model.addAttribute("ret", ret);
@@ -118,17 +129,23 @@ public class BoardController {
 	}
 	
 	// 내 문의 상세보기
-	@RequestMapping (value="/board/askOne", method= RequestMethod.GET)
-	public String MyAskOne(Model model, @ModelAttribute AskVO askVO, @RequestParam("askNum") int askNum) {
-		System.out.println("askVO="+askVO.toString());
-		Map<String, Object> map = boardService.viewMyAsk(askNum);
-		model.addAttribute("ask", map.get("askVO"));
-		model.addAttribute("member", map.get("memberVO"));
+	@RequestMapping (value="/s/board/askOne", method= {RequestMethod.GET, RequestMethod.POST})
+	public String MyAskOne(Model model, HttpSession session, @ModelAttribute AskVO askVO, @RequestParam("askNum") int askNum) {
+		MemberVO memberVO = (MemberVO) session.getAttribute("login");
+		String id = memberVO.getId();
+		System.out.println("id="+id);
+		
+		AskVO myAsk = boardService.viewMyAsk(askNum);
+		model.addAttribute("myAsk", myAsk);
+		System.out.println("myAsk="+myAsk.toString());
+		//Map<String, Object> map = boardService.viewMyAsk(askNum);
+		//model.addAttribute("ask", map.get("askVO"));
+		//model.addAttribute("member", map.get("memberVO"));
 		return "myAskOne";
 	}
 	
 	// 내문의 상세 수정
-	@RequestMapping (value="/board/askOne", method= RequestMethod.POST)
+	@RequestMapping (value="/s/board/askOne", method= RequestMethod.POST)
 	public String AskUpdate(Model model, @ModelAttribute AskVO askVO) {
 		int ret = boardService.modifyAsk(askVO);
 		model.addAttribute("ret", ret);

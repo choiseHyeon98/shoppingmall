@@ -47,6 +47,11 @@ td {
 .color-black {
 	color: black;
 }
+
+p {
+	text-align: left;
+
+}
 </style>
 <!-- favicon -->
 <%@include file="headerfooter/favicon.jsp"%>
@@ -56,40 +61,34 @@ td {
 	<%@include file="headerfooter/header.jsp"%>
 	<div class="card-body">
 		<div class="container px-4 px-lg-5">
-			<div class="row gx-4 gx-lg-5 align-items-center my-5">
-				<div class="col-lg-4" style="text-align: left;">
+			
 					<table align="center" border="1" width="80%">
 						<h2>내 문의 내역</h2>
 						<p>
-							<a class="color-black" href="/shop/board/serviceCenter">
-								자주묻는질문</a> <br> <a class="color-black"
-								href="/shop/s/board/askAdd">문의하기</a>
+							<a class="color-black" href="/shop/board/serviceCenter"> > 자주묻는질문</a> <br>
+							<a class="color-black" href="/shop/s/board/askAdd"> > 문의하기</a> <br>
 						</p>
-				</div>
+							<tr>
+								<th style="background-color: #eeeeee; text-align: center;">문의번호</th>
+								<th style="background-color: #eeeeee; text-align: center;">제목</th>
+								<th style="background-color: #eeeeee; text-align: center;">답변상태</th>
+
+							</tr>
 						<c:choose>
 							<c:when test="${empty myAskList}">
 								<p align="center">
 									<span>문의 내역이 없습니다</span>
 								</p>
 							</c:when>
-							<c:when test="${!empty myAskListist}">
-
-								<c:forEach var="myAskList" items="${myAskList }"
-									varStatus="askNum">
-									<tr>
-										<th style="background-color: #eeeeee; text-align: center;">문의번호</th>
-										<th style="background-color: #eeeeee; text-align: center;">제목</th>
-										<th style="background-color: #eeeeee; text-align: center;">답변상태</th>
-
-									</tr>
-
-
-
+							
+							<c:when test="${!empty myAskList}">
+								<c:forEach var="myAskList" items="${myAskList }" varStatus="askNum">
 									<tr align="center">
-										<td>${myAskListist.askNum }</td>
+										<td>${myAskList.askNum }</td>
 										<!-- 게시글 제목을 누르면 해당 글을 볼 수 있도록 링크를 걸어둔다 -->
-										<td><a href="myAskOne.jsp?asknNum=askNum"></a>${myAskListist.askTitle }</td>
-										<td>${myAskListist.askWhether }</td>
+										<td><a class="color-black" href="/shop/s/board/askOne?askNum=${myAskList.askNum }">${myAskList.askTitle }</a></td>
+										<td>${myAskList.askWhether }</td>
+										
 
 									</tr>
 								</c:forEach>
@@ -98,7 +97,6 @@ td {
 
 					</table>
 
-			</div>
 		</div>
 	</div>
 
