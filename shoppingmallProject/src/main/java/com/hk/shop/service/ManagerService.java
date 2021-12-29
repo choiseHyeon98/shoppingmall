@@ -19,6 +19,7 @@ import com.hk.shop.vo.AskVO;
 import com.hk.shop.vo.EventVO;
 
 import com.hk.shop.vo.FooterVO;
+import com.hk.shop.vo.ManagerVO;
 import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OptionVO;
 import com.hk.shop.vo.OrderListVO;
@@ -271,6 +272,11 @@ public class ManagerService {
 	public int fileDelete(EventVO eventVO) {
 		// TODO Auto-generated method stub
 		return managerDAO.fileDeleteDAO(eventVO);
+	}
+
+	public ManagerVO isExisted(ManagerVO managerVO) {
+		// TODO Auto-generated method stub
+		return managerDAO.isExistedDAO(managerVO);
 	}
 
 

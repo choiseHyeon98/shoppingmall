@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hk.shop.service.MemberService;
 import com.hk.shop.vo.CartVO;
+import com.hk.shop.vo.ManagerVO;
 import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OrderListVO;
 
@@ -41,8 +43,8 @@ public class MemberController extends HttpServlet {
 
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String LoginDone(@ModelAttribute MemberVO memberVO, @ModelAttribute CartVO cartVO,
-			@ModelAttribute OrderListVO orderListVO, HttpSession session) {
+	public String LoginDone(@ModelAttribute MemberVO memberVO, @ModelAttribute CartVO cartVO, 
+			@ModelAttribute OrderListVO orderListVO,HttpSession session) {
 		// 사용자가 입력한 값을 불러와서
 		// 실패했을때는 실패했다고 알려주고 다시 로그인창
 		System.out.println("memberVO1=" + memberVO.toString());
@@ -61,7 +63,7 @@ public class MemberController extends HttpServlet {
 			session.setAttribute("login", memberVO);
 			session.setAttribute("cart", cartVO);
 			session.setAttribute("OrderList", orderListVO);
-
+			
 			return "loginDone";
 		}
 		return retUrl;

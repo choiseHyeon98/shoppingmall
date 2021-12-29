@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.hk.shop.vo.AskVO;
 import com.hk.shop.vo.EventVO;
 import com.hk.shop.vo.FooterVO;
+import com.hk.shop.vo.ManagerVO;
 import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OptionVO;
 import com.hk.shop.vo.OrderListVO;
@@ -245,6 +246,16 @@ public class ManagerDAO {
 		int ret = session.update("mapper.event.deleteFile",eventVO);
 		
 		return ret;
+	}
+
+
+	public ManagerVO isExistedDAO(ManagerVO managerVO) {
+		// TODO Auto-generated method stub
+		System.out.println("managerVO="+managerVO.toString());
+		
+		managerVO = session.selectOne("mapper.manager.isExisted", managerVO);
+		
+		return managerVO;
 	}
 
 

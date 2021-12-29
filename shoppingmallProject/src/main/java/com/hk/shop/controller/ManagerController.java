@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.hk.shop.service.ManagerService;
 import com.hk.shop.service.ProductService;
 import com.hk.shop.vo.AskVO;
+import com.hk.shop.vo.CartVO;
 import com.hk.shop.vo.EventVO;
 
 import com.hk.shop.vo.FooterVO;
+import com.hk.shop.vo.ManagerVO;
 import com.hk.shop.vo.MemberVO;
 import com.hk.shop.vo.OptionVO;
 import com.hk.shop.vo.OrderListVO;
@@ -55,8 +58,11 @@ public class ManagerController {
 	ProductService productService;
 
 	@RequestMapping(value = "/manager/managerHome", method = { RequestMethod.GET, RequestMethod.POST })
-	public String managerHome(Model model) {
+	public String managerHome(Model model,HttpSession session) {
 		// 이벤트배너 받아오기
+		
+		
+		
 		List<EventVO> eventList = new ArrayList<EventVO>();
 		eventList = managerService.eventService();
 		System.out.println("eventlist=" + eventList.toString());
@@ -699,5 +705,36 @@ public class ManagerController {
 		return "privacyUpdateDone";
 
 	}
+	//관리자 로그인
+	@RequestMapping(value = "/manager/login", method = RequestMethod.GET)
+	public String Login() {
+		// Session 설정
+		return "managerlogin"; // 로그인하는 창
+	}
 
+	// 로그인
+		@RequestMapping(value = "/manager/login", method = RequestMethod.POST)
+		public String LoginDone(@ModelAttribute ManagerVO managerVO ,HttpSession session) {
+			// 사용자가 입력한 값을 불러와서
+			// 실패했을때는 실패했다고 알려주고 다시 로그인창
+			System.out.println("managerVO=" + managerVO.toString());
+			managerVO = managerService.isExisted(managerVO);
+
+			String retUrl = "loginDone"; // 로그인 성공이면 완료창
+
+			if (managerVO == null) {
+				// id/pw가 틀림
+
+				retUrl = "loginFail";
+				// return "redirect:/login"
+			} else {
+				// id/pw가 맞음
+				// Session 설정
+				session.setAttribute("login", managerVO);
+			
+				
+				return "redirect:/manager/managerHome";
+			}
+			return retUrl;
+		}
 }

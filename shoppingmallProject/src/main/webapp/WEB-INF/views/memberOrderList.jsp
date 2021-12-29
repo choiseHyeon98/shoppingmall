@@ -92,7 +92,7 @@ td {
 						<b>환불</b>
 						<hr>
 					</div>
-					<form name="orderForm"  >
+					
 					<div style="text-align: center; ">
 						<div>
 							<table style="margin-left: auto; margin-right: auto;">
@@ -100,6 +100,7 @@ td {
 									<c:when test="${!empty orderList}">
 										<c:forEach var="orderList" items="${orderList }"
 											varStatus="order">
+											<form name="orderForm${order.count }" >
 											<tr>
 											
 												<td class="tdNum" style="width: 30px; text-align: center;">${order.count }</td>
@@ -123,23 +124,21 @@ td {
 														
 														<input type="button" value="주문취소" onClick="orderDel('cancle',${orderList.orderNum})">
 														<input type="hidden" name="orderNum" value="${orderList.orderNum }" />
+														<input type="button" value="주문관리 저장" onClick="orderUpdate(orderForm${order.count })" />
 												</td>
 												
 											</tr>
-										
+										</form>
 										</c:forEach>
-										<tr>
-										<td style="text-align: right;">
-										<input type="button" value="주문관리 저장" onClick="orderUpdate(orderForm)" />
-										</td>
-										</tr>
+										
+										
 									</c:when>
 								</c:choose>
 							</table>
 						</div>
 					</div>
 					
-					</form>
+					
 				</div>
 			</div>
 		</div>

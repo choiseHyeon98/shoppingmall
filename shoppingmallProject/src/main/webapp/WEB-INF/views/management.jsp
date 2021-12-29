@@ -97,7 +97,7 @@ function memberUpdate(obj) {
 						<b>회원 삭제</b>
 						<hr>
 					</div>
-					<form name="memberForm" action="update" method="post" >
+				
 					<div style="text-align: center; ">
 						<div>
 							<table style="margin-left: auto; margin-right: auto;">
@@ -107,6 +107,7 @@ function memberUpdate(obj) {
 										<c:forEach var="memberList" items="${memberList }"
 											varStatus="member">
 											
+												<form name="memberForm${member.count }" action="update" method="post" >
 											
 											<tr>
 												<td class="tdNum" style="width: 30px; text-align: center;">${member.count }</td>
@@ -123,6 +124,7 @@ function memberUpdate(obj) {
 														
 														<input type="button" value="회원삭제" onClick="memberDel('del','${memberList.id}')">
 														<input type="hidden" name="id" value="${memberList.id }" />
+														<input type="button" value="회원정보 수정" onClick="memberUpdate(memberForm${member.count })" />
 												</td>
 											</tr>
 											<tr>
@@ -133,9 +135,9 @@ function memberUpdate(obj) {
 											</tr>	
 												
 												
-											
+											</form>
 										</c:forEach>
-										<input type="button" value="회원정보 수정" onClick="memberUpdate(memberForm)" />
+										
 									</c:when>
 								</c:choose>
 							</table>
@@ -143,7 +145,7 @@ function memberUpdate(obj) {
 					</div>
 					
 					
-					</form>
+					
 				</div>
 			</div>
 		</div>

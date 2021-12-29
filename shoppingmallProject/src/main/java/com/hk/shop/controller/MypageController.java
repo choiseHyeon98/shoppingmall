@@ -175,4 +175,5 @@ public class MypageController {
 	
 	//method= {RequestMethod.GET,RequestMethod.POST}
 	
+	
 }
