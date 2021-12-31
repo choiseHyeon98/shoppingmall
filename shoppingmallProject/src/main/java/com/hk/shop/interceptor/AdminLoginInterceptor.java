@@ -25,7 +25,7 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
 		}
 		
 		// // 세션안에 내용이 login이라고 하는 attribute가 있는지 확인
-		ManagerVO managerVO = (ManagerVO) session.getAttribute("login");
+		ManagerVO managerVO = (ManagerVO) session.getAttribute("adminlogin");
 		if (managerVO == null) {
 			response.sendRedirect("/shop/manager/login");
 			return false;

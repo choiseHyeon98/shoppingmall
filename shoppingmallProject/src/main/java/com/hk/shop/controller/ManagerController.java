@@ -730,7 +730,7 @@ public class ManagerController {
 			} else {
 				// id/pw가 맞음
 				// Session 설정
-				session.setAttribute("login", managerVO);
+				session.setAttribute("adminlogin", managerVO);
 			
 				
 				return "redirect:/manager/managerHome";
