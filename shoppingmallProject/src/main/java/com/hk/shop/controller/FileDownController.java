@@ -78,7 +78,7 @@ public class FileDownController {
       } else {
          fileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
       }
-      realFileName = "c:\\board\\productImg\\productImg"+fileName;
+      realFileName = "c:\\board\\productImg\\"+fileName;
       System.out.println("realFileName="+ realFileName);
       File file1 = new File(realFileName);
       if (!file1.exists()) {
@@ -166,7 +166,7 @@ public class FileDownController {
       } else {
          fileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
       }
-      realFileName = "C:\\board\\productImg\\detailsImg"+fileName;
+      realFileName = "C:\\board\\detailsImg\\"+fileName;
       System.out.println("realFileName="+ realFileName);
       File file1 = new File(realFileName);
       if (!file1.exists()) {

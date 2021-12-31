@@ -28,7 +28,7 @@ table {
 	text-align: center;
 	justify-content: center;
 	width: 100%;
-	height: 450px;
+
 }
 
 td {

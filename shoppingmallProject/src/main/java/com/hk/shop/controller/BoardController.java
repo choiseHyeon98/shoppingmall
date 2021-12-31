@@ -115,7 +115,7 @@ public class BoardController {
 	
 	
 	// 새로 문의하기
-	@RequestMapping (value="/s/board/askAdd", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping (value="/s/board/askAdd", method= RequestMethod.GET)
 	public String MyAskAdd (Model model, HttpSession session) {
 		
 		return "myAskAdd";

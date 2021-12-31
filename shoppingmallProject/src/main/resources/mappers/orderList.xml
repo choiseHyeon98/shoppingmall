@@ -55,8 +55,8 @@
 	<insert id="newOrder" parameterType="OrderListVO">
 	 <![CDATA[ 
       INSERT INTO ORDERLIST
-	("orderNum", "proNum", "id", "sizeOption", "colorOption", "tprice",  "payment", "orderDate", "token", "delStatus")
-	VALUES((SELECT MAX("orderNum") FROM ORDERLIST)+1, #{proNum}, #{id}, #{sizeOption}, #{colorOption}, #{tprice}, #{payment}, sysdate, #{token}, '주문접수')
+	("orderNum", "proNum", "id", "sizeOption", "colorOption", "tprice",  "payment", "orderDate", "token", "delStatus", "orderCount")
+	VALUES((SELECT MAX("orderNum") FROM ORDERLIST)+1, #{proNum}, #{id}, #{sizeOption}, #{colorOption}, #{tprice}, #{payment}, sysdate, #{token}, '주문접수', #{orderCount})
 
    ]]>
 	</insert>
