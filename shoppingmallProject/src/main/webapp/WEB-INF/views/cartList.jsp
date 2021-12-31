@@ -9,14 +9,6 @@ request.setCharacterEncoding("UTF-8");
 <html>
 <head>
 
-<style>
-h2 {
-text-align: center;
-}
-</style>
-
-<meta charset="UTF-8">
-<title>찜 목록</title>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
@@ -27,11 +19,55 @@ text-align: center;
 		return true;
 	}
 </script>
+
+<meta charset="UTF-8">
+<title>찜 목록</title>
+
+<style>
+table {
+	border: 1px solid #444444;
+	border-collapse: collapse;
+	text-align: center;
+	justify-content: center;
+	width: 100%;
+
+}
+
+td {
+	border: 1px solid #444444;
+}
+
+.card-body {
+	background-color: #fffef5;
+	margin: 0 50px 0 50px;
+	flex: 1 1 auto;
+	padding: 1rem 1rem;
+	justify-content: center;
+	display: flex;
+}
+
+.color-black {
+	color: black;
+}
+
+p {
+	text-align: left;
+
+}
+
+h2 {
+text-align: center;
+}
+</style>
+
+<!-- favicon -->
+<%@include file="headerfooter/favicon.jsp"%>
+
 </head>
+
+<body>
 <!-- header -->
 	<%@include file="headerfooter/header.jsp"%>
-<body>
-	
 
 
 	<form name="muldelForm" action="muldelete">
@@ -39,11 +75,10 @@ text-align: center;
 
 		<div class="card-body">
 			<div class="container px-4 px-lg-5">
-				<div class="row gx-4 gx-lg-5 align-items-center my-5">
-					<div class="col-lg-4" style="text-align: left;">
+
 						<table align="center" border="1" width="80%">
 							<h2>찜 목록</h2>
-					</div>
+					
 							<tr>
 								<th>체크박스</th>
 								<th>상품이미지</th>
@@ -75,22 +110,22 @@ text-align: center;
 						<!--   <button onclick='getCheckboxValue()'>확인</button>
   <input type="submit" value="주문하기" onClick="location.href='/mypage/orderList'"> <br>
  -->
-						<input type="button" onclick="getCheckboxValue()" value="주문하기">
+						<input type="button" onclick="getCheckboxValue()" value="주문하기" align="center">
 						<input type="button" onclick="return muldelete()" class="cls2"
-							value="삭제하기">
+							value="삭제하기" align="center">
 
 
 
 					
-				</div>
+				
 			</div>
 		</div>
 	</form>
 
 
-
-	
-</body>
 <!-- footer -->
 	<%@include file="headerfooter/footer.jsp"%>
+	
+</body>
+
 </html>
