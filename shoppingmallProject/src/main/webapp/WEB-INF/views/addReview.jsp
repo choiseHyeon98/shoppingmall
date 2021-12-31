@@ -41,7 +41,10 @@ function backToList(obj){
 <style>
 .forCenter {
 	text-align: center;
-	
+}
+
+.left {
+	text-align: left;
 }
 </style>
 <body>
@@ -54,9 +57,10 @@ function backToList(obj){
 			alt="logo" style="width: 50px;"></a>
 	</div>
 	<div class="forCenter">
-		<div style="display: inline-block;">
+		<div style="display: inline-block; ">
 			<form action="/shop/s/mypage/addReview" method="post">
-				<table class="table table-striped"
+				
+                <table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
@@ -78,14 +82,19 @@ function backToList(obj){
 						<tr>
 							<td><textarea class="form-control" placeholder="리뷰를 남겨주세요"
 									id="reviewContent" name="reviewContent" maxlength="2048"
-									style="height: 350px; width: 500px;"></textarea></td>
+									style="height: 150px; width: 450px;"></textarea></td>
 						</tr>
-							<td>이미지파일 첨부:  </td>
-       						<td><input type="file" id="reviewPhoto" name="reviewPhoto"  onchange="readURL(this);" /></td>
-         					<td><img  id="preview" src="#"   width=200 height=200/></td>
+					
 						<tr>
-						
+							<td style="text-align: left;">이미지파일 첨부:  </td>
+                        </tr>
+                        <tr>
+       						<td><input type="file" id="reviewPhoto" name="reviewPhoto"  onchange="readURL(this);" /></td>
+                        </tr>
+                        <tr>
+         					<td><img  id="preview" src="#"   width=200px height=200px/></td>
 						</tr>
+					
 					</tbody>
 				</table>
 				<input type="submit" value="리뷰 등록하기">
