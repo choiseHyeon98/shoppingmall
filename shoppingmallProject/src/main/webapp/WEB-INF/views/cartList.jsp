@@ -110,7 +110,7 @@ text-align: center;
 						<!--   <button onclick='getCheckboxValue()'>확인</button>
   <input type="submit" value="주문하기" onClick="location.href='/mypage/orderList'"> <br>
  -->
-						<input type="button" onclick="getCheckboxValue()" value="주문하기" align="center">
+
 						<input type="button" onclick="return muldelete()" class="cls2"
 							value="삭제하기" align="center">
 

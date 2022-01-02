@@ -61,7 +61,7 @@ h2 {
 							varStatus="orderNum">
 							<tr align="center">
 								<td>${myOrders.orderNum },${myOrders.proNum }</td>
-								<td>${myOrders.sizeOption },${myOrders.colorOption }</td>
+								<td><a href='/shop/product/detail?proNum=${myOrders.proNum}'">${myOrders.sizeOption },${myOrders.colorOption }</a></td>
 								<td>${myOrders.delStatus }<input type="button" value="리뷰작성"
 									onClick="location.href='/shop/s/mypage/addReview?proNum=${myOrders.proNum}'"></td>
 							</tr>
