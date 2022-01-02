@@ -33,7 +33,7 @@ public class MypageController {
 	MypageService mypageService;
 
 	
-	@RequestMapping (value="/mypage", method=RequestMethod.GET)
+	@RequestMapping (value="/s/mypage", method=RequestMethod.GET)
 	public String ViewMyPage () {
 		return "mypageView";
 	}

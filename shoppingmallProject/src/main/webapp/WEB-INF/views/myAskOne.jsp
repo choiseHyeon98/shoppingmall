@@ -87,16 +87,16 @@ td {
     <textarea rows="20" cols="40"  name="content"  id="i_content"  disabled />${myAsk.askContent }</textarea>
    </td>  
   </tr>
+ </table>
+</form>
+<div class="card my-4">
+		<h5 class="card-header">관리자 답글:</h5>
+ <textarea name="askManagerContent" cols="65" rows="5">${askVO.askManagerContent}</textarea>
+        
+</div>
+<br>
+<br>
  
-
-  <tr   id="tr_btn_modify"  >
-      <td colspan="2"   align="center" >
-           <input type=button value="취소"  onClick="backToList(frmArticle)">
-      </td>   
-  </tr>
-    
-  <tr  id="tr_btn"    >
-   <td colspan="2" align="center">
        <input type=button value="리스트로 돌아가기"  onClick="backToList(this.form)">
       
    </td>
