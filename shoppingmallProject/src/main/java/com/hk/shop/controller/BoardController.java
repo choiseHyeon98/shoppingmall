@@ -27,7 +27,7 @@ public class BoardController {
 	
 	@RequestMapping (value="/board/serviceCenter", method= {RequestMethod.GET,RequestMethod.POST})
 	String FAQ(Model model) {
-		//FAQ 전체 리스트 보기
+		//FAQ 전체 리스트 보기 
 		List<FAQVO> FAQLists = boardService.allList(); 
 		model.addAttribute("FAQLists", FAQLists);
 		System.out.println("FAQLists"+FAQLists);
